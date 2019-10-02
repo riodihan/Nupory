@@ -18,3 +18,10 @@ h1{
 	background: blue;
     padding: 50px;
 }
+
+#kotak{
+	width: 400px;
+	color: #fff;
+	background:black;
+    padding: 50px;
+}
