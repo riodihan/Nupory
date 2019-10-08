@@ -3,13 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Belajar Programming</title>
+    <!--
+        cara menggunakan external css
+    -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <!--
+         dengan menggunakan internal css
+    -->
+<style>
+    h1, h2{
+        /* mengubah warna tag*/
+        color : blue;
+        background-color: yellow;
+    }  
+
+    input[type=text] {
+        background: aqua;
+        color: red;
+        border: 2px solid red;
+        padding: 10px;
+
+    }
+
+    #atas {
+        background: greenyellow;
+        color: blueviolet;
+        height: 100px;
+        padding: 50px;
+    }
+
+    .subab{
+        background: palevioletred;
+    }
+
+    .sub{
+        color: aquamarine;
+    }
+
+    a:active{
+        color: royalblue;
+    }
+
+    a:link{
+        color: gold;
+    }
+
+    a:hover{
+        color: crimson;
+    }
+
+    a:visited{
+        color: cyan;
+    }
+
+</style>
 </head>
 <body>
 <!--
     ini adalah element header
 -->
 <header>
-    <h1>Pedoman Belajar Programming</h1>
+    <h1 id="atas">Pedoman Belajar Programming</h1>
 </header>
 
 <!--
@@ -17,33 +72,57 @@
 -->
 <nav>
     <ul>
-        <li>Java</li>
-        <li>PHP</li>
-        <li>HTML</li>
+        <li><a href="Java.html">Java</a></li>
+        <li><a href="PHP.html">PHP</a></li>
+        <li><a href="HTML.html">HTML</a></li>
     </ul>
 </nav>
 
 <!--
     ini adalah element section
 -->
-
+<section>
 <!--
     ini adalah element article
 -->
-    <h2>Belajar HTML: Membuat paragraf di dokumen HTML.</h2>
+<article>
+    <h2 class="subab">Belajar HTML: Membuat paragraf di dokumen HTML.</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus officia error enim tempore omnis magnam hic, labore voluptas. Ipsam et beatae quae nisi, suscipit quas tempora aspernatur culpa velit quos?</p>
-    
-    <h2>Belajar HTML: Membuat paragraf di dokumen HTML.</h2>
+</article>
+
+<article>
+    <h2 class="subab">Belajar HTML: Membuat paragraf di dokumen HTML.</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus officia error enim tempore omnis magnam hic, labore voluptas. Ipsam et beatae quae nisi, suscipit quas tempora aspernatur culpa velit quos?</p>
-    
-    <h2>Belajar HTML: Membuat paragraf di dokumen HTML.</h2>
+</article>
+
+<article>
+    <h2 class="subab">Belajar HTML: Membuat paragraf di dokumen HTML.</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus officia error enim tempore omnis magnam hic, labore voluptas. Ipsam et beatae quae nisi, suscipit quas tempora aspernatur culpa velit quos?</p>
-    
+</article>
+<form action="" method="">
+    <input type="text" name="id" placeholder="Silahkan masukkan id anda">
+    <input type="text" name="nama" placeholder="Silahkan masukkan nama anda">
+    <input type="submit" value="Simpan">
+</form>
+</section>
+<!--
+    element aside
+-->
+<aside>
+
     <ul>
             <li>Belajar HTML: Membuat paragraf di dokumen HTML.</li>
             <li>Belajar HTML: Membuat paragraf di dokumen HTML.</li>
             <li>Belajar HTML: Membuat paragraf di dokumen HTML.</li>
-        </ul>
-    <p>
-        Copyright 2019 Powered by polije
-    </p>
+    </ul>
+</aside>
+<!--
+    element footer
+-->
+
+<footer>
+    Copyright &copy; 2019 Powered by polije
+</footer>
+</body>
+
+</html>
