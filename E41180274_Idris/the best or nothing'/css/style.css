@@ -1,0 +1,61 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+/*ini bagian header*/
+#kepala {
+    padding: 35px;
+    color: white;
+    background-color: brown;
+}
+nav h1{
+    display: inline;
+}
+nav ul{
+    float: right;
+    list-style: none;
+}
+
+ul li {
+    display: inline;
+}
+
+nav ul li{
+    display: inline-block;
+    margin-right: 50px;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+/*ini bagian konten*/
+#judul {
+    padding: 35px;
+}
+
+h1 {
+    text-align: center;
+    
+    
+}
+
+section ul {
+    display: inline;
+    margin: 150px;
+    
+}
+
+.gambar {
+    margin: 0px 90px;
+}
+
+.gambar1 {
+    margin: 0px 70px;
+}
+
+.tulisan {
+    display: inline;
+}
