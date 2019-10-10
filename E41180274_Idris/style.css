@@ -1,3 +1,5 @@
+
+
 h1 {
     color:black;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -10,8 +12,13 @@ h1 {
     float: right;
 }
 
+
 .warna {
-    background-color: rgb(211, 146, 26);
+    background-color: rgb(136, 69, 6);
+}
+
+.warna1 {
+	background-color: #d36600c4;
 }
 
 .designb {
