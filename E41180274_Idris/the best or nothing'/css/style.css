@@ -53,6 +53,11 @@ section ul {
     margin: 50px 85px 50px 195px; 
 }
 
+.a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
  footer {
     clear: both;
     text-align: center;
