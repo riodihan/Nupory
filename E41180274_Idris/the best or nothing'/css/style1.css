@@ -5,9 +5,10 @@
 }
 /*ini bagian header*/
 #kepala {
-    padding: 35px;
+    padding: 20px;
     color: white;
     background-color: brown;
+    font-family: 'Bree Serif', serif;
 }
 nav h1{
     display: inline;
@@ -24,6 +25,9 @@ ul li {
 nav ul li{
     display: inline-block;
     margin-right: 50px;
+    margin-top: 0.5rem;
+    margin-right: 3rem;
+    font-size: 20px;
     
 }
 a{
@@ -34,6 +38,8 @@ a{
 /*ini bagian konten*/
 #judul {
     padding: 35px;
+    font-family: 'Bree Serif', serif;
+    font-size: 20;
 }
 
 h1 {
