@@ -11,7 +11,7 @@
     <form action="#">
         <h3>Inputkan Angka</h3>
         <input type="number" id="Bilangan" name="angka">
-        <button type="button" onclick="hitung()">Hitung</button>
+        <button type="button" onclick="hitung()">Cek</button>
     </form>
     <p id="hasil"></p>
     <script>
@@ -25,8 +25,9 @@
             else if(bil%2===0){
                 document.getElementById("hasil").innerHTML= bil + " adalah Bilangan Genap";
 
-            } else if(bil%2!==0){
-                document.getElementById("hasil").innerHTML = bil + " adalah Bilangan Ganjil";
+            } 
+            else {
+                document.getElementById("hasil").innerHTML = bil  + " adalah Bilangan Ganjil";
             }
             
         }
