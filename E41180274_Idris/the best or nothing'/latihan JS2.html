@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+        <p>NIM</p>
+        <input type="text" name="nim" id="nim" placeholder="NIM">
+        <p>Nama</p>
+        <input type="text" name="nama" id="name" placeholder="Nama">
+        <button type="button" onclick="tampilbiodata()">Tampil</button>
+
+    </form>
+<p id="hasil"></p>
+
+    <script>
+    function tampilbiodata(){
+        var nim = document.getElementById("nim").value;
+        var name = document.getElementById("name").value;
+        var tampil = "Hallo,"+nim+" "+name;
+
+        document.getElementById("hasil").innerHTML=tampil;
+
+    }
+    </script>
+</body>
+</html>
