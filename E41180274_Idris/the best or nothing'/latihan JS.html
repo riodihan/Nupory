@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="POST">
+        <p>NIM</p>
+        <input type="text" name="nim" id="nim" placeholder="NIM">
+        <p>Nama</p>
+        <input type="text" name="nama" id="nama" placeholder="Nama">
+        <button type="button" onclick="tampilbiodata()">Check</button>
+        <button type="button" onclick="alert('apakah anda ingin menyimpan data anda?')">Save</button>
+    </form>
+    <p id="hasil"></p>
+    <script>
+    function tampilbiodata(){
+        var nim = document.getElementById("nim").value;
+        var nama = document.getElementById("nama").value;
+        var tampil = "hallo, "+ nim+" "+nama;
+        document.getElementById("hasil").innerHTML=tampil;
+        
+    }
+    </script>
+</body>
+</html>
