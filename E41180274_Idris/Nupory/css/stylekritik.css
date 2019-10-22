@@ -67,7 +67,7 @@
 /*bagian header*/
 header{
     padding: 7px;
-    background-color: rgba(0, 0, 0, 0.644);
+    background-color: rgba(0, 0, 0, 0.801);
 }
 
 
@@ -75,12 +75,13 @@ header{
 h1{
     line-height: 25px;
     text-align: center;
+    font-size: 22px;
 }
 
 .h1{
     position: absolute;
     top: 3px;
-    left: 625px;
+    left: 640px;
 }
 
 .button{
@@ -130,7 +131,7 @@ h2{
     top: 30px;
     line-height: 40px;
 }
-
+/*bagian garis*/
 section h2:after{
     content: " ";
     position: absolute;
@@ -190,3 +191,5 @@ input{
     color: black;
  }
 
+
+ 
