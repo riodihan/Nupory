@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ganjil Genap</title>
+</head>
+<body>
+    <h1>Menentukan Bilangan Ganjil dan Genap</h1>
+    <form action="#">
+        <h3>Inputkan Angka</h3>
+        <input type="number" id="Bilangan" name="angka">
+        <button type="button" onclick="hitung()">Cek</button>
+    </form>
+    <p id="hasil"></p>
+    <script>
+        function hitung() {
+            var bil = document.getElementById("Bilangan").value;
+            var hasilnya;
+            if (bil === "") 
+            {
+                alert("isi tidak boleh kosong");    
+            }
+            else if(bil%2===0){
+                document.getElementById("hasil").innerHTML= bil + " adalah Bilangan Genap";
+
+            } 
+            else {
+                document.getElementById("hasil").innerHTML = bil + " adalah Bilangan Ganjil";
+            }
+            
+        }
+    </script>
+</body>
+</html>

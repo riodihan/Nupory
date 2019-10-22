@@ -1,0 +1,128 @@
+/* google font
+1. buka google font
+2. pilih font
+3. salin url taruh di atas sendiri di file css
+4. salin sintaks untuk memanggil fontnya */
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap');
+/* global selector */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    color:grey;
+}
+
+img{
+    max-width: 15rem;
+    height: auto;
+}
+
+/* Header */
+#logo{
+    float: left; 
+    margin-left: 3rem;
+}
+
+nav{
+    float: right;
+    margin-top: 1rem;
+    margin-right: 3rem;
+}
+
+header{
+    background-color: #d93337;
+    padding: .75rem;  
+    overflow: hidden;
+}
+
+header::after{
+    content: "";
+    clear: both;
+    /* display: block; */
+}
+
+header a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav ul{
+    list-style: none;
+}
+
+nav li{
+    display: inline-block;
+    margin: 0 1rem;
+}
+
+nav li a{
+    padding: .75rem 1rem;
+    font-size: 1.25rem;
+    font-weight: 900;
+}
+
+#logo h1{
+    font-weight: 900;
+}
+
+#logo h2{
+    font-weight: 400;
+    font-size: 1.15rem;
+}
+
+/* content */
+
+#content{
+    background-color: #e3e3e3;
+}
+
+#content section{
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+section h1{
+    color: #030303;
+    font-size: 2.25rem;
+    margin: 1.75rem 0;
+    word-spacing: 10px;
+}
+
+section ul{
+    list-style: none;
+}
+
+section li{
+    display: inline-block;
+    margin: 1rem 2.75rem;
+}
+
+section li p{
+    margin: 1rem 0 0;
+}
+
+/* footer */
+footer{
+    background-color: #e3e3e3;
+    text-align: center;
+    clear: both;
+    position:fixed;
+    bottom:0;
+    width: 100%;
+    padding: 20px;   
+}
+
+footer img{
+    max-width: 3rem;
+    padding: 0 5px 0 0;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Java Script</title>
+</head>
+<body>
+    <form action="#">
+            NIM : <input id="nim" type="text" name="nim" >
+            <br>
+            <br>
+            Nama: <input id="name" type="text" name="nama">
+            <button type="button" onclick="TampilBiodata()">tampil</button>
+    
+    </form>
+    <p id="hasil"></p> 
+    <script>
+        function TampilBiodata() {
+        var nim=document.getElementById('nim').value;
+        var name=document.getElementById('name').value;
+
+        var tampil = "Hallo," +nim+" "+name;
+        document.getElementById("hasil").innerHTML=tampil;
+        }
+    </script>
+    
+</body>
+</html>

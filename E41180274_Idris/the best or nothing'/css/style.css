@@ -1,5 +1,7 @@
 
 *{
+    /*font-family: 'Bree Serif', serif;*/
+    font-family: 'Roboto Slab', serif;
     padding: 0;
     margin: 0;
 }
@@ -10,7 +12,6 @@
     padding: 20px;
     color: white;
     background-color: brown;
-    font-family: 'Bree Serif', serif;
 }
 nav h1{
     display: inline;
@@ -56,9 +57,9 @@ section ul {
     
 }
 
-#gambar {
+.gambar {
     float:left;   
-    margin: 50px 85px 50px 195px; 
+    margin: 50px 85px 50px 185px; 
 }
 
 .a{
