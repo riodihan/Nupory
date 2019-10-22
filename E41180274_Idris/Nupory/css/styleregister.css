@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+    /* font-family: 'Be Vietnam', sans-serif; */
+}
+
+/*bagian sidebar*/
+
+.tombol{
+    text-align: right;
+}
+
+.hidesidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: gray;
+    overflow-x: hidden;
+    transition: 0.5s;
+    
+}
+
+.hidesidebar ul li a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    border-top: 1px solid;
+}
+
+.hidesidebar ul li a:hover {
+    color: #f1f1f1;
+    background: red;
+    border-top: 1px solid gray;
+}
+.hidesidebar ul li:last-child a{
+  border-bottom: 1px solid;
+}
+.hidesidebar .close {
+    margin-right: 20px;
+    font-size: 36px;
+    text-decoration: none;
+    color: black;
+    padding: 20px 0 0 20px;
+}
+}
+
+#menu {
+    transition: margin-left .5s;
+    padding: 16px;  
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+
+/*bagian header*/
+header{
+    padding: 13px;
+    background-color: rgba(0, 0, 0, 0.644);
+}
+
+
+
+h1{
+    line-height: 25px;
+    text-align: center;
+}
+
+.h1{
+    position: absolute;
+    top: 3px;
+    left: 625px;
+}
+
+button{
+    border-radius: 40px;
+    border: solid;
+    height: 30px;
+    width: 70px;
+    font-weight: bold;
+    background-color: transparent;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+input{
+    width: 300px;
+    height: 30px;
+    border-radius: 40px;
+    color: black;
+    font-size: 15px;
+    
+}
+
+p{
+    font-size: 20px;
+}
