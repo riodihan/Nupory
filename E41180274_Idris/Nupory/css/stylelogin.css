@@ -151,3 +151,7 @@ section p:after{
     left: 80px;
     top: 50%;
 }
+
+input{
+    text-align: center;
+}
