@@ -114,8 +114,11 @@ section{
     text-align: justify;
 }
 
-p{
+.p{
     background-color: rgba(0, 0, 0, 0.63);
+    padding: 20px;
+    position: relative;
+    left: 40px;
     
 } 
 
