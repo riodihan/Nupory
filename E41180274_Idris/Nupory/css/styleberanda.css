@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     color: white;
-    font-family: 'Be Vietnam', sans-serif;
+    /* font-family: 'Be Vietnam', sans-serif; */
 }
 
 /*bagian sidebar*/
@@ -66,7 +66,7 @@
 
 /*bagian header*/
 header{
-    padding: 7px;
+    padding: 13px;
     background-color: rgba(0, 0, 0, 0.644);
 }
 
@@ -101,22 +101,35 @@ a{
 }
 
 /*ini bagian section*/
-h2{
-    font-size: 50px;
-    line-height: 45px;
-}
+ h2{
+    font-family: 'DM Serif Display', serif;
+    font-size: 58px;
+    /* line-height: 56px; */
+    padding-left: 100px;
+    
+} 
 
 section{
-    padding: 20px 400px 0px 20px;
+    padding: 20px 600px 0px 70px;
     text-align: justify;
 }
 
 p{
     background-color: rgba(0, 0, 0, 0.63);
-}
+    
+} 
 
 input{
     position: absolute;
     right: 20px;
     bottom: 20px;
+}
+.judul{
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    background-color: transparent;
+    font-family: 'DM Serif Display', serif;
+    font-size: 58px;
+    line-height: 56px;
+    padding-left: 50px;
 }
