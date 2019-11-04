@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Be Vietnam', sans-serif;
+}
+
+/*bagian sidebar*/
+
+.tombol{
+    text-align: right;
+}
+
+.hidesidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: gray;
+    overflow-x: hidden;
+    transition: 0.5s;
+    
+}
+
+.hidesidebar ul li a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    border-top: 1px solid;
+}
+
+.hidesidebar ul li a:hover {
+    color: #f1f1f1;
+    background: red;
+    border-top: 1px solid gray;
+}
+.hidesidebar ul li:last-child a{
+  border-bottom: 1px solid;
+}
+.hidesidebar .close {
+    margin-right: 20px;
+    font-size: 36px;
+    text-decoration: none;
+    color: black;
+    padding: 20px 0 0 20px;
+}
+}
+
+#menu {
+    transition: margin-left .5s;
+    padding: 16px;  
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+
+/*bagian header*/
+header{
+    padding: 7px;
+    background-color: rgba(0, 0, 0, 0.801);
+}
+
+
+
+h1{
+    line-height: 25px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.h1{
+    position: absolute;
+    top: 3px;
+    left: 640px;
+}
+
+.button{
+    border-radius: 40px;
+    border: solid;
+    height: 30px;
+    width: 70px;
+    font-weight: bold;
+    position: absolute;
+    left: 650px;
+    top: 12px;
+    background-color: transparent;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+/*bagian section*/
+button{
+    border-radius: 40px;
+    border: solid;
+    height: 30px;
+    width: 70px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+section{
+    padding: 30px 100px;
+}
+
+h2{
+    font-size: 40px;
+}
+
+.background{
+    background-color: rgba(0, 0, 0, 0.637);
+    height: 400px;
+    width: 1150px;
+}
+
+.tulisan{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    line-height: 40px;
+}
+/*bagian garis*/
+section h2:after{
+    content: " ";
+    position: absolute;
+    border: 2px solid rgb(255, 255, 255);
+    width: 832px;
+    left: 415px;
+    top: 19.5%;
+}
+
+section p:after{
+    content: " ";
+    position: absolute;
+    border: 2px solid rgb(255, 255, 255);
+    height: 375px;
+    left: 565px;
+    top: -4%;
+}
+
+.kritikdansaran{
+    position: absolute;
+    left: 750px;
+    bottom: 105px;
+}
+
+textarea{
+    width: 425px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: solid transparent;
+    font-style: italic;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+::placeholder{
+    text-decoration: underline;
+}
+
+::-webkit-input-placeholder{
+    color: rgba(255, 255, 255, 0.658);
+}
+
+.tombolkirim{
+    border-radius: 40px;
+    border: solid white;
+    width: 70px;
+    height: 30px;
+    background-color: white;
+}
+
+input{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+ .warnakirim{
+    color: black;
+ }
+
+ /*bagian rating*/
+ .rating { 
+    border: none;
+    float: left;
+  }
+  
+  .rating > input { display: none; } 
+  .rating > label:before { 
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .rating > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .rating > label { 
+    color: #ddd; 
+    float: right; 
+  }
+  
+  /***** CSS untuk hover nya *****/
+  
+  .rating > input:checked ~ label, /* memperlihatkan warna emas pada saat di klik */
+  .rating:not(:checked) > label:hover, /* hover untuk star berikutnya */
+  .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover untuk star sebelumnya  */
+  
+  .rating > input:checked + label:hover, /* hover ketika mengganti rating */
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label, /* seleksi hover */
+  .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+  p{
+      clear: both;
+  }
+
+
+
+ 
