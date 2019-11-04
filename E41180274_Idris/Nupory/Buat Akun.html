@@ -37,25 +37,35 @@
                 <h2>Buat Akun</h2><br>
                 <form >
                     <div class="akun">
-                        <p>Nama :</p>
-                        <input type="text" name="Nama" value="      ">
-                        <p>Email :</p>
-                        <input type="text" name="email" value="     ">
-                        <p>No HP</p>
-                        <input type="number" name="telepon" value="     ">
-                        <p>Username</p>
-                        <input type="text" name="username" value="      ">
-                        <p>Password</p>
-                        <input type="password" name="password" value="      ">
-                        <p>konfirmasi password</p>
-                        <input type="password" name="konfirmasi" value="        ">
+                        <label for="">Nama :</label>
+                        <input type="text" name="Nama" maxlength="30" placeholder="Nama lengkap">
+                        <label for="">Email :</label>
+                        <input type="text" name="email" maxlength="75" placeholder="Example@email.com">
+                        <label for="">No HP :</label>
+                        <input type="number" name="telepon" maxlength="13" placeholder="08xxxxxxxx">
+                        <label for="">Username :</label>
+                        <input type="text" name="username" maxlength="15" placeholder="Username">
+                        <label for="">Password :</label>
+                        <input type="password" name="password" maxlength="15" placeholder="Password">
+                        <label for="">Konfirmasi Password :</label>
+                        <input type="password" name="konfirmasi" maxlength="15" placeholder="Konfirmasi Password">
                         <br> <br>
                         <div class="button">
-                        <button> <a href="#">Kembali</a></button>
+                        <button> <a href="login.html">Kembali</a></button>
                         <button><a href="#">Daftar</a></button></div>
                     </div> 
                 </form><br>
-                
         </section>
+        <script>
+            function show() {
+            document.getElementById("hidesidebar").style.width = "240px";
+            document.getElementById("menu").style.marginLeft = "0%";
+        }
+        
+            function hide() {
+            document.getElementById("hidesidebar").style.width = "0";
+            document.getElementById("menu").style.marginLeft= "0";
+        }
+            </script>
 </body>
 </html>
