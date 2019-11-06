@@ -129,7 +129,6 @@ button{
     border-radius: 40px;
     height: 30px;
     width: 70px;
-    color: black;
     font-weight: bold;
     
 }
@@ -150,4 +149,13 @@ section p:after{
     width: 180px;
     left: 80px;
     top: 50%;
+}
+
+input{
+    text-align: center;
+}
+
+#a{
+    text-decoration: none;  /*style tombol masuk*/
+    color: black;
 }

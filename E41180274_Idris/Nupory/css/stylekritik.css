@@ -67,7 +67,7 @@
 /*bagian header*/
 header{
     padding: 7px;
-    background-color: rgba(0, 0, 0, 0.644);
+    background-color: rgba(0, 0, 0, 0.801);
 }
 
 
@@ -75,12 +75,13 @@ header{
 h1{
     line-height: 25px;
     text-align: center;
+    font-size: 22px;
 }
 
 .h1{
     position: absolute;
     top: 3px;
-    left: 625px;
+    left: 640px;
 }
 
 .button{
@@ -130,7 +131,7 @@ h2{
     top: 30px;
     line-height: 40px;
 }
-
+/*bagian garis*/
 section h2:after{
     content: " ";
     position: absolute;
@@ -190,3 +191,42 @@ input{
     color: black;
  }
 
+ /*bagian rating*/
+ .rating { 
+    border: none;
+    float: left;
+  }
+  
+  .rating > input { display: none; } 
+  .rating > label:before { 
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .rating > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .rating > label { 
+    color: #ddd; 
+   float: right; 
+  }
+  
+  /***** CSS untuk hover nya *****/
+  
+  .rating > input:checked ~ label, /* memperlihatkan warna emas pada saat di klik */
+  .rating:not(:checked) > label:hover, /* hover untuk star berikutnya */
+  .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover untuk star sebelumnya  */
+  
+  .rating > input:checked + label:hover, /* hover ketika mengganti rating */
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label, /* seleksi hover */
+  .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+  p{
+      clear: both;
+  }
