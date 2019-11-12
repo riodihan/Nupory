@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+    /* font-family: 'Be Vietnam', sans-serif; */
+}
+
+/*bagian sidebar*/
+
+.tombol{
+    text-align: right;
+}
+
+.hidesidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: gray;
+    overflow-x: hidden;
+    transition: 0.5s;
+    
+}
+
+.hidesidebar ul li a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    border-top: 1px solid;
+}
+
+.hidesidebar ul li a:hover {
+    color: #f1f1f1;
+    background: red;
+    border-top: 1px solid gray;
+}
+.hidesidebar ul li:last-child a{
+  border-bottom: 1px solid;
+}
+.hidesidebar .close {
+    margin-right: 20px;
+    font-size: 36px;
+    text-decoration: none;
+    color: black;
+    padding: 20px 0 0 20px;
+}
+}
+
+#menu {
+    transition: margin-left .5s;
+    padding: 16px;  
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+
+/*bagian header*/
+header{
+    padding: 13px;
+    background-color: rgba(0, 0, 0, 0.644);
+}
+
+
+
+h1{
+    line-height: 25px;
+    text-align: center;
+}
+
+.h1{
+    position: absolute;
+    top: 3px;
+    left: 625px;
+}
+
+button{
+    border-radius: 40px;
+    border: solid;
+    height: 30px;
+    width: 70px;
+    font-weight: bold;
+    position: absolute;
+    left: 650px;
+    top: 12px;
+    background-color: transparent;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+/*ini bagian section*/
+ h2{
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    /* line-height: 56px; */
+    padding-left: 100px;
+    
+} 
+
+section{
+    padding: 20px 600px 0px 70px;
+    text-align: justify;
+}
+
+.p{
+    background-color: rgba(0, 0, 0, 0.63);
+    padding: 20px;
+    position: relative;
+    left: 40px;
+    
+} 
+
+input{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+.judul{
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    background-color: transparent;
+    font-family: 'DM Serif Display', serif;
+    font-size: 58px;
+    line-height: 56px;
+    padding-left: 50px;
+}
