@@ -11,6 +11,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
     body{
         background-image: url('img/Nursery.jpg');

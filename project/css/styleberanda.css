@@ -65,12 +65,12 @@
 /*bagian header*/
 header{
     padding: 13px;
-    background-color: rgba(0, 0, 0, 0.644);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-
-
 h1{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
     margin-top: 4px;
     line-height: 25px;
     text-align: center;
