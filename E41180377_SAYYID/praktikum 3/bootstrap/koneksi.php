@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "admin");
+$koneksi = mysqli_connect("localhost", "root", "", "tugas");
 
 
 //check connection

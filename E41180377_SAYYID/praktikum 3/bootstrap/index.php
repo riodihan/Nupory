@@ -21,7 +21,7 @@
     <br/>
     <br/>
 
-    <form action="cek_login.php" method="post">
+    <form method="post" action="cek_login.php">
         <table>
             <tr>
                 <td>Username</td>
