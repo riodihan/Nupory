@@ -48,6 +48,8 @@ session_start();
     </header>
     <section>
         <p class="judul">Kebun Nursery <br> Polije</p>
+        <br>
+        <br>
         <!-- <h2>Kebun Nursery</h2> -->
         <!-- <h2>Polije</h2> -->
         <br>
@@ -68,7 +70,7 @@ session_start();
                 Hortikultura
                 Kawasan
                 Rembangan
-                500 m dpl. <br> <br>
+                500 mdpl. <br> <br>
                 Unit Produksi Hortikultura Rembangan mempunyai
                 fasilitas antara lain Kantor Pemasaran, Ruang Pasca Panen, Green
                 House tanaman hias anggrek dan pot, Rumah Produksi Krisan
@@ -108,7 +110,31 @@ session_start();
                 </p>
             </li>
             </ul> -->
-        <a href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data="><input type="image" src="img/WA.png" width="50px" height="50px"></a>
+        <br><br><br><br>
+
+        <h3 class="produk">Produk Kami</h3>
+        <!-- Item Produk -->
+        <div>
+            <ul class="gambar">
+                <li class="gproduk">
+                    <img class="imgproduk" src="img/bunga 1.jpeg" alt="Bunga 1">
+                    <p class="p1"><a href="#">Bunga 1</a></p>
+                </li>
+                <li class="gproduk">
+                    <img class="imgproduk" src="img/bunga 2.jpeg" alt="Bunga 2">
+                    <p class="p1"><a href="#">Bunga 2</a></p>
+                </li>
+                <li class="gproduk">
+                    <img class="imgproduk" src="img/bunga 3.jpeg" alt="Bunga 3">
+                    <p class="p1"><a href="#">Bunga 3</a></p>
+                </li>
+                <li class="gproduk">
+                    <img class="imgproduk" src="img/bunga 4.jpeg" alt="Bunga 4">
+                    <p class="p1"><a href="#">Bunga 4</a></p>
+                </li>
+            </ul>
+        </div>
+        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
     <script>
     function show() {
