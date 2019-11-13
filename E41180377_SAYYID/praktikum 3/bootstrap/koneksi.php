@@ -1,8 +1,9 @@
 <?php
-$koneksi = mysql_connect ("localhost", "root", "", "nupory");
+$koneksi = mysqli_connect("localhost", "root", "", "admin");
 
 
-if (mysql_connect_errno()){
-    echo "koneksi database gagal :" . mysql_connect_error();
+//check connection
+if (mysqli_connect_error()) {
+    echo "Koneksi database gagal: ".mysqli_connect_error();
 }
 ?>
