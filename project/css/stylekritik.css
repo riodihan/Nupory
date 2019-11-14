@@ -49,11 +49,10 @@
     color: black;
     padding: 20px 0 0 20px;
 }
-}
+
 
 #menu {
-    transition: margin-left .5s;
-    padding: 16px;  
+    transition: margin-left .5s;  
 }
 
 @media screen and (max-height: 450px) {
@@ -130,6 +129,7 @@ h2{
     left: 20px;
     top: 30px;
     line-height: 40px;
+    
 }
 /*bagian garis*/
 section h2:after{
@@ -158,12 +158,11 @@ section p:after{
 
 textarea{
     width: 425px;
-    background-color: transparent;
+    background: transparent;
     border-radius: 10px;
-    border: solid transparent;
     font-style: italic;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
+    padding: 3px;
 }
 
 ::placeholder{

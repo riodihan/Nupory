@@ -11,10 +11,13 @@
     if(isset($_POST["login"])){
         $username = $_POST["username"];
         $password = $_POST["password"];
-        $login = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE username = '$username' AND password ='$password'");
-
+        $login = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' AND password ='$password'");
+        $row = mysqli_fetch_array($login);
+        $user = $row ['username'];
+        $pass = $row ['username'];
+        $id_status = $row ['ID_STATUS'];
         if(mysqli_num_rows($login) === 1) {
-            $row = mysqli_fetch_array($login);
+            $_SESSION["id_status"]= $id_status;
             $_SESSION["login"]= true;
             header("location: index.php");}
             
@@ -50,12 +53,34 @@
     <div id="hidesidebar" class="hidesidebar">
         <p class="tombol"> <a href="javascript:void(0)" class="close" onclick="hide()">&#9776;</a></p>
         <ul>
-            <li><a href="index.php">Beranda</a></li>
-            <li><a href="semuaproduk.php">Semua Produk</a></li>
-            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
-            <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
-            <li><a href="temukankami.php">Temukan Kami</a></li>
-            <li><a href="#">FAQ</a></li>
+        <?php 
+                $user = @$_SESSION['id_status'] == '03';
+                $karyawan = @$_SESSION['id_status'] =='02';
+                $admin = @$_SESSION['id_status'] == '01';
+                $guest = (!isset($_SESSION['login']));
+                if($user){
+            ?>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
+                <li><a href="temukankami.php">Temukan Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+            <?php }if($admin){?>
+                
+                <li><a href="#">Data Admin</a></li>
+                <li><a href="#">Data Transaksi</a></li>
+                <li><a href="#">Data Bunga</a></li>
+                <li><a href="#">Report</a></li>
+            <?php }if($karyawan){?>
+                
+                <li><a href="#">Data Transaksi</a></li>
+                <li><a href="#">Data Bunga</a></li>
+            <?php }if($guest){?>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="temukankami.php">Temukan Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+            <?php }?>
         </ul>
         
     </div>

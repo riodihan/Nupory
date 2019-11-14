@@ -1,4 +1,5 @@
 <?php
+require 'assets/includes/config.php';
 session_start();
 mysqli_connect("localhost", "root", "", "nupory");
 
@@ -6,6 +7,9 @@ if(!isset($_SESSION["login"])){
         header("location: login.php");
         exit;
     }
+
+$jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,12 +33,34 @@ if(!isset($_SESSION["login"])){
     <div id="hidesidebar" class="hidesidebar">
         <p class="tombol"> <a href="javascript:void(0)" class="close" onclick="hide()">&#9776;</a></p>
         <ul>
-            <li><a href="index.php">Beranda</a></li>
-            <li><a href="semuaproduk.php">Semua Produk</a></li>
-            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
-            <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
-            <li><a href="temukankami.php">Temukan Kami</a></li>
-            <li><a href="#">FAQ</a></li>
+        <?php 
+                $user = @$_SESSION['id_status'] == '03';
+                $karyawan = @$_SESSION['id_status'] =='02';
+                $admin = @$_SESSION['id_status'] == '01';
+                $guest = (!isset($_SESSION['login']));
+                if($user){
+            ?>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
+                <li><a href="temukankami.php">Temukan Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+            <?php }if($admin){?>
+                
+                <li><a href="#">Data Admin</a></li>
+                <li><a href="#">Data Transaksi</a></li>
+                <li><a href="#">Data Bunga</a></li>
+                <li><a href="#">Report</a></li>
+            <?php }if($karyawan){?>
+                
+                <li><a href="#">Data Transaksi</a></li>
+                <li><a href="#">Data Bunga</a></li>
+            <?php }if($guest){?>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="temukankami.php">Temukan Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+            <?php }?>
         </ul>
         
     </div>
@@ -46,7 +72,7 @@ if(!isset($_SESSION["login"])){
     </h1>
     </header>
     <section>
-        <h2>Krisan Putih</h2><br><br>
+        <h2>Krisan Sprey</h2><br><br>
         <div class="background">
             
         
@@ -62,10 +88,10 @@ if(!isset($_SESSION["login"])){
         <input type="radio" name="r" id="r4">
         <input type="radio" name="r" id="r5">
         <div class="slide s1">
-          <img src="img/1.jpg" alt="">
+          <img src="img/2.jpg" alt="">
         </div>
         <div class="slide">
-          <img src="img/2.jpg" alt="">
+          <img src="img/1.jpg" alt="">
         </div>
         <div class="slide">
           <img src="img/3.jpg" alt="">
@@ -88,24 +114,17 @@ if(!isset($_SESSION["login"])){
     </div>
     
     <!--bagian tulisan-->
+    
+      <h3>Bunga Krisan Putih</h3>
+        <p class="p">
+        
 
-    <h3>Bunga Krisan Putih</h3>
-    <p class="p">Harga : Rp. 1500 ~ 2000<br>
-    Beli 
-        <input type="radio" name="Tangkai" id="Tangkai">Tangkai <input type="radio" name="Ikat" id="Ikat">Ikat
         <br>
-    Jumlah beli
-        <input type="text" name="jumlahbeli" id="">
-        <br>
-    Subtotol
-        <input type="text" name="subtotal" id="">
-        <br>
-    Alamat Pengiriman
-        <input type="text" name="alamatpengiriman" id="">
-        <br>
-    <button>Beli</button>
-    </p>
-
+          <textarea name="alamat" id="" rows="10" placeholder="Alamat Pengiriman"></textarea>
+          <br>
+          <button>Beli</button>
+        </p>
+    
     
 
 

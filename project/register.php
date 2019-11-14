@@ -1,4 +1,5 @@
 <?php
+//$id_status = mysqli_query($koneksi, "SELECT * FROM status");
 require 'assets/includes/config.php';
 
 if(isset($_POST["daftar"])) {
@@ -12,15 +13,15 @@ if(isset($_POST["daftar"])) {
 }
 
 
-$carikode = mysqli_query($koneksi, "select max(kd_pelanggan)from pelanggan") or die (mysqli_error($koneksi));
+$carikode = mysqli_query($koneksi, "select max(ID_USER)from user") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode) {
     $nilaikode = substr($datakode[0], 1 );
     $kode = (int) $nilaikode;
     $kode = $kode + 1;
-    $hasilkode = "P" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+    $hasilkode = "U" .str_pad($kode, 3, "0", STR_PAD_LEFT);
 }else{
-    $hasilkode = "P001";
+    $hasilkode = "U001";
 }
 
 ?>
@@ -46,12 +47,34 @@ if($datakode) {
                 <div id="hidesidebar" class="hidesidebar">
                     <p class="tombol"> <a href="javascript:void(0)" class="close" onclick="hide()">&#9776;</a></p>
                     <ul>
-                        <li><a href="index.php">Beranda</a></li>
-                        <li><a href="semuaproduk.php">Semua Produk</a></li>
-                        <li><a href="caraperawatan.php">Cara Perawatan</a></li>
-                        <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
-                        <li><a href="temukankami.php">Temukan Kamu</a></li>
-                        <li><a href="#">FAQ</a></li>
+                    <?php 
+                $user = @$_SESSION['id_status'] == '03';
+                $karyawan = @$_SESSION['id_status'] =='02';
+                $admin = @$_SESSION['id_status'] == '01';
+                $guest = (!isset($_SESSION['login']));
+                if($user){
+            ?>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
+                <li><a href="temukankami.php">Temukan Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+            <?php }if($admin){?>
+                
+                <li><a href="#">Data Admin</a></li>
+                <li><a href="#">Data Transaksi</a></li>
+                <li><a href="#">Data Bunga</a></li>
+                <li><a href="#">Report</a></li>
+            <?php }if($karyawan){?>
+                
+                <li><a href="#">Data Transaksi</a></li>
+                <li><a href="#">Data Bunga</a></li>
+            <?php }if($guest){?>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="temukankami.php">Temukan Kami</a></li>
+                <li><a href="#">FAQ</a></li>
+            <?php }?>
                     </ul>
                     
                 </div>
@@ -65,8 +88,11 @@ if($datakode) {
 
                 <form method="POST" >
                     <div class="akun">
-                        
-                            <input type="hidden" name="kd_pelanggan" maxlength="7" value="<?php echo $hasilkode ?>" required> 
+
+                   
+
+                        <input type="hidden" name="id_user" maxlength="7" value="<?php echo $hasilkode ?>" readonly> 
+                        <input type="hidden" name="id_status" maxlength="7" value="03" readonly>       
                         <label for="nama">Nama :</label>  
                             <input type="text" name="nama" maxlength="30" placeholder="Nama lengkap" required>
                         <label for="alamt">Alamat :</label>
