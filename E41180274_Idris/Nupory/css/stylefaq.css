@@ -141,6 +141,13 @@ input{
 
 .bg{
     background-color: rgba(0, 0, 0, 0.815);
-    height: 450px;
-    width: 900px;
+    height:560px;
+    width: 1000px;
+    text-align: justify;
+}
+.as1 li{
+    text-align: initial;
+}
+.qs1{
+    font-family: 'Courier New', Courier, monospace;
 }
