@@ -100,6 +100,11 @@ session_start();
         </div>
         <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
+
+    <footer>
+        <p class="footer">&copy; Powered 2019 by Nupory Team</p>
+    </footer>
+    
     <script>
     function show() {
     document.getElementById("hidesidebar").style.width = "240px";

@@ -99,6 +99,7 @@ a{
     text-decoration: none;
 }
 
+
 /*ini bagian section*/
  h2{
     font-family: 'DM Serif Display', serif;
@@ -118,10 +119,10 @@ section{
     text-align: right;
     font-style: italic;
     background-color: rgba(0, 0, 0, 0.63);
+    border-radius: 10px;
     padding: 20px;
     position: relative;
     left: 465px;
-    
 } 
 
 input{
@@ -153,7 +154,7 @@ section h3:after{
     border: 2px solid rgb(255, 255, 255);
     width: 827px;
     left: 378px;
-    top: 657px;
+    top: 627px;
 }
 
 section div{
