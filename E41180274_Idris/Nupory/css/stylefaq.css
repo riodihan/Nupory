@@ -18,7 +18,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color:rgb(0, 0, 0);
+    background-color: gray;
     overflow-x: hidden;
     transition: 0.5s;
     
@@ -28,15 +28,15 @@
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: white;
+    color: black;
     display: block;
     transition: 0.3s;
     border-top: 1px solid;
 }
 
 .hidesidebar ul li a:hover {
-    color: black;
-    background:white;
+    color: #f1f1f1;
+    background: red;
     border-top: 1px solid gray;
 }
 .hidesidebar ul li:last-child a{
@@ -46,12 +46,14 @@
     margin-right: 20px;
     font-size: 36px;
     text-decoration: none;
-    color: white;
+    color: black;
     padding: 20px 0 0 20px;
+}
 }
 
 #menu {
-    transition: margin-left .5s;  
+    transition: margin-left .5s;
+    padding: 16px;  
 }
 
 @media screen and (max-height: 450px) {
@@ -65,13 +67,12 @@
 /*bagian header*/
 header{
     padding: 13px;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.644);
 }
 
+
+
 h1{
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: lighter;
-    margin-top: 4px;
     line-height: 25px;
     text-align: center;
 }
@@ -102,7 +103,7 @@ a{
 /*ini bagian section*/
  h2{
     font-family: 'DM Serif Display', serif;
-    font-size: 56px;
+    font-size: 58px;
     /* line-height: 56px; */
     padding-left: 100px;
     
@@ -114,13 +115,10 @@ section{
 }
 
 .p{
-    font-family: 'Overpass', sans-serif;
-    text-align: right;
-    font-style: italic;
     background-color: rgba(0, 0, 0, 0.63);
     padding: 20px;
     position: relative;
-    left: 465px;
+    left: 40px;
     
 } 
 
@@ -131,59 +129,18 @@ input{
 }
 .judul{
     font-family: 'DM Serif Display', serif;
-    font-size: 58px;
-    font-weight: lighter;
-    line-height: 56px;
-    padding-left: 50px;
-}
-
-.produk{
-    font-family: 'DM Serif Display', serif;
-    font-size: 35px;
-    font-weight: lighter;
+    font-size: 56px;
     background-color: transparent;
     font-family: 'DM Serif Display', serif;
+    font-size: 58px;
     line-height: 56px;
     padding-left: 50px;
 }
 
-section h3:after{
-    content: " ";
-    position: absolute;
-    border: 2px solid rgb(255, 255, 255);
-    width: 827px;
-    left: 378px;
-    top: 657px;
-}
+/*bagian pertanyaan*/
 
-section div{
-    content: " ";
-    background-color:  rgb(0, 0, 0);
-    position: absolute;
-    width: 100%;
-    height: 500px;
-    left: 0px;
-    top: 720px;
-}
-.gambar{
-    list-style: none;
-    margin: 10px 10px 10px 120px;
-}
-
-.imgproduk{
-    width: 150px;
-    height: 150px;
-}
-
-.gproduk{
-    display: inline-block;
-    padding: 15px;
-    text-align: center;
-    margin-right: 120px;
-    background-color: rgba(206, 146, 16, 0.63);
-}
-
-.p1{
-    font-family: 'Overpass', sans-serif;
-    color: black;
+.bg{
+    background-color: rgba(0, 0, 0, 0.815);
+    height: 450px;
+    width: 900px;
 }
