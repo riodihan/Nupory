@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>FAQ</title>
-    <link rel="stylesheet" href="css/styleberanda.css">
+    <script src="jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".as1").hide();
+        $(".as2").hide();
+        $(".as3").hide();
+        $(".qs1").click(function () {
+            $(".as1").slideToggle(); 
+        });
+        $(".qs2").click(function(){
+            $(".as2").slideToggle();
+        });
+        $(".qs3").click(function () {
+            $(".as3").slideToggle();
+        });
+    });
+    </script>
+    <link rel="stylesheet" href="css/stylefaq.css">
     <link rel="stylesheet" href="css/faq.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
-
     <style>
     body{
         background-image: url('img/Nursery.jpg');
@@ -35,32 +51,55 @@
         <button><a href="login.html">Login</a></button>
     </h1>
     </header>
-    <section class="faq">
-        <div class="faq-left">
-            <h2> Pertanyaan Anda </h2>
-            <ul class="faq-container"></ul>
-            <li>
-                <label for="pertanyaan1">Pertanyaan 1: Apa itu poltek Nursery? </label>
-                <input name="pertanyaan" id="pertanyaan1" type="checkbox" value="">
-                <div class="answer">
-                    <p> Poltek Nursery merupakan kebun bunga milik Politeknik Negeri Jember yang berkerjasama dnegan pemerintah Kabupaten Jember.
-                    </p>
-                </div>
-            </li>
-            <li>
-                <label for="pertanyaan2">pertanyaan 2:Bunga apa saja yang dijual di Poltek Nursery? </label>
-                <input namae="pertanyaan" id="pertanyaan2" type="checkbox" value="">
-                <div class="answer">
-                    <p>bunga yang di jual di poltek nursey yaitu</p>
+    <section>
+        <h1>Pertanyaan Anda</h1>
+            <div id="wrapper" class="bg">
+                <div class="qs1">Gimana sih cara buat akun?</div>
+                <div class="as1">
                     <ol>
-                        <li> Krisan Sprey       = Rp 13.000.- </li>
-                        <li> Krisan Standart    = Rp 14.000.- </li>
-                        <li> Anggrek Bulan Lokal    = Rp 130.000.-</li>
-                        <li> Anggrek Bulan Taiwan   = Rp 140.000.-</li>
+                        <p>Gampang banget caranya! Coba ikutin langkah-langkah di bawah ini ya:</p>
+                        <li>masukkan nama anda </li>
+                        <li>masukkan alamat anda</li>
+                        <li>masukkan no telepon anda</li>
+                        <li>masukkan email anda. pastikan email yang aktif</li>
+                        <li>masukkan username yang anda inginkan</li>
+                        <li>masukkan password. buatlah seunik mungkin agar orang lain tidak bisa mengatahuinya</li>
+                        <li>konfirmasi password anda</li>
+                        <li>pastikan semuanaya terisi Ya!</li>
+                        <li>selesai!</li>
+                        <br>
+                        <p>Butuh bantuan lebih lanjut?</p>    
                     </ol>
                 </div>
-            </li>
-        </div>
+                <br>
+                <div class="qs2">Kok saya gak bisa LogIn? kira-kira kenapa?</div>
+                <div class="as2">
+                    <p>jangan stres dulu...</p>
+                    <p>jadi gini... kemungkinan kamu gak bisa login karena kamu salah memasukkan username dan password.</p>
+                    <p>kalo udah yakin username dan passwordmu benar tapi tetep gak bisa, hubungi kami aja ya via whatsapp</p>
+                    <br>
+                    <p>Butuh Bantuan lebih lanjut</p>
+
+                </div>
+                <br>
+                <div class="qs3">Gimana sih cara beli bunga?</div>
+                <div class="as3">
+                    <ol>
+                        <li>Login. jika sudah punya akun maka langsung login</li>
+                        <li>jika belum punya akun maka regestrasi dulu</li>
+                        <li>masuk ke halaman semua produk yang berada di menu side bar</li>
+                        <li>scroll kebawah untuk melihat semua produk</li>
+                        <li>klik produk bunga yang ada inginkan maka akan langsung masuk ke halaman transaksi </li>
+                        <li>silakan masukkan jumlah bunga yang anda inginkan</li>
+                        <li>selesai</li>
+                        <br>
+                        <p>Butuh bantuan lebih lanjut?</p>
+
+                    </ol>
+                </div>
+                <br>
+            </div>
+        <br>
        <a href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data="><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
     <script>

@@ -166,10 +166,10 @@ section p:before{
   }
   .bar{
     width: 50px;
-    height: 10px;
-    border: 2px solid #fff;
-    margin: 6px;
-    cursor: pointer;
+    height: 7px;
+    border: 2px solid rgba(255, 255, 255, 0.384);
+    margin: 4px;
+    cursor: auto;
     transition: 0.4s;
   }
   .bar:hover{
@@ -225,6 +225,26 @@ h3{
     left: 55%;
     top: 37%;
 }
+
+.inputtulisan{
+  color: black;
+  border-radius: 3px;
+}
+
+textarea{
+  width: 300px;
+  height: 180px;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 3px;
+  
+}
+
+::placeholder{
+  color: white;
+}
+
+
 
 
 

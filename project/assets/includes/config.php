@@ -1,13 +1,14 @@
 <?php
     
-    $koneksi= mysqli_connect("localhost", "root", "", "coba");
+    $koneksi= mysqli_connect("localhost", "root", "", "nursery_polije");
 
 
     //proses register
     
     function pendaftaran($data) {
         global $koneksi;
-        $kd_pelanggan = $data["kd_pelanggan"];
+        $id_user = $data["id_user"];
+        $id_status = $data["id_status"];
         $nama = $data["nama"];
         $alamat = $data["alamat"];
         $nohp = $data["nohp"];
@@ -32,9 +33,9 @@
          
          //mendaftarkan akun ke database
          //mysqli_query($koneksi, "INSERT INTO pelanggan VALUES ('', '$nama', '$alamat', '$nohp', '$email', '$username', '$password')");
-        $qu = mysqli_query($koneksi, "INSERT INTO pelanggan VALUES ('$kd_pelanggan','$nama', '$alamat', '$nohp', '$email', '$username', '$password')");
+        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id_user', '$id_status', '$nama', '$alamat', '$nohp', '$email', '$username', '$password')");
 
-         return $qu;
+        return $qu;
          
 
     }
