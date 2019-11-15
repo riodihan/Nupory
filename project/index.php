@@ -35,7 +35,7 @@ session_start();
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
                 <li><a href="#">Data Admin</a></li>
@@ -50,7 +50,7 @@ session_start();
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="faq.php">FAQ</a></li>
             <?php }?>
         </ul>
         
@@ -104,20 +104,20 @@ session_start();
         <div>
             <ul class="gambar">
                 <li class="gproduk">
-                    <img class="imgproduk" src="img/bunga 1.jpeg" alt="Bunga 1">
-                    <p class="p1"><a href="#">Bunga 1</a></p>
+                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 1.jpeg" alt="Bunga 1">
+                    <p class="p1">Bunga 1</p></a>
                 </li>
                 <li class="gproduk">
-                    <img class="imgproduk" src="img/bunga 2.jpeg" alt="Bunga 2">
-                    <p class="p1"><a href="#">Bunga 2</a></p>
+                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 2.jpeg" alt="Bunga 2">
+                    <p class="p1">Bunga 2</p></a>
                 </li>
                 <li class="gproduk">
-                    <img class="imgproduk" src="img/bunga 3.jpeg" alt="Bunga 3">
-                    <p class="p1"><a href="#">Bunga 3</a></p>
+                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 3.jpeg" alt="Bunga 3">
+                    <p class="p1">Bunga 3</p></a>
                 </li>
                 <li class="gproduk">
-                    <img class="imgproduk" src="img/bunga 4.jpeg" alt="Bunga 4">
-                    <p class="p1"><a href="#">Bunga 4</a></p>
+                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 4.jpeg" alt="Bunga 4">
+                    <p class="p1">Bunga 4</p></a>
                 </li>
             </ul>
         </div>

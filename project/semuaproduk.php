@@ -1,7 +1,7 @@
 <?php
 require 'assets/includes/config.php';
 session_start();
-mysqli_connect("localhost", "root", "", "nupory");
+mysqli_connect("localhost", "root", "", "poltek_nursery");
 
 if(!isset($_SESSION["login"])){
         header("location: login.php");
@@ -44,7 +44,7 @@ $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
                 <li><a href="#">Data Admin</a></li>
@@ -59,7 +59,7 @@ $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="faq.php">FAQ</a></li>
             <?php }?>
         </ul>
         

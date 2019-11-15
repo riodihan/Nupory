@@ -1,6 +1,6 @@
 <?php
     
-    $koneksi= mysqli_connect("localhost", "root", "", "nursery_polije");
+    $koneksi= mysqli_connect("localhost", "root", "", "poltek_nursery");
 
 
     //proses register
