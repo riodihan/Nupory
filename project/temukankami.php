@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Temukan Kami</title>
-    <link rel="stylesheet" href="css/styleberanda.css">
+    <link rel="stylesheet" href="css/styletemukankami.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
