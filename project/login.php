@@ -103,12 +103,15 @@
             <p class="tulisankotak">Username</p>
                 <input type="text" name="username" class="kotaktext" id="username" placeholder="Username/Email" required>
             <p class="tulisankotak">Password</p>
-                <input type="password" name="password" class="kotaktext" id="Password" placeholder="Password" required><br><br>
+                <input type="password" name="password" class="kotaktext" value="" id="Password" placeholder="Password" required><br><br>
+                <input type="checkbox" onclick="myFunction()">Show Password <br>
             <button type="submit" name="login">MASUK</button>
             <h5>belum punya akun? <a href="register.php">daftar disini</a></h5>
+            <h5>lupa password? <a href="lupapassword.php">lupa password</a></h5>
+
         </form>
         
-        
+      
     </section>
 
 
@@ -122,6 +125,14 @@
     document.getElementById("hidesidebar").style.width = "0";
     document.getElementById("menu").style.marginLeft= "0";
 }
+    function myFunction() {
+        var x = document.getElementById("Password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
     </script>
 
 </body>
