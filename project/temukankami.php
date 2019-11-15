@@ -33,7 +33,7 @@ session_start();
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
                 <li><a href="#">Data Admin</a></li>
@@ -48,7 +48,7 @@ session_start();
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="faq.php">FAQ</a></li>
             <?php }?>
         </ul>
         
