@@ -107,6 +107,7 @@
                 <input type="checkbox" onclick="myFunction()">Show Password <br>
             <button type="submit" name="login">MASUK</button>
             <h5>belum punya akun? <a href="register.php">daftar disini</a></h5>
+            <h5>lupa password? <a href="lupapassword.php">lupa password</a></h5>
 
         </form>
         
