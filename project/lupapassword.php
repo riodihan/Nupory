@@ -21,16 +21,9 @@ try {
     $mail->Port       = 465;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-    $mail->addAddress('ellen@example.com');               // Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');
-
-    // Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+    $mail->setFrom('sayyidmusthofa89@gmail.com', 'Sayyid');
+    $mail->addAddress('sayyidmusthofa89@gmail.com');     // Add a recipient
+    $mail->addReplyTo('no-reply@gmail.com', 'No reply');
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
@@ -44,3 +37,13 @@ try {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    Sayyid
+</body>
+</html>
