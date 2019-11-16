@@ -49,7 +49,7 @@ if(!isset($_SESSION["login"])){
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
-                <li><a href="#">Data Admin</a></li>
+                <li><a href="#">Data User</a></li>
                 <li><a href="#">Data Transaksi</a></li>
                 <li><a href="#">Data Bunga</a></li>
                 <li><a href="#">Report</a></li>
@@ -87,6 +87,9 @@ if(!isset($_SESSION["login"])){
         <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
 
+    <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
+    <a href="tambahadmin.php">Tambah Admin atau Karyawan</a><br><br>
+
 <table border="1" cellpadding="10" cellspacing="0">
 
     <tr>
@@ -98,6 +101,7 @@ if(!isset($_SESSION["login"])){
         <th>Email</th>
         <th>Username</th>
         <th>Password</th>
+        <th>Aksi</th>
     </tr>
 
     <?php $i = 1?>
@@ -113,6 +117,7 @@ if(!isset($_SESSION["login"])){
         <td><?= $row["EMAIL"]; ?></td>
         <td><?= $row["USERNAME"]; ?></td>
         <td><?= $row["PASSWORD"]; ?></td>
+        <td><a href="#">Hapus</a></a></td>
     </tr>
     
     <?php $i++; ?>
