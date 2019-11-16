@@ -55,4 +55,39 @@
 
 
 
+    //proses register
+    
+    function tambahadmin($tambah) {
+        global $koneksi;
+        $id = $tambah["id_user"];
+        $id_s = $tambah["id_status"];
+        $nama_u = $tambah["nama_user"];
+        $alamat_u = $tambah["alamat"];
+        $no_telepon = $tambah["no_telepon"];
+        $email_u = $tambah["email"];
+        $u_name = strtolower (stripslashes($tambah["username"]));
+        $password_u =  mysqli_real_escape_string($koneksi, $tambah["password"]);
+        $konfirmasipassword = mysqli_real_escape_string($koneksi, $tambah["konfirmasipassword"]);
+
+        //cek konfirmasi password
+         if($password_u !== $konfirmasipassword){
+             echo "<script>
+                    alert('konfirmasi password salah');
+                </script>";
+
+                return false;
+         }
+         
+         //enkripsi password
+         //$password = password_hash($password, PASSWORD_DEFAULT);
+         
+         
+         
+         //mendaftarkan akun ke database
+        
+        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id', '$id_s', '$nama_u', '$alamat_u', '$no_telepon', '$email_u', '$u_name', '$password_u')");
+
+        return $qu;
+    }
+
 ?>

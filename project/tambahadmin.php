@@ -2,13 +2,34 @@
 session_start();
 require 'assets/includes/config.php';
 
-//menampilkan tabel
-$haha = query("SELECT * FROM user");
+
+if(isset($_POST["tambah"])) {
+
+    if(tambahadmin($_POST) == 1){
+        echo "<script>alert('user berhasil terdaftar'); window.location.href='datauser.php'</script>";
+        // header("location: login.php");
+    }else{
+        echo mysqli_error($koneksi);
+    }
+}
+
 
 //session login
 if(!isset($_SESSION["login"])){
     header("location: login.php");
     exit;
+}
+
+//iduser otomatis
+$carikode = mysqli_query($koneksi, "select max(ID_USER)from user") or die (mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if($datakode) {
+    $nilaikode = substr($datakode[0], 1 );
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "U" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+}else{
+    $hasilkode = "U001";
 }
 
 ?>
@@ -18,7 +39,7 @@ if(!isset($_SESSION["login"])){
 <head>
     <meta charset="UTF-8">
     <title>Data User</title>
-    <link rel="stylesheet" href="css/styledatauser.css">
+    <link rel="stylesheet" href="css/styletambahadmin.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
@@ -78,52 +99,59 @@ if(!isset($_SESSION["login"])){
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <button class="button"><a href="logout.php">Logout</a></button>
         <?php }?>
     </h1>
     </header>
     <section>
-        
-    <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
-    <a href="tambahadmin.php">Tambah Karyawan</a><br><br>
+<form action="" method="POST">
+<ul>
+    <li>
+        <input type="hidden" name="id_user" id="id_user" value="<?php echo $hasilkode ?>">
+    </li>
+    <li>
+        <input type="hidden" name="id_status" id="id_status" value="02">
+    </li>
+    <li>
+        <label for="nama_user">Nama Karyawan</label><br>
+        <input type="text" name="nama_user" id="nama_user" required>
+    </li>
+    <li>
+        <label for="alamat">Alamat</label><br>
+        <input type="text" name="alamat" id="alamat" required>
+    </li>
+    <li>
+        <label for="no_telepon">No Telepon</label><br>
+        <input type="number" name="no_telepon" id="no_telepon" required>
+    </li>
+    <li>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" id="email" required>
+    </li>
+    <li>
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="username" required>
+    </li>
+    <li>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" required>
+    </li>
+    <li>
+        <label for="konfirmasipassword">Konfirmasi password</label><br>
+        <input type="konfirmasipassword" name="konfirmasipassword" id="konfirmasipassword" required>
+    </li>
+    <li>
+        <label for="foto">Foto</label><br>
+        <input type="file" name="foto" id="foto">
+    </li>
+</ul>
+    <button name="tambah" class="tomboltambah">Submit</button>
+    <button class="tomboltambah"> <a href="datauser.php">Kembali</a></button>
+</form>
 
-    <table border="1" cellpadding="10" cellspacing="0">
-
-        <tr>
-            <th>NO</th>
-            <th>ID Status</th>
-            <th>Nama User</th>
-            <th>Alamat</th>
-            <th>No Telepon</th>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Aksi</th>
-        </tr>
-
-        <?php $i = 1?>
-        
-        <?php 
-        foreach($haha as $row){?>
-        <tr>
-            <td><?= $i?></td>
-            <td><?= $row["ID_STATUS"]; ?></td>
-            <td><?= $row["NAMA_USER"]; ?></td>
-            <td><?= $row["ALAMAT"]; ?></td>
-            <td><?= $row["NO_TELEPON"]; ?></td>
-            <td><?= $row["EMAIL"]; ?></td>
-            <td><?= $row["USERNAME"]; ?></td>
-            <td><?= $row["PASSWORD"]; ?></td>
-            <td><a href="#">Hapus</a></a></td>
-        </tr>
-        
-        <?php $i++; ?>
-        <?php }?>
-    </table>
-
-
-        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
+      
     </section>
+
 
     <footer>
     </footer>
