@@ -1,7 +1,15 @@
 <?php
 session_start();
 require 'assets/includes/config.php';
-$user = query("SELECT * FROM user");
+
+//menampilkan tabel
+$haha = query("SELECT * FROM user");
+
+//session login
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
 
 ?>
 
@@ -95,8 +103,7 @@ $user = query("SELECT * FROM user");
     <?php $i = 1?>
     
     <?php 
-    if(is_array($user && $row)){
-    foreach($user as $row){?>
+    foreach($haha as $row){?>
     <tr>
         <td><?= $i?></td>
         <td><?= $row["ID_STATUS"]; ?></td>
@@ -109,7 +116,7 @@ $user = query("SELECT * FROM user");
     </tr>
     
     <?php $i++; ?>
-    <?php }}?>
+    <?php }?>
 </table>
 
 

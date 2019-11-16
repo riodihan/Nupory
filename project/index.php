@@ -38,7 +38,7 @@ session_start();
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
-                <li><a href="#">Data Admin</a></li>
+                <li><a href="datauser.php">Data User</a></li>
                 <li><a href="#">Data Transaksi</a></li>
                 <li><a href="#">Data Bunga</a></li>
                 <li><a href="#">Report</a></li>
