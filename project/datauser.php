@@ -2,6 +2,7 @@
 session_start();
 require 'assets/includes/config.php';
 $user = query("SELECT * FROM user");
+
 ?>
 
 <!DOCTYPE html>
@@ -92,20 +93,23 @@ $user = query("SELECT * FROM user");
     </tr>
 
     <?php $i = 1?>
-    <?php foreach($user as $row) : ?>
+    
+    <?php 
+    if(is_array($user && $row)){
+    foreach($user as $row){?>
     <tr>
         <td><?= $i?></td>
-        <td><?= $row["id_status"] ?></td>
-        <td><?= $row["NAMA_USER"] ?></td>
-        <td><?= $row["ALAMAT"] ?></td>
-        <td><?= $row["NO_TELEPON"] ?></td>
-        <td><?= $row["EMAIL"] ?></td>
-        <td><?= $row["USERNAME"] ?></td>
-        <td><?= $row["PASSWORD"] ?></td>
+        <td><?= $row["ID_STATUS"]; ?></td>
+        <td><?= $row["NAMA_USER"]; ?></td>
+        <td><?= $row["ALAMAT"]; ?></td>
+        <td><?= $row["NO_TELEPON"]; ?></td>
+        <td><?= $row["EMAIL"]; ?></td>
+        <td><?= $row["USERNAME"]; ?></td>
+        <td><?= $row["PASSWORD"]; ?></td>
     </tr>
     
     <?php $i++; ?>
-    <?php endforeach;?>
+    <?php }}?>
 </table>
 
 
