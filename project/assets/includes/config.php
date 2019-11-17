@@ -40,7 +40,7 @@
 
     }
 
-    // menampilkan data user data user
+    // menampilkan data user
     
     function query($query){
         global $koneksi;
@@ -53,11 +53,24 @@
 
     }
 
-
-
-    //proses register
+    // menampilkan data user
     
-    function tambahadmin($tambah) {
+    function query1($query1){
+        global $koneksi;
+        $result1 = mysqli_query($koneksi,$query1);
+        $rows1 = [];
+        while($row1 = mysqli_fetch_assoc($result1) ){
+            $rows1[]=$row1;
+        }
+        return $rows1;
+
+    }
+
+
+
+    //proses tambah karyawan
+    
+    function tambahkaryawan($tambah) {
         global $koneksi;
         $id = $tambah["id_user"];
         $id_s = $tambah["id_status"];
@@ -89,5 +102,24 @@
 
         return $qu;
     }
+
+
+    //proses tambah bunga
+    
+    function tambahbunga($tambah1) {
+        global $koneksi;
+        $id_b= $tambah1["id_bunga"];
+        $nama_b = $tambah1["nama_bunga"];
+        $harga_b = $tambah1["harga"];
+        $stok_b = $tambah1["stok"];
+         
+         
+         //menambahkan bunga ke database
+        
+        $qu = mysqli_query($koneksi, "INSERT INTO bunga VALUES ('$id_b', '$nama_b', '$harga_b', '$stok_b')");
+
+        return $qu;
+    }
+
 
 ?>

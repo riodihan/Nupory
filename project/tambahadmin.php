@@ -5,8 +5,8 @@ require 'assets/includes/config.php';
 
 if(isset($_POST["tambah"])) {
 
-    if(tambahadmin($_POST) == 1){
-        echo "<script>alert('user berhasil terdaftar'); window.location.href='datauser.php'</script>";
+    if(tambahkaryawan($_POST) == 1){
+        echo "<script>alert('karyawan berhasil ditambahkan'); window.location.href='datauser.php'</script>";
         // header("location: login.php");
     }else{
         echo mysqli_error($koneksi);
@@ -70,14 +70,14 @@ if($datakode) {
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
-                <li><a href="#">Data User</a></li>
-                <li><a href="#">Data Transaksi</a></li>
-                <li><a href="#">Data Bunga</a></li>
-                <li><a href="#">Report</a></li>
+                <li><a href="datauser.php">Data User</a></li>
+                <li><a href="datatransaksi.php">Data Transaksi</a></li>
+                <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 
-                <li><a href="#">Data Transaksi</a></li>
-                <li><a href="#">Data Bunga</a></li>
+                <li><a href="datatransaksi.php">Data Transaksi</a></li>
+                <li><a href="databunga.php">Data Bunga</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>

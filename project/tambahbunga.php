@@ -1,13 +1,45 @@
 <?php
 session_start();
+require 'assets/includes/config.php';
+
+
+if(isset($_POST["tambah"])) {
+
+    if(tambahbunga($_POST) == 1){
+        echo "<script>alert('bunga berhasil ditambahkan'); window.location.href='databunga.php'</script>";
+        
+    }else{
+        echo mysqli_error($koneksi);
+    }
+}
+
+
+//session login
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+
+//iduser otomatis
+$carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if($datakode) {
+    $nilaikode = substr($datakode[0], 1 );
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+}else{
+    $hasilkode = "B001";
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Beranda</title>
-    <link rel="stylesheet" href="css/styleberanda.css">
+    <title>Data User</title>
+    <link rel="stylesheet" href="css/styletambahbunga.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
@@ -67,65 +99,42 @@ session_start();
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <button class="button"><a href="logout.php">Logout</a></button>
         <?php }?>
     </h1>
     </header>
     <section>
-        <p class="judul">Kebun Nursery <br> Polije</p>
-        <br>
-        <br>
-        <!-- <h2>Kebun Nursery</h2> -->
-        <!-- <h2>Polije</h2> -->
-        <br>
-        <p class="p">
-                Unit Produksi Hortikultura Rembangan merupakan
-                salah satu unit produksi yang yang dimiliki oleh Politeknik Negeri
-                Jember, merupakan hasil kerjasama antara Politeknik Negeri Jember
-                dengan Pemerintah Kabupaten Jember yang didirikan pada tahun
-                2004. Unit ini didirikan dengan tujuan untuk meningkatkan proses
-                pembelajaran mahasiswa Politeknik Negeri Jember khususnya
-                bidang kewirausahaan hortikultura. Selain itu juga memiliki fungsi
-                sebagai unit produksi yang dapat memenuhi kebutuhan masyarakat
-                kususnya di bidang Hortikultura. Adapun lokasi Unit Produksi
-                Agrowisata 15 Km dari pusat kota Jember pada ketinggian tempat
-                Rembangan berada di Hortikultura Kawasan Rembangan 500 mdpl.
-                <br><br>
-                Unit Produksi Hortikultura Rembangan mempunyai
-                fasilitas antara lain Kantor Pemasaran, Ruang Pasca Panen, Green
-                House tanaman hias anggrek dan pot, Rumah Produksi Krisan
-                seluas 1000 m2, Rumah Produksi Bunga Daun seluas 1000 m,
-                Lahan Produksi Gerbera seluas 500 m, lahan produksi sayuran
-                seluas 10.000 m dan unit Instalasi Riset and Development.</p>
-        <br><br>
+<form action="" method="POST">
+<ul>
+    <li>
+        <input type="hidden" name="id_bunga" id="id_bunga" value="<?php echo $hasilkode ?>">
+    </li>
+    <li>
+        <label for="nama_bunga">Nama Bunga</label><br>
+        <input type="text" name="nama_bunga" id="nama_bunga" required>
+    </li>
+    <li>
+        <label for="harga">Harga</label><br>
+        <input type="text" name="harga" id="harga" required>
+    </li>
+    <li>
+        <label for="stok">Stok</label><br>
+        <input type="number" name="stok" id="stok" required>
+    </li>
+    <li>
+        <label for="gambar">Gambar</label><br>
+        <input type="file" name="gambar" id="gambar">
+    </li>
+</ul>
+    <button name="tambah" class="tomboltambah">Submit</button>
+    <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
+</form>
 
-        <h3 class="produk">Produk Kami</h3>
-        <!-- Item Produk -->
-        <div>
-            <ul class="gambar">
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 1.jpeg" alt="Bunga 1">
-                    <p class="p1">Bunga 1</p></a>
-                </li>
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 2.jpeg" alt="Bunga 2">
-                    <p class="p1">Bunga 2</p></a>
-                </li>
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 3.jpeg" alt="Bunga 3">
-                    <p class="p1">Bunga 3</p></a>
-                </li>
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 4.jpeg" alt="Bunga 4">
-                    <p class="p1">Bunga 4</p></a>
-                </li>
-            </ul>
-        </div>
-        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
+      
     </section>
 
+
     <footer>
-        <p class="footer">&copy; Powered 2019 by Nupory Team</p>
     </footer>
     
     <script>
