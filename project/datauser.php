@@ -49,14 +49,14 @@ if(!isset($_SESSION["login"])){
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
-                <li><a href="#">Data User</a></li>
-                <li><a href="#">Data Transaksi</a></li>
-                <li><a href="#">Data Bunga</a></li>
-                <li><a href="#">Report</a></li>
+                <li><a href="datauser.php">Data User</a></li>
+                <li><a href="datatransaksi.php">Data Transaksi</a></li>
+                <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 
-                <li><a href="#">Data Transaksi</a></li>
-                <li><a href="#">Data Bunga</a></li>
+                <li><a href="datatransaksi.php">Data Transaksi</a></li>
+                <li><a href="databunga.php">Data Bunga</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
