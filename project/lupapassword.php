@@ -12,17 +12,18 @@ $mail = new PHPMailer(true);
 
 try {
     //Server settings
+    // $mail->SMTPDebug  = 2;
     $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+    $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'sayyidmusthofa89@gmail.com';                     // SMTP username
-    $mail->Password   = '@ idul 9';                               // SMTP password
-    $mail->SMTPSecure = 'ssl';         // Enable ssl encryption;  also accepted
+    $mail->Username   = 'idulidul36@gmail.com';           // SMTP username
+    $mail->Password   = '@ idul 9';                             // SMTP password
+    $mail->SMTPSecure = 'ssl';                                  // Enable ssl encryption;  also accepted
     $mail->Port       = 465;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('sayyidmusthofa89@gmail.com', 'Sayyid');
-    $mail->addAddress('sayyidmusthofa89@gmail.com');     // Add a recipient
+    $mail->setFrom('idulidul36@gmail.com', 'idul');
+    $mail->addAddress('idulidul9@gmail.com');     // Add a recipient
     $mail->addReplyTo('no-reply@gmail.com', 'No reply');
 
     // Content
@@ -41,7 +42,7 @@ try {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title></title>
 </head>
 <body>
     Sayyid

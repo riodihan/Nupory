@@ -317,6 +317,8 @@ class SMTP
             $port = self::DEFAULT_PORT;
         }
         // Connect to the SMTP server
+        $host = "ssl://smtp.gmail.com";
+        $port = "465";
         $this->edebug(
             "Connection: opening to $host:$port, timeout=$timeout, options=" .
             (count($options) > 0 ? var_export($options, true) : 'array()'),
