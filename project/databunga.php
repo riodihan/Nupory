@@ -110,7 +110,7 @@ if(!isset($_SESSION["login"])){
             <td><?= $row1["HARGA"]; ?></td>
             <td><?= $row1["STOK"]; ?></td>
             <td widht="50px"></td>
-            <td><a href="#">Hapus</a></a></td>
+            <td><a href="hapusbunga.php?id=<?= $row1["STOK"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
         </tr>
         
         <?php $i++; ?>

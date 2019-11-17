@@ -11,6 +11,8 @@ if(!isset($_SESSION["login"])){
     exit;
 }
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +93,7 @@ if(!isset($_SESSION["login"])){
 
         <tr>
             <th>NO</th>
+            <th>ID User</th>
             <th>ID Status</th>
             <th>Nama User</th>
             <th>Alamat</th>
@@ -107,6 +110,7 @@ if(!isset($_SESSION["login"])){
         foreach($haha as $row){?>
         <tr>
             <td><?= $i?></td>
+            <td><?= $row["ID_USER"]; ?></td>
             <td><?= $row["ID_STATUS"]; ?></td>
             <td><?= $row["NAMA_USER"]; ?></td>
             <td><?= $row["ALAMAT"]; ?></td>
@@ -114,7 +118,7 @@ if(!isset($_SESSION["login"])){
             <td><?= $row["EMAIL"]; ?></td>
             <td><?= $row["USERNAME"]; ?></td>
             <td><?= $row["PASSWORD"]; ?></td>
-            <td><a href="#">Hapus</a></a></td>
+            <td><a href = "hapususer.php?id=<?= $row["ID_STATUS"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
         </tr>
         
         <?php $i++; ?>

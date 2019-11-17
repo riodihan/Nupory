@@ -7,15 +7,15 @@
     
     function pendaftaran($data) {
         global $koneksi;
-        $id_user = $data["id_user"];
-        $id_status = $data["id_status"];
-        $nama = $data["nama"];
-        $alamat = $data["alamat"];
-        $nohp = $data["nohp"];
-        $email = $data["email"];
-        $username = strtolower (stripslashes($data["username"]));
-        $password =  mysqli_real_escape_string($koneksi, $data["password"]);
-        $konfirmasi = mysqli_real_escape_string($koneksi, $data["konfirmasi"]);
+        $id_user = htmlspecialchars($data["id_user"]);
+        $id_status = htmlspecialchars($data["id_status"]);
+        $nama = htmlspecialchars($data["nama"]);
+        $alamat = htmlspecialchars($data["alamat"]);
+        $nohp = htmlspecialchars($data["nohp"]);
+        $email = htmlspecialchars($data["email"]);
+        $username = htmlspecialchars(strtolower (stripslashes($data["username"])));
+        $password =  htmlspecialchars(mysqli_real_escape_string($koneksi, $data["password"]));
+        $konfirmasi = htmlspecialchars(mysqli_real_escape_string($koneksi, $data["konfirmasi"]));
 
         //cek konfirmasi password
          if($password !== $konfirmasi){
@@ -72,15 +72,15 @@
     
     function tambahkaryawan($tambah) {
         global $koneksi;
-        $id = $tambah["id_user"];
-        $id_s = $tambah["id_status"];
-        $nama_u = $tambah["nama_user"];
-        $alamat_u = $tambah["alamat"];
-        $no_telepon = $tambah["no_telepon"];
-        $email_u = $tambah["email"];
-        $u_name = strtolower (stripslashes($tambah["username"]));
-        $password_u =  mysqli_real_escape_string($koneksi, $tambah["password"]);
-        $konfirmasipassword = mysqli_real_escape_string($koneksi, $tambah["konfirmasipassword"]);
+        $id = htmlspecialchars($tambah["id_user"]);
+        $id_s = htmlspecialchars($tambah["id_status"]);
+        $nama_u = htmlspecialchars($tambah["nama_user"]);
+        $alamat_u = htmlspecialchars($tambah["alamat"]);
+        $no_telepon = htmlspecialchars($tambah["no_telepon"]);
+        $email_u = htmlspecialchars($tambah["email"]);
+        $u_name = htmlspecialchars(strtolower (stripslashes($tambah["username"])));
+        $password_u =  htmlspecialchars(mysqli_real_escape_string($koneksi, $tambah["password"]));
+        $konfirmasipassword = htmlspecialchars(mysqli_real_escape_string($koneksi, $tambah["konfirmasipassword"]));
 
         //cek konfirmasi password
          if($password_u !== $konfirmasipassword){
@@ -108,10 +108,10 @@
     
     function tambahbunga($tambah1) {
         global $koneksi;
-        $id_b= $tambah1["id_bunga"];
-        $nama_b = $tambah1["nama_bunga"];
-        $harga_b = $tambah1["harga"];
-        $stok_b = $tambah1["stok"];
+        $id_b= htmlspecialchars($tambah1["id_bunga"]);
+        $nama_b = htmlspecialchars($tambah1["nama_bunga"]);
+        $harga_b = htmlspecialchars($tambah1["harga"]);
+        $stok_b = htmlspecialchars($tambah1["stok"]);
          
          
          //menambahkan bunga ke database
@@ -122,4 +122,20 @@
     }
 
 
+    // hapus data user
+     
+    function hapus($id){
+        global $koneksi;
+        $qu = mysqli_query($koneksi, "DELETE FROM user WHERE ID_STATUS = $id");
+        return $qu;
+    }
+
+    // hapus data bunga
+     
+    function hapusbunga($id){
+        global $koneksi;
+        $qu = mysqli_query($koneksi, "DELETE FROM bunga WHERE STOK = $id");
+        return $qu;
+    }
+    
 ?>
