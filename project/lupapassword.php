@@ -18,8 +18,8 @@ try {
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
     $mail->Username   = 'idulidul36@gmail.com';           // SMTP username
     $mail->Password   = '@ idul 9';                             // SMTP password
-    $mail->SMTPSecure = 'ssl';                                  // Enable ssl encryption;  also accepted
-    $mail->Port       = 465;                                    // TCP port to connect to
+    $mail->SMTPSecure = 'tls';                                  // Enable ssl encryption;  also accepted
+    $mail->Port       = '587';                                    // TCP port to connect to
 
     //Recipients
     $mail->setFrom('idulidul36@gmail.com', 'idul');
