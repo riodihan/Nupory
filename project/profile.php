@@ -71,6 +71,10 @@ require 'assets/includes/config.php';
     </h1>
     </header>
     <section>
+        <tr>
+            <td>Up Foto</td>
+            <td><input class="upfoto" type="file" name="FOTO_USER"></td>
+        </tr>
         <div class="nama">
             <li>Nama</li>
         </div>

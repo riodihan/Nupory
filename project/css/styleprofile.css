@@ -106,12 +106,6 @@ section{
     text-align: justify;
 }
 
-input{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-}
-
 section h3:after{
     content: " ";
     position: absolute;
