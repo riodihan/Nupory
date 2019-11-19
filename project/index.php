@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'assets/includes/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +38,7 @@ session_start();
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
-                
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
@@ -103,22 +104,14 @@ session_start();
         <!-- Item Produk -->
         <div>
             <ul class="gambar">
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 1.jpeg" alt="Bunga 1">
-                    <p class="p1">Bunga 1</p></a>
-                </li>
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 2.jpeg" alt="Bunga 2">
-                    <p class="p1">Bunga 2</p></a>
-                </li>
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 3.jpeg" alt="Bunga 3">
-                    <p class="p1">Bunga 3</p></a>
-                </li>
-                <li class="gproduk">
-                    <a href="semuaproduk.php"><img class="imgproduk" src="img/bunga 4.jpeg" alt="Bunga 4">
-                    <p class="p1">Bunga 4</p></a>
-                </li>
+
+                <?php $ambil=$koneksi->query("SELECT * FROM bunga");?>
+                <?php while($perproduk=$ambil->fetch_assoc()){?>
+                    <li class="gproduk">
+                        <a href="semuaproduk.php?id=<?php echo $perproduk["ID_BUNGA"];?>"><img class="imgproduk" src="img/<?php echo $perproduk["FOTO_BUNGA"];?>" alt="Bunga 1">
+                        <p class="p1"><?php echo $perproduk['NAMA_BUNGA'];?></p></a>
+                    </li>
+                <?php }?>
             </ul>
         </div>
         <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>

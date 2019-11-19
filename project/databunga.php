@@ -48,7 +48,7 @@ if(!isset($_SESSION["login"])){
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
-                
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
@@ -96,6 +96,8 @@ if(!isset($_SESSION["login"])){
             <th>Harga</th>
             <th>Stok</th>
             <th>Gambar</th>
+            <th>Video</th>
+            <th>Cara Perawatan</th>
             <th>Aksi</th>
         </tr>
 
@@ -109,8 +111,12 @@ if(!isset($_SESSION["login"])){
             <td><?= $row1["NAMA_BUNGA"]; ?></td>
             <td><?= $row1["HARGA"]; ?></td>
             <td><?= $row1["STOK"]; ?></td>
-            <td widht="50px"></td>
-            <td><a href="hapusbunga.php?id=<?= $row1["STOK"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
+            <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
+            <td><video width="350px" controls>
+                        <source src="video/<?=$row1["VIDEO_BUNGA"];?>" type="video/mp4">
+                    </video></td>
+            <td><?= $row1["CARA_PERAWATAN"];?></td>
+            <td><a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
         </tr>
         
         <?php $i++; ?>

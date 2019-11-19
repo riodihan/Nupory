@@ -50,7 +50,7 @@ if(!isset($_SESSION["login"])){
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
-                
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
@@ -118,7 +118,7 @@ if(!isset($_SESSION["login"])){
             <td><?= $row["EMAIL"]; ?></td>
             <td><?= $row["USERNAME"]; ?></td>
             <td><?= $row["PASSWORD"]; ?></td>
-            <td><a href = "hapususer.php?id=<?= $row["ID_STATUS"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
+            <td><a href = "hapususer.php?id=<?= $row["ID_USER"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
         </tr>
         
         <?php $i++; ?>
