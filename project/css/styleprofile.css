@@ -101,51 +101,9 @@ a{
 
 
 /*ini bagian section*/
- h2{
-    font-family: 'DM Serif Display', serif;
-    font-size: 56px;
-    /* line-height: 56px; */
-    padding-left: 100px;
-    
-} 
-
 section{
     padding: 20px 600px 0px 70px;
     text-align: justify;
-}
-
-.p{
-    font-family: 'Overpass', sans-serif;
-    text-align: right;
-    font-style: italic;
-    background-color: rgba(0, 0, 0, 0.63);
-    border-radius: 10px;
-    padding: 20px;
-    position: relative;
-    left: 465px;
-} 
-
-input{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-}
-.judul{
-    font-family: 'DM Serif Display', serif;
-    font-size: 58px;
-    font-weight: lighter;
-    line-height: 56px;
-    padding-left: 50px;
-}
-
-.produk{
-    font-family: 'DM Serif Display', serif;
-    font-size: 35px;
-    font-weight: lighter;
-    background-color: transparent;
-    font-family: 'DM Serif Display', serif;
-    line-height: 56px;
-    padding-left: 50px;
 }
 
 section h3:after{
@@ -157,34 +115,6 @@ section h3:after{
     top: 627px;
 }
 
-.bawahan{
-    content: " ";
-    background-color:  rgb(0, 0, 0);
-    position: absolute;
-    width: 100%;
-    height: 500px;
-    left: 0px;
-    top: 720px;
-}
-.gambar{
-    list-style: none;
-    margin: 10px 10px 10px 120px;
-}
-
-.imgproduk{
-    width: 150px;
-    height: 150px;
-}
-
-.gproduk{
-    display: inline-block;
-    padding: 15px;
-    text-align: center;
-    margin-right: 120px;
-    background-color: rgba(206, 146, 16, 0.63);
-}
-
-.p1{
-    font-family: 'Overpass', sans-serif;
-    color: black;
+.nama{
+    background-color: black;
 }
