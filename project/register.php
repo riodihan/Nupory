@@ -12,7 +12,7 @@ if(isset($_POST["daftar"])) {
     }
 }
 
-
+//auto increment id user   
 $carikode = mysqli_query($koneksi, "select max(ID_USER)from user") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode) {
@@ -100,7 +100,7 @@ if($datakode) {
                         <label for="nohp">No HP :</label>
                             <input type="number" name="nohp" maxlength="13" placeholder="08xxxxxxxx" required>
                         <label for="email">Email :</label>
-                            <input type="text" name="email" maxlength="75" placeholder="Example@email.com" required>
+                            <input type="email" name="email" maxlength="75" placeholder="Example@email.com" required>
                         <label for="username">Username :</label>
                             <input type="text" name="username" maxlength="15" placeholder="Username" required>
                         <label for="password">Password :</label>

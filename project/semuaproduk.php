@@ -1,7 +1,11 @@
 <?php
 require 'assets/includes/config.php';
 session_start();
-mysqli_connect("localhost", "root", "", "poltek_nursery");
+
+
+$id = $_GET["id"];
+$bunga = mysqli_query($koneksi, "SELECT * FROM bunga WHERE ID_BUNGA='$id'");
+$row_bunga = mysqli_fetch_array($bunga);
 
 if(!isset($_SESSION["login"])){
         header("location: login.php");
@@ -9,6 +13,23 @@ if(!isset($_SESSION["login"])){
     }
 
 $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
+
+//auto increment id transaksi
+
+$carikode = mysqli_query($koneksi, "select max(ID_TRANSAKSI)from transaksi") or die (mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if($datakode) {
+    $nilaikode = substr($datakode[0], 1 );
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "T" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+}else{
+    $hasilkode = "T001";
+}
+
+//ambil id user dari session
+
+$iduser = $_SESSION["id_user"];
 
 ?>
 <!DOCTYPE html>
@@ -72,14 +93,15 @@ $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
     </h1>
     </header>
     <section>
-        <h2>Krisan Sprey</h2><br><br>
+        <h2><?php echo $row_bunga["NAMA_BUNGA"];?></h2><br><br>
         <div class="background">
             
         
     <!--bagian gambar-->
+    
+    <img src="img/<?php echo $row_bunga["FOTO_BUNGA"];?>" alt="">
         
-        
-    <div class="slidershow middle">
+    <!-- <div class="slidershow middle">
 
       <div class="slides">
         <input type="radio" name="r" id="r1" checked>
@@ -102,31 +124,67 @@ $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
         <div class="slide">
           <img src="img/5.jpg" alt="">
         </div>
-      </div>
+      </div> -->
+      
 
-      <div class="navigation">
+      <!-- <div class="navigation">
         <label for="r1" class="bar"></label>
         <label for="r2" class="bar"></label>
         <label for="r3" class="bar"></label>
         <label for="r4" class="bar"></label>
         <label for="r5" class="bar"></label>
       </div>
-    </div>
+    </div> -->
     
     <!--bagian tulisan-->
-    
-      <h3>Bunga Krisan Putih</h3>
-        <p class="p">
-        
+      
+      
+      <h3><?php echo $row_bunga["NAMA_BUNGA"];?></h3>
+      <div class="p">
+      
+      <input type="hidden" name="id_transaksi" value="<?php echo $hasilkode?>" >
+      <input type="hidden" name="id_user" value="<?php echo $iduser?>">
 
-        <br>
+      <label for="harga"> Harga
+        <input id="harga" type="text" value="<?php echo $row_bunga["HARGA"];?>" onkeyup="sum();" readonly>
+      </label><br>
+
+      <label for="stok">Stok
+        <input id="stok" type="text" value="<?php echo $row_bunga["STOK"];?>" readonly> <br>
+      </label>
+
+        <input type="hidden" name="tanggal" id="tanggal" value="<?php
+        $tanggal= mktime(date("m"),date("d"),date("Y"));
+        echo " ".date("d-M-Y", $tanggal)." ";
+        date_default_timezone_set('Asia/Jakarta');?>" readonly>
+      
+      <label for="jumlah">Jumlah Beli
+        <input type="number" name="jumlah" id="jumlah" onkeyup="sum();">
+      </label><br>
+
+      <label for="total">Total  
+          <input type="number" name="total" id="total" readonly>
+      </label><br>
+
+      <label for="opsi">Ambil di tempat atau dikirim
+          <br><button>kirim</button>
+          <button>Ambil</button>
+      </label><br>
+
+      <label for="alamat">Alamat <br>
+        <input class="alamat" id="alamat" type="text" placeholder="Alamat Pengiriman" required><br>
+      </label>
+      
+      <button>Beli</button>
+      </div>
+    
+    
+
+
+        <!-- <br>
           <textarea name="alamat" id="" rows="10" placeholder="Alamat Pengiriman"></textarea>
           <br>
-          <button>Beli</button>
-        </p>
-    
-    
-
+          <button>Beli</button> -->
 
     
 
@@ -147,7 +205,22 @@ $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
     document.getElementById("hidesidebar").style.width = "0";
     document.getElementById("menu").style.marginLeft= "0";
 }
+
+    function sum() {
+    var txtFirstNumberValue = document.getElementById('harga').value;
+    var txtSecondNumberValue = document.getElementById('jumlah').value;
+    var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+      if (!isNaN(txtSecondNumberValue)) {
+         document.getElementById('total').value = result;
+      } 
+      // if(result.value=NaN){
+      //   document.getElementById('total').value = null;
+      // }
+    }
     </script>
+
+
+</script>
 </body>
 </html>
 

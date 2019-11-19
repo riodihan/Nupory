@@ -112,11 +112,14 @@
         $nama_b = htmlspecialchars($tambah1["nama_bunga"]);
         $harga_b = htmlspecialchars($tambah1["harga"]);
         $stok_b = htmlspecialchars($tambah1["stok"]);
+        $gambar_b = htmlspecialchars($tambah1["gambar"]);
+        $video_b = htmlspecialchars($tambah1["video"]);
+        $perawatan_b = htmlspecialchars($tambah1["perawatan"]);
          
          
          //menambahkan bunga ke database
         
-        $qu = mysqli_query($koneksi, "INSERT INTO bunga VALUES ('$id_b', '$nama_b', '$harga_b', '$stok_b')");
+        $qu = mysqli_query($koneksi, "INSERT INTO bunga VALUES ('$id_b', '$nama_b', '$harga_b', '$stok_b', '$gambar_b', '$video_b', '$perawatan_b')");
 
         return $qu;
     }
@@ -126,7 +129,7 @@
      
     function hapus($id){
         global $koneksi;
-        $qu = mysqli_query($koneksi, "DELETE FROM user WHERE ID_STATUS = $id");
+        $qu = mysqli_query($koneksi, "DELETE FROM user WHERE ID_USER = '$id'");
         return $qu;
     }
 
@@ -134,7 +137,7 @@
      
     function hapusbunga($id){
         global $koneksi;
-        $qu = mysqli_query($koneksi, "DELETE FROM bunga WHERE STOK = $id");
+        $qu = mysqli_query($koneksi, "DELETE FROM bunga WHERE ID_BUNGA = '$id'");
         return $qu;
     }
     

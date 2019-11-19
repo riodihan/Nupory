@@ -20,7 +20,7 @@ if(!isset($_SESSION["login"])){
     exit;
 }
 
-//iduser otomatis
+//id user otomatis
 $carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode) {
@@ -69,7 +69,7 @@ if($datakode) {
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
-                
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
@@ -124,6 +124,14 @@ if($datakode) {
     <li>
         <label for="gambar">Gambar</label><br>
         <input type="file" name="gambar" id="gambar">
+    </li>
+    <li>
+        <label for="video">Video</label><br>
+        <input type="file" name="video" id="video">
+    </li>
+    <li>
+        <label for="perawatan">perawatan</label><br>
+        <input type="text" name="perawatan" id="perawatan">
     </li>
 </ul>
     <button name="tambah" class="tomboltambah">Submit</button>

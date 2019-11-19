@@ -6,6 +6,13 @@
     session_start();
     require 'assets/includes/config.php';
 
+
+    // jika sudah ada session akan dimasukan ke index secara otomatis
+
+    if(isset($_SESSION["login"])){
+        header("location: index.php");
+    }
+
     /*Proses Login*/
 
     if(isset($_POST["login"])){
@@ -16,8 +23,10 @@
         $user = $row ['username'];
         $pass = $row ['username'];
         $id_status = $row ['ID_STATUS'];
+        $id_user = $row ['ID_USER'];
         if(mysqli_num_rows($login) === 1) {
             $_SESSION["id_status"]= $id_status;
+            $_SESSION["id_user"]= $id_user;
             $_SESSION["login"]= true;
             header("location: index.php");}
             
