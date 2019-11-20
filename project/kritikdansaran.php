@@ -1,11 +1,35 @@
 <?php
 session_start();
-mysqli_connect("localhost", "root", "", "poltek_nursery");
+require 'assets/includes/config.php';
 
 if(!isset($_SESSION["login"])){
         header("location: login.php");
         exit;
     }
+
+//auto increment kd kritik  
+$carikode = mysqli_query($koneksi, "select max(KD_KRITIK)from kritik") or die (mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if($datakode) {
+    $nilaikode = substr($datakode[0], 1 );
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "K" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+}else{
+    $hasilkode = "K001";
+}
+
+if(isset ($_POST["kirim"])){
+    if(kritik($_POST) == 1){
+        echo "<script>alert('Terimakasih atas kritik dan masukannya. Semoga bisa membantu kami kedepannya.'); window.location.href='kritikdansaran.php'</script>";
+    }
+    else{
+        echo mysqli_error($koneksi);
+    }
+}
+
+$iduser = $_SESSION["id_user"];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +93,7 @@ if(!isset($_SESSION["login"])){
     </header>
     <section>
         <h2>Kritik Dan Saran</h2><br><br>
+        
         <div class="background">
             
             <div class="tulisan">
@@ -95,14 +120,18 @@ if(!isset($_SESSION["login"])){
                 <br>
             </div>
         </div>
-        <div class="kritikdansaran">
-            <h4>Kritik Dan Saran</h4><br>
-            <div>
-                <textarea name="komentar" rows="10" placeholder="Tulis Kritik atau Saran Anda disini"></textarea>
+        <form action="" method="POST">
+            <input type="hidden" name="id_user" value="<?php echo $iduser?>">
+            <input type="hidden" name="kd_kritik" value="<?php echo $hasilkode?>">
+            <div class="kritikdansaran">
+                <h4>Kritik Dan Saran</h4><br>
+                <div>
+                    <textarea name="kritik" rows="10" placeholder="Tulis Kritik atau Saran Anda disini"></textarea>
+                </div>
+                <button class="tombolkirim" name="kirim">Kirim</button>
+               <h4>Terima kasih atas masukan anda,<br>sangat berguna bagi perkembangan kami.</h4>
             </div>
-            <button class="tombolkirim"><a href="#" class="warnakirim">Kirim</a></button>
-            <h4>Terima kasih atas masukan anda,<br>sangat berguna bagi perkembangan kami.</h4>
-        </div>
+        </form>
         <input type="image" src="img/WA.png" height="50px" width="50px">
     </section>
     <script>

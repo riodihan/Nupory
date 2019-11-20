@@ -141,5 +141,16 @@
         $qu = mysqli_query($koneksi, "DELETE FROM bunga WHERE ID_BUNGA = '$id'");
         return $qu;
     }
+
+    //Isi kritik
+
+    function kritik($kr){
+        global $koneksi;
+        $kdkritik = htmlspecialchars($kr["kd_kritik"]);
+        $iduser = htmlspecialchars($kr["id_user"]);
+        $isikritik = htmlspecialchars($kr["kritik"]);
+        $qu = mysqli_query ($koneksi, "INSERT INTO kritik VALUES ('$kdkritik', '$iduser', '$isikritik')");
+        return $qu;
+    }
     
 ?>
