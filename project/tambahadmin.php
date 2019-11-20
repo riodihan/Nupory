@@ -6,7 +6,7 @@ require 'assets/includes/config.php';
 if(isset($_POST["tambah"])) {
 
     if(tambahkaryawan($_POST) == 1){
-        echo "<script>alert('karyawan berhasil ditambahkan'); window.location.href='datauser.php'</script>";
+        echo "<script>alert('karyawan berhasil ditambahkan'); </script>";
         // header("location: login.php");
     }else{
         echo mysqli_error($koneksi);
