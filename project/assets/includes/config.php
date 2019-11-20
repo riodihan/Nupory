@@ -33,7 +33,7 @@
          
          //mendaftarkan akun ke database
          //mysqli_query($koneksi, "INSERT INTO pelanggan VALUES ('', '$nama', '$alamat', '$nohp', '$email', '$username', '$password')");
-        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id_user', '$id_status', '$nama', '$alamat', '$nohp', '$email', '$username', '$password')");
+        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id_user', '$id_status', '$nama', '$alamat', '$nohp', '$email', '$username', '$password', '')");
 
         return $qu;
          
@@ -78,6 +78,7 @@
         $alamat_u = htmlspecialchars($tambah["alamat"]);
         $no_telepon = htmlspecialchars($tambah["no_telepon"]);
         $email_u = htmlspecialchars($tambah["email"]);
+        $foto_u = htmlspecialchars($tambah["foto"]);
         $u_name = htmlspecialchars(strtolower (stripslashes($tambah["username"])));
         $password_u =  htmlspecialchars(mysqli_real_escape_string($koneksi, $tambah["password"]));
         $konfirmasipassword = htmlspecialchars(mysqli_real_escape_string($koneksi, $tambah["konfirmasipassword"]));
@@ -98,7 +99,7 @@
          
          //mendaftarkan akun ke database
         
-        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id', '$id_s', '$nama_u', '$alamat_u', '$no_telepon', '$email_u', '$u_name', '$password_u')");
+        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id', '$id_s', '$nama_u', '$alamat_u', '$no_telepon', '$email_u', '$u_name', '$password_u', '$foto_u')");
 
         return $qu;
     }

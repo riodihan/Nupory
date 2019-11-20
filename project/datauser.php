@@ -101,6 +101,7 @@ if(!isset($_SESSION["login"])){
             <th>Email</th>
             <th>Username</th>
             <th>Password</th>
+            <th>Foto</th>
             <th>Aksi</th>
         </tr>
 
@@ -118,6 +119,7 @@ if(!isset($_SESSION["login"])){
             <td><?= $row["EMAIL"]; ?></td>
             <td><?= $row["USERNAME"]; ?></td>
             <td><?= $row["PASSWORD"]; ?></td>
+            <td><img src="img/<?= $row["FOTO_USER"]; ?>" width="80"></td>
             <td><a href = "hapususer.php?id=<?= $row["ID_USER"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
         </tr>
         
