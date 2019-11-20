@@ -95,9 +95,9 @@ if(!isset($_SESSION["login"])){
             <th>Nama Bunga</th>
             <th>Harga</th>
             <th>Stok</th>
-            <th>Gambar</th>
+            <!-- <th>Gambar</th>
             <th>Video</th>
-            <th>Cara Perawatan</th>
+            <th>Cara Perawatan</th> -->
             <th>Aksi</th>
         </tr>
 
@@ -111,11 +111,11 @@ if(!isset($_SESSION["login"])){
             <td><?= $row1["NAMA_BUNGA"]; ?></td>
             <td><?= $row1["HARGA"]; ?></td>
             <td><?= $row1["STOK"]; ?></td>
-            <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
+            <!-- <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
             <td><video width="350px" controls>
                         <source src="video/<?=$row1["VIDEO_BUNGA"];?>" type="video/mp4">
                     </video></td>
-            <td><?= $row1["CARA_PERAWATAN"];?></td>
+            <td><?= $row1["CARA_PERAWATAN"];?></td> -->
             <td><a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
         </tr>
         

@@ -54,7 +54,7 @@
 
     }
 
-    // menampilkan data user
+    // menampilkan data bunga
     
     function query1($query1){
         global $koneksi;

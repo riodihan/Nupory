@@ -7,12 +7,18 @@ require 'assets/includes/config.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
     <title>Beranda</title>
+    <!-- <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1"> -->
     <link rel="stylesheet" href="css/styleberanda.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    
+    
+
     <style>
     body{
         background-image: url('img/Nursery.jpg');

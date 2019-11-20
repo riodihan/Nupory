@@ -122,11 +122,11 @@ if($datakode) {
         <input type="number" name="stok" id="stok" required>
     </li>
     <li>
-        <label for="gambar">Gambar</label><br>
+        <label for="gambar">Gambar bunga</label><br>
         <input type="file" name="gambar" id="gambar">
     </li>
     <li>
-        <label for="video">Video</label><br>
+        <label for="video">Video Cara Perawatan</label><br>
         <input type="file" name="video" id="video">
     </li>
     <li>
