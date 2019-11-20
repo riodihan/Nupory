@@ -126,7 +126,7 @@ $iduser = $_SESSION["id_user"];
             <div class="kritikdansaran">
                 <h4>Kritik Dan Saran</h4><br>
                 <div>
-                    <textarea name="kritik" rows="10" placeholder="Tulis Kritik atau Saran Anda disini"></textarea>
+                    <textarea name="kritik" rows="10" placeholder="Tulis Kritik atau Saran Anda disini" required></textarea>
                 </div>
                 <button class="tombolkirim" name="kirim">Kirim</button>
                <h4>Terima kasih atas masukan anda,<br>sangat berguna bagi perkembangan kami.</h4>
