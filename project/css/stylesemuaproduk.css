@@ -226,11 +226,19 @@ h3{
     position: absolute;
     left: 55%;
     top: 37%;
+    padding: 20px;
+}
+
+.bg{
+  background-color: rgba(2, 2, 1, 0.733);
+  border-radius: 20px;
 }
 
 label input{
   color: black;
-  border-radius: 3px;
+  border-radius: 5px;
+  border-color: transparent;
+  
 }
 
 .alamat{
@@ -238,8 +246,8 @@ label input{
 }
 
 textarea{
-  width: 300px;
-  height: 180px;
+  width: 200px;
+  height: 90px;
   background-color: transparent;
   border-radius: 10px;
   padding: 3px;

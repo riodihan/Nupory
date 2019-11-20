@@ -17,6 +17,7 @@
         $password =  htmlspecialchars(mysqli_real_escape_string($koneksi, $data["password"]));
         $konfirmasi = htmlspecialchars(mysqli_real_escape_string($koneksi, $data["konfirmasi"]));
 
+
         //cek konfirmasi password
          if($password !== $konfirmasi){
              echo "<script>
@@ -33,7 +34,7 @@
          
          //mendaftarkan akun ke database
          //mysqli_query($koneksi, "INSERT INTO pelanggan VALUES ('', '$nama', '$alamat', '$nohp', '$email', '$username', '$password')");
-        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id_user', '$id_status', '$nama', '$alamat', '$nohp', '$email', '$username', '$password')");
+        $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$id_user', '$id_status', '$nama', '$alamat', '$nohp', '$email', '$username', '$password', '')");
 
         return $qu;
          
@@ -141,4 +142,32 @@
         return $qu;
     }
     
+
+    // transaksi
+
+    function transaksi($tr){
+        global $koneksi;
+        $id_transaksi = htmlspecialchars($tr["id_transaksi"]);
+        $id_pembayaran = htmlspecialchars($tr["metode"]);
+        $id_user = htmlspecialchars($tr["id_user"]);
+        $tgl = htmlspecialchars($tr["tanggal"]);
+        $alamat = htmlspecialchars($tr["alamat"]);
+        $total = htmlspecialchars($tr["total"]);
+
+        $trs = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$id_transaksi', '$id_pembayaran', '$id_user', '$tgl', '$alamat', '$total', '')");
+        
+        return $trs;
+    }
+
+    //detail transaksi 
+
+    function detail($detail){
+        global $koneksi;
+        $id_bunga = htmlspecialchars($detail["id_bunga"]);
+        $id_transaksi = htmlspecialchars($detail["id_transaksi"]);
+        $jumlah = htmlspecialchars($detail["jumlah"]);
+
+        $de = mysqli_query($koneksi, "INSERT INTO menyediakan VALUES('$id_bunga', '$id_transaksi', '$jumlah')");
+        return $de;
+    }
 ?>

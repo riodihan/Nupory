@@ -2,11 +2,12 @@
 require 'assets/includes/config.php';
 session_start();
 
-
+//menampilkan bunga berdasarkan id
 $id = $_GET["id"];
 $bunga = mysqli_query($koneksi, "SELECT * FROM bunga WHERE ID_BUNGA='$id'");
 $row_bunga = mysqli_fetch_array($bunga);
 
+//cek session
 if(!isset($_SESSION["login"])){
         header("location: login.php");
         exit;
@@ -30,6 +31,27 @@ if($datakode) {
 //ambil id user dari session
 
 $iduser = $_SESSION["id_user"];
+
+//transaksi
+if(isset($_POST["beli"])){
+
+  if(transaksi($_POST) == 1){
+      echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='index.php'</script>";
+  }else{
+      echo mysqli_error($koneksi);
+  }
+}
+
+//detail transaksi
+if(isset($_POST["beli"])){
+
+  if(detail($_POST) == 1){
+    echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='index.php'</script>";
+  }else{
+    echo mysqli_error($koneksi);
+  }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -68,14 +90,14 @@ $iduser = $_SESSION["id_user"];
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
                 
-                <li><a href="#">Data Admin</a></li>
-                <li><a href="#">Data Transaksi</a></li>
-                <li><a href="#">Data Bunga</a></li>
-                <li><a href="#">Report</a></li>
+                <li><a href="datauser.php">Data User</a></li>
+                <li><a href="datatransaksi.php">Data Transaksi</a></li>
+                <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 
-                <li><a href="#">Data Transaksi</a></li>
-                <li><a href="#">Data Bunga</a></li>
+                <li><a href="datatransaksi.php">Data Transaksi</a></li>
+                <li><a href="databunga.php">Data Bunga</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
@@ -99,96 +121,82 @@ $iduser = $_SESSION["id_user"];
         
     <!--bagian gambar-->
     
-    <img src="img/<?php echo $row_bunga["FOTO_BUNGA"];?>" alt="">
-        
-    <!-- <div class="slidershow middle">
-
-      <div class="slides">
-        <input type="radio" name="r" id="r1" checked>
-        <input type="radio" name="r" id="r2">
-        <input type="radio" name="r" id="r3">
-        <input type="radio" name="r" id="r4">
-        <input type="radio" name="r" id="r5">
-        <div class="slide s1">
-          <img src="img/2.jpg" alt="">
-        </div>
-        <div class="slide">
-          <img src="img/1.jpg" alt="">
-        </div>
-        <div class="slide">
-          <img src="img/3.jpg" alt="">
-        </div>
-        <div class="slide">
-          <img src="img/4.jpg" alt="">
-        </div>
-        <div class="slide">
-          <img src="img/5.jpg" alt="">
-        </div>
-      </div> -->
+      <img src="img/<?php echo $row_bunga["FOTO_BUNGA"];?>" alt="">
       
-
-      <!-- <div class="navigation">
-        <label for="r1" class="bar"></label>
-        <label for="r2" class="bar"></label>
-        <label for="r3" class="bar"></label>
-        <label for="r4" class="bar"></label>
-        <label for="r5" class="bar"></label>
-      </div>
-    </div> -->
-    
-    <!--bagian tulisan-->
-      
-      
+    <form action="" method="POST">
       <h3><?php echo $row_bunga["NAMA_BUNGA"];?></h3>
-      <div class="p">
-      
-      <input type="hidden" name="id_transaksi" value="<?php echo $hasilkode?>" >
-      <input type="hidden" name="id_user" value="<?php echo $iduser?>">
+          <div class="p bg">
+            <tr>
+              <td>
+                    <input type="hidden" name="id_bunga" value="<?php echo $id?>">
+                    <input type="hidden" name="id_transaksi" value="<?php echo $hasilkode?>" >
+                    <input type="hidden" name="id_user" value="<?php echo $iduser?>">
+                  <label for="harga"> Harga
+                    <input name="harga" style="background-color: transparent; color: white;" id="harga" type="text" value="<?php echo $row_bunga["HARGA"];?>" onkeyup="sum();" readonly>
+                  </label><br>
+              </td>
+           </tr>
 
-      <label for="harga"> Harga
-        <input id="harga" type="text" value="<?php echo $row_bunga["HARGA"];?>" onkeyup="sum();" readonly>
-      </label><br>
+           <tr>
+             <td>
+                    <label for="stok">Stok
+                      <input name="stok" style="background-color: transparent; color: white;" id="stok type="text" value="<?php echo $row_bunga["STOK"];?>" readonly> <br>
+                    </label>
+             </td>
+           </tr>
 
-      <label for="stok">Stok
-        <input id="stok" type="text" value="<?php echo $row_bunga["STOK"];?>" readonly> <br>
-      </label>
+           <tr>
+              <td>
+                <input type="hidden" name="tanggal" id="tanggal" value="<?php
+                $tanggal= mktime(date("m"),date("d"),date("Y"));
+                echo " ".date("d-m-Y", $tanggal)." ";
+                date_default_timezone_set('Asia/Jakarta');?>" readonly>
+              </td>
+           </tr>
+              
+           <tr>
+             <td>
+              <label for="jumlah">Jumlah Beli <br>
+                <input type="number" name="jumlah" id="jumlah" onkeyup="sum();">
+              </label><br>
+             </td>
+           </tr>
 
-        <input type="hidden" name="tanggal" id="tanggal" value="<?php
-        $tanggal= mktime(date("m"),date("d"),date("Y"));
-        echo " ".date("d-M-Y", $tanggal)." ";
-        date_default_timezone_set('Asia/Jakarta');?>" readonly>
-      
-      <label for="jumlah">Jumlah Beli
-        <input type="number" name="jumlah" id="jumlah" onkeyup="sum();">
-      </label><br>
+           <tr>
+             <td>
+              <label for="total">Total <br>
+                <input type="number" name="total" id="total" readonly>
+              </label><br>
+             </td>
+           </tr>
 
-      <label for="total">Total  
-          <input type="number" name="total" id="total" readonly>
-      </label><br>
+           <tr>
+             <td>
+              <label for="metode">Kirim atau Ambil di tempat?
+                <select style="color: black;" name="metode" id="metode">
+                  <option style="color: black;" value="01">Kirim</option>
+                  <option style="color: black;" value="02">Ambil di tempat</option>
+                </select>
+                </label><br>
+             </td>
+           </tr>
 
-      <label for="opsi">Ambil di tempat atau dikirim
-          <br><button>kirim</button>
-          <button>Ambil</button>
-      </label><br>
+           <tr>
+             <td>
+              <label for="alamat">Alamat <br>
+                <textarea name="alamat" id="" rows="5" placeholder="Alamat Pembeli"></textarea><br>
+              </label>
+             </td>
+           </tr>
 
-      <label for="alamat">Alamat <br>
-        <input class="alamat" id="alamat" type="text" placeholder="Alamat Pengiriman" required><br>
-      </label>
-      
-      <button>Beli</button>
-      </div>
-    
-    
-
-
-        <!-- <br>
-          <textarea name="alamat" id="" rows="10" placeholder="Alamat Pengiriman"></textarea>
-          <br>
-          <button>Beli</button> -->
-
-    
-
-
+           <tr>
+             <td>
+              <button name="beli">Beli</button>
+             </td>
+           </tr>
+  
+          </div>
+      </form>
     </div>
 
 
@@ -213,14 +221,12 @@ $iduser = $_SESSION["id_user"];
       if (!isNaN(txtSecondNumberValue)) {
          document.getElementById('total').value = result;
       } 
-      // if(result.value=NaN){
-      //   document.getElementById('total').value = null;
-      // }
+
     }
     </script>
 
 
-</script>
+
 </body>
 </html>
 

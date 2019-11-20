@@ -12,6 +12,7 @@ if(isset($_POST["daftar"])) {
     }
 }
 
+
 //auto increment id user   
 $carikode = mysqli_query($koneksi, "select max(ID_USER)from user") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
