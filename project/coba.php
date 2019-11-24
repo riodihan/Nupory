@@ -1,29 +1,42 @@
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset='UTF-8'>
-  <meta name="author" content="Suckittrees">
-  <title>Horizontal Dropdown Menu dengan CSS3 Suckittrees.com</title>
-  <link rel="shortcut icon" href="http://suckittrees.com/favicon.png">
-  <link rel="icon" href="http://suckittrees.com/favicon.png">
- </head>
-<body>
-<h1 align="center"><a href="suckittrees.com/artikel-121/membuat-menu-dropdown-dengan-css.html">Read Tutorial Suckittrees.com</a></h1>
-<h3>Membuat Penjumlahan Otomatis Suckittrees.com</h3>
-<input type="text" id="txt1"  onkeyup="sum();" />
-<input type="text" id="txt2"  onkeyup="sum();" />=
-<input type="text" id="txt3" />
-</body>
-
-<script>
-function sum() {
-      var txtFirstNumberValue = document.getElementById('txt1').value;
-      var txtSecondNumberValue = document.getElementById('txt2').value;
-      var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
-      if (!isNaN(result)) {
-         document.getElementById('txt3').value = result;
-      }
-}
-</script>
-
+    <head>
+        <title>title</title>
+    </head>
+    <body>
+        <div id="pesan"></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+            var url = "http://localhost:8080/nupory/project/coba.php"; // url tujuan
+            var count = 100; // dalam detik
+            function countDown() {
+                if (count > 0) {
+                    count--;
+                    var waktu = count + 1;
+                    $('#pesan').html('Pesanan ini akan ' + url + ' dalam ' + waktu + ' detik.');
+                    setTimeout("countDown()", 1000);
+                } else {
+                    window.location.href = url;
+                }
+            }
+            countDown();
+        </script>
+    </body>
 </html>
+
+<!-- <?php
+$tanggal= mktime(date("m"),date("d"),date("Y"));
+echo "Tanggal : <b>".date("d-M-Y", $tanggal)."</b> ";
+date_default_timezone_set('Asia/Jakarta');
+$jam=date("H:i:s");
+echo "| Pukul : <b>". $jam." "."</b>";
+$a = date ("H");
+if (($a>=6) && ($a<=11)){
+echo "<b>, Selamat Pagi !!</b>";
+}
+else if(($a>11) && ($a<=15))
+{
+echo ", Selamat Pagi !!";}
+else if (($a>15) && ($a<=18)){
+echo ", Selamat Siang !!";}
+else { echo ", <b> Selamat Malam </b>";}
+?>  -->

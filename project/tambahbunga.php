@@ -14,9 +14,9 @@ if(isset($_POST["tambah"])) {
 }
 
 
-//session login
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
+//cek admin atau bukan
+if($_SESSION["id_status"] !== '01'){
+    header("location: index.php");
     exit;
 }
 
@@ -74,6 +74,7 @@ if($datakode) {
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 

@@ -5,9 +5,9 @@ require 'assets/includes/config.php';
 //menampilkan tabel
 $haha = query("SELECT * FROM user");
 
-//session login
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
+//cek admin atau bukan
+if($_SESSION["id_status"] !== '01'){
+    header("location: index.php");
     exit;
 }
 
@@ -54,6 +54,7 @@ if(!isset($_SESSION["login"])){
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 
@@ -118,8 +119,6 @@ if(!isset($_SESSION["login"])){
             <td><?= $row["NO_TELEPON"]; ?></td>
             <td><?= $row["EMAIL"]; ?></td>
             <td><?= $row["USERNAME"]; ?></td>
-            <!-- <td><?= $row["PASSWORD"]; ?></td>
-            <td><img src="img/<?= $row["FOTO_USER"];?>" width="80"></td> -->
             <td><a href = "hapususer.php?id=<?= $row["ID_USER"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
         </tr>
         

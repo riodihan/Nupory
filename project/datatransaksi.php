@@ -2,27 +2,23 @@
 session_start();
 require 'assets/includes/config.php';
 
-//menampilkan tabel
-$bunga = query1("SELECT * FROM bunga");
+$datatransaksi = query("SELECT * FROM transaksi");
 
 //cek admin atau bukan
 if($_SESSION["id_status"] !== '01'){
     header("location: index.php");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Data Bunga</title>
-    <link rel="stylesheet" href="css/styledatabunga.css">
+    <title>Profil</title>
+    <link rel="stylesheet" href="css/styledatatransaksi.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
     body{
         background-image: url('img/Nursery.jpg');
@@ -43,6 +39,7 @@ if($_SESSION["id_status"] !== '01'){
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -84,51 +81,40 @@ if($_SESSION["id_status"] !== '01'){
     </h1>
     </header>
     <section>
-        
-    <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
-    <a href="tambahbunga.php">Tambah Bunga</a><br><br>
-
     <table border="1" cellpadding="10" cellspacing="0">
 
+            
         <tr>
             <th>NO</th>
-            <th>ID Bunga</th>
-            <th>Nama Bunga</th>
-            <th>Harga</th>
-            <th>Stok</th>
-            <!-- <th>Gambar</th>
-            <th>Video</th>
-            <th>Cara Perawatan</th> -->
-            <th>Aksi</th>
+            <th>ID Transaksi</th>
+            <th>ID Pembayaran</th>
+            <th>ID User</th>
+            <th>Tanggal Transaksi</th>
+            <th>Alamat</th>
+            <th>Total Pembayaran</th>
+            <th>Bukti Pembayaran</th>
         </tr>
-
-        <?php $i = 1?>
-        
-        <?php 
-        foreach($bunga as $row1){?>
+            <?php $i=1?>
+            <?php foreach($datatransaksi as $row) {?>
         <tr>
             <td><?= $i?></td>
-            <td><?= $row1["ID_BUNGA"]; ?></td>
-            <td><?= $row1["NAMA_BUNGA"]; ?></td>
-            <td><?= $row1["HARGA"]; ?></td>
-            <td><?= $row1["STOK"]; ?></td>
-            <!-- <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
-            <td><video width="350px" controls>
-                        <source src="video/<?=$row1["VIDEO_BUNGA"];?>" type="video/mp4">
-                    </video></td>
-            <td><?= $row1["CARA_PERAWATAN"];?></td> -->
-            <td><a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
+            <td><?= $row["ID_TRANSAKSI"];?></td>
+            <td><?= $row["ID_PEMBAYARAN"];?></td>
+            <td><?= $row["ID_USER"];?></td>
+            <td><?= $row["TGL_TRANSAKSI"];?></td>
+            <td><?= $row["DETAIL_ALAMAT"];?></td>
+            <td><?= $row["TOTAL_AKHIR"];?></td>
+            <td><?= $row["FOTO_VERIFIKASI"];?></td>
+
         </tr>
-        
-        <?php $i++; ?>
-        <?php }?>
+            <?php $i++;?>
+            <?php }?>
+            
     </table>
-
-
-        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
 
     <footer>
+        <p class="footer">&copy; Powered 2019 by Nupory Team</p>
     </footer>
     
     <script>

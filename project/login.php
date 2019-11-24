@@ -1,8 +1,4 @@
 <?php
-    //error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
-
-
-    //$koneksi= mysqli_connect("localhost", "root", "", "nupory");
     session_start();
     require 'assets/includes/config.php';
 
@@ -21,7 +17,7 @@
         $login = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' AND password ='$password'");
         $row = mysqli_fetch_array($login);
         $user = $row ['username'];
-        $pass = $row ['username'];
+        $pass = $row ['password'];
         $id_status = $row ['ID_STATUS'];
         $id_user = $row ['ID_USER'];
         if(mysqli_num_rows($login) === 1) {

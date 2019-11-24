@@ -39,7 +39,7 @@ require 'assets/includes/config.php';
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksi.php">Transaksi Saya</a></li>
+                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -49,6 +49,7 @@ require 'assets/includes/config.php';
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 
