@@ -3,6 +3,11 @@
     padding: 0;
     color: white;
     /* font-family: 'Be Vietnam', sans-serif; */
+    
+}
+
+body{
+    background-color: gray;
 }
 
 /*bagian sidebar*/

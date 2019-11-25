@@ -36,7 +36,7 @@ $iduser = $_SESSION["id_user"];
 if(isset($_POST["beli"])){
 
   if(transaksi($_POST) == 1){
-      echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='index.php'</script>";
+      echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='transaksisaya.php'</script>";
   }else{
       echo mysqli_error($koneksi);
   }
@@ -46,7 +46,7 @@ if(isset($_POST["beli"])){
 if(isset($_POST["beli"])){
 
   if(detail($_POST) == 1){
-    echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='index.php'</script>";
+    echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='transaksisaya.php'</script>";
   }else{
     echo mysqli_error($koneksi);
   }
@@ -84,16 +84,17 @@ if(isset($_POST["beli"])){
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksi.php">Transaksi Saya</a></li>
+                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
-                
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 

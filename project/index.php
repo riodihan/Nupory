@@ -116,7 +116,7 @@ require 'assets/includes/config.php';
                 <?php $ambil=$koneksi->query("SELECT * FROM bunga");?>
                 <?php while($perproduk=$ambil->fetch_assoc()){?>
                     <li class="gproduk">
-                        <a href="semuaproduk.php?id=<?php echo $perproduk["ID_BUNGA"];?>"><img class="imgproduk" src="img/<?php echo $perproduk["FOTO_BUNGA"];?>" alt="Bunga 1">
+                        <a href="semuaproduk.php?id=<?php echo $perproduk["ID_BUNGA"];?>"><img class="imgproduk" src="img/<?php echo $perproduk["FOTO_BUNGA"];?>">
                         <p class="p1"><?php echo $perproduk['NAMA_BUNGA'];?></p></a>
                     </li>
                 <?php }?>
