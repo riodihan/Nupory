@@ -54,7 +54,7 @@
 
     }
 
-    // menampilkan data user
+    // menampilkan data bunga
     
     function query1($query1){
         global $koneksi;
@@ -65,6 +65,43 @@
         }
         return $rows1;
 
+    }
+
+    //menampilkan data transaksi
+
+    function query2($query2){
+        global $koneksi;
+        $result2 = mysqli_query($koneksi,$query2);
+        $rows2 = [];
+        while($row2 = mysqli_fetch_assoc($result2)){
+            $rows2[]=$row2;
+        }
+        return $rows2;
+    }
+
+
+    //menampilkan transaksi saya(pada user)
+
+    function query4($query4){
+        global $koneksi;
+        $result4 = mysqli_query($koneksi,$query4);
+        $rows4 = [];
+        while($row4 = mysqli_fetch_assoc($result4)){
+            $rows4[]=$row4;
+        }
+        return $rows4;
+    }
+
+    //menampilkan kritik
+
+    function query3($query3){
+        global $koneksi;
+        $result3 = mysqli_query($koneksi,$query3);
+        $rows3 = [];
+        while($row3 = mysqli_fetch_assoc($result3)){
+            $rows3[]=$row3;
+        }
+        return $rows3;
     }
 
 
@@ -143,7 +180,7 @@
         return $qu;
     }
 
-    //Isi kritik
+    // menambahkan kritik
 
     function kritik($kr){
         global $koneksi;

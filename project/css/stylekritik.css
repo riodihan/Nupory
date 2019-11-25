@@ -129,6 +129,7 @@ h2{
     left: 20px;
     top: 30px;
     line-height: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
 /*bagian garis*/
@@ -191,44 +192,10 @@ input{
     color: black;
  }
 
- /*bagian rating*/
- .rating { 
-    border: none;
-    float: left;
-  }
-  
-  .rating > input { display: none; } 
-  .rating > label:before { 
-    margin: 5px;
-    font-size: 1.25em;
-    font-family: FontAwesome;
-    display: inline-block;
-    content: "\f005";
-  }
-  
-  .rating > .half:before { 
-    content: "\f089";
-    position: absolute;
-  }
-  
-  .rating > label { 
-    color: #ddd; 
-    float: right; 
-  }
-  
-  /***** CSS untuk hover nya *****/
-  
-  .rating > input:checked ~ label, /* memperlihatkan warna emas pada saat di klik */
-  .rating:not(:checked) > label:hover, /* hover untuk star berikutnya */
-  .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover untuk star sebelumnya  */
-  
-  .rating > input:checked + label:hover, /* hover ketika mengganti rating */
-  .rating > input:checked ~ label:hover,
-  .rating > label:hover ~ input:checked ~ label, /* seleksi hover */
-  .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
   p{
       clear: both;
+      
   }
 
 

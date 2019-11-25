@@ -84,6 +84,7 @@ if(isset($_POST["beli"])){
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -148,9 +149,11 @@ if(isset($_POST["beli"])){
            <tr>
               <td>
                 <input type="hidden" name="tanggal" id="tanggal" value="<?php
-                $tanggal= mktime(date("m"),date("d"),date("Y"));
-                echo " ".date("d-m-Y", $tanggal)." ";
-                date_default_timezone_set('Asia/Jakarta');?>" readonly>
+                $tanggal= mktime(date("d"),date("m"),date("Y"));
+                echo " ".date("d/m/Y", $tanggal)." ";
+                date_default_timezone_set('Asia/Jakarta');
+                echo date("h:i:sa");
+                ?>" readonly>
               </td>
            </tr>
               

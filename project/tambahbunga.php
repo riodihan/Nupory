@@ -14,9 +14,9 @@ if(isset($_POST["tambah"])) {
 }
 
 
-//session login
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
+//cek admin atau bukan
+if($_SESSION["id_status"] !== '01'){
+    header("location: index.php");
     exit;
 }
 
@@ -64,6 +64,7 @@ if($datakode) {
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -73,6 +74,7 @@ if($datakode) {
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 
@@ -122,11 +124,11 @@ if($datakode) {
         <input type="number" name="stok" id="stok" required>
     </li>
     <li>
-        <label for="gambar">Gambar</label><br>
+        <label for="gambar">Gambar bunga</label><br>
         <input type="file" name="gambar" id="gambar">
     </li>
     <li>
-        <label for="video">Video</label><br>
+        <label for="video">Video Cara Perawatan</label><br>
         <input type="file" name="video" id="video">
     </li>
     <li>

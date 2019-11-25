@@ -31,6 +31,7 @@ require 'assets/includes/config.php';
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
