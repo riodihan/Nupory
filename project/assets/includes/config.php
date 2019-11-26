@@ -180,6 +180,22 @@
         return $qu;
     }
 
+    //hapus data transaksi
+    function hapustransaksi($id){
+        global $koneksi;
+        $qu = mysqli_query($koneksi, "DELETE a,b FROM detail_transaksi AS a
+        LEFT JOIN transaksi AS b ON b.ID_TRANSAKSI = a.ID_TRANSAKSI
+        WHERE a.ID_TRANSAKSI = '$id'");
+        return $qu;
+    }
+
+    // //hapus detail transaksi
+    // function hapusdetail($id){
+    //     global $koneksi;
+    //     $qu = myqli_query($koneksi, "DELETE FROM transaksi WHERE ID_TRANSAKSI = '$id'");
+    //     return $qu;
+    // }
+
     // menambahkan kritik
 
     function kritik($kr){
@@ -204,7 +220,8 @@
         $total = htmlspecialchars($tr["total"]);
 
         $trs = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$id_transaksi', '$id_pembayaran', '$id_user', '$tgl', '$alamat', '$total', '')");
-        
+
+
         return $trs;
     }
 
@@ -216,7 +233,7 @@
         $id_transaksi = htmlspecialchars($detail["id_transaksi"]);
         $jumlah = htmlspecialchars($detail["jumlah"]);
 
-        $de = mysqli_query($koneksi, "INSERT INTO menyediakan VALUES('$id_bunga', '$id_transaksi', '$jumlah')");
+        $de = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES('$id_transaksi', '$id_bunga', '$jumlah')");
         return $de;
     }
 ?>

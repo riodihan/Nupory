@@ -161,7 +161,7 @@ if(isset($_POST["beli"])){
            <tr>
              <td>
               <label for="jumlah">Jumlah Beli <br>
-                <input type="number" name="jumlah" id="jumlah" onkeyup="sum();">
+                <input type="number" name="jumlah" id="jumlah" onkeyup="sum();" required>
               </label><br>
              </td>
            </tr>
@@ -188,7 +188,7 @@ if(isset($_POST["beli"])){
            <tr>
              <td>
               <label for="alamat">Alamat <br>
-                <textarea name="alamat" id="" rows="5" placeholder="Alamat Pembeli"></textarea><br>
+                <textarea name="alamat" id="" rows="5" placeholder="Alamat Pembeli" required></textarea><br>
               </label>
              </td>
            </tr>
