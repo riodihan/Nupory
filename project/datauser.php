@@ -89,42 +89,43 @@ if($_SESSION["id_status"] !== '01'){
         
     <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
     <a href="tambahadmin.php">Tambah Karyawan</a><br><br>
+    
+        <table class="tabeluser" border="1" cellpadding="10" cellspacing="0">
 
-    <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>NO</th>
+                <th>ID User</th>
+                <th>ID Status</th>
+                <th>Nama User</th>
+                <th>Alamat</th>
+                <th>No Telepon</th>
+                <th>Email</th>
+                <th>Username</th>
+                <!-- <th>Password</th>
+                <th>Foto</th> -->
+                <th>Aksi</th>
+            </tr>
 
-        <tr>
-            <th>NO</th>
-            <th>ID User</th>
-            <th>ID Status</th>
-            <th>Nama User</th>
-            <th>Alamat</th>
-            <th>No Telepon</th>
-            <th>Email</th>
-            <th>Username</th>
-            <!-- <th>Password</th>
-            <th>Foto</th> -->
-            <th>Aksi</th>
-        </tr>
-
-        <?php $i = 1?>
+            <?php $i = 1?>
         
-        <?php 
-        foreach($haha as $row){?>
-        <tr>
-            <td><?= $i?></td>
-            <td><?= $row["ID_USER"]; ?></td>
-            <td><?= $row["ID_STATUS"]; ?></td>
-            <td><?= $row["NAMA_USER"]; ?></td>
-            <td><?= $row["ALAMAT"]; ?></td>
-            <td><?= $row["NO_TELEPON"]; ?></td>
-            <td><?= $row["EMAIL"]; ?></td>
-            <td><?= $row["USERNAME"]; ?></td>
-            <td><a href = "hapususer.php?id=<?= $row["ID_USER"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
-        </tr>
+            <?php 
+            foreach($haha as $row){?>
+            <tr>
+                <td><?= $i?></td>
+                <td><?= $row["ID_USER"]; ?></td>
+                <td><?= $row["ID_STATUS"]; ?></td>
+                <td><?= $row["NAMA_USER"]; ?></td>
+                <td><?= $row["ALAMAT"]; ?></td>
+                <td><?= $row["NO_TELEPON"]; ?></td>
+                <td><?= $row["EMAIL"]; ?></td>
+                <td><?= $row["USERNAME"]; ?></td>
+                <td><a href = "hapususer.php?id=<?= $row["ID_USER"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');"><img src="img/x.png" alt="" width="20" height="20"></a></td>
+            </tr>
         
-        <?php $i++; ?>
-        <?php }?>
-    </table>
+            <?php $i++; ?>
+            <?php }?>
+        </table>
+    
 
 
         <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
