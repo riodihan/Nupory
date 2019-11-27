@@ -172,6 +172,7 @@
         return $qu;
     }
 
+
     // hapus data bunga
      
     function hapusbunga($id){
@@ -180,6 +181,7 @@
         return $qu;
     }
 
+
     // menambahkan kritik
 
     function kritik($kr){
@@ -187,6 +189,7 @@
         $kdkritik = htmlspecialchars($kr["kd_kritik"]);
         $iduser = htmlspecialchars($kr["id_user"]);
         $isikritik = htmlspecialchars($kr["kritik"]);
+
         $qu = mysqli_query ($koneksi, "INSERT INTO kritik VALUES ('$kdkritik', '$iduser', '$isikritik')");
         return $qu;
     }
@@ -219,4 +222,30 @@
         $de = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES('$id_bunga', '$id_transaksi', '$jumlah')");
         return $de;
     }
+
+    // menampilkan data user
+    
+    function profil($profil){
+        global $koneksi;
+        $pr = mysqli_query($koneksi,$profil);
+        $rows5 = [];
+        while($row5 = mysqli_fetch_assoc($pr) ){
+            $rows5[]=$row5;
+        }
+        return $rows5;
+
+    }
+
+    // upload foto user
+
+    function upload1($upload){
+        global $koneksi;
+        $foto = htmlspecialchars($upload["foto_user"]);
+        $idu = $_SESSION["id_user"];
+
+        $up = mysqli_query ($koneksi, "UPDATE INTO user WHERE ID_USER = $idu VALUES ('', '', '', '', '', '', '', '', '$foto')");
+        return $up;
+
+    }
+
 ?>

@@ -16,8 +16,6 @@ require 'assets/includes/config.php';
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-    
-    
 
     <style>
     body{
@@ -67,6 +65,8 @@ require 'assets/includes/config.php';
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
+    <div class="container">
+   
     <h1 class="h1">Nursery<br>Polije
         
         <?php
