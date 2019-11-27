@@ -124,7 +124,7 @@ if($datakode) {
     </li>
     <li>
         <label class="label" for="no_telepon">No Telepon</label><br>
-        <input class="edit" type="number" name="no_telepon" id="no_telepon" required>
+        <input class="edit" type="number" name="no_telepon"  id="no_telepon"  required>
     </li>
     <li>
         <label class="label" for="email">Email</label><br>
@@ -170,6 +170,8 @@ if($datakode) {
     document.getElementById("hidesidebar").style.width = "0";
     document.getElementById("menu").style.marginLeft= "0";
 }
+
     </script>
+    
 </body>
 </html>
