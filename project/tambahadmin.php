@@ -140,7 +140,7 @@ if($datakode) {
     </li>
     <li>
         <label class="label" for="konfirmasipassword">Konfirmasi password</label><br>
-        <input class="edit" type="konfirmasipassword" name="konfirmasipassword" id="konfirmasipassword" required>
+        <input class="edit" type="password" name="konfirmasipassword" id="konfirmasipassword" required>
     </li>
     <li>
         <label class="label" for="foto">Foto</label><br>

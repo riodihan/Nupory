@@ -116,4 +116,25 @@ section input{
     
     background-color: transparent;
 }
+.bunga{
+    background-color:rgba(0, 0, 0, 0.664);
+    /* background-size: 5px 5px 5px 5px;
+    height: 490px; */
+    width: 190px;
+    padding: 20px 40px;
+    border-radius: 20px;
+    position: center;
+    margin: 40px 560px;
+}
+
+.ini{
+    list-style: none;
+}
+.ubah{
+    padding: 5px;
+    border-radius: 5px;
+}
+.label{
+    font-family: 'Be Vietnam', sans-serif;
+}
 

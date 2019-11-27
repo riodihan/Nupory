@@ -14,6 +14,7 @@
         $nohp = htmlspecialchars($data["nohp"]);
         $email = htmlspecialchars($data["email"]);
         $username = htmlspecialchars(strtolower (stripslashes($data["username"])));
+        // $foto = htmlspecialchars($data["foto"]);
         $password =  htmlspecialchars(mysqli_real_escape_string($koneksi, $data["password"]));
         $konfirmasi = htmlspecialchars(mysqli_real_escape_string($koneksi, $data["konfirmasi"]));
 

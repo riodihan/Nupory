@@ -106,39 +106,42 @@ if($datakode) {
     </h1>
     </header>
     <section>
-<form action="" method="POST">
-<ul>
-    <li>
-        <input type="hidden" name="id_bunga" id="id_bunga" value="<?php echo $hasilkode ?>">
-    </li>
-    <li>
-        <label for="nama_bunga">Nama Bunga</label><br>
-        <input type="text" name="nama_bunga" id="nama_bunga" required>
-    </li>
-    <li>
-        <label for="harga">Harga</label><br>
-        <input type="text" name="harga" id="harga" required>
-    </li>
-    <li>
-        <label for="stok">Stok</label><br>
-        <input type="number" name="stok" id="stok" required>
-    </li>
-    <li>
-        <label for="gambar">Gambar bunga</label><br>
-        <input type="file" name="gambar" id="gambar">
-    </li>
-    <li>
-        <label for="video">Video Cara Perawatan</label><br>
-        <input type="file" name="video" id="video">
-    </li>
-    <li>
-        <label for="perawatan">perawatan</label><br>
-        <input type="text" name="perawatan" id="perawatan">
-    </li>
-</ul>
-    <button name="tambah" class="tomboltambah">Submit</button>
-    <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
-</form>
+<div class="bunga">
+        <form action="" method="POST">
+    <ul class="ini">
+        <li>
+            <input  type="hidden" name="id_bunga" id="id_bunga" value="<?php echo $hasilkode ?>">
+        </li>
+        <li>
+            <label class="label" for="nama_bunga">Nama Bunga</label><br>
+            <input class="ubah" type="text" name="nama_bunga" id="nama_bunga" required>
+        </li>
+        <li>
+            <label class="label" for="harga">Harga</label><br>
+            <input class="ubah" type="text" name="harga" id="harga" required>
+        </li>
+        <li>
+            <label class="label" for="stok">Stok</label><br>
+            <input class="ubah" type="number" name="stok" id="stok" required>
+        </li>
+        <li>
+            <label class="label" for="gambar">Gambar bunga</label><br>
+            <input class="ubah" type="file" name="gambar" id="gambar">
+        </li>
+        <li>
+            <label class="label" for="video">Video Cara Perawatan</label><br>
+            <input class="ubah" type="file" name="video" id="video">
+        </li>
+        <li>
+            <label class="label" for="perawatan">Perawatan</label><br>
+            <input class="ubah" type="text" name="perawatan" id="perawatan">
+        </li>
+    </ul>
+    <br>
+        <button name="tambah" class="tomboltambah">Submit</button>
+        <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
+    </form>
+</div>
 
       
     </section>
