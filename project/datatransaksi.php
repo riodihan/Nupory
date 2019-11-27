@@ -93,6 +93,7 @@ if($_SESSION["id_status"] !== '01'){
             <th>Alamat</th>
             <th>Total Pembayaran</th>
             <th>Bukti Pembayaran</th>
+            <th>waktu</th>
         </tr>
             <?php $i=1?>
             <?php foreach($datatransaksi as $row) {?>
@@ -105,6 +106,7 @@ if($_SESSION["id_status"] !== '01'){
             <td><?= $row["DETAIL_ALAMAT"];?></td>
             <td><?= $row["TOTAL_AKHIR"];?></td>
             <td><?= $row["FOTO_VERIFIKASI"];?></td>
+            <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" >Hapus</a></td>
 
         </tr>
             <?php $i++;?>
@@ -127,6 +129,30 @@ if($_SESSION["id_status"] !== '01'){
     document.getElementById("hidesidebar").style.width = "0";
     document.getElementById("menu").style.marginLeft= "0";
 }
+
+    
+
+    // var url = "hapustransaksi.php"; // url tujuan
+    // var count = 100; // dalam detik
+    //         function countDown("autoKlik") {
+    //             if (count > 0) {
+    //                 count--;
+    //                 var waktu = count + 1;
+    //                 $('#pesan').html('Pesanan ini akan' + url + ' dalam ' + waktu + ' detik.');
+    //                 button.click();
+    //                 setTimeout("countDown()", 100);
+    //             } else {
+    //                 // window.location.href = url;
+    //             }
+    //         }
+    //         countDown();
+
+    
+    // var button = document.getElementById("autoKlik");
+    // setInterval(function(){ 
+    //     button.click();
+    //  }, 10000);
+
     </script>
 </body>
 </html>

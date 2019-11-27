@@ -108,7 +108,6 @@ if($_SESSION["id_status"] !== '03'){
         <?php 
         foreach($transaksi as $row4)
         
-        
         {?>
         <tr>
             <td><?= $i?></td>

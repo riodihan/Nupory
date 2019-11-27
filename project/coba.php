@@ -6,14 +6,14 @@
         <div id="pesan"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>
-            var url = "http://localhost:8080/nupory/project/coba.php"; // url tujuan
+            var url = "hapustransaksi.php"; // url tujuan
             var count = 100; // dalam detik
             function countDown() {
                 if (count > 0) {
                     count--;
                     var waktu = count + 1;
                     $('#pesan').html('Pesanan ini akan ' + url + ' dalam ' + waktu + ' detik.');
-                    setTimeout("countDown()", 1000);
+                    setTimeout("countDown()", 100);
                 } else {
                     window.location.href = url;
                 }
