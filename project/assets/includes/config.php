@@ -233,6 +233,7 @@
         $id_transaksi = htmlspecialchars($detail["id_transaksi"]);
         $jumlah = htmlspecialchars($detail["jumlah"]);
 
+
         $de = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES('$id_transaksi', '$id_bunga', '$jumlah')");
         return $de;
     }

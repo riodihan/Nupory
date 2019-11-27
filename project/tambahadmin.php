@@ -105,50 +105,53 @@ if($datakode) {
     </h1>
     </header>
     <section>
-<form action="" method="POST">
-<ul>
+<div >
+<form  class="bungkus" action="" method="POST">
+<ul class="apa">
     <li>
-        <input type="hidden" name="id_user" id="id_user" value="<?php echo $hasilkode ?>">
+        <input class="edit" type="hidden" name="id_user" id="id_user" value="<?php echo $hasilkode ?>">
     </li>
     <li>
-        <input type="hidden" name="id_status" id="id_status" value="02">
+        <input class="edit" type="hidden" name="id_status" id="id_status" value="02">
     </li>
     <li>
-        <label for="nama_user">Nama Karyawan</label><br>
-        <input type="text" name="nama_user" id="nama_user" required>
+        <label class="label" for="nama_user">Nama Karyawan</label><br>
+        <input class="edit" type="text" name="nama_user" id="nama_user" required>
     </li>
     <li>
-        <label for="alamat">Alamat</label><br>
-        <input type="text" name="alamat" id="alamat" required>
+        <label class="label" for="alamat">Alamat</label><br>
+        <input class="edit" type="text" name="alamat" id="alamat" required>
     </li>
     <li>
-        <label for="no_telepon">No Telepon</label><br>
-        <input type="number" name="no_telepon" id="no_telepon" required>
+        <label class="label" for="no_telepon">No Telepon</label><br>
+        <input class="edit" type="number" name="no_telepon" id="no_telepon" required>
     </li>
     <li>
-        <label for="email">Email</label><br>
-        <input type="text" name="email" id="email" required>
+        <label class="label" for="email">Email</label><br>
+        <input class="edit" type="text" name="email" id="email" required>
     </li>
     <li>
-        <label for="username">Username</label><br>
-        <input type="text" name="username" id="username" required>
+        <label class="label" for="username">Username</label><br>
+        <input class="edit" type="text" name="username" id="username" required>
     </li>
     <li>
-        <label for="password">Password</label><br>
-        <input type="password" name="password" id="password" required>
+        <label class="label" for="password">Password</label><br>
+        <input class="edit" type="password" name="password" id="password" required>
     </li>
     <li>
-        <label for="konfirmasipassword">Konfirmasi password</label><br>
-        <input type="konfirmasipassword" name="konfirmasipassword" id="konfirmasipassword" required>
+        <label class="label" for="konfirmasipassword">Konfirmasi password</label><br>
+        <input class="edit" type="konfirmasipassword" name="konfirmasipassword" id="konfirmasipassword" required>
     </li>
     <li>
-        <label for="foto">Foto</label><br>
-        <input type="file" name="foto" id="foto">
+        <label class="label" for="foto">Foto</label><br>
+        <input class="edit" type="file" name="foto" id="foto">
     </li>
 </ul>
+<br>
     <button name="tambah" class="tomboltambah">Submit</button>
     <button class="tomboltambah"> <a href="datauser.php">Kembali</a></button>
 </form>
+</div>
 
       
     </section>

@@ -35,12 +35,15 @@
 }
 
 .hidesidebar ul li a:hover {
+    
     color: black;
     background:white;
     border-top: 1px solid gray;
+    
 }
 .hidesidebar ul li:last-child a{
   border-bottom: 1px solid;
+  
 }
 .hidesidebar .close {
     margin-right: 20px;
@@ -108,12 +111,38 @@ section input{
 
 .tomboltambah{
     color: rgb(255, 255, 255);
-    border-radius: 40px;
+    border-radius: 10px;
     border: solid;
     height: 30px;
     width: 70px;
     font-weight: bold;
-    
     background-color: transparent;
+    
 }
 
+.bungkus{
+    background-color:rgba(0, 0, 0, 0.664);
+    /* background-size: 5px 5px 5px 5px;
+    height: 490px; */
+    width: 190px;
+    padding: 20px 40px;
+    border-radius: 20px;
+    position: center;
+    margin: 40px 600px;
+   
+}
+
+.edit{
+    padding: 5px;
+    border-radius: 5px;
+   
+}
+
+.label{
+    font-family: 'Be Vietnam', sans-serif;
+}
+
+.apa{
+    list-style: none;
+    
+}

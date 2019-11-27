@@ -132,19 +132,22 @@ if($_SESSION["id_status"] !== '01'){
 
     
 
-var url = "hapustransaksi.php"; // url tujuan
-            var count = 100; // dalam detik
-            function countDown() {
-                if (count > 0) {
-                    count--;
-                    var waktu = count + 1;
-                    $('#pesan').html('Pesanan ini akan ' + url + ' dalam ' + waktu + ' detik.');
-                    setTimeout("countDown()", 100);
-                } else {
-                    window.location.href = url;
-                }
-            }
-            countDown();
+    // var url = "hapustransaksi.php"; // url tujuan
+    // var count = 100; // dalam detik
+    //         function countDown("autoKlik") {
+    //             if (count > 0) {
+    //                 count--;
+    //                 var waktu = count + 1;
+    //                 $('#pesan').html('Pesanan ini akan' + url + ' dalam ' + waktu + ' detik.');
+    //                 button.click();
+    //                 setTimeout("countDown()", 100);
+    //             } else {
+    //                 // window.location.href = url;
+    //             }
+    //         }
+    //         countDown();
+
+    
     // var button = document.getElementById("autoKlik");
     // setInterval(function(){ 
     //     button.click();
