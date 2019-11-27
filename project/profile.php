@@ -1,6 +1,23 @@
 <?php
 session_start();
 require 'assets/includes/config.php';
+
+$id = $_SESSION["id_user"];
+
+// Menampilkan data user
+$profil = profil("SELECT * FROM user WHERE ID_USER = '$id'");
+
+// upload foto
+if(isset($_POST["upload"])){
+    if(upload1($_POST) == 1){
+        echo "<script>alert('Upload Sukses.'); window.location.href='profile.php'</script>";
+    }
+    else{
+        //  echo "<script>alert('Upload Gagal.');  window.location.href='profile.php'</script>";
+        mysqli_error($koneksi);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -73,13 +90,39 @@ require 'assets/includes/config.php';
     </header>
     <section>
         <!-- Up Foto -->
+        <form action="" method="POST">
         <tr>
             <td>Upload Foto</td>
             <td><input class="upfoto" type="file" name="foto_user"></td>
         </tr>
-        <div class="nama">
-            <li>Nama</li>
-        </div>
+        
+        <button type="submit" class="tombol" name="upload"> Upload</button>
+        </form>
+        <?php
+        foreach($profil as $row5) 
+        
+        {?>
+        <table>
+            <tr>
+                <td>Nama</td>
+                <td><?= $row5["NAMA_USER"]; ?></td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td><?= $row5["ALAMAT"]; ?></td>
+            </tr>
+            <tr>
+                <td>Nomor Telepon</td>
+                <td><?= $row5["NO_TELEPON"]; ?></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><?= $row5["EMAIL"]; ?></td>
+            </tr>
+        </table>
+        <?php }?>
+
+
         <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
 

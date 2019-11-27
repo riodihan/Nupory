@@ -172,6 +172,7 @@
         return $qu;
     }
 
+
     // hapus data bunga
      
     function hapusbunga($id){
@@ -180,21 +181,21 @@
         return $qu;
     }
 
-    //hapus data transaksi
-    function hapustransaksi($id){
-        global $koneksi;
-        $qu = mysqli_query($koneksi, "DELETE a,b FROM detail_transaksi AS a
-        LEFT JOIN transaksi AS b ON b.ID_TRANSAKSI = a.ID_TRANSAKSI
-        WHERE a.ID_TRANSAKSI = '$id'");
-        return $qu;
-    }
+//hapus data transaksi
+function hapustransaksi($id){
+    global $koneksi;
+    $qu = mysqli_query($koneksi, "DELETE a,b FROM detail_transaksi AS a
+    LEFT JOIN transaksi AS b ON b.ID_TRANSAKSI = a.ID_TRANSAKSI
+    WHERE a.ID_TRANSAKSI = '$id'");
+    return $qu;
+}
 
-    // //hapus detail transaksi
-    // function hapusdetail($id){
-    //     global $koneksi;
-    //     $qu = myqli_query($koneksi, "DELETE FROM transaksi WHERE ID_TRANSAKSI = '$id'");
-    //     return $qu;
-    // }
+// //hapus detail transaksi
+// function hapusdetail($id){
+//     global $koneksi;
+//     $qu = myqli_query($koneksi, "DELETE FROM transaksi WHERE ID_TRANSAKSI = '$id'");
+//     return $qu;
+// }
 
     // menambahkan kritik
 
@@ -203,6 +204,7 @@
         $kdkritik = htmlspecialchars($kr["kd_kritik"]);
         $iduser = htmlspecialchars($kr["id_user"]);
         $isikritik = htmlspecialchars($kr["kritik"]);
+
         $qu = mysqli_query ($koneksi, "INSERT INTO kritik VALUES ('$kdkritik', '$iduser', '$isikritik')");
         return $qu;
     }
@@ -237,4 +239,30 @@
         $de = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES('$id_transaksi', '$id_bunga', '$jumlah')");
         return $de;
     }
+
+    // menampilkan data user
+    
+    function profil($profil){
+        global $koneksi;
+        $pr = mysqli_query($koneksi,$profil);
+        $rows5 = [];
+        while($row5 = mysqli_fetch_assoc($pr) ){
+            $rows5[]=$row5;
+        }
+        return $rows5;
+
+    }
+
+    // upload foto user
+
+    function upload1($upload){
+        global $koneksi;
+        $foto = htmlspecialchars($upload["foto_user"]);
+        $idu = $_SESSION["id_user"];
+
+        $up = mysqli_query ($koneksi, "UPDATE INTO user WHERE ID_USER = $idu VALUES ('', '', '', '', '', '', '', '', '$foto')");
+        return $up;
+
+    }
+
 ?>
