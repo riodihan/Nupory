@@ -82,7 +82,7 @@ h1{
     left: 625px;
 }
 
-button{
+.button{
     border-radius: 40px;
     border: solid;
     height: 30px;
@@ -102,32 +102,39 @@ a{
 
 /*ini bagian section*/
 
-
-section{
-    padding: 20px 20px 20px 80px;
-    text-align: justify;
+section input{
+    color: black;
 }
 
-table{
-    border: 3px;
-}
-
-
-/*bagian WA*/
-input{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-}
-
-/* bg tabel */
-.tabel{
-    background-color: black;
-    padding: 20px;
-    border-radius: 20px;
+.tomboltambah{
+    color: rgb(255, 255, 255);
+    border-radius: 40px;
+    border: solid;
+    height: 30px;
+    width: 70px;
+    font-weight: bold;
     
+    background-color: transparent;
+}
+.bunga{
+    background-color:rgba(0, 0, 0, 0.664);
+    /* background-size: 5px 5px 5px 5px;
+    height: 490px; */
+    width: 190px;
+    padding: 20px 40px;
+    border-radius: 20px;
+    position: center;
+    margin: 40px 560px;
 }
 
-
-
+.ini{
+    list-style: none;
+}
+.ubah{
+    padding: 5px;
+    border-radius: 5px;
+}
+.label{
+    font-family: 'Be Vietnam', sans-serif;
+}
 

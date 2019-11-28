@@ -91,39 +91,41 @@ if($_SESSION["id_status"] !== '03'){
         
     <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
 
-    <table border="1" cellpadding="10" cellspacing="0">
+    <h2>Transaksi Saya</h2><br>
+    <div >
+        <table class="tabel" border="1" cellpadding="10" cellspacing="0">
 
-        <tr>
-            <th>NO</th>
-            <th>ID Transaksi</th>
-            <th>ID Pembayaran</th>
-            <th>ID User</th>
-            <th>Tanggal Transaksi</th>
-            <th>Alamat</th>
-            <th>Total Harga</th>
-        </tr>
+            <tr>
+                <th>NO</th>
+                <th>ID Transaksi</th>
+                <th>ID Pembayaran</th>
+                <th>ID User</th>
+                <th>Tanggal Transaksi</th>
+                <th>Alamat</th>
+                <th>Total Harga</th>
+            </tr>
 
-        <?php $i = 1?>
+            <?php $i = 1?>
         
-        <?php 
-        foreach($transaksi as $row4)
+            <?php 
+            foreach($transaksi as $row4)
         
-        {?>
-        <tr>
-            <td><?= $i?></td>
-            <td><?= $row4["ID_TRANSAKSI"]; ?></td>
-            <td><?= $row4["ID_PEMBAYARAN"]; ?></td>
-            <td><?= $row4["ID_USER"]; ?></td>
-            <td><?= $row4["TGL_TRANSAKSI"]; ?></td>
-            <td><?= $row4["DETAIL_ALAMAT"]; ?></td>
-            <td><?= $row4["TOTAL_AKHIR"]; ?></td>
-            <!-- <td><?= $row4["TOTAL_AKHIR"]; ?></td> -->
-        </tr>
+            {?>
+            <tr>
+                <td><?= $i?></td>
+                <td><?= $row4["ID_TRANSAKSI"]; ?></td>
+                <td><?= $row4["ID_PEMBAYARAN"]; ?></td>
+                <td><?= $row4["ID_USER"]; ?></td>
+                <td><?= $row4["TGL_TRANSAKSI"]; ?></td>
+                <td><?= $row4["DETAIL_ALAMAT"]; ?></td>
+                <td><?= $row4["TOTAL_AKHIR"]; ?></td>
+                <!-- <td><?= $row4["TOTAL_AKHIR"]; ?></td> -->
+            </tr>
     
-        <?php $i++; ?>
-        <?php }?>
-    </table>
-
+            <?php $i++; ?>
+            <?php }?>
+        </table>
+    </div>
 
         <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
