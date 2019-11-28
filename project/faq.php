@@ -29,7 +29,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
     body{
-        /* background-image: url('img/Nursery.jpg'); */
+        background-image: url('img/Nursery.jpg');
         /* background-color: rgb(158, 149, 149)61, 161, 161);  */
     }
     </style>

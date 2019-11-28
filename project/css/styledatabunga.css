@@ -120,6 +120,16 @@ input{
     bottom: 20px;
 }
 
+.tabel{
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.774);
+    border-radius: 20px;
+    margin-left: 300px;
+}
+
+.item{
+    padding: 0px 50px 0px 5px;
+}
 
 
 

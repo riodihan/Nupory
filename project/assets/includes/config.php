@@ -14,7 +14,6 @@
         $nohp = htmlspecialchars($data["nohp"]);
         $email = htmlspecialchars($data["email"]);
         $username = htmlspecialchars(strtolower (stripslashes($data["username"])));
-        // $foto = htmlspecialchars($data["foto"]);
         $password =  htmlspecialchars(mysqli_real_escape_string($koneksi, $data["password"]));
         $konfirmasi = htmlspecialchars(mysqli_real_escape_string($koneksi, $data["konfirmasi"]));
 
@@ -264,6 +263,36 @@ function hapustransaksi($id){
         $up = mysqli_query ($koneksi, "UPDATE INTO user WHERE ID_USER = $idu VALUES ('', '', '', '', '', '', '', '', '$foto')");
         return $up;
 
+    }
+
+    //proses edit bunga
+    
+    function editbunga($editbunga) {
+        global $koneksi;
+
+        $id_bunga= ($editbunga["id_bunga"]);
+        $nama_bunga = htmlspecialchars($editbunga["nama_bunga"]);
+        $harga = htmlspecialchars($editbunga["harga"]);
+        $stok = htmlspecialchars($editbunga["stok"]);
+        $gambar = htmlspecialchars($editbunga["gambar"]);
+        $video = htmlspecialchars($editbunga["video"]);
+        $perawatan = htmlspecialchars($editbunga["perawatan"]);
+        
+
+        $qu = mysqli_query($koneksi, "UPDATE bunga SET
+                    ID_BUNGA = '$id_bunga',
+                    NAMA_BUNGA = '$nama_bunga',
+                    HARGA = '$harga',
+                    STOK = '$stok',
+                    FOTO_BUNGA = '$gambar',
+                    VIDEO_BUNGA = '$video',
+                    CARA_PERAWATAN = '$perawatan'
+                  WHERE id_bunga = '$id_bunga'");
+                
+                return $qu;
+        // mysqli_query($koneksi, $qu)
+    
+        // return mysqli_affected_rows($koneksi);
     }
 
 ?>

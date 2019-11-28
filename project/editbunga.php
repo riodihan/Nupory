@@ -2,13 +2,42 @@
 session_start();
 require 'assets/includes/config.php';
 
-//menampilkan tabel
-$bunga = query1("SELECT * FROM bunga");
+
+// Ambil data di url
+$id = $_GET["id"];
+
+// query data bunga berdasar id
+$bunga = query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'")[0];
+
+
+
+if(isset($_POST["edit"])) {
+
+    if(editbunga($_POST) == 1 ){
+        echo "<script>alert('bunga berhasil diedit'); window.location.href='databunga.php'</script>";
+         
+    }else{
+        echo "<script>alert('bunga gagal diedit'); window.location.href='editbunga.php'</script>";
+    }
+}
+
 
 //cek admin atau bukan
 if($_SESSION["id_status"] !== '01'){
     header("location: index.php");
     exit;
+}
+
+//id user otomatis
+$carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if($datakode) {
+    $nilaikode = substr($datakode[0], 1 );
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+}else{
+    $hasilkode = "B001";
 }
 
 ?>
@@ -17,8 +46,8 @@ if($_SESSION["id_status"] !== '01'){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Data Bunga</title>
-    <link rel="stylesheet" href="css/styledatabunga.css">
+    <title>Edit Bunga</title>
+    <link rel="stylesheet" href="css/styleeditbunga.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
@@ -43,6 +72,7 @@ if($_SESSION["id_status"] !== '01'){
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -79,58 +109,49 @@ if($_SESSION["id_status"] !== '01'){
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <button class="button"><a href="logout.php">Logout</a></button>
         <?php }?>
     </h1>
     </header>
     <section>
-        
-    <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
-    <a href="tambahbunga.php">Tambah Bunga</a><br><br>
-    
+<div class="bunga">
+        <form class="tabel" action="" method="POST">
+        <input  type="text" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
+    <ul class="ini">
+        <li>
+            <label class="label" for="nama_bunga">Nama Bunga</label><br>
+            <input class="ubah" type="text" name="nama_bunga" id="nama_bunga" required value="<?= $bunga["NAMA_BUNGA"]; ?>">
+        </li>
+        <li>
+            <label class="label" for="harga">Harga</label><br>
+            <input class="ubah" type="text" name="harga" id="harga" value="<?= $bunga["HARGA"]; ?>" required>
+        </li>
+        <li>
+            <label class="label" for="stok">Stok</label><br>
+            <input class="ubah" type="number" name="stok" id="stok" value="<?= $bunga["STOK"]; ?>" required>
+        </li>
+        <li>
+            <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
+            <input class="ubah" type="file" name="gambar" id="gambar">
+        </li>
+        <li>
+            <label class="label" for="video" value="<?= $bunga["VIDEO_BUNGA"]; ?>">Video Cara Perawatan</label><br>
+            <input class="ubah" type="file" name="video" id="video">
+        </li>
+        <li>
+            <label class="label" for="perawatan"value="<?= $bunga["CARA_PERAWATAN"]; ?>">Perawatan</label><br>
+            <input class="ubah" type="text" name="perawatan" id="perawatan">
+        </li>
+    </ul>
+    <br>
+        <button type="submit" name="edit" class="tomboltambah">Submit</button>
+        <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
+    </form>
+</div>
 
-    <table class="tabel" border="1" cellpadding="10" cellspacing="0">
-
-        <tr>
-            <th>NO</th>
-            <th>ID Bunga</th>
-            <th>Nama Bunga</th>
-            <th>Harga</th>
-            <th>Stok</th>
-            <!-- <th>Gambar</th>
-            <th>Video</th>
-            <th>Cara Perawatan</th> -->
-            <th>Aksi</th>
-        </tr>
-
-        <?php $i = 1?>
-        
-        <?php 
-        foreach($bunga as $row1){?>
-        <tr>
-            <td><?= $i?></td>
-            <td class="item" ><?= $row1["ID_BUNGA"]; ?></td>
-            <td class="item" ><?= $row1["NAMA_BUNGA"]; ?></td>
-            <td class="item" ><?= $row1["HARGA"]; ?></td>
-            <td class="item" ><?= $row1["STOK"]; ?></td>
-            <!-- <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
-            <td><video width="350px" controls>
-                        <source src="video/<?=$row1["VIDEO_BUNGA"];?>" type="video/mp4">
-                    </video></td>
-            <td><?= $row1["CARA_PERAWATAN"];?></td> -->
-            <td  >
-                <a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');"><img src="img/x.png" alt="hapus" width="20" height="20"></a>
-                <a href="editbunga.php?id=<?= $row1["ID_BUNGA"]; ?>"><img src="img/edit.png" alt="edit" width="20" height="20"></a>
-            </td>
-        </tr>
-
-        <?php $i++; ?>
-        <?php }?>
-    </table>
-
-
-        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
+      
     </section>
+
 
     <footer>
     </footer>
