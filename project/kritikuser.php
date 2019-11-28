@@ -87,7 +87,7 @@ if($_SESSION["id_status"] !== '01'){
         
     <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
 
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table class="bungkus" border="1" cellpadding="10" cellspacing="0">
 
         <tr>
             <th>NO</th>

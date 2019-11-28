@@ -118,7 +118,7 @@ if($datakode) {
         </li>
         <li>
             <label class="label" for="harga">Harga</label><br>
-            <input class="ubah" type="text" name="harga" id="harga" required>
+            <input class="ubah" type="text"  name="harga" id="harga" required>
         </li>
         <li>
             <label class="label" for="stok">Stok</label><br>

@@ -124,7 +124,7 @@ if($datakode) {
     </li>
     <li>
         <label class="label" for="no_telepon">No Telepon</label><br>
-        <input class="edit" type="number" name="no_telepon"  id="no_telepon" required  >
+        <input class="edit" type="number" maxlength="13" name="no_telepon"  id="no_telepon" required  >
     </li>
     <li>
         <label class="label" for="email">Email</label><br>
