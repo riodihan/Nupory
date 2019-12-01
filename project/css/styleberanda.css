@@ -82,19 +82,6 @@ h1{
     left: 625px;
 }
 
-button{
-    border-radius: 40px;
-    border: solid;
-    height: 30px;
-    width: 70px;
-    font-weight: bold;
-    position: absolute;
-    left: 650px;
-    top: 12px;
-    background-color: transparent;
-    
-}
-
 a{
     text-decoration: none;
 }
@@ -187,4 +174,52 @@ section h3:after{
 .p1{
     font-family: 'Overpass', sans-serif;
     color: black;
+}
+
+.dropdown{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 10%;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    float: right;
+    position: relative;
+    right: 2px;
+    top: -30px;
+    line-height: 20px;
+}
+
+.dropdown ul li{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 100%;
+    height: 20px;
+    line-height: 30px;
+    float: left;
+    list-style: none;
+    text-align: center;
+}
+.dropdown ul:hover li{
+    display: block;
+}
+
+.dropdown ul li{
+    display: none;
+}
+
+.login{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 5%;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    float: right;
+    position: relative;
+    right: 2px;
+    top: -30px;
+    line-height: 20px;
 }

@@ -5,7 +5,7 @@ require 'assets/includes/config.php';
 $datatransaksi = query("SELECT * FROM transaksi");
 
 //cek admin atau bukan
-if($_SESSION["id_status"] !== '01'){
+if($_SESSION["id_status"] == '03'){
     header("location: index.php");
     exit;
 }
