@@ -2,7 +2,7 @@
 session_start();
 require 'assets/includes/config.php';
 
-
+// cek apakah tombol tambah ditekan atau tidak
 if(isset($_POST["tambah"])) {
 
     if(tambahbunga($_POST) == 1){
