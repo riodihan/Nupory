@@ -70,18 +70,23 @@ if($_SESSION["id_status"] == '03'){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
         <?php }?>
-    </h1>
+    
     </header>
     <section>
         
@@ -97,8 +102,8 @@ if($_SESSION["id_status"] == '03'){
             <th>Nama Bunga</th>
             <th>Harga</th>
             <th>Stok</th>
-            <!-- <th>Gambar</th>
-            <th>Video</th>
+            <th>Gambar</th>
+            <!-- <th>Video</th>
             <th>Cara Perawatan</th> -->
             <th>Aksi</th>
         </tr>
@@ -113,8 +118,8 @@ if($_SESSION["id_status"] == '03'){
             <td class="item" ><?= $row1["NAMA_BUNGA"]; ?></td>
             <td class="item" ><?= $row1["HARGA"]; ?></td>
             <td class="item" ><?= $row1["STOK"]; ?></td>
-            <!-- <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
-            <td><video width="350px" controls>
+            <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
+            <!-- <td><video width="350px" controls>
                         <source src="video/<?=$row1["VIDEO_BUNGA"];?>" type="video/mp4">
                     </video></td>
             <td><?= $row1["CARA_PERAWATAN"];?></td> -->
