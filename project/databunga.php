@@ -6,7 +6,7 @@ require 'assets/includes/config.php';
 $bunga = query1("SELECT * FROM bunga");
 
 //cek admin atau bukan
-if($_SESSION["id_status"] !== '01'){
+if($_SESSION["id_status"] == '03'){
     header("location: index.php");
     exit;
 }
@@ -87,8 +87,9 @@ if($_SESSION["id_status"] !== '01'){
         
     <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
     <a href="tambahbunga.php">Tambah Bunga</a><br><br>
+    
 
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table class="tabel" border="1" cellpadding="10" cellspacing="0">
 
         <tr>
             <th>NO</th>
@@ -108,18 +109,21 @@ if($_SESSION["id_status"] !== '01'){
         foreach($bunga as $row1){?>
         <tr>
             <td><?= $i?></td>
-            <td><?= $row1["ID_BUNGA"]; ?></td>
-            <td><?= $row1["NAMA_BUNGA"]; ?></td>
-            <td><?= $row1["HARGA"]; ?></td>
-            <td><?= $row1["STOK"]; ?></td>
+            <td class="item" ><?= $row1["ID_BUNGA"]; ?></td>
+            <td class="item" ><?= $row1["NAMA_BUNGA"]; ?></td>
+            <td class="item" ><?= $row1["HARGA"]; ?></td>
+            <td class="item" ><?= $row1["STOK"]; ?></td>
             <!-- <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
             <td><video width="350px" controls>
                         <source src="video/<?=$row1["VIDEO_BUNGA"];?>" type="video/mp4">
                     </video></td>
             <td><?= $row1["CARA_PERAWATAN"];?></td> -->
-            <td><a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');">Hapus</a></td>
+            <td  >
+                <a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');"><img src="img/x.png" alt="hapus" width="20" height="20"></a>
+                <a href="editbunga.php?id=<?= $row1["ID_BUNGA"]; ?>"><img src="img/edit.png" alt="edit" width="20" height="20"></a>
+            </td>
         </tr>
-        
+
         <?php $i++; ?>
         <?php }?>
     </table>

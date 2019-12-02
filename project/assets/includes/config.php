@@ -267,4 +267,34 @@ function hapustransaksi($id){
         return $qu;
     }
 
+    //proses edit bunga
+    
+    function editbunga($editbunga) {
+        global $koneksi;
+
+        $id_bunga= ($editbunga["id_bunga"]);
+        $nama_bunga = htmlspecialchars($editbunga["nama_bunga"]);
+        $harga = htmlspecialchars($editbunga["harga"]);
+        $stok = htmlspecialchars($editbunga["stok"]);
+        $gambar = htmlspecialchars($editbunga["gambar"]);
+        $video = htmlspecialchars($editbunga["video"]);
+        $perawatan = htmlspecialchars($editbunga["perawatan"]);
+        
+
+        $qu = mysqli_query($koneksi, "UPDATE bunga SET
+                    ID_BUNGA = '$id_bunga',
+                    NAMA_BUNGA = '$nama_bunga',
+                    HARGA = '$harga',
+                    STOK = '$stok',
+                    FOTO_BUNGA = '$gambar',
+                    VIDEO_BUNGA = '$video',
+                    CARA_PERAWATAN = '$perawatan'
+                  WHERE id_bunga = '$id_bunga'");
+                
+                return $qu;
+        // mysqli_query($koneksi, $qu)
+    
+        // return mysqli_affected_rows($koneksi);
+    }
+
 ?>

@@ -57,7 +57,6 @@ require 'assets/includes/config.php';
                 <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
-                
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
             <?php }if($guest){?>
@@ -74,31 +73,24 @@ require 'assets/includes/config.php';
     </div>
     <div class="container">
    
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
-        if (isset($_SESSION["login"])) 
-        {?> 
-            <button><a href="logout.php">Logout</a></button>
-            <ul>idris
-                <li>
-                    profile
-                </li>
-                    <li>
-                    logout
-                    </li>
-            </ul>
+        if (isset($_SESSION["login"])) {?> 
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
 
-            
-
-        <!-- <img src="img/<?= $row5["FOTO_USER"]; ?>" width="40" heigh="50"> -->
         <?php }?>
-    </h1>
+    
     </header>
     <section>
         <p class="judul">Kebun Nursery <br> Polije</p>

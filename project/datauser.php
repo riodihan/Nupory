@@ -88,7 +88,7 @@ if($_SESSION["id_status"] !== '01'){
     <section>
         
     <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
-    <a href="tambahadmin.php">Tambah Karyawan</a><br><br>
+   <a href="tambahadmin.php">Tambah Karyawan</a> <br><br>
     
         <table class="tabeluser" border="1" cellpadding="10" cellspacing="0">
 
@@ -102,7 +102,8 @@ if($_SESSION["id_status"] !== '01'){
                 <th>Email</th>
                 <th>Username</th>
                 <!-- <th>Password</th> -->
-                <th>Foto</th>
+                <!-- <th>Foto</th> -->
+
                 <th>Aksi</th>
             </tr>
 

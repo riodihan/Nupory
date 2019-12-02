@@ -120,6 +120,14 @@ input{
     bottom: 20px;
 }
 
+/* bg tabel */
+.tabel{
+    background-color: black;
+    padding: 20px;
+    border-radius: 20px;
+    
+}
+
 
 
 

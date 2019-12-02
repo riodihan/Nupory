@@ -106,3 +106,8 @@ section{
     text-align: justify;
 
 }
+.bungkus{
+    background-color: rgba(0, 0, 0, 0.76);
+    padding: 20px;
+    border-radius: 10px;
+}

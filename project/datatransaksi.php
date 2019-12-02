@@ -5,7 +5,7 @@ require 'assets/includes/config.php';
 $datatransaksi = query("SELECT * FROM transaksi");
 
 //cek admin atau bukan
-if($_SESSION["id_status"] !== '01'){
+if($_SESSION["id_status"] == '03'){
     header("location: index.php");
     exit;
 }
@@ -81,10 +81,10 @@ if($_SESSION["id_status"] !== '01'){
     </h1>
     </header>
     <section>
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table class="bungkus" border="1" cellpadding="10" cellspacing="0">
 
-            
-        <tr>
+       
+        <tr >
             <th>NO</th>
             <th>ID Transaksi</th>
             <th>ID Pembayaran</th>
@@ -97,7 +97,7 @@ if($_SESSION["id_status"] !== '01'){
         </tr>
             <?php $i=1?>
             <?php foreach($datatransaksi as $row) {?>
-        <tr>
+        <tr >
             <td><?= $i?></td>
             <td><?= $row["ID_TRANSAKSI"];?></td>
             <td><?= $row["ID_PEMBAYARAN"];?></td>
@@ -109,6 +109,7 @@ if($_SESSION["id_status"] !== '01'){
             <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" >Hapus</a></td>
 
         </tr>
+       
             <?php $i++;?>
             <?php }?>
             

@@ -3,13 +3,21 @@ session_start();
 require 'assets/includes/config.php';
 
 
-if(isset($_POST["tambah"])) {
+// Ambil data di url
+$id = $_GET["id"];
 
-    if(tambahkaryawan($_POST) == 1){
-        echo "<script>alert('karyawan berhasil ditambahkan'); </script>";
-        // header("location: login.php");
+// query data bunga berdasar id
+$bunga = query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'")[0];
+
+
+
+if(isset($_POST["edit"])) {
+
+    if(editbunga($_POST) == 1 ){
+        echo "<script>alert('bunga berhasil diedit'); window.location.href='databunga.php'</script>";
+         
     }else{
-        echo mysqli_error($koneksi);
+        echo "<script>alert('bunga gagal diedit'); window.location.href='editbunga.php'</script>";
     }
 }
 
@@ -20,16 +28,16 @@ if($_SESSION["id_status"] !== '01'){
     exit;
 }
 
-//iduser otomatis
-$carikode = mysqli_query($koneksi, "select max(ID_USER)from user") or die (mysqli_error($koneksi));
+//id user otomatis
+$carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode) {
     $nilaikode = substr($datakode[0], 1 );
     $kode = (int) $nilaikode;
     $kode = $kode + 1;
-    $hasilkode = "U" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+    $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
 }else{
-    $hasilkode = "U001";
+    $hasilkode = "B001";
 }
 
 ?>
@@ -38,8 +46,8 @@ if($datakode) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Data User</title>
-    <link rel="stylesheet" href="css/styletambahadmin.css">
+    <title>Edit Bunga</title>
+    <link rel="stylesheet" href="css/styleeditbunga.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
@@ -64,6 +72,7 @@ if($datakode) {
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -105,52 +114,39 @@ if($datakode) {
     </h1>
     </header>
     <section>
-<div >
-<form  class="bungkus" action="" method="POST">
-<ul class="apa">
-    <li>
-        <input class="edit" type="hidden" name="id_user" id="id_user" value="<?php echo $hasilkode ?>">
-    </li>
-    <li>
-        <input class="edit" type="hidden" name="id_status" id="id_status" value="02">
-    </li>
-    <li>
-        <label class="label" for="nama_user">Nama Karyawan</label><br>
-        <input class="edit" type="text" name="nama_user" id="nama_user" required>
-    </li>
-    <li>
-        <label class="label" for="alamat">Alamat</label><br>
-        <input class="edit"  type="text" name="alamat" id="alamat" required>
-    </li>
-    <li>
-        <label class="label" for="no_telepon">No Telepon</label><br>
-        <input class="edit" type="number" maxlength="13" name="no_telepon"  id="no_telepon" required  >
-    </li>
-    <li>
-        <label class="label" for="email">Email</label><br>
-        <input class="edit" type="text" name="email" id="email" required>
-    </li>
-    <li>
-        <label class="label" for="username">Username</label><br>
-        <input class="edit" type="text" name="username" id="username" required>
-    </li>
-    <li>
-        <label class="label" for="password">Password</label><br>
-        <input class="edit" type="password" name="password" id="password" required>
-    </li>
-    <li>
-        <label class="label" for="konfirmasipassword">Konfirmasi password</label><br>
-        <input class="edit" type="password" name="konfirmasipassword" id="konfirmasipassword" required>
-    </li>
-    <li>
-        <label class="label" for="foto">Foto</label><br>
-        <input class="edit" type="file" name="foto" id="foto">
-    </li>
-</ul>
-<br>
-    <button name="tambah" class="tomboltambah">Submit</button>
-    <button class="tomboltambah"> <a href="datauser.php">Kembali</a></button>
-</form>
+<div class="bunga">
+        <form class="tabel" action="" method="POST">
+        <input  type="text" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
+    <ul class="ini">
+        <li>
+            <label class="label" for="nama_bunga">Nama Bunga</label><br>
+            <input class="ubah" type="text" name="nama_bunga" id="nama_bunga" required value="<?= $bunga["NAMA_BUNGA"]; ?>">
+        </li>
+        <li>
+            <label class="label" for="harga">Harga</label><br>
+            <input class="ubah" type="text" name="harga" id="harga" value="<?= $bunga["HARGA"]; ?>" required>
+        </li>
+        <li>
+            <label class="label" for="stok">Stok</label><br>
+            <input class="ubah" type="number" name="stok" id="stok" value="<?= $bunga["STOK"]; ?>" required>
+        </li>
+        <li>
+            <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
+            <input class="ubah" type="file" name="gambar" id="gambar">
+        </li>
+        <li>
+            <label class="label" for="video" value="<?= $bunga["VIDEO_BUNGA"]; ?>">Video Cara Perawatan</label><br>
+            <input class="ubah" type="file" name="video" id="video">
+        </li>
+        <li>
+            <label class="label" for="perawatan"value="<?= $bunga["CARA_PERAWATAN"]; ?>">Perawatan</label><br>
+            <input class="ubah" type="text" name="perawatan" id="perawatan">
+        </li>
+    </ul>
+    <br>
+        <button type="submit" name="edit" class="tomboltambah">Submit</button>
+        <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
+    </form>
 </div>
 
       
@@ -170,8 +166,6 @@ if($datakode) {
     document.getElementById("hidesidebar").style.width = "0";
     document.getElementById("menu").style.marginLeft= "0";
 }
-
     </script>
-    
 </body>
 </html>
