@@ -1,11 +1,12 @@
 <?php
 session_start();
 ?>
+ <?php include "assets/includes/config.php" ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cara Perawaran</title>
+    <title>Cara Perawartan</title>
     <link rel="stylesheet" href="css/stylecaraperawatan.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -15,6 +16,7 @@ session_start();
         background-color: ; 
     }
     </style>
+    
     
 </head>
 <body>
@@ -69,8 +71,27 @@ session_start();
         <?php }?>
     </h1>
     </header>
-    <section>
-        <table>
+    <section >
+        
+         <?php 
+        $query = mysqli_query ($koneksi, "select video_bunga, cara_perawatan from bunga");
+            
+        while ($data = mysqli_fetch_array($query)) {
+             echo $data['video_bunga']; 
+             echo $data ['cara_perawatan']; 
+        }
+         ?>
+
+         <!-- <?php echo $data['video_bunga']; ?>
+         <?php echo $data ['cara_perawatan']; ?>  -->
+         <!-- $query = mysqli_query("SELECT * FROM 'videos'");
+         while($row=mysqli_fectch_assoc($query)){
+         $id=$row['id'];
+         $name=$row['name'];
+
+         echo" -->
+     }
+        <!-- <table>
         
             <td> 
                 <li class="ul">Cara perawatan bunga Krisan
@@ -115,7 +136,7 @@ session_start();
                 </li>
             </td>
         
-        </table>
+        </table> -->
 
 
        <a href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data="><input type="image" src="img/WA.png" width="50px" height="50px"></a>
@@ -131,5 +152,6 @@ session_start();
     document.getElementById("menu").style.marginLeft= "0";
 }
     </script>
+
 </body>
 </html>
