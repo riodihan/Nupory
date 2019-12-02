@@ -120,7 +120,7 @@ if($datakode) {
     </li>
     <li>
         <label class="label" for="alamat">Alamat</label><br>
-        <input class="edit" type="text" name="alamat" id="alamat" required>
+        <input class="edit"  type="text" name="alamat" id="alamat" required>
     </li>
     <li>
         <label class="label" for="no_telepon">No Telepon</label><br>

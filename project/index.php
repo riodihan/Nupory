@@ -1,6 +1,13 @@
 <?php
 session_start();
 require 'assets/includes/config.php';
+
+// $id = $_SESSION["id_user"];
+
+
+//menampilkan data user
+// $profil = profil("SELECT * FROM user WHERE ID_USER = '$id'");
+
 ?>
 
 <!DOCTYPE html>
@@ -75,8 +82,21 @@ require 'assets/includes/config.php';
         <?php }?>
 
         <?php  
-        if (isset($_SESSION["login"])) {?> 
+        if (isset($_SESSION["login"])) 
+        {?> 
             <button><a href="logout.php">Logout</a></button>
+            <ul>idris
+                <li>
+                    profile
+                </li>
+                    <li>
+                    logout
+                    </li>
+            </ul>
+
+            
+
+        <!-- <img src="img/<?= $row5["FOTO_USER"]; ?>" width="40" heigh="50"> -->
         <?php }?>
     </h1>
     </header>

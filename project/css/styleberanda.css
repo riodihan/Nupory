@@ -82,6 +82,12 @@ h1{
     left: 625px;
 }
 
+.gambarprofile{
+    position: absolute;
+    top: 3px;
+    left: 625px;
+}
+
 button{
     border-radius: 40px;
     border: solid;
