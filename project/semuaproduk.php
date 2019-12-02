@@ -148,14 +148,14 @@ if(isset($_POST["beli"])){
            </tr>
 
            <tr>
-              <td>
+              <!-- <td>
                 <input type="hidden" name="tanggal" id="tanggal" value="<?php
                 $tanggal= mktime(date("d"),date("m"),date("Y"));
                 echo " ".date("d/m/Y", $tanggal)." ";
                 date_default_timezone_set('Asia/Jakarta');
                 echo date("h:i:sa");
                 ?>" readonly>
-              </td>
+              </td> -->
            </tr>
               
            <tr>

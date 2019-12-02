@@ -103,6 +103,7 @@ if($_SESSION["id_status"] !== '01'){
                 <th>Username</th>
                 <!-- <th>Password</th> -->
                 <!-- <th>Foto</th> -->
+
                 <th>Aksi</th>
             </tr>
 
@@ -119,6 +120,7 @@ if($_SESSION["id_status"] !== '01'){
                 <td><?= $row["NO_TELEPON"]; ?></td>
                 <td><?= $row["EMAIL"]; ?></td>
                 <td><?= $row["USERNAME"]; ?></td>
+                <td><img src="<?= $row["USERNAME"]; ?>"></td>
                 <td><a href = "hapususer.php?id=<?= $row["ID_USER"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');"><img src="img/x.png" alt="" width="20" height="20"></a></td>
             </tr>
         

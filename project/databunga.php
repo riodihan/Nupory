@@ -6,7 +6,7 @@ require 'assets/includes/config.php';
 $bunga = query1("SELECT * FROM bunga");
 
 //cek admin atau bukan
-if($_SESSION["id_status"] !== '01'){
+if($_SESSION["id_status"] == '03'){
     header("location: index.php");
     exit;
 }

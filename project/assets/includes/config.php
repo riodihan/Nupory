@@ -190,13 +190,6 @@ function hapustransaksi($id){
     return $qu;
 }
 
-// //hapus detail transaksi
-// function hapusdetail($id){
-//     global $koneksi;
-//     $qu = myqli_query($koneksi, "DELETE FROM transaksi WHERE ID_TRANSAKSI = '$id'");
-//     return $qu;
-// }
-
     // menambahkan kritik
 
     function kritik($kr){
@@ -217,11 +210,11 @@ function hapustransaksi($id){
         $id_transaksi = htmlspecialchars($tr["id_transaksi"]);
         $id_pembayaran = htmlspecialchars($tr["metode"]);
         $id_user = htmlspecialchars($tr["id_user"]);
-        $tgl = htmlspecialchars($tr["tanggal"]);
+        // $tgl = htmlspecialchars($tr["tanggal"]);
         $alamat = htmlspecialchars($tr["alamat"]);
         $total = htmlspecialchars($tr["total"]);
 
-        $trs = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$id_transaksi', '$id_pembayaran', '$id_user', '$tgl', '$alamat', '$total', '')");
+        $trs = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$id_transaksi', '$id_pembayaran', '$id_user', '', '$alamat', '$total', '')");
 
 
         return $trs;
@@ -253,16 +246,25 @@ function hapustransaksi($id){
 
     }
 
-    // upload foto user
-
-    function upload1($upload){
+    // // ubah Profile 
+    
+    function ubahprofile($ubah){
         global $koneksi;
-        $foto = htmlspecialchars($upload["foto_user"]);
-        $idu = $_SESSION["id_user"];
+        $id = ($ubah["id"]);
+        $nama = htmlspecialchars($ubah["nama"]);
+        $alamat = htmlspecialchars($ubah["alamat"]);
+        $no = htmlspecialchars($ubah["NO_TELEPON"]);
+        $email = htmlspecialchars($ubah["EMAIL"]);
+        $foto = htmlspecialchars($ubah["foto"]);
 
-        $up = mysqli_query ($koneksi, "UPDATE INTO user WHERE ID_USER = $idu VALUES ('', '', '', '', '', '', '', '', '$foto')");
-        return $up;
-
+        $qu = mysqli_query($koneksi, "UPDATE user SET 
+                NAMA_USER = '$nama', 
+                ALAMAT = '$alamat', 
+                NO_TELEPON = '$no', 
+                EMAIL = '$email', 
+                FOTO_USER = '$foto' 
+                WHERE ID_USER = '$id'");
+        return $qu;
     }
 
     //proses edit bunga
