@@ -118,7 +118,7 @@ if(isset($_POST["beli"])){
     </header>
     <section>
         <h2><?php echo $row_bunga["NAMA_BUNGA"];?></h2><br><br>
-        <div class="background">
+    <div class="background">
             
         
     <!--bagian gambar-->
