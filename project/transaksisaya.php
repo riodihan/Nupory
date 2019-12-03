@@ -74,18 +74,23 @@ if($_SESSION["id_status"] !== '03'){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
         <?php }?>
-    </h1>
+    
     </header>
     <section>
         
@@ -96,13 +101,13 @@ if($_SESSION["id_status"] !== '03'){
         <table class="tabel" border="1" cellpadding="10" cellspacing="0">
 
             <tr>
-                <th>NO</th>
-                <th>ID Transaksi</th>
-                <th>ID Pembayaran</th>
-                <th>ID User</th>
-                <th>Tanggal Transaksi</th>
-                <th>Alamat</th>
-                <th>Total Harga</th>
+                <th class="kolom">NO</th>
+                <th class="kolom">ID Transaksi</th>
+                <th class="kolom">ID Pembayaran</th>
+                <th class="kolom">ID User</th>
+                <th class="kolom">Tanggal Transaksi</th>
+                <th class="kolom">Alamat</th>
+                <th class="kolom">Total Harga</th>
             </tr>
 
             <?php $i = 1?>
@@ -113,12 +118,12 @@ if($_SESSION["id_status"] !== '03'){
             {?>
             <tr>
                 <td><?= $i?></td>
-                <td><?= $row4["ID_TRANSAKSI"]; ?></td>
-                <td><?= $row4["ID_PEMBAYARAN"]; ?></td>
-                <td><?= $row4["ID_USER"]; ?></td>
-                <td><?= $row4["TGL_TRANSAKSI"]; ?></td>
-                <td><?= $row4["DETAIL_ALAMAT"]; ?></td>
-                <td><?= $row4["TOTAL_AKHIR"]; ?></td>
+                <td class="kolom"><?= $row4["ID_TRANSAKSI"]; ?></td>
+                <td class="kolom"><?= $row4["ID_PEMBAYARAN"]; ?></td>
+                <td class="kolom"><?= $row4["ID_USER"]; ?></td>
+                <td class="kolom"><?= $row4["TGL_TRANSAKSI"]; ?></td>
+                <td class="kolom"><?= $row4["DETAIL_ALAMAT"]; ?></td>
+                <td class="kolom"><?= $row4["TOTAL_AKHIR"]; ?></td>
                 <!-- <td><?= $row4["TOTAL_AKHIR"]; ?></td> -->
             </tr>
     
