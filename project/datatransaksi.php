@@ -19,6 +19,8 @@ if($_SESSION["id_status"] == '03'){
     <link rel="stylesheet" href="css/styledatatransaksi.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
     body{
         background-image: url('img/Nursery.jpg');
@@ -67,18 +69,25 @@ if($_SESSION["id_status"] == '03'){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+        
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
-        if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+        if (isset($_SESSION["login"])) {?>
+
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
         <?php }?>
-    </h1>
+    
     </header>
     <section>
     <table class="bungkus" border="1" cellpadding="10" cellspacing="0">
@@ -93,7 +102,7 @@ if($_SESSION["id_status"] == '03'){
             <th>Alamat</th>
             <th>Total Pembayaran</th>
             <th>Bukti Pembayaran</th>
-            <th>waktu</th>
+            <th>Aksi</th>
         </tr>
             <?php $i=1?>
             <?php foreach($datatransaksi as $row) {?>
@@ -106,7 +115,7 @@ if($_SESSION["id_status"] == '03'){
             <td><?= $row["DETAIL_ALAMAT"];?></td>
             <td><?= $row["TOTAL_AKHIR"];?></td>
             <td><?= $row["FOTO_VERIFIKASI"];?></td>
-            <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" >Hapus</a></td>
+            <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" ><img src="img/x.png" alt="" width="20" height="20"></a></a></td>
 
         </tr>
        

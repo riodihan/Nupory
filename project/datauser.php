@@ -72,18 +72,25 @@ if($_SESSION["id_status"] !== '01'){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
-        if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+        if (isset($_SESSION["login"])) {?>
+         
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
         <?php }?>
-    </h1>
+    
     </header>
     <section>
         
@@ -101,9 +108,9 @@ if($_SESSION["id_status"] !== '01'){
                 <th>No Telepon</th>
                 <th>Email</th>
                 <th>Username</th>
+                <th>Foto</th>
                 <!-- <th>Password</th> -->
                 <!-- <th>Foto</th> -->
-
                 <th>Aksi</th>
             </tr>
 

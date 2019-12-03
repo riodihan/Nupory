@@ -104,12 +104,19 @@ if($datakode) {
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+
+            <a href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button class="button"><a href="logout.php">Logout</a></button>
+        
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
         <?php }?>
     </h1>
     </header>
