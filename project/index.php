@@ -1,13 +1,6 @@
 <?php
 session_start();
 require 'assets/includes/config.php';
-
-// $id = $_SESSION["id_user"];
-
-
-//menampilkan data user
-// $profil = profil("SELECT * FROM user WHERE ID_USER = '$id'");
-
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +22,7 @@ require 'assets/includes/config.php';
         background-image: url('img/Nursery.jpg');
     }
     </style>
+    
 </head>
 <body>
     <header>
@@ -57,6 +51,7 @@ require 'assets/includes/config.php';
                 <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
+                
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
             <?php }if($guest){?>
@@ -73,24 +68,18 @@ require 'assets/includes/config.php';
     </div>
     <div class="container">
    
-    <h1 class="h1">Nursery<br>Polije</h1>
+    <h1 class="h1">Nursery<br>Polije
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <a class="login" href="login.php">Login</a>
+            <button><a href="login.php">Login</a></button>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <nav class="dropdown">
-                <ul> <?php echo $_SESSION["USERNAME"];?>
-                    <li><a href="Profile.php">Profil</a></li>
-                    <li><a href="logout.php">Logout</a></li>
-                </ul>
-            </nav>
-
+            <button><a href="logout.php">Logout</a></button>
         <?php }?>
-    
+    </h1>
     </header>
     <section>
         <p class="judul">Kebun Nursery <br> Polije</p>
