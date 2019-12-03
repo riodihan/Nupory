@@ -73,11 +73,13 @@ if($_SESSION["id_status"] == '03'){
         
         <?php
         if(!isset($_SESSION["login"])) {?>
+        
             <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
-        if (isset($_SESSION["login"])) {?> 
+        if (isset($_SESSION["login"])) {?>
+
             <nav class="dropdown">
                 <ul> <?php echo $_SESSION["USERNAME"];?>
                     <li><a href="Profile.php">Profil</a></li>
