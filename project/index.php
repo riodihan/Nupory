@@ -68,7 +68,7 @@ require 'assets/includes/config.php';
     </div>
     <div class="container">
    
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
@@ -84,7 +84,7 @@ require 'assets/includes/config.php';
                 </ul>
             </nav>
         <?php }?>
-    </h1>
+    
     </header>
     <section>
         <p class="judul">Kebun Nursery <br> Polije</p>

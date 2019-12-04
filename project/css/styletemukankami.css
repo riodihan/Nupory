@@ -120,6 +120,7 @@ input{
 .gmaps{
     font-family: 'Josefin Sans', sans-serif;
     font-weight: lighter;
+    background-color: rgba(0, 0, 0, 0.815);
     border: 2px solid;
     border-radius: 100px;
     padding: 10px;

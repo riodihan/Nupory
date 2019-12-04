@@ -77,6 +77,9 @@ header{
 
 
 h1{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    margin-top: 4px;
     line-height: 25px;
     text-align: center;
 }
@@ -105,6 +108,13 @@ a{
 }
 
 /*ini bagian section*/
+.judul-1{
+    font-family: 'DM Serif Display', serif;
+    line-height: 35px;
+    margin: 0px 0px 0px 520px;
+    font-size: 40px;
+}
+
  h2{
     font-family: 'DM Serif Display', serif;
     font-size: 58px;
@@ -143,6 +153,10 @@ input{
 
 /*bagian pertanyaan*/
 
+#wrapper{
+    margin: 0px 0px 0px 100px;
+}
+
 .bg{
     position: relative;
     left: 150px;
@@ -158,5 +172,53 @@ input{
 .ol{
     margin: 20px;
     color: black;
+}
+
+.dropdown{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 10%;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    float: right;
+    position: relative;
+    right: 2px;
+    top: -30px;
+    line-height: 20px;
+}
+
+.dropdown ul li{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 100%;
+    height: 20px;
+    line-height: 30px;
+    float: left;
+    list-style: none;
+    text-align: center;
+}
+.dropdown ul:hover li{
+    display: block;
+}
+
+.dropdown ul li{
+    display: none;
+}
+
+.login{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 5%;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    float: right;
+    position: relative;
+    right: 2px;
+    top: -30px;
+    line-height: 20px;
 }
 
