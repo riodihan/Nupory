@@ -17,7 +17,10 @@ session_start();
     }
     </style>
     
-    
+    <link rel="stylesheet" href="video-js.css">
+    <script src="video-js"></script>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <header>
@@ -71,26 +74,24 @@ session_start();
         <?php }?>
     </h1>
     </header>
+
     <section >
-        
-         <?php 
-        $query = mysqli_query ($koneksi, "select video_bunga, cara_perawatan from bunga");
+        <a href="caraperawatan.php"></a>
+        <!-- <figure id="video_player">
+            <video controls width="700px">
+                <source src="video/video1.mp4" type="video/mp4">
+                <source src="video1.webm" type="video/webm">
+                
+            </video>
+            <figcaption>
+                <ul>
+                    <li> <a href="video1.mp4">Play Video 1</a></li>
+                    <li> <a href="video2.mp4">Play Video 2</a></li>
+                </ul>
+            </figcaption>
             
-        while ($data = mysqli_fetch_array($query)) {
-             echo $data['video_bunga']; 
-             echo $data ['cara_perawatan']; 
-        }
-         ?>
-
-         <!-- <?php echo $data['video_bunga']; ?>
-         <?php echo $data ['cara_perawatan']; ?>  -->
-         <!-- $query = mysqli_query("SELECT * FROM 'videos'");
-         while($row=mysqli_fectch_assoc($query)){
-         $id=$row['id'];
-         $name=$row['name'];
-
-         echo" -->
-     }
+        </figure> -->
+        
         <!-- <table>
         
             <td> 
@@ -155,3 +156,19 @@ session_start();
 
 </body>
 </html>
+
+<?php
+$sql = "select id_bunga, video_bunga from bunga";
+$res =mysqli_query($koneksi,$sql);
+
+echo "myvideo <br> <br>"; 
+
+while ($row = mysqli_fetch_assoc($res)) {
+    $id = $row['id_bunga'];
+    $video = $row['video_bunga'];
+
+
+    echo  " <a href='play.php?id=$id'>.$video.</a> ";
+
+ ?>
+  <?php } ?>

@@ -2,7 +2,7 @@
 session_start();
 require 'assets/includes/config.php';
 
-$datatransaksi = query("SELECT * FROM transaksi");
+$datatransaksi = query("SELECT transaksi.*, detail_transaksi.ID_BUNGA FROM transaksi right join detail_transaksi on transaksi.ID_TRANSAKSI=detail_transaksi.ID_TRANSAKSI group by transaksi.ID_TRANSAKSI ");
 
 //cek admin atau bukan
 if($_SESSION["id_status"] == '03'){
@@ -97,6 +97,7 @@ if($_SESSION["id_status"] == '03'){
             <th>NO</th>
             <th>ID Transaksi</th>
             <th>ID Pembayaran</th>
+            <th>ID BUNGA</th>
             <th>ID User</th>
             <th>Tanggal Transaksi</th>
             <th>Alamat</th>
@@ -110,6 +111,7 @@ if($_SESSION["id_status"] == '03'){
             <td><?= $i?></td>
             <td><?= $row["ID_TRANSAKSI"];?></td>
             <td><?= $row["ID_PEMBAYARAN"];?></td>
+            <td><?= $row["ID_BUNGA"];?></td>
             <td><?= $row["ID_USER"];?></td>
             <td><?= $row["TGL_TRANSAKSI"];?></td>
             <td><?= $row["DETAIL_ALAMAT"];?></td>

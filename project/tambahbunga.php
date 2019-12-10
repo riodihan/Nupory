@@ -134,7 +134,7 @@ if($datakode) {
         </li>
         <li>
             <label class="label" for="perawatan">Perawatan</label><br>
-            <input class="ubah" type="text" name="perawatan" id="perawatan">
+            <input class="ubah" type="text" name="perawatan" id="perawatan" required>
         </li>
     </ul>
     <br>
@@ -163,3 +163,4 @@ if($datakode) {
     </script>
 </body>
 </html>
+

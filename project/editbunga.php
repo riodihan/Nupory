@@ -123,7 +123,7 @@ if($datakode) {
     <section>
 <div class="bunga">
         <form class="tabel" action="" method="POST">
-        <input  type="text" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
+        <input  type="hidden" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
     <ul class="ini">
         <li>
             <label class="label" for="nama_bunga">Nama Bunga</label><br>
@@ -139,15 +139,15 @@ if($datakode) {
         </li>
         <li>
             <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
-            <input class="ubah" type="file" name="gambar" id="gambar">
+            <input class="ubah" type="file" name="gambar" id="gambar" >
         </li>
         <li>
             <label class="label" for="video" value="<?= $bunga["VIDEO_BUNGA"]; ?>">Video Cara Perawatan</label><br>
             <input class="ubah" type="file" name="video" id="video">
         </li>
         <li>
-            <label class="label" for="perawatan"value="<?= $bunga["CARA_PERAWATAN"]; ?>">Perawatan</label><br>
-            <input class="ubah" type="text" name="perawatan" id="perawatan">
+            <label class="label" for="perawatan" >Perawatan</label><br>
+            <input width="350px" height="350px" class="ubah" type="text" name="perawatan" id="perawatan" value= "<?= $bunga["CARA_PERAWATAN"]; ?>">
         </li>
     </ul>
     <br>
@@ -176,3 +176,22 @@ if($datakode) {
     </script>
 </body>
 </html>
+
+<?php 
+
+if (isset($_POST['edit'])) {
+    $name = $_FILES['perawatan']['name'];
+    $tmp = $_FILES['perawatan']['tmp_name'];
+
+
+    move_uploaded_file($tmp, "video/".$name);
+
+    $sql = "INSERT INTO video (name) VALUES ('$name')";
+    $res = mysqli_query($koneksi,$sql);
+
+
+    if ($res ==1) {
+        echo "berhasil";
+    }
+}
+ ?>

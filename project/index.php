@@ -68,23 +68,18 @@ require 'assets/includes/config.php';
     </div>
     <div class="container">
    
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije </h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-<<<<<<< HEAD
-            <button><a href="login.php">Login</a></button>
-=======
-        
+
+
             <a class="login" href="login.php">Login</a>
->>>>>>> cdf040359bab32be32176e746a2ad9db591846ce
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-<<<<<<< HEAD
-            <button><a href="logout.php">Logout</a></button>
-=======
+
 
             <nav class="dropdown">
                 <ul> <?php echo $_SESSION["USERNAME"];?>
@@ -92,10 +87,8 @@ require 'assets/includes/config.php';
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-
->>>>>>> cdf040359bab32be32176e746a2ad9db591846ce
         <?php }?>
-    </h1>
+    
     </header>
     <section>
         <p class="judul">Kebun Nursery <br> Polije</p>
