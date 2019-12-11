@@ -9,6 +9,8 @@ session_start();
     <link rel="stylesheet" href="css/styletemukankami.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
     body{
         background-image: url('img/Nursery.jpg');
@@ -57,17 +59,22 @@ session_start();
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         <?php
             if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
             if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+                <nav class="dropdown">
+                    <ul> <?php echo $_SESSION["USERNAME"];?>
+                        <li><a href="Profile.php">Profil</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    </ul>
+                </nav>
         <?php }?>
-    </h1>
+    
     </header>
     <section>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.2145447082958!2d113.68843621415776!3d-8.079588883005215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6ebacada7576b%3A0x6c0a7d5c0bad1a23!2sKebun%20Pengembangan%20holtikultura!5e0!3m2!1sid!2sid!4v1573313599587!5m2!1sid!2sid" width="1200" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
@@ -90,8 +97,10 @@ session_start();
             </script>
             <!-- Elemen yang akan menjadi kontainer peta -->
             <div id="googleMap" style="width:100%;"></div>
+
+            <br><br><a class="gmaps" href="https://www.google.com/maps/place/Kebun+Pengembangan+holtikultura/@-8.079594,113.690625,16z/data=!4m5!3m4!1s0x0:0x6c0a7d5c0bad1a23!8m2!3d-8.0795942!4d113.6906249?hl=id" target="_blank">Buka Di Google Maps</a>
           
-       <a href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data="><input type="image" src="img/WA.png" width="50px" height="50px"></a>
+       <a class="wa" style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
     <script>
     function show() {

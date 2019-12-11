@@ -39,6 +39,8 @@ $iduser = $_SESSION["id_user"];
     <link rel="stylesheet" href="css/stylekritik.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
     body{
@@ -88,9 +90,13 @@ $iduser = $_SESSION["id_user"];
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
-        <button class="button"><a href="logout.php">Logout</a></button>
-    </h1>
+    <h1 class="h1">Nursery<br>Polije</h1>
+    <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
     </header>
     <section>
         <h2>Kritik Dan Saran</h2><br><br>
@@ -99,13 +105,10 @@ $iduser = $_SESSION["id_user"];
             
             <div class="tulisan">
             <br>
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Bagaimana Pelayanan Service Kami?</p>
-               
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Bagaimana Hasil Produk Pemesanan Kami?</p>
-                
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Bagaimana Ketepatan Waktu Pengiriman?</p>
-            
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Apakah Anda Akan Membeli Bunga Kepada kami Lagi?</p>
+            <p class="tulisan-1">Bagaimana Pelayanan Service Kami?</p >
+            <p class="tulisan-1">Bagaimana Hasil Produk Pemesanan Kami?</p >
+            <p class="tulisan-1">Bagaimana Ketepatan Waktu Pengiriman?</p >
+            <p class="tulisan-1">Apakah Anda Akan Membeli Bunga Kepada kami Lagi?</p>
                 <br>
             </div>
         </div>
@@ -117,7 +120,7 @@ $iduser = $_SESSION["id_user"];
                 <div>
                     <textarea name="kritik" rows="10" placeholder="Tulis Kritik atau Saran Anda disini" required></textarea>
                 </div>
-                <button name="kirim">Kirim</button>
+                    <button name="kirim"><a class="kirim-1">Kirim</a></button>
                <h4>Terima kasih atas masukan anda,<br>sangat berguna bagi perkembangan kami.</h4>
             </div>
         </form>

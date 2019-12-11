@@ -68,19 +68,30 @@ require 'assets/includes/config.php';
     </div>
     <div class="container">
    
+<<<<<<< HEAD
     <h1 class="h1">Nursery<br>Polije </h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
 
 
+=======
+    <h1 class="h1">Nursery<br>Polije</h1>
+        
+        <?php
+        if(!isset($_SESSION["login"])) {?>
+>>>>>>> 8ba625bae3647a2ba889cbe88a880dca8add53d6
             <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
+<<<<<<< HEAD
         if (isset($_SESSION["login"])) {?> 
 
 
+=======
+        if (isset($_SESSION["login"])) {?>
+>>>>>>> 8ba625bae3647a2ba889cbe88a880dca8add53d6
             <nav class="dropdown">
                 <ul> <?php echo $_SESSION["USERNAME"];?>
                     <li><a href="Profile.php">Profil</a></li>
