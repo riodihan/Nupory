@@ -108,6 +108,12 @@ section{
     text-align: justify;
 }
 
+h2{
+    font-family: 'DM Serif Display', serif;
+    font-weight: lighter;
+    margin-left: 525px;
+}
+
 table{
     border: 3px;
 }
@@ -122,14 +128,17 @@ table{
 
 /* bg tabel */
 .tabel{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
     background-color: black;
-    padding: 20px;
+    padding: 15px;
     border-radius: 20px;
-    
+    margin-left: 250px;   
 }
 
-.apa{
-    color: cadetblue;
+.kolom{
+    padding: 5px;
+
 }
 
 .dropdown{
@@ -179,6 +188,5 @@ table{
     top: -30px;
     line-height: 20px;
 }
-
 
 

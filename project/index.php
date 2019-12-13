@@ -1,13 +1,6 @@
 <?php
 session_start();
 require 'assets/includes/config.php';
-
-// $id = $_SESSION["id_user"];
-
-
-//menampilkan data user
-// $profil = profil("SELECT * FROM user WHERE ID_USER = '$id'");
-
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +22,7 @@ require 'assets/includes/config.php';
         background-image: url('img/Nursery.jpg');
     }
     </style>
+    
 </head>
 <body>
     <header>
@@ -76,7 +70,7 @@ require 'assets/includes/config.php';
     </div>
     <div class="container">
    
-    <h1 class="h1">Nursery<br>Polije</h1>
+    <h1 class="h1">Nursery<br>Polije </h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
@@ -91,7 +85,6 @@ require 'assets/includes/config.php';
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-
         <?php }?>
     
     </header>

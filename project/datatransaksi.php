@@ -2,6 +2,7 @@
 session_start();
 require 'assets/includes/config.php';
 
+
 //cek session
 if(!isset($_SESSION["login"])){
     header("location: login.php");
@@ -10,6 +11,7 @@ if(!isset($_SESSION["login"])){
 
 //ambil data
 $datatransaksi = query("SELECT * FROM transaksi");
+
 
 //cek admin atau bukan
 if($_SESSION["id_status"] == '03'){
@@ -26,6 +28,8 @@ if($_SESSION["id_status"] == '03'){
     <link rel="stylesheet" href="css/styledatatransaksi.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
     body{
         background-image: url('img/Nursery.jpg');
@@ -90,7 +94,6 @@ if($_SESSION["id_status"] == '03'){
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-
         <?php }?>
     </header>
     <section>
@@ -101,10 +104,12 @@ if($_SESSION["id_status"] == '03'){
             <th>NO</th>
             <th>ID Transaksi</th>
             <th>ID Pembayaran</th>
+            <th>ID BUNGA</th>
             <th>ID User</th>
             <th>Tanggal Transaksi</th>
             <th>Alamat</th>
             <th>Total Pembayaran</th>
+            <th>Bukti Pembayaran</th>
             <th>Aksi</th>
         </tr>
             <?php $i=1?>
@@ -113,12 +118,13 @@ if($_SESSION["id_status"] == '03'){
             <td><?= $i?></td>
             <td><?= $row["ID_TRANSAKSI"];?></td>
             <td><?= $row["ID_PEMBAYARAN"];?></td>
+            <td><?= $row["ID_BUNGA"];?></td>
             <td><?= $row["ID_USER"];?></td>
             <td><?= $row["TGL_TRANSAKSI"];?></td>
             <td><?= $row["DETAIL_ALAMAT"];?></td>
             <td><?= $row["TOTAL_AKHIR"];?></td>
-            <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" >Hapus</a></td>
-
+            <td><?= $row["FOTO_VERIFIKASI"];?></td>
+            <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" ><img src="img/x.png" alt="" width="20" height="20"></a></a></td>
         </tr>
        
             <?php $i++;?>

@@ -72,6 +72,9 @@ header{
 
 
 h1{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    margin-top: 4px;
     line-height: 25px;
     text-align: center;
 
@@ -118,13 +121,22 @@ h2{
     font-size: 40px;
 }
 
+.tulisan-1{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+}
+
 .background{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
     background-color: rgba(0, 0, 0, 0.637);
     height: 400px;
     width: 1150px;
 }
 
 .tulisan{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
     position: relative;
     left: 20px;
     top: 30px;
@@ -139,7 +151,7 @@ section h2:after{
     border: 2px solid rgb(255, 255, 255);
     width: 832px;
     left: 415px;
-    top: 17.5%;
+    top: 120px;
 }
 
 section p:after{
@@ -152,6 +164,8 @@ section p:after{
 }
 
 .kritikdansaran{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
     position: absolute;
     left: 750px;
     bottom: 105px;
@@ -174,13 +188,12 @@ textarea{
     color: rgba(255, 255, 255, 0.658);
 }
 
-.tombolkirim{
-    border-radius: 40px;
-    border: solid white;
-    width: 70px;
-    height: 30px;
-    background-color: white;
-    color: black;
+.kirim{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    padding-right: 70px;
+    border: 2px solid;
+    border-radius: 20px;
 }
 
 input{
@@ -188,15 +201,45 @@ input{
     right: 20px;
     bottom: 20px;
 }
- .warnakirim{
-    color: black;
- }
 
 
-  p{
-      clear: both;
+p{
+    clear: both;
       
-  }
+}
+
+.dropdown{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 10%;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    float: right;
+    position: relative;
+    right: 2px;
+    top: -30px;
+    line-height: 20px;
+}
+
+.dropdown ul li{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 100%;
+    height: 20px;
+    line-height: 30px;
+    float: left;
+    list-style: none;
+    text-align: center;
+}
+.dropdown ul:hover li{
+    display: block;
+}
+
+.dropdown ul li{
+    display: none;
+}
 
   .dropdown{
     font-family: 'Josefin Sans', sans-serif;

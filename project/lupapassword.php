@@ -28,8 +28,9 @@
     }
     
 ?> -->
-
 <?php
+<?php
+// require 'functions.php';
 require 'assets/includes/config.php';
 
 require 'PHPMailer/src/Exception.php';
@@ -53,9 +54,54 @@ use PHPMailer\PHPMailer\Exception;
 
 if($_POST)
 {
-    $email = $_POST['user-email'];
-    $id = $_POST['user-login-name'];
 
+    // $email = $_POST['user-email'];
+    // $id = $_POST['user-login-name'];
+    $email = $_POST['email'];
+
+        $selectquery = mysqli_query($conn, "SELECT * FROM user WHERE EMAIL = '$email'");
+        $count = mysqli_num_rows($selectquery);
+        $row = mysqli_fetch_array($selectquery);
+
+        
+        // echo $count;
+
+        if($count > 0 )
+        {
+            // echo $row['PASSWORD'];
+            
+    $mail = new PHPMailer(true);
+
+try {
+
+    $mail->isSMTP();                                            
+    $mail->Host       = 'smtp.gmail.com';                    
+    $mail->SMTPAuth   = true;                                   
+    $mail->Username   = 'gumball4869@gmail.com';                     
+    $mail->Password   = 'dimas2019';                               
+    $mail->SMTPSecure =  'tls' ;         
+    $mail->Port       =  587;                                    
+
+   
+    $mail->setFrom('gumball4869@gmail.com', 'Mailer');
+    $mail->addAddress($row["EMAIL"], 'Joe User');     
+
+
+
+    $mail->isHTML(true);                                 
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    =   $row["PASSWORD"];
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+        }
+}   
+
+?>
         $selectquery = mysqli_query($conn, "SELECT * FROM user WHERE EMAIL = '$email' AND USERNAME ='$id'");
         $count = mysqli_num_rows($selectquery);
         $row = mysqli_fetch_array($selectquery);

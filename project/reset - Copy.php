@@ -29,6 +29,7 @@ if($_POST)
         $count = mysqli_num_rows($selectquery);
         $row = mysqli_fetch_array($selectquery);
 
+        
         // echo $count;
 
         if($count > 0 )
@@ -42,25 +43,21 @@ try {
     $mail->isSMTP();                                            
     $mail->Host       = 'smtp.gmail.com';                    
     $mail->SMTPAuth   = true;                                   
-
-    $mail->Username   = 'gumball4869@gmail.com';                     
-    $mail->Password   = 'dimas2019';                               
-
+    $mail->Username   = 'idulidul36@gmail.com';                     
+    $mail->Password   = '@ idul 9';                               
     $mail->SMTPSecure =  'tls';         
     $mail->Port       =  587;                                    
 
-    $mail->setFrom('gumball4869@gmail.com', 'Nursery Polije');
+   
+    $mail->setFrom('idulidul36@gmail.com', 'sayyid');
     $mail->addAddress($row["EMAIL"], 'Joe User');     
 
 
 
-
     $mail->isHTML(true);                                 
-
-    $mail->Subject = 'Nursery Polije';
-    $mail->Body    = $row["PASSWORD"];
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    =   $row["PASSWORD"];
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
 
     $mail->send();
     echo 'Message has been sent';
@@ -68,10 +65,7 @@ try {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
         }
-
 }   
-
-
 
 ?>
 

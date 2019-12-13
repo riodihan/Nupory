@@ -10,11 +10,6 @@ if($_SESSION["id_status"] == '03'){
     header("location: index.php");
     exit;
 }
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
 
 ?>
 
@@ -60,10 +55,9 @@ if(!isset($_SESSION["login"])){
                 <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
-                <li><a href="index.php">Beranda</a></li>
+                
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
-                <li><a href="pemesanan.php">Pemesanan</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
@@ -80,11 +74,13 @@ if(!isset($_SESSION["login"])){
         
         <?php
         if(!isset($_SESSION["login"])) {?>
+
             <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
+        
             <nav class="dropdown">
                 <ul> <?php echo $_SESSION["USERNAME"];?>
                     <li><a href="Profile.php">Profil</a></li>
@@ -92,7 +88,7 @@ if(!isset($_SESSION["login"])){
                 </ul>
             </nav>
         <?php }?>
-
+    
     </header>
     <section>
         
@@ -108,8 +104,9 @@ if(!isset($_SESSION["login"])){
             <th>Nama Bunga</th>
             <th>Harga</th>
             <th>Stok</th>
-            <th>Video</th>
             <th>Gambar</th>
+            <!-- <th>Video</th>
+            <th>Cara Perawatan</th> -->
             <th>Aksi</th>
         </tr>
 
@@ -123,9 +120,11 @@ if(!isset($_SESSION["login"])){
             <td class="item" ><?= $row1["NAMA_BUNGA"]; ?></td>
             <td class="item" ><?= $row1["HARGA"]; ?></td>
             <td class="item" ><?= $row1["STOK"]; ?></td>
-            <!-- <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td> -->
-            <td class="item" ><?=$row1["VIDEO_BUNGA"];?></td>
-            <!-- <td><?= $row1["CARA_PERAWATAN"];?></td> -->
+            <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td>
+            <!-- <td><video width="350px" controls>
+                        <source src="video/<?=$row1["VIDEO_BUNGA"];?>" type="video/mp4">
+                    </video></td>
+            <td><?= $row1["CARA_PERAWATAN"];?></td> -->
             <td  >
                 <a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');"><img src="img/x.png" alt="hapus" width="20" height="20"></a>
                 <a href="editbunga.php?id=<?= $row1["ID_BUNGA"]; ?>"><img src="img/edit.png" alt="edit" width="20" height="20"></a>
@@ -137,7 +136,7 @@ if(!isset($_SESSION["login"])){
     </table>
 
 
-        
+        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
 
     <footer>

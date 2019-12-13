@@ -90,9 +90,7 @@ if($_SESSION["id_status"] !== '03'){
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-
         <?php }?>
-        
     </header>
     <section>
         
@@ -112,7 +110,6 @@ if($_SESSION["id_status"] !== '03'){
                 <th>Total Harga</th>
                 <th>Bukti Pembayaran</th>
                 <th>Aksi</th>
-                
             </tr>
 
             <?php $i = 1?>
@@ -131,7 +128,6 @@ if($_SESSION["id_status"] !== '03'){
                 <td><?= $row4["TOTAL_AKHIR"]; ?></td>
                 <td><img src="img/<?= $row4["BUKTI_PEMBAYARAN"];?>" width="40"></td>
                 <td><a href="uppembayaran.php?id=<?=$row4["ID_TRANSAKSI"];?>">Upload Pembayaran</a></td>
-                
             </tr>
     
             <?php $i++; ?>

@@ -128,7 +128,6 @@ if($datakode) {
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-
         <?php }?>
     </header>
     <section>
@@ -150,7 +149,7 @@ if($datakode) {
         </li>
         <li>
             <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
-            <input class="ubah" type="file" name="gambar" id="gambar">
+            <input class="ubah" type="file" name="gambar" id="gambar" >
         </li>
         <li>
             <label class="label" for="video" >Video Cara Perawatan</label><br>
@@ -187,3 +186,22 @@ if($datakode) {
     </script>
 </body>
 </html>
+
+<?php 
+
+if (isset($_POST['edit'])) {
+    $name = $_FILES['perawatan']['name'];
+    $tmp = $_FILES['perawatan']['tmp_name'];
+
+
+    move_uploaded_file($tmp, "video/".$name);
+
+    $sql = "INSERT INTO video (name) VALUES ('$name')";
+    $res = mysqli_query($koneksi,$sql);
+
+
+    if ($res ==1) {
+        echo "berhasil";
+    }
+}
+ ?>

@@ -91,7 +91,6 @@ if(!isset($_SESSION["login"])){
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-
         <?php }?>
     </header>
     <section>

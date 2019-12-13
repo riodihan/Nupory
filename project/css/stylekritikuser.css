@@ -120,6 +120,9 @@ input{
     bottom: 20px;
 }
 .bungkus{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    margin-left: 480px;
     background-color: rgba(0, 0, 0, 0.76);
     padding: 20px;
     border-radius: 10px;
@@ -172,5 +175,4 @@ input{
     top: -30px;
     line-height: 20px;
 }
-
 

@@ -27,6 +27,8 @@ session_start();
     <link rel="stylesheet" href="css/faq.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
     body{
         background-image: url('img/Nursery.jpg');
@@ -77,7 +79,6 @@ session_start();
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
     <h1 class="h1">Nursery<br>Polije</h1>
-        
         <?php
         if(!isset($_SESSION["login"])) {?>
             <a class="login" href="login.php">Login</a>
@@ -91,11 +92,10 @@ session_start();
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
-
         <?php }?>
     </header>
     <section>
-        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Pertanyaan Anda</h1>
+        <h1 class="judul-1">Pertanyaan Anda</h1> <br>
         <div id="wrapper" class="bg">
                 <div class="qs1">Gimana sih cara buat akun?</div>
                 <div class="as1">

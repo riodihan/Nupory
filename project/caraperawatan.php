@@ -4,6 +4,7 @@ require 'assets/includes/config.php';
 
 $id = $_GET["id"];
 ?>
+ <?php include "assets/includes/config.php" ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +20,10 @@ $id = $_GET["id"];
     }
     </style>
     
+    <link rel="stylesheet" href="video-js.css">
+    <script src="video-js"></script>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <header>
@@ -80,6 +85,7 @@ $id = $_GET["id"];
         <?php }?>
         
     </header>
+
     <section>
         <table>
         <?php $ambil=$koneksi->query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'");?>
@@ -115,7 +121,7 @@ $id = $_GET["id"];
                 </li>
             </td> -->
         
-        </table>
+        </table> -->
 
 
        <a href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data="><input type="image" src="img/WA.png" width="50px" height="50px"></a>
@@ -131,5 +137,22 @@ $id = $_GET["id"];
     document.getElementById("menu").style.marginLeft= "0";
 }
     </script>
+
 </body>
 </html>
+
+<?php
+$sql = "select id_bunga, video_bunga from bunga";
+$res =mysqli_query($koneksi,$sql);
+
+echo "myvideo <br> <br>"; 
+
+while ($row = mysqli_fetch_assoc($res)) {
+    $id = $row['id_bunga'];
+    $video = $row['video_bunga'];
+
+
+    echo  " <a href='play.php?id=$id'>.$video.</a> ";
+
+ ?>
+  <?php } ?>

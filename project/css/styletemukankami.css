@@ -62,6 +62,7 @@
 
 
 
+
 /*bagian header*/
 header{
     padding: 13px;
@@ -115,6 +116,15 @@ input{
     right: 20px;
     bottom: 20px;
 }
+.gmaps{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    background-color: rgba(0, 0, 0, 0.815);
+    border: 2px solid;
+    border-radius: 100px;
+    padding: 10px;
+    margin: 520px;
+}
 
 .dropdown{
     font-family: 'Josefin Sans', sans-serif;
@@ -163,5 +173,3 @@ input{
     top: -30px;
     line-height: 20px;
 }
-
-
