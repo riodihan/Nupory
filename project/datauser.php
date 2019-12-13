@@ -72,18 +72,23 @@ if($_SESSION["id_status"] !== '01'){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
-    </h1>
     </header>
     <section>
         
@@ -120,7 +125,7 @@ if($_SESSION["id_status"] !== '01'){
                 <td><?= $row["NO_TELEPON"]; ?></td>
                 <td><?= $row["EMAIL"]; ?></td>
                 <td><?= $row["USERNAME"]; ?></td>
-                <td><img src="<?= $row["USERNAME"]; ?>"></td>
+                <!-- <td><img src="<?= $row["USERNAME"]; ?>"></td> -->
                 <td><a href = "hapususer.php?id=<?= $row["ID_USER"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');"><img src="img/x.png" alt="" width="20" height="20"></a></td>
             </tr>
         
@@ -130,7 +135,7 @@ if($_SESSION["id_status"] !== '01'){
     
 
 
-        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
+        <!-- <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a> -->
     </section>
 
     <footer>

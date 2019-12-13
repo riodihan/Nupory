@@ -48,8 +48,9 @@ session_start();
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
@@ -65,7 +66,7 @@ session_start();
                 <li><a href="#">Data Bunga</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }?>
@@ -75,17 +76,23 @@ session_start();
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
-    <?php
+    <h1 class="h1">Nursery<br>Polije</h1>
+        
+        <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
-    </h1>
     </header>
     <section>
         <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Pertanyaan Anda</h1>

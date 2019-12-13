@@ -2,55 +2,49 @@
 session_start();
 require 'assets/includes/config.php';
 
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
-
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
-
 
 // Ambil data di url
 $id = $_GET["id"];
 
 // query data bunga berdasar id
-$bunga = query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'")[0];
+$keranjang = query("SELECT * FROM keranjang WHERE ID_TRANSAKSI = '$id'")[0];
 
 
-//proses edit
-if(isset($_POST["edit"])) {
 
-    if(editbunga($_POST) == 1 ){
-        echo "<script>alert('bunga berhasil diedit'); window.location.href='databunga.php'</script>";
+if(isset($_POST["upload"])) {
+
+    if(uploadpembayaran($_POST) == 1 ){
+        echo "<script>alert('Bukti Pembayaran Berhasil Diupload, Mohon menunggu proses Konfirmasi'); window.location.href='databunga.php'</script>";
          
     }else{
-        echo "<script>alert('bunga gagal diedit'); window.location.href='editbunga.php'</script>";
+        // echo "<script>alert('Bukti Pembayaran Gagal Diupload'); window.location.href='editbunga.php'</script>";
+        echo mysqli_error($koneksi);
     }
 }
 
+//cek ada id transaksi atau tidak
+if(!isset($id)){
+    header("location: transaksisaya.php");
+    exit;
+}
 
-//cek karyawan/admin atau bukan
-if($_SESSION["id_status"] == '03'){
+//cek user atau bukan
+if($_SESSION["id_status"] !== '03'){
     header("location: index.php");
     exit;
 }
 
 //id user otomatis
-$carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if($datakode) {
-    $nilaikode = substr($datakode[0], 1 );
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
-}else{
-    $hasilkode = "B001";
-}
+// $carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
+// $datakode = mysqli_fetch_array($carikode);
+// if($datakode) {
+//     $nilaikode = substr($datakode[0], 1 );
+//     $kode = (int) $nilaikode;
+//     $kode = $kode + 1;
+//     $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
+// }else{
+//     $hasilkode = "B001";
+// }
 
 ?>
 
@@ -58,7 +52,7 @@ if($datakode) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Bunga</title>
+    <title>upload pembayaran</title>
     <link rel="stylesheet" href="css/styleeditbunga.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -84,8 +78,9 @@ if($datakode) {
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
                 <li><a href="transaksi.php">Transaksi Saya</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
@@ -97,10 +92,9 @@ if($datakode) {
                 <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
-                <li><a href="index.php">Beranda</a></li>
+                
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
-                <li><a href="pemesanan.php">Pemesanan</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
@@ -113,56 +107,59 @@ if($datakode) {
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije</h1>
+    <h1 class="h1">Nursery<br>Polije
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <a class="login" href="login.php">Login</a>
+            <button><a href="login.php">Login</a></button>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <nav class="dropdown">
-                <ul> <?php echo $_SESSION["USERNAME"];?>
-                    <li><a href="Profile.php">Profil</a></li>
-                    <li><a href="logout.php">Logout</a></li>
-                </ul>
-            </nav>
-
+            <button class="button"><a href="logout.php">Logout</a></button>
         <?php }?>
+    </h1>
     </header>
     <section>
 <div class="bunga">
         <form class="tabel" action="" method="POST">
-        <input  type="hidden" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
+        <input  type="hidden" name="idtransaksi" id="idtransaksi" value="<?= $keranjang["ID_TRANSAKSI"]; ?>">
     <ul class="ini">
         <li>
-            <label class="label" for="nama_bunga">Nama Bunga</label><br>
-            <input class="ubah" type="text" name="nama_bunga" id="nama_bunga" required value="<?= $bunga["NAMA_BUNGA"]; ?>">
+            <!-- <label class="label" for="nama_bunga">ID Pembayaran</label><br> -->
+            <input class="ubah" type="hidden" name="idpembayaran" id="idpembayaran" required value="<?= $keranjang["ID_PEMBAYARAN"]; ?>">
         </li>
         <li>
-            <label class="label" for="harga">Harga</label><br>
-            <input class="ubah" type="text" name="harga" id="harga" value="<?= $bunga["HARGA"]; ?>" required>
+            <!-- <label class="label" for="harga">ID user</label><br> -->
+            <input class="ubah" type="hidden" name="iduser" id="iduser" value="<?= $keranjang["ID_USER"]; ?>" required>
         </li>
         <li>
-            <label class="label" for="stok">Stok</label><br>
-            <input class="ubah" type="number" name="stok" id="stok" value="<?= $bunga["STOK"]; ?>" required>
+            <!-- <label class="label" for="stok">ID_bunga</label><br> -->
+            <input class="ubah" type="hidden" name="idbunga" id="stok" value="<?= $keranjang["ID_BUNGA"]; ?>" required>
         </li>
         <li>
-            <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
-            <input class="ubah" type="file" name="gambar" id="gambar">
+            <label class="label" for="gambar">jumlah beli</label><br>
+            <input class="ubah" type="text" name="jumlah" id="jumlah" value="<?= $keranjang["JUMLAH"]; ?>"readonly>
         </li>
         <li>
-            <label class="label" for="video" >Video Cara Perawatan</label><br>
-            <input class="ubah" type="text" name="video" id="video" value="<?= $bunga["VIDEO_BUNGA"]; ?>">
+            <label class="label" for="video">Tanggal transaksi</label><br>
+            <input class="ubah" type="text" name="tanggal" id="tanggal" value="<?= $keranjang["TGL_TRANSAKSI"]; ?>" readonly> 
         </li>
         <li>
-            <label class="label" for="perawatan">Perawatan</label><br>
-            <input class="ubah" type="text" name="perawatan" id="perawatan" value="<?= $bunga["CARA_PERAWATAN"]; ?>">
+            <label class="label" for="perawatan">Alamat</label><br>
+            <input class="ubah" type="text" name="alamat" id="alamat" value="<?= $keranjang["DETAIL_ALAMAT"]; ?>" readonly>
+        </li>
+        <li>
+            <label class="label" for="total">total</label><br>
+            <input class="ubah" type="text" name="total" id="total" value="<?= $keranjang["TOTAL_AKHIR"]; ?>" readonly>
+        </li>
+        <li>
+            <label class="label" for="Bukti">Bukti Pembayaran</label><br>
+            <input class="ubah" type="file" name="Bukti" id="Bukti">
         </li>
     </ul>
     <br>
-        <button type="submit" name="edit" class="tomboltambah">Submit</button>
+        <button type="submit" name="upload" class="tomboltambah">Upload</button>
         <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
     </form>
 </div>

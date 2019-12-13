@@ -2,54 +2,40 @@
 session_start();
 require 'assets/includes/config.php';
 
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
-
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
-
 
 // Ambil data di url
 $id = $_GET["id"];
 
 // query data bunga berdasar id
-$bunga = query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'")[0];
+$pemesanan = query("SELECT * FROM keranjang WHERE ID_TRANSAKSI = '$id'")[0];
 
 
-//proses edit
-if(isset($_POST["edit"])) {
+//setujui pemesanan
 
-    if(editbunga($_POST) == 1 ){
-        echo "<script>alert('bunga berhasil diedit'); window.location.href='databunga.php'</script>";
-         
+if(isset($_POST["setujui"])){
+    if(setujuipesanan($_POST)==1){
+        echo "<script>alert('Pemesanan telah disetujui')</script>";
     }else{
-        echo "<script>alert('bunga gagal diedit'); window.location.href='editbunga.php'</script>";
+        echo "<script>alert('Pemesanan telah disetujui')</script>";
+    }
+}
+
+//setujui masuk ke detail transaksi
+
+if(isset($_POST["setujui"])){
+    if(detail($_POST)==1){
+        // echo "<script>alert('Pemesanan telah disetujui')</script>";
+    }else{
+        // echo "<script>alert('Pemesanan gagal disetujui')</script>";
+        // echo mysqli_error($koneksi);
     }
 }
 
 
-//cek karyawan/admin atau bukan
-if($_SESSION["id_status"] == '03'){
+//cek karyawan atau bukan
+if($_SESSION["id_status"] !== '02'){
     header("location: index.php");
     exit;
-}
-
-//id user otomatis
-$carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if($datakode) {
-    $nilaikode = substr($datakode[0], 1 );
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
-}else{
-    $hasilkode = "B001";
 }
 
 ?>
@@ -58,7 +44,7 @@ if($datakode) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Bunga</title>
+    <title>Setujui Pesanan</title>
     <link rel="stylesheet" href="css/styleeditbunga.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -134,36 +120,53 @@ if($datakode) {
     <section>
 <div class="bunga">
         <form class="tabel" action="" method="POST">
-        <input  type="hidden" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
+        <input  type="hidden" name="idtransaksi" id="idtransaksi" value="<?= $pemesanan["ID_TRANSAKSI"]; ?>">
     <ul class="ini">
         <li>
-            <label class="label" for="nama_bunga">Nama Bunga</label><br>
-            <input class="ubah" type="text" name="nama_bunga" id="nama_bunga" required value="<?= $bunga["NAMA_BUNGA"]; ?>">
+            <!-- <label class="label" for="nama_bunga">ID Pembayaran</label><br> -->
+            <input class="ubah" type="text" name="idpembayaran" id="idpembayaran" required value="<?= $pemesanan["ID_PEMBAYARAN"]; ?>">
         </li>
         <li>
-            <label class="label" for="harga">Harga</label><br>
-            <input class="ubah" type="text" name="harga" id="harga" value="<?= $bunga["HARGA"]; ?>" required>
+            <!-- <label class="label" for="harga">ID user</label><br> -->
+            <input class="ubah" type="hidden" name="iduser" id="iduser" value="<?= $pemesanan["ID_USER"]; ?>" required>
         </li>
         <li>
-            <label class="label" for="stok">Stok</label><br>
-            <input class="ubah" type="number" name="stok" id="stok" value="<?= $bunga["STOK"]; ?>" required>
+            <!-- <label class="label" for="stok">ID_bunga</label><br> -->
+            <input class="ubah" type="hidden" name="idbunga" id="" value="<?= $pemesanan["ID_BUNGA"]; ?>" required>
         </li>
         <li>
-            <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
-            <input class="ubah" type="file" name="gambar" id="gambar">
+            <label class="label" for="gambar">jumlah beli</label><br>
+            <input class="ubah" type="text" name="jumlah" id="jumlah" value="<?= $pemesanan["JUMLAH"]; ?>"readonly>
         </li>
         <li>
-            <label class="label" for="video" >Video Cara Perawatan</label><br>
-            <input class="ubah" type="text" name="video" id="video" value="<?= $bunga["VIDEO_BUNGA"]; ?>">
+            <label class="label" for="video">Tanggal transaksi</label><br>
+            <input class="ubah" type="text" name="tanggal" id="tanggal" value="<?= $pemesanan["TGL_TRANSAKSI"]; ?>" readonly> 
         </li>
         <li>
-            <label class="label" for="perawatan">Perawatan</label><br>
-            <input class="ubah" type="text" name="perawatan" id="perawatan" value="<?= $bunga["CARA_PERAWATAN"]; ?>">
+            <label class="label" for="perawatan">Alamat</label><br>
+            <input class="ubah" type="text" name="alamat" id="alamat" value="<?= $pemesanan["DETAIL_ALAMAT"]; ?>" readonly>
+        </li>
+        <li>
+            <label class="label" for="total">total</label><br>
+            <input class="ubah" type="text" name="total" id="total" value="<?= $pemesanan["TOTAL_AKHIR"]; ?>" readonly>
+        </li>
+        <li>
+            <!-- <label class="label" for="Bukti">Bukti Pembayaran</label><br>
+            <input class="ubah" type="file" name="Bukti" id="Bukti"> -->
+            <label for="bukti">Bukti Pembayaran</label><br>
+            <img id="bukti" src="img/<?php echo $pemesanan["BUKTI_PEMBAYARAN"];?>">
+        </li>
+        <li>
+            <label for="status">Status Pemesanan</label><br>
+            <select style="color: black;" name="status" id="status">
+                <option style="color: black;" value="Lunas">Lunas</option>
+                <option style="color: black;" value="Belum Lunas">Belum Lunas</option>
+            </select>
         </li>
     </ul>
     <br>
-        <button type="submit" name="edit" class="tomboltambah">Submit</button>
-        <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
+        <button type="submit" name="setujui" class="tomboltambah">Setujui</button>
+        <a href="hapuspemesanan.php?id=<?= $pemesanan["ID_TRANSAKSI"];?>">Hapus pesanan</a>
     </form>
 </div>
 

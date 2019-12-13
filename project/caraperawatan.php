@@ -1,11 +1,14 @@
 <?php
 session_start();
+require 'assets/includes/config.php';
+
+$id = $_GET["id"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cara Perawaran</title>
+    <title>Cara Perawatan</title>
     <link rel="stylesheet" href="css/stylecaraperawatan.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -30,7 +33,8 @@ session_start();
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -57,43 +61,39 @@ session_start();
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
+        
         <?php
-            if(!isset($_SESSION["login"])) {?>
-                <button><a href="login.php">Login</a></button>
+        if(!isset($_SESSION["login"])) {?>
+            <a class="login" href="login.php">Login</a>
+        <?php }?>
+
+        <?php  
+        if (isset($_SESSION["login"])) {?> 
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
         
-        <?php  
-            if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
-        <?php }?>
-    </h1>
     </header>
     <section>
         <table>
-        
+        <?php $ambil=$koneksi->query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'");?>
+        <?php while($perproduk=$ambil->fetch_assoc()){?>
             <td> 
-                <li class="ul">Cara perawatan bunga Krisan
-                    <video width="350px" controls>
-                        <source src="video/ig39.mp4" type="video/mp4">
-                    </video>
+                <li class="ul">Cara perawatan bunga <?php echo $perproduk["NAMA_BUNGA"];?><br>
+                    <iframe width="560" height="315" src="<?php echo $perproduk["VIDEO_BUNGA"];?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     <ol>
-                        <li>
-                        Mendapatkan sinar matahari cukup
-                        </li>
-                        <li>
-                        Jauhkan dari cahaya lampu pada malam hari
-                        </li>
-                        <li>
-                        Disiram dua kali sekali
-                        </li>
-                        <li>
-                        Bunga di potong setelah layu
-                        </li>
+                        <?php echo $perproduk["CARA_PERAWATAN"];?>
                     </ol>
                 </li>
             </td>
-            <td> 
+        <?php }?>
+            <!-- <td> 
                 <li class="ul">Cara perawatan bunga Anggrek Bulan 
                     <video width="350px" controls>
                         <source src="video/ig33.mp4" type="video/mp4">
@@ -113,7 +113,7 @@ session_start();
                         </li>
                     </ol>
                 </li>
-            </td>
+            </td> -->
         
         </table>
 

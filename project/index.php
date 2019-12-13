@@ -44,8 +44,9 @@ require 'assets/includes/config.php';
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
@@ -57,11 +58,13 @@ require 'assets/includes/config.php';
                 <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="pemesanan.php">Pemesanan</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }?>
@@ -138,7 +141,7 @@ require 'assets/includes/config.php';
     </section>
 
     <footer>
-        <p class="footer">&copy; Powered 2019 by Nupory Team</p>
+        <!-- <p class="footer">&copy; Powered 2019 by Nupory Team</p> -->
     </footer>
     
     <script>

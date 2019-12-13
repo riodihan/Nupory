@@ -91,18 +91,23 @@ if($datakode) {
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button class="button"><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
-    </h1>
     </header>
     <section>
 <div >
@@ -124,7 +129,7 @@ if($datakode) {
     </li>
     <li>
         <label class="label" for="no_telepon">No Telepon</label><br>
-        <input class="edit" type="number" maxlength="13" name="no_telepon"  id="no_telepon" required  >
+        <input class="edit" type="text" onkeypress="return hanyaAngka(event)" maxlength="13" name="no_telepon"  id="no_telepon" required  >
     </li>
     <li>
         <label class="label" for="email">Email</label><br>
@@ -169,6 +174,14 @@ if($datakode) {
     function hide() {
     document.getElementById("hidesidebar").style.width = "0";
     document.getElementById("menu").style.marginLeft= "0";
+}
+
+    function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+	if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+	return false;
+	return true;
 }
 
     </script>

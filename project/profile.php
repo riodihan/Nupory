@@ -2,6 +2,13 @@
 session_start();
 require 'assets/includes/config.php';
 
+//cek session
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+
+//ambil data
 $id = $_SESSION["id_user"];
 
 // Menampilkan data user
@@ -47,16 +54,18 @@ if(isset($_POST["submit"])){
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
                 <li><a href="transaksi.php">Transaksi Saya</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }if($admin){?>
-                
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datauser.php">Data User</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
                 
@@ -74,18 +83,24 @@ if(isset($_POST["submit"])){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button class="button"><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button class="button"><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
-    </h1>
+        
     </header>
     <section>
         <!-- Up Foto -->
@@ -111,7 +126,7 @@ if(isset($_POST["submit"])){
             </tr>
             <tr>
                 <td class=""><label for="NO_TELEPON">NO TELEPON</label></td>
-                <td class=""><input class="inputan" type="text" name="NO_TELEPON" id="NO_TELEPON" value="<?= $row5["NO_TELEPON"]; ?>"></td>
+                <td class=""><input class="inputan" type="text" onkeypress="return hanyaAngka(event)" maxlength="13" name="NO_TELEPON" id="NO_TELEPON" value="<?= $row5["NO_TELEPON"]; ?>"></td>
             </tr>
             <tr>
                 <td class=""><label for="EMAIL">EMAIL</label></td>
@@ -126,7 +141,7 @@ if(isset($_POST["submit"])){
         <?php }?>
         </form>
 
-        <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
+        <!-- <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a> -->
     </section>
 
     <footer>
@@ -143,6 +158,13 @@ if(isset($_POST["submit"])){
     document.getElementById("hidesidebar").style.width = "0";
     document.getElementById("menu").style.marginLeft= "0";
 }
+function hanyaAngka(evt) {
+		  var charCode = (evt.which) ? evt.which : event.keyCode
+		   if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+		    return false;
+		  return true;
+		}
     </script>
 </body>
 </html>

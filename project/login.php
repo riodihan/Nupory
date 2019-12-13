@@ -83,7 +83,7 @@
                 <li><a href="#">Data Bunga</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }?>
@@ -139,6 +139,8 @@
             x.type = "password";
         }
     }
+
+    
     </script>
 
 </body>

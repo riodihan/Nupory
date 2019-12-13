@@ -2,6 +2,12 @@
 require 'assets/includes/config.php';
 session_start();
 
+//cek user atau bukan
+if($_SESSION["id_status"] !== '03'){
+  header("location: index.php");
+  exit;
+}
+
 //menampilkan bunga berdasarkan id
 $id = $_GET["id"];
 $bunga = mysqli_query($koneksi, "SELECT * FROM bunga WHERE ID_BUNGA='$id'");
@@ -13,11 +19,17 @@ if(!isset($_SESSION["login"])){
         exit;
     }
 
+//cek ada id bunga atau tidak
+if(!isset($id)){
+        header("location: index.php");
+        exit;
+}
+
 $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
 
 //auto increment id transaksi
 
-$carikode = mysqli_query($koneksi, "select max(ID_TRANSAKSI)from transaksi") or die (mysqli_error($koneksi));
+$carikode = mysqli_query($koneksi, "select max(ID_TRANSAKSI)from keranjang") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if($datakode) {
     $nilaikode = substr($datakode[0], 1 );
@@ -39,16 +51,6 @@ if(isset($_POST["beli"])){
       echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='transaksisaya.php'</script>";
   }else{
       echo mysqli_error($koneksi);
-  }
-}
-
-//detail transaksi
-if(isset($_POST["beli"])){
-
-  if(detail($_POST) == 1){
-    echo "<script>alert('pembelian anda sudah diproses, harap bayar tagihan transaksi terlebih dahulu'); window.location.href='transaksisaya.php'</script>";
-  }else{
-    echo mysqli_error($koneksi);
   }
 }
 
@@ -84,7 +86,8 @@ if(isset($_POST["beli"])){
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -97,9 +100,10 @@ if(isset($_POST["beli"])){
                 <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
-                
+              <li><a href="index.php">Beranda</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="pemesanan.php">Pemesanan</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
@@ -112,9 +116,23 @@ if(isset($_POST["beli"])){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
-        <button class="button"><a href="logout.php">Logout</a></button>
-    </h1>
+    <h1 class="h1">Nursery<br>Polije</h1>
+        
+        <?php
+        if(!isset($_SESSION["login"])) {?>
+            <a class="login" href="login.php">Login</a>
+        <?php }?>
+
+        <?php  
+        if (isset($_SESSION["login"])) {?> 
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
+        <?php }?>
     </header>
     <section>
         <h2><?php echo $row_bunga["NAMA_BUNGA"];?></h2><br><br>
@@ -148,14 +166,14 @@ if(isset($_POST["beli"])){
            </tr>
 
            <tr>
-              <!-- <td>
+              <td>
                 <input type="hidden" name="tanggal" id="tanggal" value="<?php
                 $tanggal= mktime(date("d"),date("m"),date("Y"));
                 echo " ".date("d/m/Y", $tanggal)." ";
                 date_default_timezone_set('Asia/Jakarta');
-                echo date("h:i:sa");
+                // echo date("h:i:sa");
                 ?>" readonly>
-              </td> -->
+              </td>
            </tr>
               
            <tr>

@@ -2,58 +2,36 @@
 session_start();
 require 'assets/includes/config.php';
 
-//cek sudah login atau belum
-if(!isset($_SESSION["login"])){
-        header("location: login.php");
-        exit;
-    }
+$karyawan = @$_SESSION['id_status'] =='02';
+$admin = @$_SESSION['id_status'] == '01';
 
-//cek user atau bukan
-if($_SESSION["id_status"] !== '03'){
+//cek user,guest atau bukan
+if($admin){
+    header("location: index.php");
+    exit;
+}
+if($karyawan){
     header("location: index.php");
     exit;
 }
 
-//auto increment kd kritik  
-$carikode = mysqli_query($koneksi, "select max(KD_KRITIK)from kritik") or die (mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if($datakode) {
-    $nilaikode = substr($datakode[0], 1 );
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "K" .str_pad($kode, 3, "0", STR_PAD_LEFT);
-}else{
-    $hasilkode = "K001";
-}
-
-if(isset ($_POST["kirim"])){
-    if(kritik($_POST) == 1){
-        echo "<script>alert('Terimakasih atas kritik dan masukannya. Semoga bisa membantu kami kedepannya.'); window.location.href='kritikdansaran.php'</script>";
-    }
-    else{
-        echo mysqli_error($koneksi);
-    }
-}
-
-$iduser = $_SESSION["id_user"];
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/stylekritik.css">
+    <title>Cara Perawatan</title>
+    <link rel="stylesheet" href="css/stylecara.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
     body{
         background-image: url('img/Nursery.jpg');
-        
-        
+        background-color: ; 
     }
     </style>
+    
 </head>
 <body>
     <header>
@@ -113,37 +91,23 @@ $iduser = $_SESSION["id_user"];
             </nav>
 
         <?php }?>
+        
     </header>
     <section>
-        <h2>Kritik Dan Saran</h2><br><br>
-        
-        <div class="background">
-            
-            <div class="tulisan">
-            <br>
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Bagaimana Pelayanan Service Kami?</p>
-               
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Bagaimana Hasil Produk Pemesanan Kami?</p>
-                
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Bagaimana Ketepatan Waktu Pengiriman?</p>
-            
-            <p style=" font-family: Verdana, Geneva, Tahoma, sans-serif; ">Apakah Anda Akan Membeli Bunga Kepada kami Lagi?</p>
-                <br>
-            </div>
+    <div class="bawahan">
+            <ul class="gambar">
+
+                <?php $ambil=$koneksi->query("SELECT * FROM bunga");?>
+                <?php while($perproduk=$ambil->fetch_assoc()){?>
+                    <li class="gproduk">
+                        <a href="caraperawatan.php?id=<?php echo $perproduk["ID_BUNGA"];?>"><img class="imgproduk" src="img/<?php echo $perproduk["FOTO_BUNGA"];?>">
+                        <p class="p1">Cara Perawatan<br>Bunga <?php echo $perproduk['NAMA_BUNGA'];?></p></a>
+                    </li>
+                <?php }?>
+            </ul>
         </div>
-        <form action="" method="POST">
-            <input type="hidden" name="id_user" value="<?php echo $iduser?>">
-            <input type="hidden" name="kd_kritik" value="<?php echo $hasilkode?>">
-            <div class="kritikdansaran">
-                <h4>Kritik Dan Saran</h4><br>
-                <div>
-                    <textarea name="kritik" rows="10" placeholder="Tulis Kritik atau Saran Anda disini" required></textarea>
-                </div>
-                <button name="kirim">Kirim</button>
-               <h4>Terima kasih atas masukan anda,<br>sangat berguna bagi perkembangan kami.</h4>
-            </div>
-        </form>
-        <input type="image" src="img/WA.png" height="50px" width="50px">
+
+       <a href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data="><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
     <script>
     function show() {
@@ -158,4 +122,3 @@ $iduser = $_SESSION["id_user"];
     </script>
 </body>
 </html>
-

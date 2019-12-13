@@ -2,6 +2,13 @@
 session_start();
 require 'assets/includes/config.php';
 
+//cek session
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+
+//ambil data
 $datatransaksi = query("SELECT * FROM transaksi");
 
 //cek admin atau bukan
@@ -52,9 +59,10 @@ if($_SESSION["id_status"] == '03'){
                 <li><a href="kritikuser.php">Kritik User</a></li>
                 <li><a href="report.php">Report</a></li>
             <?php }if($karyawan){?>
-                
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="datatransaksi.php">Data Transaksi</a></li>
                 <li><a href="databunga.php">Data Bunga</a></li>
+                <li><a href="pemesanan.php">Pemesanan</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
@@ -67,18 +75,23 @@ if($_SESSION["id_status"] == '03'){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
-    </h1>
     </header>
     <section>
     <table class="bungkus" border="1" cellpadding="10" cellspacing="0">
@@ -92,8 +105,7 @@ if($_SESSION["id_status"] == '03'){
             <th>Tanggal Transaksi</th>
             <th>Alamat</th>
             <th>Total Pembayaran</th>
-            <th>Bukti Pembayaran</th>
-            <th>waktu</th>
+            <th>Aksi</th>
         </tr>
             <?php $i=1?>
             <?php foreach($datatransaksi as $row) {?>
@@ -105,7 +117,6 @@ if($_SESSION["id_status"] == '03'){
             <td><?= $row["TGL_TRANSAKSI"];?></td>
             <td><?= $row["DETAIL_ALAMAT"];?></td>
             <td><?= $row["TOTAL_AKHIR"];?></td>
-            <td><?= $row["FOTO_VERIFIKASI"];?></td>
             <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" >Hapus</a></td>
 
         </tr>
@@ -117,7 +128,7 @@ if($_SESSION["id_status"] == '03'){
     </section>
 
     <footer>
-        <p class="footer">&copy; Powered 2019 by Nupory Team</p>
+        <!-- <p class="footer">&copy; Powered 2019 by Nupory Team</p> -->
     </footer>
     
     <script>

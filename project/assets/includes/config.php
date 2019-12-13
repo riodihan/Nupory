@@ -210,27 +210,16 @@ function hapustransaksi($id){
         $id_transaksi = htmlspecialchars($tr["id_transaksi"]);
         $id_pembayaran = htmlspecialchars($tr["metode"]);
         $id_user = htmlspecialchars($tr["id_user"]);
-        // $tgl = htmlspecialchars($tr["tanggal"]);
+        $id_bunga = htmlspecialchars($tr["id_bunga"]);
+        $jumlah = htmlspecialchars($tr["jumlah"]);
+        // $tanggal = htmlspecialchars($tr["tanggal"]);
         $alamat = htmlspecialchars($tr["alamat"]);
         $total = htmlspecialchars($tr["total"]);
 
-        $trs = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$id_transaksi', '$id_pembayaran', '$id_user', '', '$alamat', '$total', '')");
+        $trs = mysqli_query($koneksi, "INSERT INTO keranjang VALUES ('$id_transaksi', '$id_pembayaran', '$id_user', '$id_bunga', '$jumlah', now(), '$alamat', '$total', '')");
 
 
         return $trs;
-    }
-
-    //detail transaksi 
-
-    function detail($detail){
-        global $koneksi;
-        $id_bunga = htmlspecialchars($detail["id_bunga"]);
-        $id_transaksi = htmlspecialchars($detail["id_transaksi"]);
-        $jumlah = htmlspecialchars($detail["jumlah"]);
-
-
-        $de = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES('$id_transaksi', '$id_bunga', '$jumlah')");
-        return $de;
     }
 
     // menampilkan data user
@@ -292,9 +281,77 @@ function hapustransaksi($id){
                   WHERE id_bunga = '$id_bunga'");
                 
                 return $qu;
-        // mysqli_query($koneksi, $qu)
+
+    }
+
+    //proses edit bunga
     
-        // return mysqli_affected_rows($koneksi);
+    function uploadpembayaran($up) {
+        global $koneksi;
+
+        $idtransaksi= ($up["idtransaksi"]);
+        $idpembayaran = htmlspecialchars($up["idpembayaran"]);
+        $iduser = htmlspecialchars($up["iduser"]);
+        $idbunga = htmlspecialchars($up["idbunga"]);
+        $jumlah = htmlspecialchars($up["jumlah"]);
+        $tanggal = htmlspecialchars($up["tanggal"]);
+        $alamat = htmlspecialchars($up["alamat"]);
+        $total = htmlspecialchars($up["total"]);
+        $Bukti = htmlspecialchars($up["Bukti"]);
+        
+
+        $qu = mysqli_query($koneksi, "UPDATE keranjang SET
+                    ID_TRANSAKSI = '$idtransaksi',
+                    ID_PEMBAYARAN = '$idpembayaran',
+                    ID_USER = '$iduser',
+                    ID_BUNGA = '$idbunga',
+                    JUMLAH = '$jumlah',
+                    TGL_TRANSAKSI = '$tanggal',
+                    DETAIL_ALAMAT = '$alamat',
+                    TOTAL_AKHIR = '$total',
+                    BUKTI_PEMBAYARAN = '$Bukti'
+                WHERE ID_TRANSAKSI = '$idtransaksi'");
+                
+                return $qu;
+        
+    }
+
+    //karyawan menyetujui
+    function setujuipesanan($tr){
+        global $koneksi;
+        $idtransaksi = htmlspecialchars($tr["idtransaksi"]);
+        $idpembayaran = htmlspecialchars($tr["idpembayaran"]);
+        $iduser = htmlspecialchars($tr["iduser"]);
+        $tanggal = htmlspecialchars($tr["tanggal"]);
+        $alamat = htmlspecialchars($tr["alamat"]);
+        $total = htmlspecialchars($tr["total"]);
+        $status = htmlspecialchars($tr["status"]);
+
+        $trs = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$idtransaksi', '$idpembayaran', '$iduser', '$tanggal', '$alamat', '$total', '$status')");
+
+
+        return $trs;
+    }
+
+    //detail transaksi 
+
+    function detail($detail){
+        global $koneksi;
+        $id_bunga = htmlspecialchars($detail["idbunga"]);
+        $id_transaksi = htmlspecialchars($detail["idtransaksi"]);
+        $jumlah = htmlspecialchars($detail["jumlah"]);
+
+
+        $de = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES('$id_transaksi', '$id_bunga', '$jumlah')");
+        return $de;
+    }
+
+    // hapus data pemesanan
+     
+    function hapuspemesanan($id){
+        global $koneksi;
+        $qu = mysqli_query($koneksi, "DELETE FROM keranjang WHERE ID_TRANSAKSI = '$id'");
+        return $qu;
     }
 
 ?>

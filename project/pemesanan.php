@@ -2,55 +2,25 @@
 session_start();
 require 'assets/includes/config.php';
 
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
+//menampilkan transaksi saya
+$keranjang = query4("SELECT * FROM keranjang");
 
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
+// //menyetujui pemesanan
+if(isset($_POST["setujui"])){
 
-
-// Ambil data di url
-$id = $_GET["id"];
-
-// query data bunga berdasar id
-$bunga = query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'")[0];
-
-
-//proses edit
-if(isset($_POST["edit"])) {
-
-    if(editbunga($_POST) == 1 ){
-        echo "<script>alert('bunga berhasil diedit'); window.location.href='databunga.php'</script>";
-         
+    if(setujuipesanan($_POST) == 1){
+        echo "<script>alert('Pemesanan berhasil di setujui'); window.location.href='transaksisaya.php'</script>";
     }else{
-        echo "<script>alert('bunga gagal diedit'); window.location.href='editbunga.php'</script>";
+        echo mysqli_error($koneksi);
     }
-}
+  }
 
-
-//cek karyawan/admin atau bukan
-if($_SESSION["id_status"] == '03'){
+//cek karyawan atau bukan
+if($_SESSION["id_status"] !== '02'){
     header("location: index.php");
     exit;
 }
 
-//id user otomatis
-$carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if($datakode) {
-    $nilaikode = substr($datakode[0], 1 );
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
-}else{
-    $hasilkode = "B001";
-}
 
 ?>
 
@@ -58,8 +28,8 @@ if($datakode) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Bunga</title>
-    <link rel="stylesheet" href="css/styleeditbunga.css">
+    <title>Pemesanan</title>
+    <link rel="stylesheet" href="css/styletransaksisaya.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
@@ -84,7 +54,7 @@ if($datakode) {
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksi.php">Transaksi Saya</a></li>
+                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
@@ -132,44 +102,59 @@ if($datakode) {
         <?php }?>
     </header>
     <section>
-<div class="bunga">
-        <form class="tabel" action="" method="POST">
-        <input  type="hidden" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
-    <ul class="ini">
-        <li>
-            <label class="label" for="nama_bunga">Nama Bunga</label><br>
-            <input class="ubah" type="text" name="nama_bunga" id="nama_bunga" required value="<?= $bunga["NAMA_BUNGA"]; ?>">
-        </li>
-        <li>
-            <label class="label" for="harga">Harga</label><br>
-            <input class="ubah" type="text" name="harga" id="harga" value="<?= $bunga["HARGA"]; ?>" required>
-        </li>
-        <li>
-            <label class="label" for="stok">Stok</label><br>
-            <input class="ubah" type="number" name="stok" id="stok" value="<?= $bunga["STOK"]; ?>" required>
-        </li>
-        <li>
-            <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
-            <input class="ubah" type="file" name="gambar" id="gambar">
-        </li>
-        <li>
-            <label class="label" for="video" >Video Cara Perawatan</label><br>
-            <input class="ubah" type="text" name="video" id="video" value="<?= $bunga["VIDEO_BUNGA"]; ?>">
-        </li>
-        <li>
-            <label class="label" for="perawatan">Perawatan</label><br>
-            <input class="ubah" type="text" name="perawatan" id="perawatan" value="<?= $bunga["CARA_PERAWATAN"]; ?>">
-        </li>
-    </ul>
-    <br>
-        <button type="submit" name="edit" class="tomboltambah">Submit</button>
-        <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
-    </form>
-</div>
+        
+    <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
 
-      
+    <h2>Pemesanan</h2><br>
+    <div >
+    <form action="POST">
+        <table class="tabel" border="1" cellpadding="10" cellspacing="0">
+
+            <tr>
+                <th>NO</th>
+                <th>ID Transaksi</th>
+                <th>ID Pembayaran</th>
+                <th>ID User</th>
+                <th>ID Bunga</th>
+                <th>Jumlah</th>
+                <th>Tanggal Transaksi</th>
+                <th>Alamat</th>
+                <th>Total Harga</th>
+                <th>Bukti Pembayaran</th>
+                <th>Aksi</th>
+                
+            </tr>
+
+            <?php $i = 1?>
+        
+            <?php 
+            foreach($keranjang as $row4)
+        
+            {?>
+            <tr>
+                <td><?= $i?></td>
+                <td><?= $row4["ID_TRANSAKSI"]; ?></td>
+                <td><?= $row4["ID_PEMBAYARAN"]; ?></td>
+                <td><?= $row4["ID_USER"]; ?></td>
+                <td><?= $row4["ID_BUNGA"];?></td>
+                <td><?= $row4["JUMLAH"];?></td>
+                <td><?= $row4["TGL_TRANSAKSI"]; ?></td>
+                <td><?= $row4["DETAIL_ALAMAT"]; ?></td>
+                <td><?= $row4["TOTAL_AKHIR"]; ?></td>
+                <td><img name="bukti" src="img/<?= $row4["BUKTI_PEMBAYARAN"];?>" width="40"></td>
+                <!-- <td><a name="setujui" href="setujui.php?id=<?=$row4["ID_TRANSAKSI"];?>">Setujui</a></td> -->
+                <td><a href="setujui.php?id=<?=$row4["ID_TRANSAKSI"];?>">setujui</a></td>
+                
+            </tr>
+    
+            <?php $i++; ?>
+            <?php }?>
+        </table>
+        </form>
+    </div>
+
+        
     </section>
-
 
     <footer>
     </footer>

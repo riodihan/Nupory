@@ -72,7 +72,7 @@ if($datakode) {
                 <li><a href="#">Data Bunga</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }?>
@@ -99,7 +99,7 @@ if($datakode) {
                         <label for="alamt">Alamat :</label>
                             <input type="text" name="alamat" maxlength="30" placeholder="Alamat" required>
                         <label for="nohp">No HP :</label>
-                            <input type="number" name="nohp" maxlength="13" placeholder="08xxxxxxxx" required>
+                            <input type="text" name="nohp" onkeypress="return hanyaAngka(event)" maxlength="13" placeholder="08xxxxxxxx" required>
                         <label for="email">Email :</label>
                             <input type="email" name="email" maxlength="75" placeholder="Example@email.com" required>
                         <label for="username">Username :</label>
@@ -125,6 +125,14 @@ if($datakode) {
             function hide() {
             document.getElementById("hidesidebar").style.width = "0";
             document.getElementById("menu").style.marginLeft= "0";
+        }
+
+            function hanyaAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+    
+            return false;
+            return true;
         }
             </script>
 </body>

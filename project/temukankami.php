@@ -30,8 +30,9 @@ session_start();
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
@@ -47,7 +48,7 @@ session_start();
                 <li><a href="#">Data Bunga</a></li>
             <?php }if($guest){?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
             <?php }?>
@@ -57,17 +58,23 @@ session_start();
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
+        
         <?php
-            if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+        if(!isset($_SESSION["login"])) {?>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
-            if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+        if (isset($_SESSION["login"])) {?> 
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
-    </h1>
     </header>
     <section>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.2145447082958!2d113.68843621415776!3d-8.079588883005215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6ebacada7576b%3A0x6c0a7d5c0bad1a23!2sKebun%20Pengembangan%20holtikultura!5e0!3m2!1sid!2sid!4v1573313599587!5m2!1sid!2sid" width="1200" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>

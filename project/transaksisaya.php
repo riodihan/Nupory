@@ -6,7 +6,7 @@ $iduser = $_SESSION["id_user"];
 
 
 //menampilkan transaksi saya
-$transaksi = query4("SELECT * FROM transaksi WHERE ID_USER = '$iduser'");
+$keranjang = query4("SELECT * FROM keranjang WHERE ID_USER = '$iduser'");
 
 //cek user atau bukan
 if($_SESSION["id_status"] !== '03'){
@@ -20,7 +20,7 @@ if($_SESSION["id_status"] !== '03'){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Transaksi saya</title>
+    <title>Keranjang saya</title>
     <link rel="stylesheet" href="css/styletransaksisaya.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -46,8 +46,9 @@ if($_SESSION["id_status"] !== '03'){
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
-                <li><a href="transaksisaya.php">Transaksi Saya</a></li>
-                <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
+                <li><a href="transaksi.php">Transaksi Saya</a></li>
+                <li><a href="cara.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
                 <li><a href="temukankami.php">Temukan Kami</a></li>
                 <li><a href="faq.php">FAQ</a></li>
@@ -74,24 +75,30 @@ if($_SESSION["id_status"] !== '03'){
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
-    <h1 class="h1">Nursery<br>Polije
+    <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
         if(!isset($_SESSION["login"])) {?>
-            <button><a href="login.php">Login</a></button>
+            <a class="login" href="login.php">Login</a>
         <?php }?>
 
         <?php  
         if (isset($_SESSION["login"])) {?> 
-            <button><a href="logout.php">Logout</a></button>
+            <nav class="dropdown">
+                <ul> <?php echo $_SESSION["USERNAME"];?>
+                    <li><a href="Profile.php">Profil</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </nav>
+
         <?php }?>
-    </h1>
+        
     </header>
     <section>
         
     <!-- <a href="tambahadmin.php"><button>Tambah Admin</button></a> -->
 
-    <h2>Transaksi Saya</h2><br>
+    <h2>Pemesanan Saya</h2><br>
     <div >
         <table class="tabel" border="1" cellpadding="10" cellspacing="0">
 
@@ -103,12 +110,15 @@ if($_SESSION["id_status"] !== '03'){
                 <th>Tanggal Transaksi</th>
                 <th>Alamat</th>
                 <th>Total Harga</th>
+                <th>Bukti Pembayaran</th>
+                <th>Aksi</th>
+                
             </tr>
 
             <?php $i = 1?>
         
             <?php 
-            foreach($transaksi as $row4)
+            foreach($keranjang as $row4)
         
             {?>
             <tr>
@@ -119,7 +129,9 @@ if($_SESSION["id_status"] !== '03'){
                 <td><?= $row4["TGL_TRANSAKSI"]; ?></td>
                 <td><?= $row4["DETAIL_ALAMAT"]; ?></td>
                 <td><?= $row4["TOTAL_AKHIR"]; ?></td>
-                <!-- <td><?= $row4["TOTAL_AKHIR"]; ?></td> -->
+                <td><img src="img/<?= $row4["BUKTI_PEMBAYARAN"];?>" width="40"></td>
+                <td><a href="uppembayaran.php?id=<?=$row4["ID_TRANSAKSI"];?>">Upload Pembayaran</a></td>
+                
             </tr>
     
             <?php $i++; ?>

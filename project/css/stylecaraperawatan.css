@@ -126,3 +126,51 @@ input{
     right: 20px;
     bottom: 20px;
 }
+
+.dropdown{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 10%;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    float: right;
+    position: relative;
+    right: 2px;
+    top: -30px;
+    line-height: 20px;
+}
+
+.dropdown ul li{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 100%;
+    height: 20px;
+    line-height: 30px;
+    float: left;
+    list-style: none;
+    text-align: center;
+}
+.dropdown ul:hover li{
+    display: block;
+}
+
+.dropdown ul li{
+    display: none;
+}
+
+.login{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
+    width: 5%;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    float: right;
+    position: relative;
+    right: 2px;
+    top: -30px;
+    line-height: 20px;
+}

@@ -2,55 +2,11 @@
 session_start();
 require 'assets/includes/config.php';
 
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
-
-//cek session
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
-}
+// $id = $_SESSION["id_user"];
 
 
-// Ambil data di url
-$id = $_GET["id"];
-
-// query data bunga berdasar id
-$bunga = query("SELECT * FROM bunga WHERE ID_BUNGA = '$id'")[0];
-
-
-//proses edit
-if(isset($_POST["edit"])) {
-
-    if(editbunga($_POST) == 1 ){
-        echo "<script>alert('bunga berhasil diedit'); window.location.href='databunga.php'</script>";
-         
-    }else{
-        echo "<script>alert('bunga gagal diedit'); window.location.href='editbunga.php'</script>";
-    }
-}
-
-
-//cek karyawan/admin atau bukan
-if($_SESSION["id_status"] == '03'){
-    header("location: index.php");
-    exit;
-}
-
-//id user otomatis
-$carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if($datakode) {
-    $nilaikode = substr($datakode[0], 1 );
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "B" .str_pad($kode, 3, "0", STR_PAD_LEFT);
-}else{
-    $hasilkode = "B001";
-}
+//menampilkan data user
+// $profil = profil("SELECT * FROM user WHERE ID_USER = '$id'");
 
 ?>
 
@@ -58,12 +14,16 @@ if($datakode) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Bunga</title>
-    <link rel="stylesheet" href="css/styleeditbunga.css">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+    <title>Reset Password</title>
+    <!-- <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1"> -->
+    <link rel="stylesheet" href="css/stylereset.css">
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+
     <style>
     body{
         background-image: url('img/Nursery.jpg');
@@ -84,6 +44,7 @@ if($datakode) {
                 if($user){
             ?>
                 <li><a href="index.php">Beranda</a></li>
+                <li><a href="transaksisaya.php">Pemesanan Saya</a></li>
                 <li><a href="transaksi.php">Transaksi Saya</a></li>
                 <li><a href="caraperawatan.php">Cara Perawatan</a></li>
                 <li><a href="kritikdansaran.php">Kritik dan Saran</a></li>
@@ -113,6 +74,8 @@ if($datakode) {
     <div id="menu">
             <span style="font-size: 30px; cursor: pointer;" onclick="show()">&#9776;</span>
     </div>
+    <div class="container">
+   
     <h1 class="h1">Nursery<br>Polije</h1>
         
         <?php
@@ -130,48 +93,19 @@ if($datakode) {
             </nav>
 
         <?php }?>
+    
     </header>
     <section>
-<div class="bunga">
-        <form class="tabel" action="" method="POST">
-        <input  type="hidden" name="id_bunga" id="id_bunga" value="<?= $bunga["ID_BUNGA"]; ?>">
-    <ul class="ini">
-        <li>
-            <label class="label" for="nama_bunga">Nama Bunga</label><br>
-            <input class="ubah" type="text" name="nama_bunga" id="nama_bunga" required value="<?= $bunga["NAMA_BUNGA"]; ?>">
-        </li>
-        <li>
-            <label class="label" for="harga">Harga</label><br>
-            <input class="ubah" type="text" name="harga" id="harga" value="<?= $bunga["HARGA"]; ?>" required>
-        </li>
-        <li>
-            <label class="label" for="stok">Stok</label><br>
-            <input class="ubah" type="number" name="stok" id="stok" value="<?= $bunga["STOK"]; ?>" required>
-        </li>
-        <li>
-            <label class="label" for="gambar" value="<?= $bunga["FOTO_BUNGA"]; ?>">Gambar bunga</label><br>
-            <input class="ubah" type="file" name="gambar" id="gambar">
-        </li>
-        <li>
-            <label class="label" for="video" >Video Cara Perawatan</label><br>
-            <input class="ubah" type="text" name="video" id="video" value="<?= $bunga["VIDEO_BUNGA"]; ?>">
-        </li>
-        <li>
-            <label class="label" for="perawatan">Perawatan</label><br>
-            <input class="ubah" type="text" name="perawatan" id="perawatan" value="<?= $bunga["CARA_PERAWATAN"]; ?>">
-        </li>
-    </ul>
-    <br>
-        <button type="submit" name="edit" class="tomboltambah">Submit</button>
-        <button class="tomboltambah"> <a href="databunga.php">Kembali</a></button>
+    <form action="">
+        Password Baru : <input type="password" name="passwordbaru">
+        <br>
+        <br>
+        Konfirmasi : <input type="password" name="konfirmasi">
     </form>
-</div>
-
-      
     </section>
 
-
     <footer>
+        <!-- <p class="footer">&copy; Powered 2019 by Nupory Team</p> -->
     </footer>
     
     <script>
