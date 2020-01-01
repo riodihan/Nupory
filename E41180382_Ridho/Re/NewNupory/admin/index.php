@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Selamat Datang Admin</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,6 +30,9 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-snowflake"></i>
+        </div>
         <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
       </a>
 
@@ -38,7 +41,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Menu utama</span></a>
       </li>
@@ -48,20 +51,29 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Informasi
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Data -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <span>Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <a class="collapse-item" href="buttons.html">
+              <i class="fas fa-fw fa-user text-primary"></i>
+              <span class="text-primary">User</span>
+            </a>
+            <a class="collapse-item" href="cards.html">
+              <i class="fas fa-fw fa-snowflake text-primary"></i>
+              <span class="text-primary">Bunga</span>
+            </a>
+            <a class="collapse-item" href="cards.html">
+              <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+              <span class="text-primary">Transaksi</span>
+            </a>
           </div>
         </div>
       </li>
@@ -116,13 +128,6 @@
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
       </li>
 
       <!-- Divider -->
@@ -347,7 +352,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -364,15 +369,15 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">15 Pesanan</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-box fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+     <!-- Earnings (Monthly) Card Example -->
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -395,7 +400,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -403,8 +408,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Kritik (Bulan Ini)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">12 Kritik Masuk</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
