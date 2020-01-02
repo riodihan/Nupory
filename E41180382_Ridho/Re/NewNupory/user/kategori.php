@@ -161,9 +161,9 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <div class="service-box">
-                            <div class="service-icon">
+                            <!-- <div class="service-icon">
                                 <img src="images/service-icon1.svg" alt="">
-                            </div>
+                            </div> -->
                             <div class="service-title"><a href="webhosting.html">Krisan</a></div>
                             <div class="service-details">
                                 <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
