@@ -4,7 +4,13 @@ require 'assets/includes/config.php';
 
 $iduser = $_SESSION["id_user"];
 
-$datatransaksi = query("SELECT * FROM transaksi WHERE ID_USER = '$iduser'");
+$datatransaksi = query("SELECT * FROM transaksi 
+                            inner join pembayaran on transaksi.id_pembayaran = pembayaran.id_pembayaran
+                            -- inner join user on transaksi.id_user = user.id_user
+                            inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
+                            inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
+                        
+                        WHERE ID_USER = '$iduser'");
 
 //cek user atau bukan
 if($_SESSION["id_status"] !== '03'){
@@ -94,13 +100,15 @@ if($_SESSION["id_status"] !== '03'){
 
        
         <tr >
-            <th>NO</th>
-            <th>ID Transaksi</th>
-            <th>ID Pembayaran</th>
-            <th>ID User</th>
-            <th>Tanggal Transaksi</th>
-            <th>Alamat</th>
-            <th>Total Pembayaran</th>
+        <th>NO</th>
+                <th>ID Transaksi</th>
+                <th>Tanggal Transaksi</th>
+                <th>Jenis Pembayaran</th>
+                <th>Nama Bunga</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Total Harga</th>
+                <th>Alamat</th>
             <!-- <th>Aksi</th> -->
         </tr>
             <?php $i=1?>
@@ -108,11 +116,13 @@ if($_SESSION["id_status"] !== '03'){
         <tr >
             <td><?= $i?></td>
             <td><?= $row["ID_TRANSAKSI"];?></td>
-            <td><?= $row["ID_PEMBAYARAN"];?></td>
-            <td><?= $row["ID_USER"];?></td>
             <td><?= $row["TGL_TRANSAKSI"];?></td>
-            <td><?= $row["DETAIL_ALAMAT"];?></td>
+            <td><?= $row["JENIS_PEMBAYARAN"];?></td>
+            <td><?= $row["NAMA_BUNGA"];?></td>
+            <td><?= $row["HARGA"];?></td>
+            <td><?= $row["JUMLAH"];?></td>
             <td><?= $row["TOTAL_AKHIR"];?></td>
+            <td><?= $row["DETAIL_ALAMAT"];?></td>
             <!-- <td><a href = "hapustransaksi.php?id=<?= $row["ID_TRANSAKSI"]; ?>" id="autoKlik" >Hapus</a></td> -->
 
         </tr>

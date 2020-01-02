@@ -4,7 +4,6 @@ require 'assets/includes/config.php';
 
 $id = $_GET["id"];
 ?>
- <?php include "assets/includes/config.php" ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,29 +98,7 @@ $id = $_GET["id"];
                 </li>
             </td>
         <?php }?>
-            <!-- <td> 
-                <li class="ul">Cara perawatan bunga Anggrek Bulan 
-                    <video width="350px" controls>
-                        <source src="video/ig33.mp4" type="video/mp4">
-                    </video>
-                    <ol>
-                        <li>
-                        Mendapatkan sinar matahari cukup
-                        </li>
-                        <li>
-                        Jauhkan dari cahaya lampu pada malam hari
-                        </li>
-                        <li>
-                        Disiram dua kali sekali
-                        </li>
-                        <li>
-                        Bunga di potong setelah layu
-                        </li>
-                    </ol>
-                </li>
-            </td> -->
-        
-        </table> -->
+        </table>
 
 
        <a href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data="><input type="image" src="img/WA.png" width="50px" height="50px"></a>
@@ -140,19 +117,3 @@ $id = $_GET["id"];
 
 </body>
 </html>
-
-<?php
-$sql = "select id_bunga, video_bunga from bunga";
-$res =mysqli_query($koneksi,$sql);
-
-echo "myvideo <br> <br>"; 
-
-while ($row = mysqli_fetch_assoc($res)) {
-    $id = $row['id_bunga'];
-    $video = $row['video_bunga'];
-
-
-    echo  " <a href='play.php?id=$id'>.$video.</a> ";
-
- ?>
-  <?php } ?>

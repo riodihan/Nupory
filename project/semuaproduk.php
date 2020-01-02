@@ -2,6 +2,14 @@
 require 'assets/includes/config.php';
 session_start();
 
+
+//cek session
+if(!isset($_SESSION["login"])){
+  header("location: login.php");
+  exit;
+}
+
+
 //cek user atau bukan
 if($_SESSION["id_status"] !== '03'){
   header("location: index.php");
@@ -13,17 +21,21 @@ $id = $_GET["id"];
 $bunga = mysqli_query($koneksi, "SELECT * FROM bunga WHERE ID_BUNGA='$id'");
 $row_bunga = mysqli_fetch_array($bunga);
 
-//cek session
-if(!isset($_SESSION["login"])){
-        header("location: login.php");
-        exit;
-    }
+
 
 //cek ada id bunga atau tidak
 if(!isset($id)){
         header("location: index.php");
         exit;
 }
+
+
+//cek ada parameter atau tidak
+if($_GET["id"]==''){
+  header("location: index.php");
+  exit;
+}
+
 
 $jual = mysqli_query($koneksi, "SELECT * FROM bunga ");
 
@@ -152,7 +164,7 @@ if(isset($_POST["beli"])){
                     <input type="hidden" name="id_transaksi" value="<?php echo $hasilkode?>" >
                     <input type="hidden" name="id_user" value="<?php echo $iduser?>">
                   <label for="harga"> Harga
-                    <input name="harga" style="background-color: transparent; color: white;" id="harga" type="text" value="<?php echo $row_bunga["HARGA"];?>" onkeyup="sum();" readonly>
+                    <input name="harga" style="background-color: transparent; color: white;" id="harga" type="text" value="<?php echo $row_bunga["HARGA"]; ?>" onkeyup="sum();" readonly>
                   </label><br>
               </td>
            </tr>
@@ -179,7 +191,7 @@ if(isset($_POST["beli"])){
            <tr>
              <td>
               <label for="jumlah">Jumlah Beli <br>
-                <input type="number" name="jumlah" id="jumlah" onkeyup="sum();" required>
+                <input type="number" min="1" name="jumlah" id="jumlah" onkeyup="sum();" required>
               </label><br>
              </td>
            </tr>
@@ -246,8 +258,6 @@ if(isset($_POST["beli"])){
 
     }
     </script>
-
-
 
 </body>
 </html>

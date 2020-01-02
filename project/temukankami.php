@@ -98,8 +98,8 @@ session_start();
             <!-- Elemen yang akan menjadi kontainer peta -->
             <div id="googleMap" style="width:100%;"></div>
 
-            <br><br><a class="gmaps" href="https://www.google.com/maps/place/Kebun+Pengembangan+holtikultura/@-8.079594,113.690625,16z/data=!4m5!3m4!1s0x0:0x6c0a7d5c0bad1a23!8m2!3d-8.0795942!4d113.6906249?hl=id" target="_blank">Buka Di Google Maps</a>
-          
+            <br><br><a class="gmaps" href="https://www.google.com/maps/place/Kebun+Pengembangan+holtikultura/@-8.079594,113.690625,16z/data=!4m5!3m4!1s0x0:0x6c0a7d5c0bad1a23!8m2!3d-8.0795942!4d113.6906249?hl=id">Buka Di Google Maps</a>
+            
        <a class="wa" style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6285335490201&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
     <script>

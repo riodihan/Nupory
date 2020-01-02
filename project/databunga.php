@@ -123,9 +123,8 @@ if(!isset($_SESSION["login"])){
             <td class="item" ><?= $row1["NAMA_BUNGA"]; ?></td>
             <td class="item" ><?= $row1["HARGA"]; ?></td>
             <td class="item" ><?= $row1["STOK"]; ?></td>
-            <!-- <td><img src="img/<?= $row1["FOTO_BUNGA"];?>" width="80"></td> -->
             <td class="item" ><?=$row1["VIDEO_BUNGA"];?></td>
-            <!-- <td><?= $row1["CARA_PERAWATAN"];?></td> -->
+            <td><?= $row1["FOTO_BUNGA"];?></td>
             <td  >
                 <a href="hapusbunga.php?id=<?= $row1["ID_BUNGA"]; ?>" onclick = "return confirm('Apakah Anda Yakin ingin Mengahapus Data Ini?');"><img src="img/x.png" alt="hapus" width="20" height="20"></a>
                 <a href="editbunga.php?id=<?= $row1["ID_BUNGA"]; ?>"><img src="img/edit.png" alt="edit" width="20" height="20"></a>
