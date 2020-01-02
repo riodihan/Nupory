@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data User</title>
+  <title>Data Bunga</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -350,78 +350,79 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Informasi data user Nursery Polije</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Informasi data bunga Nursery Polije</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Nama</th>
-                      <th>Status</th>
-                      <th>Alamat</th>
-                      <th>No. Telpon</th>
-                      <th>Email</th>
+                      <th>Nama Bunga</th>
+                      <th>Jenis Bunga</th>
+                      <th>Harga</th>
+                      <th>Stok</th>
+                      <th>Gambar</th>
+                      <th>Video</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Nama</th>
-                      <th>Status</th>
-                      <th>Alamat</th>
-                      <th>No. Telpon</th>
-                      <th>Email</th>
+                      <th>Nama Bunga</th>
+                      <th>Jenis Bunga</th>
+                      <th>Harga</th>
+                      <th>Stok</th>
+                      <th>Gambar</th>
+                      <th>Video</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <tr>
-                      <td>Indah</td>
-                      <td>Administrator</td>
-                      <td>Jember</td>
-                      <td>085746441467</td>
-                      <td>indah@gmail.com</td>
+                      <td>Krisan Standart</td>
+                      <td>Krisan</td>
+                      <td class="text-right">Rp. 1.500</td>
+                      <td class="text-center">100</td>
+                      <td>Gambar Bunga</td>
+                      <td>Link Video</td>
                     </tr>
                     <tr>
-                      <td>Dimas</td>
-                      <td>Karyawan</td>
-                      <td>Jember</td>
-                      <td>081188004455</td>
-                      <td>Dimas@gmail.com</td>
+                      <td>Krisan Putih</td>
+                      <td>Krisan</td>
+                      <td class="text-right">Rp. 2.000</td>
+                      <td class="text-center">150</td>
+                      <td>Gambar Bunga</td>
+                      <td>Link Video</td>
                     </tr>
                     <tr>
-                      <td>Idirs</td>
-                      <td>User</td>
-                      <td>Probolinggo</td>
-                      <td>08123758964</td>
-                      <td>Idris@gmail.com</td>
+                      <td>Krisan Kuning</td>
+                      <td>Krisan</td>
+                      <td class="text-right">Rp. 2.500</td>
+                      <td class="text-center">80</td>
+                      <td>Gambar Bunga</td>
+                      <td>Link Video</td>
                     </tr>
                     <tr>
-                      <td>Sayyid</td>
-                      <td>User</td>
-                      <td>Probolinggo</td>
-                      <td>081475326985</td>
-                      <td>sayyid@gmail.com</td>
+                      <td>Anggrek Standart</td>
+                      <td>Anggrek</td>
+                      <td class="text-right">Rp. 100.000</td>
+                      <td class="text-center">15</td>
+                      <td>Gambar Bunga</td>
+                      <td>Link Video</td>
                     </tr>
                     <tr>
-                      <td>Ridho</td>
-                      <td>User</td>
-                      <td>Tuban</td>
-                      <td>081554400881</td>
-                      <td>ridho@gmail.com</td>
+                      <td>Anggrek Bulan Lokal</td>
+                      <td>Anggrek</td>
+                      <td class="text-right">Rp. 130.000</td>
+                      <td class="text-center">10</td>
+                      <td>Gambar Bunga</td>
+                      <td>Link Video</td>
                     </tr>
                     <tr>
-                      <td>Syifa</td>
-                      <td>User</td>
-                      <td>Madiun</td>
-                      <td>085746145411</td>
-                      <td>syifa@yahoo.com</td>
-                    </tr>
-                    <tr>
-                      <td>Andre</td>
-                      <td>User</td>
-                      <td>Sumenep</td>
-                      <td>08145525933</td>
-                      <td>andre@gmail.com</td>
+                      <td>Anggrek Bulan Taiwan</td>
+                      <td>Anggrek</td>
+                      <td class="text-right">Rp. 150.000</td>
+                      <td class="text-center">10</td>
+                      <td>Gambar Bunga</td>
+                      <td>Link Video</td>
                     </tr>
                   </tbody>
                 </table>

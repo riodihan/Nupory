@@ -42,7 +42,7 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="index.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-home"></i>
           <span>Menu utama</span></a>
       </li>
 
@@ -62,17 +62,21 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="buttons.html">
+            <a class="collapse-item" href="datauser.php">
               <i class="fas fa-fw fa-user text-primary"></i>
               <span class="text-primary">User</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+            <a class="collapse-item" href="databunga.php">
               <i class="fas fa-fw fa-snowflake text-primary"></i>
               <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="cards.html">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
+            </a>
+            <a class="collapse-item" href="cards.html">
+              <i class="fas fa-fw fa-comments text-primary"></i>
+              <span class="text-primary">Kritik</span>
             </a>
           </div>
         </div>
@@ -335,7 +339,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Selamat Datang, Admin (Nama Admin)</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
