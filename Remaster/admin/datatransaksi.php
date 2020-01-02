@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data Bunga</title>
+  <title>Data User</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -316,79 +316,78 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Transaksi Nursery Polije</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Nama Bunga</th>
-                      <th>Jenis Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
+                      <th>Id Transaksi</th>
+                      <th>Pembayaran</th>
+                      <th>Nama Pembeli</th>
+                      <th>Bunga</th>
+                      <th>Jumlah</th>
+                      <th>Alamat Pengiriman</th>
+                      <th>Total Akhir</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Nama Bunga</th>
-                      <th>Jenis Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
+                      <th>Id Transaksi</th>
+                      <th>Pembayaran</th>
+                      <th>Nama Pembeli</th>
+                      <th>Bunga</th>
+                      <th>Jumlah</th>
+                      <th>Alamat Pengiriman</th>
+                      <th>Total Akhir</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <tr>
-                      <td>Krisan Standart</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 1.500</td>
-                      <td class="text-center">100</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
-                    <tr>
+                      <td>TR0001</td>
+                      <td>Transfer</td>
+                      <td>Ridho</td>
                       <td>Krisan Putih</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 2.000</td>
-                      <td class="text-center">150</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td>20 Ikat</td>
+                      <td>Tuban</td>
+                      <td class="text-right">Rp. 60.000</td>
                     </tr>
                     <tr>
-                      <td>Krisan Kuning</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 2.500</td>
-                      <td class="text-center">80</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td>TR0002</td>
+                      <td>Transfer</td>
+                      <td>Idris</td>
+                      <td>Krisan Standart</td>
+                      <td>30 Ikat</td>
+                      <td>Probolinggo</td>
+                      <td class="text-right">Rp. 90.000</td>
                     </tr>
                     <tr>
-                      <td>Anggrek Standart</td>
-                      <td>Anggrek</td>
-                      <td class="text-right">Rp. 100.000</td>
-                      <td class="text-center">15</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
-                    <tr>
+                      <td>TR0003</td>
+                      <td>Transfer</td>
+                      <td>Sayyid</td>
                       <td>Anggrek Bulan Lokal</td>
-                      <td>Anggrek</td>
+                      <td>1 Pot</td>
+                      <td>Probolinggo</td>
                       <td class="text-right">Rp. 130.000</td>
-                      <td class="text-center">10</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
                     </tr>
                     <tr>
+                      <td>TR0004</td>
+                      <td>Transfer</td>
+                      <td>Syifa</td>
                       <td>Anggrek Bulan Taiwan</td>
-                      <td>Anggrek</td>
+                      <td>1 Pot</td>
+                      <td>Madiun</td>
                       <td class="text-right">Rp. 150.000</td>
-                      <td class="text-center">10</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                    </tr>
+                    <tr>
+                      <td>TR0005</td>
+                      <td>Transfer</td>
+                      <td>Andre</td>
+                      <td>Krisan Kuning</td>
+                      <td>20 Ikat</td>
+                      <td>Sumenep</td>
+                      <td class="text-right">Rp. 60.000</td>
                     </tr>
                   </tbody>
                 </table>

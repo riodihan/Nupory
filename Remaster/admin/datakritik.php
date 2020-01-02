@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data Bunga</title>
+  <title>Data User</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -316,79 +316,50 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Kritik User</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Nama Bunga</th>
-                      <th>Jenis Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
+                      <th>Id Kritik</th>
+                      <th>Nama User</th>
+                      <th>Isi Kritik</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Nama Bunga</th>
-                      <th>Jenis Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
+                      <th>Id Kritik</th>
+                      <th>Nama User</th>
+                      <th>Isi Kritik</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <tr>
-                      <td>Krisan Standart</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 1.500</td>
-                      <td class="text-center">100</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td>KR0001</td>
+                      <td>Ridho</td>
+                      <td>Dengan adanya web ini, kini saya jadi mudah untuk melakukan order bunga. Terimakasih.</td>
                     </tr>
                     <tr>
-                      <td>Krisan Putih</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 2.000</td>
-                      <td class="text-center">150</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td>KR0002</td>
+                      <td>Idris</td>
+                      <td>Lumayan terbantu, daripada yang biasanya keluar rumah, sekarang dirumah saja sudah bisa.</td>
                     </tr>
                     <tr>
-                      <td>Krisan Kuning</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 2.500</td>
-                      <td class="text-center">80</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td>KR0003</td>
+                      <td>Sayyid</td>
+                      <td>Masih bingung dengan cara order di website ini, tidak ada petunjuk.</td>
                     </tr>
                     <tr>
-                      <td>Anggrek Standart</td>
-                      <td>Anggrek</td>
-                      <td class="text-right">Rp. 100.000</td>
-                      <td class="text-center">15</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td>KR0004</td>
+                      <td>Syifa</td>
+                      <td>Hmm, tampilannya suka, cerah kyk muka dia.</td>
                     </tr>
                     <tr>
-                      <td>Anggrek Bulan Lokal</td>
-                      <td>Anggrek</td>
-                      <td class="text-right">Rp. 130.000</td>
-                      <td class="text-center">10</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
-                    <tr>
-                      <td>Anggrek Bulan Taiwan</td>
-                      <td>Anggrek</td>
-                      <td class="text-right">Rp. 150.000</td>
-                      <td class="text-center">10</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td>KR0005</td>
+                      <td>Andre</td>
+                      <td>Sayang sekali hanya menerima orderan lokal, tidak antar kota. :(</td>
                     </tr>
                   </tbody>
                 </table>

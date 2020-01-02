@@ -70,11 +70,11 @@
               <i class="fas fa-fw fa-snowflake text-primary"></i>
               <span class="text-primary">Bunga</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+            <a class="collapse-item" href="datatransaksi.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+            <a class="collapse-item" href="datakritik.php">
               <i class="fas fa-fw fa-comments text-primary"></i>
               <span class="text-primary">Kritik</span>
             </a>
