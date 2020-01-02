@@ -214,6 +214,48 @@
         </div>
     </div>
 
+    <div id="services" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row-title">Kategori Bunga</div>
+                    <div class="row-subtitle">Cari dengan mudah.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="images/service-icon1.svg" alt="">
+                    </div>
+                    <div class="service-title"><a href="webhosting.html">Krisan</a></div>
+                    <div class="service-details">
+                        <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="images/service-icon2.svg" alt="">
+                    </div>
+                    <div class="service-title"><a href="#">Anggrek</a></div>
+                    <div class="service-details">
+                        <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-3" style="float: right;">
+            <div class="buttons-holder">
+                <a href="kategori.php" class="ybtn ybtn-accent-color">Kategori lainnya</a>
+            </div>
+        </div>
+    </div>
+
 
     <div id="footer" class="container-fluid">
         <div class="container">
