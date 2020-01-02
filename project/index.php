@@ -1,6 +1,8 @@
 <?php
 session_start();
 require 'assets/includes/config.php';
+
+// $wa = mysqli_query($koneksi, "SELECT * FROM wa" );
 ?>
 
 <!DOCTYPE html>
@@ -130,6 +132,7 @@ require 'assets/includes/config.php';
                 <?php }?>
             </ul>
         </div>
+        
         <a style="display:scroll;position:fixed;bottom:0;right:0;" href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=" target="_blank"><input type="image" src="img/WA.png" width="50px" height="50px"></a>
     </section>
 

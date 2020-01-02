@@ -3,7 +3,12 @@ session_start();
 require 'assets/includes/config.php';
 
 //menampilkan transaksi saya
-$keranjang = query4("SELECT * FROM keranjang");
+$keranjang = query4("SELECT * FROM keranjang
+                    -- inner join detail_transaksi on keranjang.id_transaksi = detail_transaksi.id_transaksi
+                    inner join bunga on keranjang.id_bunga = bunga.id_bunga
+                    inner join pembayaran on keranjang.id_pembayaran = pembayaran.id_pembayaran
+                    inner join user on keranjang.id_user = user.id_user
+                    ");
 
 // //menyetujui pemesanan
 if(isset($_POST["setujui"])){
@@ -113,11 +118,12 @@ if($_SESSION["id_status"] !== '02'){
             <tr>
                 <th>NO</th>
                 <th>ID Transaksi</th>
-                <th>ID Pembayaran</th>
-                <th>ID User</th>
-                <th>ID Bunga</th>
-                <th>Jumlah</th>
                 <th>Tanggal Transaksi</th>
+                <th>Pembayaran</th>
+                <th>Nama Pembeli</th>
+                <th>Nama Bunga</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
                 <th>Alamat</th>
                 <th>Total Harga</th>
                 <th>Bukti Pembayaran</th>
@@ -134,16 +140,17 @@ if($_SESSION["id_status"] !== '02'){
             <tr>
                 <td><?= $i?></td>
                 <td><?= $row4["ID_TRANSAKSI"]; ?></td>
-                <td><?= $row4["ID_PEMBAYARAN"]; ?></td>
-                <td><?= $row4["ID_USER"]; ?></td>
-                <td><?= $row4["ID_BUNGA"];?></td>
-                <td><?= $row4["JUMLAH"];?></td>
                 <td><?= $row4["TGL_TRANSAKSI"]; ?></td>
+                <td><?= $row4["JENIS_PEMBAYARAN"]; ?></td>
+                <td><?= $row4["NAMA_USER"]; ?></td>
+                <td><?= $row4["NAMA_BUNGA"];?></td>
+                <td><?= $row4["HARGA"];?></td>
+                <td><?= $row4["JUMLAH"];?></td>
                 <td><?= $row4["DETAIL_ALAMAT"]; ?></td>
                 <td><?= $row4["TOTAL_AKHIR"]; ?></td>
-                <td><img name="bukti" src="img/<?= $row4["BUKTI_PEMBAYARAN"];?>" width="40"></td>
+                <td><img name="bukti" src="bukti/<?= $row4["BUKTI_PEMBAYARAN"];?>" width="40"></td>
                 <!-- <td><a name="setujui" href="setujui.php?id=<?=$row4["ID_TRANSAKSI"];?>">Setujui</a></td> -->
-                <td><a href="setujui.php?id=<?=$row4["ID_TRANSAKSI"];?>">setujui</a></td>
+                <td><a href="setujui.php?id=<?=$row4["ID_TRANSAKSI"];?>">Lihat</a></td>
                 
             </tr>
     

@@ -3,7 +3,10 @@ session_start();
 require 'assets/includes/config.php';
 
 //menampilkan tabel
-$kritik = query3("SELECT * FROM kritik");
+$kritik = query3("SELECT * FROM kritik
+                    inner join user on kritik.id_user = user.id_user
+
+                ");
 
 //cek admin atau bukan
 if($_SESSION["id_status"] !== '01'){
@@ -102,7 +105,7 @@ if(!isset($_SESSION["login"])){
         <tr>
             <th>NO</th>
             <th>ID Kritik</th>
-            <th>ID User</th>
+            <th>Nama User</th>
             <th>Kritik</th>
         </tr>
 
@@ -113,7 +116,7 @@ if(!isset($_SESSION["login"])){
         <tr>
             <td><?= $i?></td>
             <td><?= $row3["KD_KRITIK"]; ?></td>
-            <td><?= $row3["ID_USER"]; ?></td>
+            <td><?= $row3["NAMA_USER"]; ?></td>
             <td><?= $row3["ISI_KRITIK"]; ?></td>
         </tr>
     

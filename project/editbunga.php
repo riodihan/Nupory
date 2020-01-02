@@ -40,6 +40,19 @@ if($_SESSION["id_status"] == '03'){
     exit;
 }
 
+//cek ada id bunga atau tidak
+if(!isset($id)){
+    header("location: databunga.php");
+    exit;
+}
+
+
+//cek ada parameter atau tidak
+if($_GET["id"]==''){
+header("location: databunga.php");
+exit;
+}
+
 //id user otomatis
 $carikode = mysqli_query($koneksi, "select max(ID_BUNGA)from bunga") or die (mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);

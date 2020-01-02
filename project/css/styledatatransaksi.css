@@ -117,6 +117,14 @@ section{
     border-radius: 10px;
 }
 
+.bungkus tr th{
+    padding: 5px;
+}
+
+.bungkus tr td{
+    padding: 5px;
+}
+
 .dropdown{
     font-family: 'Josefin Sans', sans-serif;
     font-weight: lighter;
