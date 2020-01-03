@@ -95,6 +95,37 @@
                                     <li class="dropdown unity-menu">
                                         <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
                                         <ul class="dropdown-menu dropdown-unity">
+
+                                            <li>
+                                                <a class="unity-link" href="dikemas.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikemas.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikemas
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengemasan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="dikirim.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikirim.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikirim
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengiriman
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
                                             <li>
                                                 <a class="unity-link" href="transaksisaya.php">
                                                     <div class="unity-box">
@@ -152,26 +183,16 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-        
-            
-            <div class="container">
+    </div><br><br>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="pricing-box pricing-unity pricing-color1">
-                            <div class="pricing-content">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/CTp0IE7Mnhg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-9" style="float: right;">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/etRTUc5cT3Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-           
+            </div>
         </div>
-    </div>
+<br><br><br>
     <div id="footer" class="container-fluid">
         <div class="container">
             <div class="row">

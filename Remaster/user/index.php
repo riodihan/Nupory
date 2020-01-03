@@ -22,14 +22,6 @@
 
 <body>
     <div id="header-holder" class="main-header bg">
-        <!-- <div class="bg-animation">
-            <div class="graphic-show">
-                <img class="fix-size" src="images/graphic1.png" alt="">
-                <img class="img img1" src="images/graphic1.png" alt="">
-                <img class="img img2" src="images/graphic2.png" alt="">
-                <img class="img img3" src="images/graphic3.png" alt="">
-            </div>
-        </div> -->
         <nav id="nav" class="navbar navbar-default navbar-full">
             <div class="container-fluid">
                 <div class="container container-nav">
@@ -101,6 +93,37 @@
                                     <li class="dropdown unity-menu">
                                         <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
                                         <ul class="dropdown-menu dropdown-unity">
+
+                                            <li>
+                                                <a class="unity-link" href="dikemas.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikemas.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikemas
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengemasan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="dikirim.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikirim.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikirim
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengiriman
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
                                             <li>
                                                 <a class="unity-link" href="transaksisaya.php">
                                                     <div class="unity-box">
@@ -158,29 +181,29 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div id="domain-quick-pricing" class="container-fluid">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-8">
-                        <div class="domain-box d-color1">
-                            <!-- <div class="price">Nursery Polije</div> -->
-                            <div class="details">Unit Produksi Hortikultura Rembangan merupakan salah satu unit produksi
-                                yang yang dimiliki oleh Politeknik Negeri Jember, merupakan hasil kerjasama antara
-                                Politeknik Negeri Jember dengan Pemerintah Kabupaten Jember yang didirikan pada tahun 2004.
-                                Unit ini didirikan dengan tujuan untuk meningkatkan proses pembelajaran mahasiswa Politeknik
-                                Negeri Jember khususnya bidang kewirausahaan hortikultura.</div>
-                            <div class="btn-holder">
-                                <a href="tentangkami.php" class="ybtn ybtn-white ybtn-shadow">Baca Selengkapnya</a>
-                                <a href="daftar.php" class="ybtn ybtn-header-color">Daftar Akun</a>
-                            </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-8">
+                    <div class="domain-box d-color1">
+                        <!-- <div class="price">Nursery Polije</div> -->
+                        <div class="details">Unit Produksi Hortikultura Rembangan merupakan salah satu unit produksi
+                            yang yang dimiliki oleh Politeknik Negeri Jember, merupakan hasil kerjasama antara
+                            Politeknik Negeri Jember dengan Pemerintah Kabupaten Jember yang didirikan pada tahun 2004.
+                            Unit ini didirikan dengan tujuan untuk meningkatkan proses pembelajaran mahasiswa Politeknik
+                            Negeri Jember khususnya bidang kewirausahaan hortikultura.</div>
+                        <div class="btn-holder">
+                            <a href="tentangkami.php" class="ybtn ybtn-white ybtn-shadow">Baca Selengkapnya</a>
+                            <a href="daftar.php" class="ybtn ybtn-header-color">Daftar Akun</a>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
     <div id="services" class="container-fluid">
         <div class="container">
             <div class="row">

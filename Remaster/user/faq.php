@@ -95,6 +95,37 @@
                                     <li class="dropdown unity-menu">
                                         <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
                                         <ul class="dropdown-menu dropdown-unity">
+
+                                            <li>
+                                                <a class="unity-link" href="dikemas.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikemas.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikemas
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengemasan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="dikirim.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikirim.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikirim
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengiriman
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
                                             <li>
                                                 <a class="unity-link" href="transaksisaya.php">
                                                     <div class="unity-box">
@@ -197,131 +228,70 @@
                             Butuh bantuan lebih lanjut?
 
                             chat kami</p>
-                        <!-- </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div class="content-holder">
-                        <h4>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+
+    <div id="footer" class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-md-4">
-                    <div class="content-holder">
-                        <h4>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore.</p>
+                <div class="col-xs-6 col-sm-4 col-md-3">
+                    <div class="address-holder">
+                        <div class="phone"><i class="fas fa-phone"></i>02178888</div>
+                        <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
+                        <div class="address">
+                            <i class="fas fa-map-marker"></i>
+                            <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-4">
-                    <div class="content-holder">
-                        <h4>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore.</p>
+                <div class="col-xs-6 col-sm-2 col-md-2">
+                    <div class="footer-menu-holder">
+                        <h4>Lembaga</h4>
+                        <ul class="footer-menu">
+                            <li><a href="about.html">Tentang Kami</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-4">
-                    <div class="content-holder">
-                        <h4>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore.</p>
+                <div class="col-xs-6 col-sm-2 col-md-3">
+                    <div class="footer-menu-holder">
+                        <h4>Layanan Kami</h4>
+                        <ul class="footer-menu">
+                            <li><a href="webhosting.html">Transaksi Bunga</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <div class="footer-menu-holder">
+                        <h4>Fasilitas</h4>
+                        <ul class="footer-menu">
+                            <li><a href="portal.html">Cara Perawatan</a></li>
+                            <li><a href="#">Peta Lokasi</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-1 col-md-1">
+                    <div class="social-menu-holder">
+                        <ul class="social-menu">
+                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="content-holder">
-                        <h4>ipsum dolor adipiscing?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="content-holder">
-                        <h4>sed do eiusmod?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="content-holder">
-                        <h4>consectetur adipiscing?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="content-holder">
-                        <h4>ipsum dolor sit amet?</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                    </div>
-                </div> -->
-                    </div>
-                </div>
-            </div>
-            <div id="footer" class="container-fluid">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-4 col-md-3">
-                            <div class="address-holder">
-                                <div class="phone"><i class="fas fa-phone"></i>02178888</div>
-                                <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
-                                <div class="address">
-                                    <i class="fas fa-map-marker"></i>
-                                    <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-2 col-md-2">
-                            <div class="footer-menu-holder">
-                                <h4>Lembaga</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="about.html">Tentang Kami</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-2 col-md-3">
-                            <div class="footer-menu-holder">
-                                <h4>Layanan Kami</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="webhosting.html">Transaksi Bunga</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-3 col-md-3">
-                            <div class="footer-menu-holder">
-                                <h4>Fasilitas</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="portal.html">Cara Perawatan</a></li>
-                                    <li><a href="#">Peta Lokasi</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-1 col-md-1">
-                            <div class="social-menu-holder">
-                                <ul class="social-menu">
-                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script src="js/jquery.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/bootstrap-slider.min.js"></script>
-            <script src="js/slick.min.js"></script>
-            <script src="js/main.js"></script>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-slider.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -61,7 +61,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="unity-link" href="temukankami.php.">
+                                                <a class="unity-link" href="temukankami.php">
                                                     <div class="unity-box">
                                                         <div class="unity-icon">
                                                             <img src="images/lokasi.png" alt="">
@@ -95,6 +95,37 @@
                                     <li class="dropdown unity-menu">
                                         <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
                                         <ul class="dropdown-menu dropdown-unity">
+
+                                            <li>
+                                                <a class="unity-link" href="dikemas.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikemas.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikemas
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengemasan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="dikirim.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikirim.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikirim
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengiriman
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
                                             <li>
                                                 <a class="unity-link" href="transaksisaya.php">
                                                     <div class="unity-box">
