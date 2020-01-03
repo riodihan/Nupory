@@ -28,9 +28,9 @@
             $_SESSION["USERNAME"]= $user;
             $_SESSION["login"]= true;
 
-                if($_SESSION['ID_STATUS'] == '03'){
+                if($id_status === '03'){
                     header("location: index.php");
-                } else {
+                } elseif($id_status !== '03') {
                     header("location: ../admin/index.php");
                 }
         }else{
