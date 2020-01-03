@@ -317,64 +317,55 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Selamat Datang, Admin (Nama Admin)</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <h1 class="h3 mb-0 text-gray-800">Tambah Bunga</h1>
           </div>
+        </div>
 
-          <!-- Content Row -->
-          <div class="row">
+        
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendapatan (Bulan ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
+          <!-- Form Tambah Bunga -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Baru</h6>
+            </div>
+            <form action="" class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="idbunga">ID Bunga</label>
+                    <input type="text" id="idbunga" class="form-control">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="namabunga">Nama Bunga</label>
+                    <input type="text" id="namabunga" class="form-control">
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pesanan masuk</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">15 Pesanan</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-box fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
+              <div class="form-group">
+                <label for="jenisbunga">Jenis Bunga</label>
+                <select name="jenisbunga" id="jenisbunga" class="form-control">
+                  <option value="jenis1">Jenis 1</option>
+                  <option value="jenis2">Jenis 2</option>
+                  <option value="jenis3">Jenis 3</option>
+                  <option value="jenis4">Jenis 4</option>
+                </select>
               </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Kritik (Bulan Ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">12 Kritik Masuk</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
+              <div class="form-group">
+                <label for="harga">Harga</label>
+                <input type="text" id="harga" class="form-control  text-right">
               </div>
-            </div>
+              <div class="form-group">
+                <label for="stok">Stok</label>
+                <input type="text" id="stok" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">Tambahkan</button>
+            </form>
           </div>
+        </div>
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

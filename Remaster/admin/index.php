@@ -82,22 +82,51 @@
         </div>
       </li>
 
-      <!-- Nav Item - Tambah / Edit Collapse Menu -->
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Tambah / Edit
+      </div>
+
+      <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCRUD" aria-expanded="true" aria-controls="collapseCRUD">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Tambah / Edit
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+          <i class="fas fa-fw fa-snowflake"></i>
+          <span>Bunga
           </span>
         </a>
-        <div id="collapseCRUD" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-snowflake text-primary"></i>
-              <span class="text-primary">Bunga</span>
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahbunga.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Karyawan
+          </span>
+        </a>
+        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
             </a>
             <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-user text-primary"></i>
-              <span class="text-primary">Karyawan</span>
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah</span>
             </a>
           </div>
         </div>
