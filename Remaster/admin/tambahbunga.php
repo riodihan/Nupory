@@ -43,7 +43,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-home"></i>
-          <span>Menu utama</span></a>
+          <span>Beranda</span></a>
       </li>
 
       <!-- Divider -->
@@ -51,7 +51,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Informasi
+        Database
       </div>
 
       <!-- Data -->
@@ -70,31 +70,14 @@
               <i class="fas fa-fw fa-snowflake text-primary"></i>
               <span class="text-primary">Bunga</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+            <a class="collapse-item" href="datatransaksi.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+            <a class="collapse-item" href="datakritik.php">
               <i class="fas fa-fw fa-comments text-primary"></i>
               <span class="text-primary">Kritik</span>
             </a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>
       </li>
@@ -103,39 +86,75 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <!-- <div class="sidebar-heading">
-        Data
-      </div> -->
+      <div class="sidebar-heading">
+        Tambah / Edit
+      </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+      <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+          <i class="fas fa-fw fa-snowflake"></i>
+          <span>Bunga
+          </span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="../user/login.php">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahbunga.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Bunga</span>
+            </a>
           </div>
         </div>
-      </li> -->
+      </li>
 
-      <!-- Nav Item - Charts -->
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li> -->
+      <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+          <i class="fas fa-fw fa-tag"></i>
+          <span>Kategori Bunga
+          </span>
+        </a>
+        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahkategori.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Kategori</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Karyawan
+          </span>
+        </a>
+        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Karyawan</span>
+            </a>
+          </div>
+        </div>
+      </li>
 
       <!-- Divider -->
-      <!-- <hr class="sidebar-divider d-none d-md-block"> -->
+      <hr class="sidebar-divider">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -313,22 +332,22 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <!-- <div class="container-fluid text-center"> -->
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Tambah Bunga</h1>
           </div>
-        </div>
+        </div> -->
 
         
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid col-md-8">
 
           <!-- Form Tambah Bunga -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Baru</h6>
+              <h6 class="m-0 font-weight-bold text-primary text-center">Data Bunga Baru</h6>
             </div>
             <form action="" class="card-body">
               <div class="row">
@@ -346,23 +365,48 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="jenisbunga">Jenis Bunga</label>
+                <label for="jenisbunga">Kategori Bunga</label>
                 <select name="jenisbunga" id="jenisbunga" class="form-control">
-                  <option value="jenis1">Jenis 1</option>
-                  <option value="jenis2">Jenis 2</option>
-                  <option value="jenis3">Jenis 3</option>
-                  <option value="jenis4">Jenis 4</option>
+                  <option value="jenis1">Kategori 1</option>
+                  <option value="jenis2">Kategori 2</option>
+                  <option value="jenis3">Kategori 3</option>
+                  <option value="jenis4">Kategori 4</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="harga">Harga</label>
-                <input type="text" id="harga" class="form-control  text-right">
+                <label for="deskripsibunga">Deskripsi Bunga</label>
+                <input type="text" id="deskripsibunga" class="form-control">
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="harga">Harga</label>
+                    <input type="text" id="harga" class="form-control text-right">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="stok">Stok</label>
+                    <input type="text" id="stok" class="form-control text-right">
+                  </div>
+                </div>
               </div>
               <div class="form-group">
-                <label for="stok">Stok</label>
-                <input type="text" id="stok" class="form-control">
+                <label for="gambarbunga">Gambar</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="gambarbunga">
+                    <label class="custom-file-label" for="gambarbunga">Pilih foto</label>
+                  </div>
+                </div>
               </div>
-              <button type="submit" class="btn btn-primary">Tambahkan</button>
+              <div class="form-group">
+                <label for="videobunga">Video</label>
+                <input type="text" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+              </div>
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary">Tambahkan</button>
+              </div>
             </form>
           </div>
         </div>
@@ -425,6 +469,14 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+
+  <!-- Nama File Muncul -->
+  <script type="application/javascript">
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+</script>
 
 </body>
 
