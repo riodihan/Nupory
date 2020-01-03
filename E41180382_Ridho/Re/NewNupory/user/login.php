@@ -1,3 +1,8 @@
+<?php 
+session_start();
+require '../config.php';
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +53,7 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
+				<form action="funtionlogin.php" class="login100-form validate-form" method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username Harus Diisi">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Masukan username">
@@ -57,7 +62,7 @@
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate="Password Harus Diisi">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Masukan password">
+						<input class="input100" type="password" name="password" placeholder="Masukan password">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -70,7 +75,7 @@
 						</div>
 					</div>
 					<div class="">
-						<button class="btn btn-primary">
+						<button name="login" class="btn btn-primary">
 							Login
 						</button>
 

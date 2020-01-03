@@ -1,3 +1,8 @@
+<?php  
+  session_start();
+  require '../config.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +13,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Selamat Datang Admin</title>
+  <title> home </title>
+  <link rel="icon" href="Karyawan.png" type="image/x-icon">
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +38,14 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
+
+        <div class="sidebar-brand-text mx-3">
+          <?php if ($_SESSION['id_status']==01){
+            echo "Admin";
+          } elseif ($_SESSION['id_status']==02) {
+            echo "Karyawan";
+          } ?> <br> Nursery Polije
+        </div>
       </a>
 
       <!-- Divider -->
@@ -67,7 +79,7 @@
               <span class="text-primary">User</span>
             </a>
             <a class="collapse-item" href="databunga.php">
-              <i class="fas fa-fw fa-snowflake text-primary"></i>
+              <i ><img src=Karyawan.png width="19"></i>
               <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="cards.html">
