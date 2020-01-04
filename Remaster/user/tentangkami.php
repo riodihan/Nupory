@@ -106,10 +106,25 @@
                                                 <a class="unity-link" href="keranjang.php">
                                                     <div class="unity-box">
                                                         <div class="unity-icon">
-                                                            <img src="images/pemesanan.png" alt="">
+                                                            <img src="images/keranjang.png" alt="">
                                                         </div>
                                                         <div class="unity-title">
                                                             Keranjang saya
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang masih dalam tahap pemesanan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="tagihan.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/pemesanan.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Tagihan Saya
                                                         </div>
                                                         <div class="unity-details">
                                                             Produk Yang masih dalam tahap pemesanan

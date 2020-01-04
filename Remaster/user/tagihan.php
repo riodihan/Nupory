@@ -100,10 +100,25 @@
                                                 <a class="unity-link" href="keranjang.php">
                                                     <div class="unity-box">
                                                         <div class="unity-icon">
-                                                            <img src="images/pemesanan.png" alt="">
+                                                            <img src="images/keranjang.png" alt="">
                                                         </div>
                                                         <div class="unity-title">
                                                             Keranjang saya
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang masih dalam tahap pemesanan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="tagihan.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/pemesanan.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Tagihan Saya
                                                         </div>
                                                         <div class="unity-details">
                                                             Produk Yang masih dalam tahap pemesanan
@@ -178,7 +193,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="page-title">Keranjang</div>
+                        <div class="page-title">Tagihan</div>
                     </div>
                 </div>
             </div>
@@ -186,73 +201,107 @@
     </div>
     <div id="page-content" class="container-fluid">
         <div class="container">
-
-            <table class="table">
-                <caption>Keranjang</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">NO</th>
-                        <th scope="col">Nama Produk</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Krisan Bulan</td>
-                        <td>20</td>
-                        <td>10.000</td>
-                        <td>200.000</td>
-                        <td><a href="#" class="badge badge-danger">Hapus</a></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">Jumlah Total</td>
-                        <td>200.000</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-            <a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+            <div id="services" class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-9">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <img src="images/anggrek bulan.jpg" alt="">
+                                </div>
+                                <div class="service-title"><a href="webhosting.html">Anggrek Bulan</a></div>
+                                <div class="service-details">
+                                    <p>Jumlah yang harus Di bayar : Rp. 200.000</p>
+                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
+                                    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Masukan Data Pembeli</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tagihan Anda</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Nama</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
-                        </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">No Handphone</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Nomor Handphone">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Alamat Pengiriman</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli/Penerima"></textarea>
-                        </div>
-                    </form>
+                    <div class="alert alert-success" role="alert">
+                        Silahkan Melakukan Pembayaran sebesar Rp. 400.000 ke rekening 201050851 BCA atas nama Idris.
+                        Lalu unggah foto pembayaran anda dibawah sebagai bukti.
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
-                </div>
+                <form>
+                    <div class="form-group container">
+                        <label for="exampleFormControlFile">Unggah foto pembayaran disini</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
 
+    <!-- modal  detail -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan Anda</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Produk</th>
+                                <th scope="col">Jumlah Beli</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Total Harga</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Anggrek Bulan</td>
+                                <td>10</td>
+                                <td>Rp. 20.000</td>
+                                <td>Rp. 200.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Anggrek Taiwan</td>
+                                <td>10</td>
+                                <td>Rp. 20.000</td>
+                                <td>Rp. 200.000</td>
+                            </tr>
+                            <tr>
+                                
+                                <td colspan="4">Jumlah Total</td>
+                                <td>Rp. 400.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="footer" class="container-fluid">
         <div class="container">
