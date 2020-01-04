@@ -21,7 +21,7 @@
 </head>
 
 <body id="page-top">
-
+  
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -124,7 +124,7 @@
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="tambahkategori.php">
+            <a class="collapse-item" href="#">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Kategori</span>
             </a>
@@ -177,6 +177,18 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+
+          <!-- Topbar Search -->
+          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form> -->
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -320,68 +332,57 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <!-- <div class="container-fluid text-center"> -->
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Selamat Datang, Admin (Nama Admin)</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Tambah Bunga</h1>
           </div>
+        </div> -->
 
-          <!-- Content Row -->
-          <div class="row">
+        
+        <!-- Begin Page Content -->
+        <div class="container-fluid col-md-8">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendapatan (Bulan ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
+          <!-- Form Tambah Bunga -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary text-center">Data Kategori Bunga Baru</h6>
+            </div>
+            <form action="" class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="idkategori">ID Kategori</label>
+                    <input type="text" id="idkategori" class="form-control">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="namakategori">Nama Kategori Bunga</label>
+                    <input type="text" id="namakategori" class="form-control">
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pesanan masuk</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">15 Pesanan</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-box fa-2x text-gray-300"></i>
-                    </div>
+              <div class="form-group">
+                <label for="deskripsikategori">Deskripsi Kategori</label>
+                <input type="text" id="deskripsikategori" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="gambarkategori">Gambar Kategori</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="gambarkategori">
+                    <label class="custom-file-label" for="gambarkategori">Pilih foto</label>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Kritik (Bulan Ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">12 Kritik Masuk</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary">Tambahkan</button>
               </div>
-            </div>
+            </form>
           </div>
+        </div>
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -441,6 +442,14 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+
+  <!-- Nama File Muncul -->
+  <script type="application/javascript">
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+</script>
 
 </body>
 
