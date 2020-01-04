@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>Cara Perawatan</title>
+    <title>Keranjang</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
@@ -178,73 +178,82 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="page-title">Cara Perawatan</div>
+                        <div class="page-title">Keranjang</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div id="page-content" class="container-fluid">
-        <div id="pricing" class="container-fluid">
-            <div class="bg-color"></div>
-            <div class="container">
+        <div class="container">
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="pricing-box pricing-unity pricing-color1">
-                            <div class="pricing-content">
-                                <div class="pricing-icon">
-                                    <img src="images/anggrek bulan.jpg" alt="">
-                                </div>
-                                <div class="pricing-title">Anggrek Bulan</div>
+            <table class="table">
+                <caption>Keranjang</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">NO</th>
+                        <th scope="col">Nama Produk</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Harga</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Krisan Bulan</td>
+                        <td>20</td>
+                        <td>10.000</td>
+                        <td>200.000</td>
+                        <td><a href="#" class="badge badge-danger">Hapus</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Jumlah Total</td>
+                        <td>200.000</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+        </div>
+    </div>
 
-                                <div class="pricing-details">
-                                    <p>Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.</p>
-                                </div>
-                                <div class="pricing-link">
-                                    <a class="ybtn" href="perawatan.php">Lihat</a>
-                                </div>
-                            </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Masukan Data Pembeli</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Nama</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="pricing-box pricing-unity pricing-color1">
-                            <div class="pricing-content">
-                                <div class="pricing-icon">
-                                    <img src="images/krisan standart.jpg" alt="">
-                                </div>
-                                <div class="pricing-title">Krisan Standart</div>
-
-                                <div class="pricing-details">
-                                    <p>Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.</p>
-                                </div>
-                                <div class="pricing-link">
-                                    <a class="ybtn" href="perawatan.php">Lihat</a>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">No Handphone</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Nomor Handphone">
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="pricing-box pricing-unity pricing-color1">
-                            <div class="pricing-content">
-                                <div class="pricing-icon">
-                                    <img src="images/anggrek taiwan.png" alt="">
-                                </div>
-                                <div class="pricing-title">Anggrek Taiwan</div>
-
-                                <div class="pricing-details">
-                                    <p>Anggrek Taiwan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.</p>
-                                </div>
-                                <div class="pricing-link">
-                                    <a class="ybtn" href="perawatan.php">Lihat</a>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Alamat Pengiriman</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli/Penerima"></textarea>
                         </div>
-                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <div id="footer" class="container-fluid">
         <div class="container">
             <div class="row">
