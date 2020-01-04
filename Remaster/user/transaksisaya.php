@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>Kategori Bunga</title>
+    <title>Transaksi saya</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
@@ -95,6 +95,67 @@
                                     <li class="dropdown unity-menu">
                                         <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
                                         <ul class="dropdown-menu dropdown-unity">
+
+                                            <li>
+                                                <a class="unity-link" href="keranjang.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/keranjang.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Keranjang saya
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang masih dalam tahap pemesanan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="tagihan.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/pemesanan.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Tagihan Saya
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang masih dalam tahap pemesanan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="dikemas.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikemas.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikemas
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengemasan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="unity-link" href="dikirim.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/dikirim.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Dikirim
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang sedang dalam pengiriman
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
                                             <li>
                                                 <a class="unity-link" href="transaksisaya.php">
                                                     <div class="unity-box">
@@ -106,21 +167,6 @@
                                                         </div>
                                                         <div class="unity-details">
                                                             Transaksi Yang pernah dilakukan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="pemesanansaya.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/pemesanan.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Pemesanan saya
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang masih dalam tahap pemesanan
                                                         </div>
                                                     </div>
                                                 </a>
@@ -147,67 +193,85 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="page-title">Kategori</div>
+                        <div class="page-title">Riwayat Transaksi</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div id="page-content" class="container-fluid">
-        <div id="pricing" class="container-fluid">
-            <div class="bg-color"></div>
-            <div class="container">
-                
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/krisan standart.jpg" alt="">
-                            </div>
-                            <div class="service-title"><a href="webhosting.html">Krisan</a></div>
-                            <div class="service-details">
-                                <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/anggrek taiwan.png" alt="">
-                            </div>
-                            <div class="service-title"><a href="#">Anggrek</a></div>
-                            <div class="service-details">
-                                <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/" alt="">
-                            </div>
-                            <div class="service-title"><a href="vpshosting.html">Kategori 3</a></div>
-                            <div class="service-details">
-                                <p>Deskripsi kategori.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/" alt="">
-                            </div>
-                            <div class="service-title"><a href="cloudhosting.html">Kategori 4</a></div>
-                            <div class="service-details">
-                                <p>Deskripsi kategori.</p>
+        <div class="container">
+            <div id="services" class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-9">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <img src="images/anggrek bulan.jpg" alt="">
+                                </div>
+                                <div class="service-title"><a href="webhosting.html">Anggrek Bulan</a></div>
+                                <div class="service-details">
+                                    <p>Barang telah diterima oleh yang bersangkutan</p>
+                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    <!-- modal  detail -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan Anda</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Produk</th>
+                                <th scope="col">Jumlah Beli</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Total Harga</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Anggrek Bulan</td>
+                                <td>10</td>
+                                <td>Rp. 20.000</td>
+                                <td>Rp. 200.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Anggrek Taiwan</td>
+                                <td>10</td>
+                                <td>Rp. 20.000</td>
+                                <td>Rp. 200.000</td>
+                            </tr>
+                            <tr>
+                                
+                                <td colspan="4">Jumlah Total</td>
+                                <td>Rp. 400.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="footer" class="container-fluid">
         <div class="container">
             <div class="row">
