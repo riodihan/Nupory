@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>Kategori Bunga</title>
+    <title>Bunga</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
@@ -142,12 +142,13 @@
                     </div>
                 </div>
             </div>
+
         </nav>
         <div id="page-head" class="container-fluid inner-page">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="page-title">Kategori</div>
+                        <div class="page-title">Bunga ....</div>
                     </div>
                 </div>
             </div>
@@ -157,54 +158,27 @@
         <div id="pricing" class="container-fluid">
             <div class="bg-color"></div>
             <div class="container">
-                
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/krisan standart.jpg" alt="">
-                            </div>
-                            <div class="service-title"><a href="bunga.php">Krisan</a></div>
-                            <div class="service-details">
-                                <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/anggrek taiwan.png" alt="">
-                            </div>
-                            <div class="service-title"><a href="bunga.php">Anggrek</a></div>
-                            <div class="service-details">
-                                <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/" alt="">
-                            </div>
-                            <div class="service-title"><a href="bunga.php">Kategori 3</a></div>
-                            <div class="service-details">
-                                <p>Deskripsi kategori.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/" alt="">
-                            </div>
-                            <div class="service-title"><a href="bunga.php">Kategori 4</a></div>
-                            <div class="service-details">
-                                <p>Deskripsi kategori.</p>
-                            </div>
+
+                <div id="articles" class="container-fluid">
+                    <div class="">
+                        <div class="row">
+                            <a href="">
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="article-summary">
+                                        <div class="article-img"><img src="images/anggrek bulan.jpg" alt="" /></div>
+                                        <div class="article-details">
+                                            <div class="article-title"><a href="">anggrek bulan</a></div>
+                                            <div class="article-title"><a href="">Rp. 15.000</a></div>
+                                            <div class="article-text">
+                                                Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
