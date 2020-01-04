@@ -63,7 +63,11 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
+<<<<<<< HEAD
         Informasi
+=======
+        Database
+>>>>>>> 41c4fc52ea3621cecc909ed46aef40bde030888b
       </div>
 
       <!-- Data -->
@@ -94,6 +98,7 @@
         </div>
       </li>
 
+<<<<<<< HEAD
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -107,6 +112,75 @@
             <a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>
+=======
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Tambah / Edit
+      </div>
+
+      <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+          <i class="fas fa-fw fa-snowflake"></i>
+          <span>Bunga
+          </span>
+        </a>
+        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahbunga.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Bunga</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+          <i class="fas fa-fw fa-tag"></i>
+          <span>Kategori Bunga
+          </span>
+        </a>
+        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahkategori.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Kategori</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Karyawan
+          </span>
+        </a>
+        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Karyawan</span>
+            </a>
+>>>>>>> 41c4fc52ea3621cecc909ed46aef40bde030888b
           </div>
         </div>
       </li>

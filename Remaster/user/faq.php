@@ -97,6 +97,21 @@
                                         <ul class="dropdown-menu dropdown-unity">
 
                                             <li>
+                                                <a class="unity-link" href="keranjang.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/pemesanan.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Keranjang saya
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Produk Yang masih dalam tahap pemesanan
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
                                                 <a class="unity-link" href="dikemas.php">
                                                     <div class="unity-box">
                                                         <div class="unity-icon">
@@ -137,21 +152,6 @@
                                                         </div>
                                                         <div class="unity-details">
                                                             Transaksi Yang pernah dilakukan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="pemesanansaya.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/pemesanan.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Pemesanan saya
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang masih dalam tahap pemesanan
                                                         </div>
                                                     </div>
                                                 </a>
