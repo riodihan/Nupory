@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data User</title>
+  <title>Data Transaksi</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,14 +36,14 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</sup></div>
+        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-home"></i>
           <span>Beranda</span></a>
@@ -54,10 +54,10 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Pilihan Menu
+        Database
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Data -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -85,22 +85,72 @@
         </div>
       </li>
 
-      <!-- Nav Item - Tambah / Edit Collapse Menu -->
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Tambah / Edit
+      </div>
+
+      <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCRUD" aria-expanded="true" aria-controls="collapseCRUD">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Tambah / Edit
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+          <i class="fas fa-fw fa-snowflake"></i>
+          <span>Bunga
           </span>
         </a>
-        <div id="collapseCRUD" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-snowflake text-primary"></i>
-              <span class="text-primary">Bunga</span>
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahbunga.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Bunga</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+          <i class="fas fa-fw fa-tag"></i>
+          <span>Kategori Bunga
+          </span>
+        </a>
+        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahkategori.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Kategori</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Karyawan
+          </span>
+        </a>
+        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
             </a>
             <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-user text-primary"></i>
-              <span class="text-primary">Karyawan</span>
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Karyawan</span>
             </a>
           </div>
         </div>
@@ -324,6 +374,7 @@
                   <thead>
                     <tr>
                       <th>Id Transaksi</th>
+                      <th>Tanggal Transaksi</th>
                       <th>Pembayaran</th>
                       <th>Nama Pembeli</th>
                       <th>Bunga</th>
@@ -335,6 +386,7 @@
                   <tfoot>
                     <tr>
                       <th>Id Transaksi</th>
+                      <th>Tanggal Transaksi</th>
                       <th>Pembayaran</th>
                       <th>Nama Pembeli</th>
                       <th>Bunga</th>
@@ -347,6 +399,7 @@
                     <tr>
                       <td>TR0001</td>
                       <td>Transfer</td>
+                      <td>01/01/2020</td>
                       <td>Ridho</td>
                       <td>Krisan Putih</td>
                       <td>20 Ikat</td>
@@ -355,6 +408,7 @@
                     </tr>
                     <tr>
                       <td>TR0002</td>
+                      <td>01/01/2020</td>
                       <td>Transfer</td>
                       <td>Idris</td>
                       <td>Krisan Standart</td>
@@ -364,6 +418,7 @@
                     </tr>
                     <tr>
                       <td>TR0003</td>
+                      <td>02/01/2020</td>
                       <td>Transfer</td>
                       <td>Sayyid</td>
                       <td>Anggrek Bulan Lokal</td>
@@ -373,6 +428,7 @@
                     </tr>
                     <tr>
                       <td>TR0004</td>
+                      <td>03/01/2020</td>
                       <td>Transfer</td>
                       <td>Syifa</td>
                       <td>Anggrek Bulan Taiwan</td>
@@ -382,6 +438,7 @@
                     </tr>
                     <tr>
                       <td>TR0005</td>
+                      <td>03/01/2020</td>
                       <td>Transfer</td>
                       <td>Andre</td>
                       <td>Krisan Kuning</td>
@@ -391,6 +448,7 @@
                     </tr>
                   </tbody>
                 </table>
+                <!-- <a class="btn btn-primary" onclick="window.print();"><i class="fa fa-print"></i> Print Halaman Ini</a> -->
               </div>
             </div>
           </div>
