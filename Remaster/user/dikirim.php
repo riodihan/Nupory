@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>Nursery Polije</title>
+    <title>Dikirim</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
@@ -21,7 +21,9 @@
 </head>
 
 <body>
-    <div id="header-holder" class="main-header bg">
+
+    <div id="header-holder" class="bg">
+        <div class=""></div>
         <nav id="nav" class="navbar navbar-default navbar-full">
             <div class="container-fluid">
                 <div class="container container-nav">
@@ -191,109 +193,84 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="page-title">Kebun Nursery Polije</div>
+                        <div class="page-title">Barang yang sedang dalam pengiriman</div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-    <div id="domain-quick-pricing" class="container-fluid">
+    <div id="page-content" class="container-fluid">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-8">
-                    <div class="domain-box d-color1">
-                        <!-- <div class="price">Nursery Polije</div> -->
-                        <div class="details">Unit Produksi Hortikultura Rembangan merupakan salah satu unit produksi
-                            yang yang dimiliki oleh Politeknik Negeri Jember, merupakan hasil kerjasama antara
-                            Politeknik Negeri Jember dengan Pemerintah Kabupaten Jember yang didirikan pada tahun 2004.
-                            Unit ini didirikan dengan tujuan untuk meningkatkan proses pembelajaran mahasiswa Politeknik
-                            Negeri Jember khususnya bidang kewirausahaan hortikultura.</div>
-                        <div class="btn-holder">
-                            <a href="tentangkami.php" class="ybtn ybtn-white ybtn-shadow">Baca Selengkapnya</a>
-                            <a href="daftar.php" class="ybtn ybtn-header-color">Daftar Akun</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div id="services" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row-title">Produk Kami</div>
-                    <div class="row-subtitle">Aneka Bunga Hias</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div id="articles" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <a href="">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="article-summary">
-                            <div class="article-img"><img src="images/anggrek bulan.jpg" alt="" /></div>
-                            <div class="article-details">
-                                <div class="article-title"><a href="">anggrek bulan</a></div>
-                                <div class="article-title"><a href="">Rp. 15.000</a></div>
-                                <div class="article-text">
-                                    Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.
+            <div id="services" class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-9">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <img src="images/anggrek bulan.jpg" alt="">
+                                </div>
+                                <div class="service-title"><a href="webhosting.html">Anggrek Bulan</a></div>
+                                <div class="service-details">
+                                    <p>Barang Sedang dikirim oleh karyawan kami</p>
+                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
-
-    <div id="services" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row-title">Kategori Bunga</div>
-                    <div class="row-subtitle">Cari dengan mudah.</div>
+    <!-- modal  detail -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan Anda</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <div class="service-box">
-                    <div class="service-icon">
-                        <img src="images/krisan standart.jpg" alt="">
-                    </div>
-                    <div class="service-title"><a href="webhosting.html">Krisan</a></div>
-                    <div class="service-details">
-                        <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
-                    </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Produk</th>
+                                <th scope="col">Jumlah Beli</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Total Harga</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Anggrek Bulan</td>
+                                <td>10</td>
+                                <td>Rp. 20.000</td>
+                                <td>Rp. 200.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Anggrek Taiwan</td>
+                                <td>10</td>
+                                <td>Rp. 20.000</td>
+                                <td>Rp. 200.000</td>
+                            </tr>
+                            <tr>
+                                
+                                <td colspan="4">Jumlah Total</td>
+                                <td>Rp. 400.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <div class="service-box">
-                    <div class="service-icon">
-                        <img src="images/anggrek taiwan.png" alt="">
-                    </div>
-                    <div class="service-title"><a href="#">Anggrek</a></div>
-                    <div class="service-details">
-                        <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-3" style="float: right;">
-            <div class="buttons-holder">
-                <a href="kategori.php" class="ybtn ybtn-accent-color">Kategori lainnya</a>
             </div>
         </div>
     </div>
-
 
     <div id="footer" class="container-fluid">
         <div class="container">

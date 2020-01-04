@@ -62,13 +62,7 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-<<<<<<< HEAD
-        Informasi
-=======
-        Database
->>>>>>> 41c4fc52ea3621cecc909ed46aef40bde030888b
-      </div>
+      <div class="sidebar-heading"></div>
 
       <!-- Data -->
       <li class="nav-item">
