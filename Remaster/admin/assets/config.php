@@ -3,19 +3,30 @@ $koneksi = mysqli_connect("localhost","root","","poltek_nursery");
 
 function tambahbunga($data){
     global $koneksi;
-    $idbunga = htmlspecialchars($data["ID_BUNGA"]);
-    $namabunga = htmlspecialchars($data["NAMA_BUNGA"]);
-    $harga = htmlspecialchars($data["HARGA"]);
-    $stok = htmlspecialchars($data["STOK"]);
-    $fotobunga = htmlspecialchars($data["FOTO_BUNGA"]);
-    $videobunga = htmlspecialchars($data["VIDEO_BUNGA"]);
-    $caraperawatan = htmlspecialchars($data["CARA_PERAWATAN"]);
-    $deskripsibunga = htmlspecialchars($data["DESKRIPSI"]);
+    $idBunga = htmlspecialchars($data["idBunga"]);
+    $namaBunga = htmlspecialchars($data["namaBunga"]);
+    $kategoriBunga = htmlspecialchars($data["kategoriBunga"]);
+    $hargaBunga = htmlspecialchars($data["hargaBunga"]);
+    $stokBunga = htmlspecialchars($data["stokBunga"]);
+    $fotoBunga = htmlspecialchars($data["fotoBunga"]);
+    $videoBunga = htmlspecialchars($data["videoBunga"]);
+    $caraPerawatan = htmlspecialchars($data["caraPerawatan"]);
+    $deskripsiBunga = htmlspecialchars($data["deskripsiBunga"]);
 
     
-    $qu = mysqli_query($koneksi, "INSERT INTO bunga VALUES ('$idbunga', '$namabunga', '$harga', '$stok', '$fotobunga', '$videobunga', '$caraperawatan', '$deskripsibunga')");
+    $q_bung = mysqli_query($koneksi, "INSERT INTO bunga VALUES ('$idBunga', '$kategoriBunga', '$namaBunga', '$hargaBunga', '$stokBunga', '$fotoBunga', '$videoBunga', '$caraPerawatan', '$deskripsiBunga')") or die(mysqli_error($koneksi));
     // echo "INSERT INTO bunga VALUES ('$idbunga', '$namabunga', '$harga', '$stok', 'FOTO_BUNGA', '$videobunga', '$caraperawatan', '$deskripsibunga')";
-    return $qu;
+    return $q_bung;
+}
 
+function tambahkategori($data){
+    global $koneksi;
+    $idKategori = htmlspecialchars($data["idKategori"]);
+    $namaKategori = htmlspecialchars($data["namaKategori"]);
+    $deskripsiKategori = htmlspecialchars($data["deskripsiKategori"]);
+    $fotoKategori = htmlspecialchars($data["fotoKategori"]);
+
+    $q_kat = mysqli_query ($koneksi, "INSERT INTO kategori VALUES ('$idKategori', '$namaKategori', '$deskripsiKategori', '$fotoKategori')") or die(mysqli_error($koneksi));
+    return $q_kat;
 }
 ?>

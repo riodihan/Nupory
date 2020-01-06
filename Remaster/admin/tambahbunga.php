@@ -1,6 +1,8 @@
 <?php
   require 'assets/config.php';
 
+  $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
+
   if(isset($_POST["tambahkan"]) ){
     if (tambahbunga($_POST) > 0){
       echo "<script>
@@ -13,9 +15,6 @@
       echo mysqli_error();
     }
   }
-
-  
-
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +88,10 @@
             <a class="collapse-item" href="databunga.php">
               <i class="fas fa-fw fa-snowflake text-primary"></i>
               <span class="text-primary">Bunga</span>
+            </a>
+            <a class="collapse-item" href="datakategori.php">
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Kategori</span>
             </a>
             <a class="collapse-item" href="datatransaksi.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
@@ -374,40 +377,39 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="idbunga">ID Bunga</label>
-                    <input type="text" name="ID_BUNGA" id="idbunga" class="form-control">
+                    <input type="text" name="idBunga" id="idbunga" class="form-control">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="NAMA_BUNGA" id="namabunga" class="form-control">
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control">
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="jenisbunga">Kategori Bunga</label>
-                <select name="JENIS_BUNGA" id="jenisbunga" class="form-control">
-                  <option value="jenis1">Kategori 1</option>
-                  <option value="jenis2">Kategori 2</option>
-                  <option value="jenis3">Kategori 3</option>
-                  <option value="jenis4">Kategori 4</option>
+                <label for="kategoribunga">Kategori Bunga</label>
+                <select name="kategoriBunga" id="kategoribunga" class="form-control">
+                <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
+                  <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                <?php endwhile;?>
                 </select>
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>
-                <input type="text" name="DESKRIPSI" id="deskripsibunga" class="form-control">
+                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
               </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
                     <label for="harga">Harga</label>
-                    <input type="text" name="HARGA" id="harga" class="form-control text-right">
+                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="stok">Stok</label>
-                    <input type="text" name="STOK" id="stok" class="form-control text-right">
+                    <input type="text" name="stokBunga" id="stok" class="form-control text-right">
                   </div>
                 </div>
               </div>
@@ -415,18 +417,18 @@
                 <label for="fotobunga">Foto Bunga</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" name="FOTO_BUNGA" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga">
+                    <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga">
                     <label class="custom-file-label" for="fotobunga">Pilih foto</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="videobunga">Video</label>
-                <input type="text" name="VIDEO_BUNGA" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
               </div>
               <div class="form-group">
                 <label for="caraperawatan">Cara Perawatan</label>
-                <input type="text" name="CARA_PERAWATAN" id="caraperawatan" class="form-control">
+                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
               </div>
               <div class="col text-center">
                 <button type="submit" name="tambahkan" class="btn btn-primary">Tambahkan</button>

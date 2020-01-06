@@ -1,3 +1,20 @@
+<?php
+  require 'assets/config.php';
+
+  if(isset($_POST["tambahkan"]) ){
+    if (tambahkategori($_POST) > 0){
+      echo "<script>
+              alert('Data Berhasil Ditambahkan');
+              document.location.href = '';
+            </script>";
+    }
+    else {
+      echo "<script> alert('Gagal Menambahkan Data')</script>";
+      echo mysqli_error();
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +86,10 @@
             <a class="collapse-item" href="databunga.php">
               <i class="fas fa-fw fa-snowflake text-primary"></i>
               <span class="text-primary">Bunga</span>
+            </a>
+            <a class="collapse-item" href="datakategori.php">
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Kategori</span>
             </a>
             <a class="collapse-item" href="datatransaksi.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
@@ -349,36 +370,36 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Kategori Bunga Baru</h6>
             </div>
-            <form action="" class="card-body">
+            <form action="" method="POST" class="card-body">
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="idkategori">ID Kategori</label>
-                    <input type="text" id="idkategori" class="form-control">
+                    <input type="text" name="idKategori" id="idkategori" class="form-control">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="namakategori">Nama Kategori Bunga</label>
-                    <input type="text" id="namakategori" class="form-control">
+                    <input type="text" name="namaKategori" id="namakategori" class="form-control">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="deskripsikategori">Deskripsi Kategori</label>
-                <input type="text" id="deskripsikategori" class="form-control">
+                <input type="text" name="deskripsiKategori" id="deskripsikategori" class="form-control">
               </div>
               <div class="form-group">
                 <label for="gambarkategori">Gambar Kategori</label>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="gambarkategori">
-                    <label class="custom-file-label" for="gambarkategori">Pilih foto</label>
+                    <label class="custom-file-label" name="fotoKategori" for="gambarkategori">Pilih foto</label>
                   </div>
                 </div>
               </div>
               <div class="col text-center">
-                <button type="submit" class="btn btn-primary">Tambahkan</button>
+                <button type="submit" name="tambahkan" class="btn btn-primary">Tambahkan</button>
               </div>
             </form>
           </div>

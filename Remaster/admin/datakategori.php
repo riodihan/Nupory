@@ -1,3 +1,9 @@
+<?php
+  require 'assets/config.php';
+
+  $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data Kritik</title>
+  <title>Data Kategori</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -370,57 +376,41 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Kritik User</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Id Kritik</th>
-                      <th>Nama User</th>
-                      <th>Isi Kritik</th>
+                      <th>Id Kategori</th>
+                      <th>Nama Kategori</th>
+                      <th>Deskripsi Kategori</th>
+                      <th>Foto Dekripsi</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Id Kritik</th>
-                      <th>Nama User</th>
-                      <th>Isi Kritik</th>
+                      <th>Id Kategori</th>
+                      <th>Nama Kategori</th>
+                      <th>Deskripsi Kategori</th>
+                      <th>Foto Dekripsi</th>
                     </tr>
                   </tfoot>
                   <tbody>
+                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <td>KR0001</td>
-                      <td>Ridho</td>
-                      <td>Dengan adanya web ini, kini saya jadi mudah untuk melakukan order bunga. Terimakasih.</td>
+                      <td><?php echo $row["ID_KATEGORI"]?></td>
+                      <td><?php echo $row["NAMA_KATEGORI"]?></td>
+                      <td><?php echo $row["DESKRIPSI"]?></td>
+                      <td><?php echo $row["FOTO_KATEGORI"]?></td>
                     </tr>
-                    <tr>
-                      <td>KR0002</td>
-                      <td>Idris</td>
-                      <td>Lumayan terbantu, daripada yang biasanya keluar rumah, sekarang dirumah saja sudah bisa.</td>
-                    </tr>
-                    <tr>
-                      <td>KR0003</td>
-                      <td>Sayyid</td>
-                      <td>Masih bingung dengan cara order di website ini, tidak ada petunjuk.</td>
-                    </tr>
-                    <tr>
-                      <td>KR0004</td>
-                      <td>Syifa</td>
-                      <td>Hmm, tampilannya suka, cerah kyk muka dia.</td>
-                    </tr>
-                    <tr>
-                      <td>KR0005</td>
-                      <td>Andre</td>
-                      <td>Sayang sekali hanya menerima orderan lokal, tidak antar kota. :(</td>
-                    </tr>
+                    <?php endwhile;?>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 

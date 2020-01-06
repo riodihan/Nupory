@@ -70,6 +70,10 @@
               <i class="fas fa-fw fa-snowflake text-primary"></i>
               <span class="text-primary">Bunga</span>
             </a>
+            <a class="collapse-item" href="datakategori.php">
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Kategori</span>
+            </a>
             <a class="collapse-item" href="cards.html">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
