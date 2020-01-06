@@ -9,7 +9,7 @@
             </script>";
     }
     else {
-      // echo "<script> alert('Gagal Menambahkan Data')</script>";
+      echo "<script> alert('Gagal Menambahkan Data')</script>";
       echo mysqli_error();
     }
   }

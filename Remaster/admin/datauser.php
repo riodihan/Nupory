@@ -1,5 +1,5 @@
 <?php
-  require '../assets/config.php';
+  require 'assets/config.php';
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM user");
 ?>
@@ -398,8 +398,8 @@
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <td><?php echo $row["ID_USER"]?></td>
                       <td><?php echo $row["NAMA_USER"]?></td>
+                      <td><?php echo $row["ID_STATUS"]?></td>
                       <td><?php echo $row["ALAMAT"]?></td>
                       <td><?php echo $row["NO_TELEPON"]?></td>
                       <td><?php echo $row["EMAIL"]?></td>

@@ -1,5 +1,5 @@
 <?php
-  require '../assets/config.php';
+  require 'assets/config.php';
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
 ?>
@@ -380,6 +380,7 @@
                   <thead>
                     <tr>
                       <th>Id Bunga</th>
+                      <th>Id Kategori</th>
                       <th>Nama Bunga</th>
                       <th>Harga</th>
                       <th>Stok</th>
@@ -392,6 +393,7 @@
                   <tfoot>
                     <tr>
                       <th>Id Bunga</th>
+                      <th>Kategori</th>
                       <th>Nama Bunga</th>
                       <th>Harga</th>
                       <th>Stok</th>
@@ -405,6 +407,7 @@
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
                       <td><?php echo $row["ID_BUNGA"]?></td>
+                      <td><?php echo $row["ID_KATEGORI"]?></td>
                       <td><?php echo $row["NAMA_BUNGA"]?></td>
                       <td class="text-right"><?php echo $row["HARGA"]?></td>
                       <td class="text-center"><?php echo $row["STOK"]?></td>

@@ -1,8 +1,3 @@
-<?php  
-  session_start();
-  require '../assets/config.php';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,14 +33,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-
-        <div class="sidebar-brand-text mx-3">
-          <?php if ($_SESSION['id_status']==01){
-            echo "Admin";
-          } elseif ($_SESSION['id_status']==02) {
-            echo "Karyawan";
-          } ?> <br> Nursery Polije
-        </div>
+        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
