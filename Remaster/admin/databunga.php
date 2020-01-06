@@ -1,3 +1,9 @@
+<?php
+  require '../assets/config.php';
+
+  $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -373,73 +379,41 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>Id Bunga</th>
                       <th>Nama Bunga</th>
-                      <th>Jenis Bunga</th>
                       <th>Harga</th>
                       <th>Stok</th>
                       <th>Gambar</th>
                       <th>Video</th>
+                      <th>Cara Perawatan</th>
+                      <th>Deskripsi</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
+                      <th>Id Bunga</th>
                       <th>Nama Bunga</th>
-                      <th>Jenis Bunga</th>
                       <th>Harga</th>
                       <th>Stok</th>
                       <th>Gambar</th>
                       <th>Video</th>
+                      <th>Cara Perawatan</th>
+                      <th>Deskripsi</th>
                     </tr>
                   </tfoot>
                   <tbody>
+                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <td>Krisan Standart</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 1.500</td>
-                      <td class="text-center">100</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
+                      <td><?php echo $row["ID_BUNGA"]?></td>
+                      <td><?php echo $row["NAMA_BUNGA"]?></td>
+                      <td class="text-right"><?php echo $row["HARGA"]?></td>
+                      <td class="text-center"><?php echo $row["STOK"]?></td>
+                      <td><?php echo $row["FOTO_BUNGA"]?></td>
+                      <td><?php echo $row["VIDEO_BUNGA"]?></td>
+                      <td><?php echo $row["CARA_PERAWATAN"]?></td>
+                      <td><?php echo $row["DESKRIPSI"]?></td>
                     </tr>
-                    <tr>
-                      <td>Krisan Putih</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 2.000</td>
-                      <td class="text-center">150</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
-                    <tr>
-                      <td>Krisan Kuning</td>
-                      <td>Krisan</td>
-                      <td class="text-right">Rp. 2.500</td>
-                      <td class="text-center">80</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
-                    <tr>
-                      <td>Anggrek Standart</td>
-                      <td>Anggrek</td>
-                      <td class="text-right">Rp. 100.000</td>
-                      <td class="text-center">15</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
-                    <tr>
-                      <td>Anggrek Bulan Lokal</td>
-                      <td>Anggrek</td>
-                      <td class="text-right">Rp. 130.000</td>
-                      <td class="text-center">10</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
-                    <tr>
-                      <td>Anggrek Bulan Taiwan</td>
-                      <td>Anggrek</td>
-                      <td class="text-right">Rp. 150.000</td>
-                      <td class="text-center">10</td>
-                      <td>Gambar Bunga</td>
-                      <td>Link Video</td>
-                    </tr>
+                    <?php endwhile;?>
                   </tbody>
                 </table>
               </div>

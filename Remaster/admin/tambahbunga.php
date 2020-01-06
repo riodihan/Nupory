@@ -1,3 +1,23 @@
+<?php
+  require 'assets/config.php';
+
+  if(isset($_POST["tambahkan"]) ){
+    if (tambahbunga($_POST) > 0){
+      echo "<script>
+              alert('Data Berhasil Ditambahkan');
+              document.location.href = '';
+            </script>";
+    }
+    else {
+      // echo "<script> alert('Gagal Menambahkan Data')</script>";
+      echo mysqli_error();
+    }
+  }
+
+  
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -349,24 +369,24 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Bunga Baru</h6>
             </div>
-            <form action="" class="card-body">
+            <form action="" method="POST" class="card-body">
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="idbunga">ID Bunga</label>
-                    <input type="text" id="idbunga" class="form-control">
+                    <input type="text" name="ID_BUNGA" id="idbunga" class="form-control">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="namabunga">Nama Bunga</label>
-                    <input type="text" id="namabunga" class="form-control">
+                    <input type="text" name="NAMA_BUNGA" id="namabunga" class="form-control">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="jenisbunga">Kategori Bunga</label>
-                <select name="jenisbunga" id="jenisbunga" class="form-control">
+                <select name="JENIS_BUNGA" id="jenisbunga" class="form-control">
                   <option value="jenis1">Kategori 1</option>
                   <option value="jenis2">Kategori 2</option>
                   <option value="jenis3">Kategori 3</option>
@@ -375,37 +395,41 @@
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>
-                <input type="text" id="deskripsibunga" class="form-control">
+                <input type="text" name="DESKRIPSI" id="deskripsibunga" class="form-control">
               </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
                     <label for="harga">Harga</label>
-                    <input type="text" id="harga" class="form-control text-right">
+                    <input type="text" name="HARGA" id="harga" class="form-control text-right">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="stok">Stok</label>
-                    <input type="text" id="stok" class="form-control text-right">
+                    <input type="text" name="STOK" id="stok" class="form-control text-right">
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="gambarbunga">Gambar</label>
+                <label for="fotobunga">Foto Bunga</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="gambarbunga">
-                    <label class="custom-file-label" for="gambarbunga">Pilih foto</label>
+                    <input type="file" name="FOTO_BUNGA" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga">
+                    <label class="custom-file-label" for="fotobunga">Pilih foto</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="videobunga">Video</label>
-                <input type="text" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+                <input type="text" name="VIDEO_BUNGA" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+              </div>
+              <div class="form-group">
+                <label for="caraperawatan">Cara Perawatan</label>
+                <input type="text" name="CARA_PERAWATAN" id="caraperawatan" class="form-control">
               </div>
               <div class="col text-center">
-                <button type="submit" class="btn btn-primary">Tambahkan</button>
+                <button type="submit" name="tambahkan" class="btn btn-primary">Tambahkan</button>
               </div>
             </form>
           </div>

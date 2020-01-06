@@ -1,3 +1,9 @@
+<?php
+  require '../assets/config.php';
+
+  $hasil = mysqli_query ($koneksi, "SELECT * FROM user");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -390,55 +396,15 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <td>Indah</td>
-                      <td>Administrator</td>
-                      <td>Jember</td>
-                      <td>085746441467</td>
-                      <td>indah@gmail.com</td>
+                      <td><?php echo $row["ID_USER"]?></td>
+                      <td><?php echo $row["NAMA_USER"]?></td>
+                      <td><?php echo $row["ALAMAT"]?></td>
+                      <td><?php echo $row["NO_TELEPON"]?></td>
+                      <td><?php echo $row["EMAIL"]?></td>
                     </tr>
-                    <tr>
-                      <td>Dimas</td>
-                      <td>Karyawan</td>
-                      <td>Jember</td>
-                      <td>081188004455</td>
-                      <td>Dimas@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td>Idirs</td>
-                      <td>User</td>
-                      <td>Probolinggo</td>
-                      <td>08123758964</td>
-                      <td>Idris@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td>Sayyid</td>
-                      <td>User</td>
-                      <td>Probolinggo</td>
-                      <td>081475326985</td>
-                      <td>sayyid@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td>Ridho</td>
-                      <td>User</td>
-                      <td>Tuban</td>
-                      <td>081554400881</td>
-                      <td>ridho@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td>Syifa</td>
-                      <td>User</td>
-                      <td>Madiun</td>
-                      <td>085746145411</td>
-                      <td>syifa@yahoo.com</td>
-                    </tr>
-                    <tr>
-                      <td>Andre</td>
-                      <td>User</td>
-                      <td>Sumenep</td>
-                      <td>08145525933</td>
-                      <td>andre@gmail.com</td>
-                    </tr>
+                    <?php endwhile;?>
                   </tbody>
                 </table>
               </div>
