@@ -35,5 +35,66 @@ function pendaftaran($data)
     return $qu;
 }
 
+// // ubah password 
+
+function ubahpassword($ubahpass)
+{
+    global $koneksi;
+    $username = htmlspecialchars($ubahpass["username"]);
+    $passwordlama = htmlspecialchars($ubahpass["passwordlama"]);
+    $passwordlama1 = htmlspecialchars($ubahpass["passwordlama1"]);
+    $password = htmlspecialchars($ubahpass["passwordbaru"]);
+    $password1 = htmlspecialchars($ubahpass["passwordbaru1"]);
+
+    //cek password lama
+    if ($passwordlama !== $passwordlama1) {
+        echo "<script>
+                alert('password Lama salah');
+            </script>";
+
+        return false;
+    }
+
+
+    //cek konfirmasi password
+    if ($password !== $password1) {
+        echo "<script>
+                    alert('konfirmasi password salah');
+                </script>";
+
+        return false;
+    }
+
+    $qu = mysqli_query($koneksi, "UPDATE user SET 
+                
+                PASSWORD = '$password1' 
+                WHERE USERNAME = '$username'");
+    return $qu;
+}
+
+
+// // ubah biodata 
+
+function ubahbiodata($ubahbio)
+{
+    global $koneksi;
+    $username = htmlspecialchars($ubahbio["username"]);
+    $nama = htmlspecialchars($ubahbio["nama"]);
+    $email = htmlspecialchars($ubahbio["email"]);
+    $alamat = htmlspecialchars($ubahbio["alamat"]);
+    $nohp = htmlspecialchars($ubahbio["nohp"]);
+
+
+    $qu = mysqli_query($koneksi, "UPDATE user SET 
+                
+                NAMA_USER = '$nama',
+                EMAIL = '$email',
+                ALAMAT = '$alamat',
+                NO_TELEPON = '$nohp'
+
+                WHERE USERNAME = '$username'");
+    return $qu;
+}
+
 
 ?>
