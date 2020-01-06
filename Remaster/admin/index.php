@@ -1,6 +1,6 @@
 <?php  
   session_start();
-  require '../config.php';
+  require '../assets/config.php';
 
 ?>
 <!DOCTYPE html>

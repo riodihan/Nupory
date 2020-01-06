@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'assets/config.php';
+require '../assets/config.php';
 
 // jika sudah ada session akan dimasukan ke index secara otomatis
 
