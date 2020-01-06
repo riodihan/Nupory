@@ -1,30 +1,32 @@
-<?php 
+<?php
 session_start();
 require 'assets/config.php';
 
+// jika sudah ada session akan dimasukan ke index secara otomatis
 
-if(isset($_POST["login"])){
+if(isset($_SESSION["login"])){
+	header("location: index.php");
+}
+
+
+if (isset($_POST["login"])) {
 	$iduser = $_POST["iduser"];
 	$password = $_POST["password"];
-	$login = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' AND password ='$password'");
+	$login = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$iduser' AND password ='$password'");
 	$row = mysqli_fetch_array($login);
-	$user = $row ['USERNAME'];
-	$pass = $row ['password'];
-	$id_status = $row ['ID_STATUS'];
-	$id_user = $row ['ID_USER'];
-	if(mysqli_num_rows($login) === 1) {
-		$_SESSION["id_status"]= $id_status;
-		$_SESSION["id_user"]= $id_user;
-		$_SESSION["USERNAME"]= $user;
-		$_SESSION["login"]= true;
-		header("location: index.php");}
-		
-		else{
-			header("location: login.php?gagal");
-		}
-	
+	$iduser = $row['ID_USER'];
+	$pass = $row['PASSWORD'];
+	$idstatus = $row['ID_STATUS'];
+	if (mysqli_num_rows($login) === 1) {
+		$_SESSION["idstatus"] = $idstatus;
+		$_SESSION["iduser"] = $iduser;
+		$_SESSION["login"] = true;
+		header("location: index.php");
+	} else {
+		header("location: login.php?gagal");
+	}
 }
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,7 +77,7 @@ if(isset($_POST["login"])){
 					</span>
 				</div>
 
-				<form action="funtionlogin.php  ?>" class="login100-form validate-form">
+				<form method="POST" class="login100-form validate-form">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username Harus Diisi">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="iduser" placeholder="Masukan username">
@@ -97,9 +99,13 @@ if(isset($_POST["login"])){
 						</div>
 					</div>
 					<div class="">
-						<button class="btn btn-primary">
+						<button class="btn btn-primary" type="submit" name="login">
 							Login
 						</button>
+
+						<?php if(isset($_GET["gagal"])){?>
+						<h5 style="color: red;">Username atau password salah</h5>
+						<?php }?>
 
 					</div>
 					<div class="flex-sb-m w-full p-b-30">
