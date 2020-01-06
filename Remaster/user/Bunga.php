@@ -154,90 +154,66 @@
             </div>
         </div>
     </div>
-    <div id="page-content" class="container-fluid">
-        <div id="pricing" class="container-fluid">
-            <div class="bg-color"></div>
-            <div class="container">
+    <div class="container-fluid">
 
-                <div id="articles" class="container-fluid">
-                    <div class="">
-                        <div class="row">
-                            <a href="">
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="article-summary">
-                                        <div class="article-img"><img src="images/anggrek bulan.jpg" alt="" /></div>
-                                        <div class="article-details">
-                                            <div class="article-title"><a href="">anggrek bulan</a></div>
-                                            <div class="article-title"><a href="">Rp. 15.000</a></div>
-                                            <div class="article-text">
-                                                Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+    </div>
+        
+        <div id="footer" class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="address-holder">
+                            <div class="phone"><i class="fas fa-phone"></i>02178888</div>
+                            <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
+                            <div class="address">
+                                <i class="fas fa-map-marker"></i>
+                                <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-2">
+                        <div class="footer-menu-holder">
+                            <h4>Lembaga</h4>
+                            <ul class="footer-menu">
+                                <li><a href="about.html">Tentang Kami</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col-md-3">
+                        <div class="footer-menu-holder">
+                            <h4>Layanan Kami</h4>
+                            <ul class="footer-menu">
+                                <li><a href="webhosting.html">Transaksi Bunga</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <div class="footer-menu-holder">
+                            <h4>Fasilitas</h4>
+                            <ul class="footer-menu">
+                                <li><a href="portal.html">Cara Perawatan</a></li>
+                                <li><a href="#">Peta Lokasi</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-1 col-md-1">
+                        <div class="social-menu-holder">
+                            <ul class="social-menu">
+                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="footer" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="address-holder">
-                        <div class="phone"><i class="fas fa-phone"></i>02178888</div>
-                        <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
-                        <div class="address">
-                            <i class="fas fa-map-marker"></i>
-                            <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-2 col-md-2">
-                    <div class="footer-menu-holder">
-                        <h4>Lembaga</h4>
-                        <ul class="footer-menu">
-                            <li><a href="about.html">Tentang Kami</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-2 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Layanan Kami</h4>
-                        <ul class="footer-menu">
-                            <li><a href="webhosting.html">Transaksi Bunga</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Fasilitas</h4>
-                        <ul class="footer-menu">
-                            <li><a href="portal.html">Cara Perawatan</a></li>
-                            <li><a href="#">Peta Lokasi</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-1 col-md-1">
-                    <div class="social-menu-holder">
-                        <ul class="social-menu">
-                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-slider.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/main.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-slider.min.js"></script>
+        <script src="js/slick.min.js"></script>
+        <script src="js/main.js"></script>
 </body>
 
 </html>

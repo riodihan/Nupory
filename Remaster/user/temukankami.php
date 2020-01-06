@@ -201,51 +201,6 @@
     </div>
     <div id="page-content" class="container-fluid">
         <div class="container">
-            <!-- <div class="row">
-                <div class="col-xs-12">
-                    <div class="content-holder">
-                        <h4>Kok saya gak bisa LogIn? kira-kira kenapa ya?</h4>
-                        <p>jangan stres dulu...
-                            jadi gini... kemungkinan kamu gak bisa login karena kamu salah memasukkan username dan
-                            password.
-                            kalo udah yakin username dan passwordmu benar tapi tetep gak bisa, hubungi kami aja ya via
-                            whatsapp
-                            Butuh Bantuan lebih lanjut?
-                            chat kami</p>
-
-                        <h4>Gimana sih cara beli bunga?</h4>
-                        <p>jika sudah punya akun maka langsung login
-                            jika belum punya akun maka regestrasi dulu
-                            masuk ke halaman semua produk yang berada di menu side bar
-                            scroll kebawah untuk melihat semua produk
-                            klik produk bunga yang ada inginkan maka akan langsung masuk ke halaman transaksi
-                            silakan masukkan jumlah bunga yang anda inginkan
-                            selesai</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="content-holder">
-                        <h4>Gimana sih cara buat akun?</h4>
-                        <p>Gampang banget caranya! Coba ikutin langkah-langkah di bawah ini ya:
-
-                            masukkan nama anda
-                            masukkan alamat anda
-                            masukkan no telepon anda
-                            masukkan email anda. pastikan email yang aktif
-                            masukkan username yang anda inginkan
-                            masukkan password. buatlah seunik mungkin agar orang lain tidak bisa mengatahuinya
-                            konfirmasi password anda
-                            pastikan semuanaya terisi Ya!
-                            selesai!
-
-                            Butuh bantuan lebih lanjut?
-
-                            chat kami</p>
-                    </div>
-                </div>
-            </div> -->
 
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.2145447082958!2d113.68843621415776!3d-8.079588883005215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6ebacada7576b%3A0x6c0a7d5c0bad1a23!2sKebun%20Pengembangan%20holtikultura!5e0!3m2!1sid!2sid!4v1573313599587!5m2!1sid!2sid" width="1200" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 

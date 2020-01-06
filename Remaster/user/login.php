@@ -1,6 +1,29 @@
 <?php 
 session_start();
-require '../config.php';
+require 'assets/config.php';
+
+
+if(isset($_POST["login"])){
+	$iduser = $_POST["iduser"];
+	$password = $_POST["password"];
+	$login = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' AND password ='$password'");
+	$row = mysqli_fetch_array($login);
+	$user = $row ['USERNAME'];
+	$pass = $row ['password'];
+	$id_status = $row ['ID_STATUS'];
+	$id_user = $row ['ID_USER'];
+	if(mysqli_num_rows($login) === 1) {
+		$_SESSION["id_status"]= $id_status;
+		$_SESSION["id_user"]= $id_user;
+		$_SESSION["USERNAME"]= $user;
+		$_SESSION["login"]= true;
+		header("location: index.php");}
+		
+		else{
+			header("location: login.php?gagal");
+		}
+	
+}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,13 +78,13 @@ require '../config.php';
 				<form action="funtionlogin.php  ?>" class="login100-form validate-form">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username Harus Diisi">
 						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="username" placeholder="Masukan username">
+						<input class="input100" type="text" name="iduser" placeholder="Masukan username">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate="Password Harus Diisi">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Masukan password">
+						<input class="input100" type="password" name="password" placeholder="Masukan password">
 						<span class="focus-input100"></span>
 					</div>
 

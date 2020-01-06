@@ -30,11 +30,6 @@
             else{
                 header("location: login.php?gagal");
             }
-                
-            
-        
-        
-        //$error = true;
         
     }
 ?>

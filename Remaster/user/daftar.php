@@ -1,3 +1,21 @@
+<?php
+//koneksi
+require 'assets/config.php';
+
+
+//proses daftar
+if (isset($_POST["daftar"])) {
+
+    if (pendaftaran($_POST) == 1) {
+        echo "<script>alert('user berhasil terdaftar'); window.location.href='login.php'</script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,41 +58,42 @@
                     </span>
                 </div>
 
-                <form class="login100-form validate-form">
+                <form class="login100-form validate-form" method="POST">
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Nama Harus Diisi">
                         <span class="label-input100">Nama</span>
-                        <input class="input100" type="text" name="username" placeholder="Masukan Nama Lengkap Anda">
+                        <input class="input100" type="text" name="nama" placeholder="Masukan Nama Lengkap Anda">
+                        <input class="input100" type="hidden" name="idstatus" placeholder="Masukan Nama Lengkap Anda" value="03">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Alamat Harus Diisi">
                         <span class="label-input100">Alamat</span>
-                        <input class="input100" type="text" name="pass" placeholder="Masukan Alamat Lengkap Anda">
+                        <input class="input100" type="text" name="alamat" placeholder="Masukan Alamat Lengkap Anda">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="No HP Harus Diisi">
                         <span class="label-input100">No HP</span>
-                        <input class="input100" type="text" name="pass" placeholder="Masukan Nomor HP Anda">
+                        <input class="input100" type="text" name="nohp" placeholder="Masukan Nomor HP Anda">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Email Harus Diisi">
                         <span class="label-input100">Email</span>
-                        <input class="input100" type="password" name="pass" placeholder="Masukan Email Anda">
+                        <input class="input100" type="email" name="email" placeholder="Masukan Email Anda">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Username Harus Diisi">
                         <span class="label-input100">Username</span>
-                        <input class="input100" type="password" name="pass" placeholder="Masukan Username">
+                        <input class="input100" type="text" name="iduser" placeholder="Masukan Username">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password Harus Diisi">
                         <span class="label-input100">Password</span>
-                        <input class="input100" type="password" name="pass" placeholder="Masukan Password">
+                        <input class="input100" type="password" name="password" placeholder="Masukan Password">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Konfirmasi Password Harus Diisi">
                         <span class="label-input100">Konfirmasi Password</span>
-                        <input class="input100" type="password" name="pass" placeholder="Konfirmasi Password">
+                        <input class="input100" type="password" name="konfirmasi" placeholder="Konfirmasi Password">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -94,7 +113,7 @@
 
                     </div>
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button type="submit" name="daftar" class="login100-form-btn">
                             Daftar
                         </button>
                     </div>
