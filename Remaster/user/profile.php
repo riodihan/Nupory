@@ -1,3 +1,40 @@
+<?php
+session_start();
+require 'assets/config.php';
+
+//cek session
+if(!isset($_SESSION["login"])){
+	header("location: index.php");
+}
+
+
+//
+$username = $_SESSION["username"];
+
+//menampilkan data user
+$profile = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
+
+
+//ubah password
+if (isset($_POST["ubah"])) {
+	if (ubahpassword($_POST) == 1) {
+		echo "<script>alert('password berhasil diubah');  window.location.href='profile.php'</script>";
+	} else {
+		echo "<script>alert('password Gagal diubah');</script>";
+	}
+}
+
+//ubah biodata
+if (isset($_POST["ubah1"])) {
+	if (ubahbiodata($_POST) == 1) {
+		echo "<script>alert('Biodata berhasil diubah');  window.location.href='profile.php'</script>";
+	} else {
+		echo "<script>alert('Biodata Gagal diubah');</script>";
+	}
+}
+
+
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -44,120 +81,125 @@
 
 
 
+	<?php foreach ($profile as $data) { ?>
+		<section class="intro-section">
 
-	<section class="intro-section">
 
 
-
-		<div class="container">
-			<div class="row">
-				<div class="col-md-1 col-lg-2"></div>
-				<div class="col-md-10 col-lg-8">
-					<div class="intro">
-						<div class="profile-img"><img src="images/idrisss.jpg" alt=""></div>
-						<h2><b>Idris</b></h2>
-						<!-- <h4 class="font-yellow">Key Account Manager</h4> -->
-						<ul class="information margin-tb-30">
-							<li><b>Lahir : </b>16 Februari 2001</li>
-							<li><b>EMAIL : </b>hendrytifa@gmail.com</li>
-							<li><b>Alamat : </b>Probolinggo</li>
-							<li><b>No Handphone : </b>085257461375</li>
-						</ul>
-						<ul class="social-icons">
-							<a href="#" data-toggle="modal" data-target="#exampleModal">
-								<ion-icon name="create"></ion-icon>Edit Biodata
-							</a>
-							<a href="#" data-toggle="modal" data-target="#exampleModal1">
-								<ion-icon name="settings"></ion-icon>Ubah Password
-							</a>
-							<!-- <li><a href="#"><i class="ion-social-linkedin"></i></a></li>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-1 col-lg-2"></div>
+					<div class="col-md-10 col-lg-8">
+						<div class="intro">
+							<div class="profile-img"><img src="images/idrisss.jpg" alt=""></div>
+							<h2><b><?php echo $data["NAMA_USER"]; ?></b></h2>
+							<!-- <h4 class="font-yellow">Key Account Manager</h4> -->
+							<ul class="information margin-tb-30">
+								<!-- <li><b>Lahir : </b>16 Februari 2001</li> -->
+								<li><b>EMAIL : </b><?php echo $data["EMAIL"]; ?></li>
+								<li><b>Alamat : </b><?php echo $data["ALAMAT"]; ?></li>
+								<li><b>No Handphone : </b><?php echo $data["NO_TELEPON"]; ?></li>
+							</ul><br><br><br>
+							<ul class="social-icons">
+								<a href="#" data-toggle="modal" data-target="#exampleModal">
+									<ion-icon name="create"></ion-icon>Edit Biodata
+								</a>
+								<a href="#" data-toggle="modal" data-target="#exampleModal1">
+									<ion-icon name="settings"></ion-icon>Ubah Password
+								</a>
+								<!-- <li><a href="#"><i class="ion-social-linkedin"></i></a></li>
 							<li><a href="#"><i class="ion-social-instagram"></i></a></li>
 							<li><a href="#"><i class="ion-social-facebook"></i></a></li>
 							<li><a href="#"><i class="ion-social-twitter"></i></a></li> -->
-						</ul>
-					</div><!-- intro -->
-				</div><!-- col-sm-8 -->
-			</div><!-- row -->
-		</div><!-- container -->
+							</ul>
+						</div><!-- intro -->
+					</div><!-- col-sm-8 -->
+				</div><!-- row -->
+			</div><!-- container -->
 
 
-	</section><!-- intro-section -->
-	<!-- Button trigger modal -->
-	<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+		</section><!-- intro-section -->
+		<!-- Button trigger modal -->
+		<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
 </button> -->
 
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ubah Biodata</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="formGroupExampleInput">Tanggal Lahir</label>
-							<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tanggal Lahir">
-						</div>
-						<div class="form-group">
-							<label for="formGroupExampleInput2">Email</label>
-							<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Email@email.com">
-						</div>
-						<div class="form-group">
-							<label for="formGroupExampleInput2">Alamat</label>
-							<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Alamat">
-						</div>
-						<div class="form-group">
-							<label for="formGroupExampleInput2">No Handphone</label>
-							<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Nomor Handphone">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-					<button type="button" class="btn btn-primary">Simpan</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ubah Password</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="formGroupExampleInput">Password Lama</label>
-							<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Masukan Password Lama">
-						</div>
-						<div class="form-group">
-							<label for="formGroupExampleInput2">Password Baru</label>
-							<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Masukan Password Baru">
-						</div>
-						<div class="form-group">
-							<label for="formGroupExampleInput2">Konfirmasi Password</label>
-							<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Konfirmasi Password Baru">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-					<button type="button" class="btn btn-primary">Simpan</button>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ubah Biodata</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form method="POST">
+							<div class="form-group">
+								<label for="formGroupExampleInput2">NAMA</label>
+								<input type="text" name="nama" class="form-control" id="formGroupExampleInput2" placeholder="Nama Lengkap Anda" value="<?php echo $data["NAMA_USER"]; ?>">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Email</label>
+								<input type="hidden" name="username" class="form-control" id="formGroupExampleInput2" value="<?php echo $username ?>">
+								<input type="email" name="email" class="form-control" id="formGroupExampleInput2" placeholder="Email@email.com" value="<?php echo $data["EMAIL"]; ?>">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Alamat</label>
+								<input type="text" name="alamat" class="form-control" id="formGroupExampleInput2" placeholder="Alamat" value="<?php echo $data["ALAMAT"]; ?>">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">No Handphone</label>
+								<input type="text" name="nohp" class="form-control" id="formGroupExampleInput2" placeholder="Nomor Handphone" value="<?php echo $data["NO_TELEPON"]; ?>">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+								<button type="submit" name="ubah1" class="btn btn-primary">Ubah</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
+		<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ubah Password</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form method="post">
+							<div class="form-group">
+								<label for="formGroupExampleInput">Password Lama</label>
+								<input type="hidden" name="username" class="form-control" id="formGroupExampleInput" value="<?php echo $username ?>">
+								<input type="password" name="passwordlama" class="form-control" id="formGroupExampleInput" placeholder="Masukan Password Lama">
+								<input type="hidden" name="passwordlama1" class="form-control" id="formGroupExampleInput" value="<?php echo $data["PASSWORD"]; ?>">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Password Baru</label>
+								<input type="password" name="passwordbaru" class="form-control" id="formGroupExampleInput2" placeholder="Masukan Password Baru">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Konfirmasi Password</label>
+								<input type="password" name="passwordbaru1" class="form-control" id="formGroupExampleInput2" placeholder="Konfirmasi Password Baru">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+								<button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
+							</div>
+						</form>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
 
 	<div id="footer" class="container-fluid">
 		<div class="container">

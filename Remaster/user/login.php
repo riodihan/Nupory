@@ -12,14 +12,14 @@ if(isset($_SESSION["login"])){
 if (isset($_POST["login"])) {
 	$iduser = $_POST["iduser"];
 	$password = $_POST["password"];
-	$login = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$iduser' AND password ='$password'");
+	$login = mysqli_query($koneksi, "SELECT * FROM user WHERE USERNAME = '$iduser' AND password ='$password'");
 	$row = mysqli_fetch_array($login);
-	$iduser = $row['ID_USER'];
+	$username = $row['USERNAME'];
 	$pass = $row['PASSWORD'];
 	$idstatus = $row['ID_STATUS'];
 	if (mysqli_num_rows($login) === 1) {
 		$_SESSION["idstatus"] = $idstatus;
-		$_SESSION["iduser"] = $iduser;
+		$_SESSION["username"] = $username;
 		$_SESSION["login"] = true;
 		header("location: index.php");
 	} else {

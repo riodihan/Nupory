@@ -1,5 +1,10 @@
 <?php
+require 'assets/config.php';
 session_start();
+
+//menampilkan bunga
+$bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
+
 ?>
 <!doctype html>
 <html>
@@ -179,7 +184,7 @@ session_start();
                                     <li><a href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=">Hubungi Kami</a></li>
                                     <li class="support-button-holder support-dropdown">
                                         <?php if (isset($_SESSION["login"])) { ?>
-                                            <a class="support-button" href=""><?php echo $_SESSION["iduser"] ?></a>
+                                            <a class="support-button" href=""><?php echo $_SESSION["username"] ?></a>
                                         <?php } ?>
                                         <?php if (!isset($_SESSION["login"])) { ?>
                                             <a class="support-button" href="">Login</a>
@@ -247,19 +252,19 @@ session_start();
         </div>
     </div>
     </div>
-
+    <?php foreach ($bunga as $data) { ?>
     <div id="articles" class="container-fluid">
         <div class="container">
             <div class="row">
                 <a href="">
                     <div class="col-sm-6 col-md-4">
                         <div class="article-summary">
-                            <div class="article-img"><img src="images/anggrek bulan.jpg" alt="" /></div>
+                            <div class="article-img"><img src="images/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
                             <div class="article-details">
-                                <div class="article-title"><a href="">anggrek bulan</a></div>
-                                <div class="article-title"><a href="">Rp. 15.000</a></div>
+                                <div class="article-title"><a href=""><?php echo $data["NAMA_BUNGA"]; ?></a></div>
+                                <div class="article-title"><a href="">Rp. <?php echo $data["HARGA"]; ?></a></div>
                                 <div class="article-text">
-                                    Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.
+                                <?php echo $data["DESKRIPSI"]; ?>
                                 </div>
                             </div>
                         </div>
@@ -311,7 +316,7 @@ session_start();
         </div>
     </div>
 
-
+    <?php }?>
     <div id="footer" class="container-fluid">
         <div class="container">
             <div class="row">
