@@ -103,9 +103,9 @@
         </a>
         <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="editbunga.php">
               <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
+              <span class="text-primary">Edit </span>
             </a>
             <a class="collapse-item" href="tambahbunga.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
