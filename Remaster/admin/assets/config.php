@@ -29,4 +29,17 @@ function tambahkategori($data){
     $q_kat = mysqli_query ($koneksi, "INSERT INTO kategori VALUES ('$idKategori', '$namaKategori', '$deskripsiKategori', '$fotoKategori')") or die(mysqli_error($koneksi));
     return $q_kat;
 }
+
+function tambahkaryawan($data){
+    global $koneksi;
+    $usernameKaryawan = htmlspecialchars($data["usernameKaryawan"]);
+    $namaKaryawan = htmlspecialchars($data["namaKaryawan"]);
+    $alamatKaryawan = htmlspecialchars($data["alamatKaryawan"]);
+    $nomorTelponKaryawan = htmlspecialchars($data["nomorTelponKaryawan"]);
+    $emailKaryawan = htmlspecialchars($data["emailKaryawan"]);
+    $passwordKaryawan = htmlspecialchars($data["passwordKaryawan"]);
+
+    $q_kar = mysqli_query ($koneksi, "INSERT INTO user VALUES ('$usernameKaryawan', 'SU02', '$namaKaryawan', '$alamatKaryawan', '$nomorTelponKaryawan', '$emailKaryawan', '$passwordKaryawan', '')") or die(mysqli_error($koneksi));
+    return $q_kar;
+}
 ?>

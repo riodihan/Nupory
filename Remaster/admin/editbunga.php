@@ -369,12 +369,10 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-2 text-gray-800">Data User</h1>
-          <p class="mb-4">Berikut tabel data dari user Nursery Polije.</p> -->
-
           <!-- DataTales Example -->
-          <div class="card shadow mb-12">
+          <div class="row">
+          <div class="col-md-8">
+          <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
             </div>
@@ -423,14 +421,83 @@
                     <?php endwhile;?>
                   </tbody>
                 </table>
-                <div class="col text-center">
-                    <a class="btn btn-primary" href="tambahbunga.php">Tambah Bunga</a>
-                </div>
               </div>
             </div>
           </div>
+          </div>  <!-- col -->
+
+          <div class="col-md-4">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
+            </div>
+            <form action="" method="POST" class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="idbunga">ID Bunga</label>
+                    <input type="text" name="idBunga" id="idbunga" class="form-control">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="namabunga">Nama Bunga</label>
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="kategoribunga">Kategori Bunga</label>
+                <select name="kategoriBunga" id="kategoribunga" class="form-control">
+                <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
+                  <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                <?php endwhile;?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="deskripsibunga">Deskripsi Bunga</label>
+                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="harga">Harga</label>
+                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="stok">Stok</label>
+                    <input type="text" name="stokBunga" id="stok" class="form-control text-right">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fotobunga">Foto Bunga</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga">
+                    <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="videobunga">Video</label>
+                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+              </div>
+              <div class="form-group">
+                <label for="caraperawatan">Cara Perawatan</label>
+                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
+              </div>
+              <div class="col text-center">
+                <button type="submit" name="tambahkan" class="btn btn-primary">Tambahkan</button>
+              </div>
+            </form>
+          </div>
+          </div>  <!-- col -->
+          </div>  <!-- Row -->
+
         </div>
-        <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
