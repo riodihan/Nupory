@@ -1,3 +1,13 @@
+<?php
+session_start();
+require 'assets/config.php';
+
+
+$perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
+
+
+?>
+
 <!doctype html>
 <html>
 
@@ -199,67 +209,42 @@
             </div>
         </div>
     </div>
+
+
     <div id="page-content" class="container-fluid">
         <div id="pricing" class="container-fluid">
             <div class="bg-color"></div>
             <div class="container">
-
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="pricing-box pricing-unity pricing-color1">
-                            <div class="pricing-content">
-                                <div class="pricing-icon">
-                                    <img src="images/anggrek bulan.jpg" alt="">
-                                </div>
-                                <div class="pricing-title">Anggrek Bulan</div>
+                    <?php foreach ($perawatan as $data) { ?>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="pricing-box pricing-unity pricing-color1">
+                                <div class="pricing-content">
 
-                                <div class="pricing-details">
-                                    <p>Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.</p>
-                                </div>
-                                <div class="pricing-link">
-                                    <a class="ybtn" href="perawatan.php">Lihat</a>
+                                    <div class="pricing-icon">
+                                        <img src="images/<?php echo $data["FOTO_BUNGA"]; ?>" alt="">
+                                    </div>
+                                    <div class="pricing-title"><?php echo $data["NAMA_BUNGA"]; ?></div>
+
+                                    <div class="pricing-details">
+                                        <p><?php echo $data["DESKRIPSI"]; ?></p>
+                                    </div>
+                                    <div class="pricing-link">
+                                        <a class="ybtn" href="perawatan.php?id=<?php echo $data["ID_BUNGA"]; ?>">Lihat</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="pricing-box pricing-unity pricing-color1">
-                            <div class="pricing-content">
-                                <div class="pricing-icon">
-                                    <img src="images/krisan standart.jpg" alt="">
-                                </div>
-                                <div class="pricing-title">Krisan Standart</div>
-
-                                <div class="pricing-details">
-                                    <p>Anggrek bulan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.</p>
-                                </div>
-                                <div class="pricing-link">
-                                    <a class="ybtn" href="perawatan.php">Lihat</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="pricing-box pricing-unity pricing-color1">
-                            <div class="pricing-content">
-                                <div class="pricing-icon">
-                                    <img src="images/anggrek taiwan.png" alt="">
-                                </div>
-                                <div class="pricing-title">Anggrek Taiwan</div>
-
-                                <div class="pricing-details">
-                                    <p>Anggrek Taiwan dapat tumbuh di dataran rendah sampai pegunungan dan umumnya hidup pada ketinggian 50-600 mdpl, juga dapat berkembang dengan baik pada ketinggian 700-1.100 mdpl.</p>
-                                </div>
-                                <div class="pricing-link">
-                                    <a class="ybtn" href="perawatan.php">Lihat</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
     <div id="footer" class="container-fluid">
         <div class="container">
             <div class="row">

@@ -1,3 +1,11 @@
+<?php 
+require 'assets/config.php';
+session_start();
+
+$idbunga = $_GET["id"];
+
+$video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'");
+?>
 <!doctype html>
 <html>
 
@@ -199,14 +207,15 @@
             </div>
         </div>
     </div><br><br>
-
+    <?php foreach ($video as $data) { ?>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-9" style="float: right;">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/etRTUc5cT3Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="<?php echo $data["VIDEO_BUNGA"];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
+    <?php }?>
 <br><br><br>
     <div id="footer" class="container-fluid">
         <div class="container">
