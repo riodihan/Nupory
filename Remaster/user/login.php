@@ -86,16 +86,18 @@ if (isset($_POST["login"])) {
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate="Password Harus Diisi">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="password" placeholder="Masukan password">
+						<input class="input100" type="password" name="password" value="" id="Password" placeholder="Masukan password">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="flex-sb-m w-full p-b-30">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
+
+							<label class="input"> <input type="checkbox" onclick="lihatpassword()"> Lihat Password </label>
+							<!-- <label class="label-checkbox100" click="lihatpassword()"for="ckb1">
 								Lihat Password
-							</label>
+							</label> -->
 						</div>
 					</div>
 					<div class="">
@@ -139,6 +141,18 @@ if (isset($_POST["login"])) {
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+	<script >
+		function lihatpassword(){
+				var x = document.getElementById("Password");
+				if (x.type === "password") {
+					x.type = "text";
+				} else {
+					x.type = "password";
+				}
+		}
+
+	</script>
 
 </body>
 
