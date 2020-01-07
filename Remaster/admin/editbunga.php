@@ -16,6 +16,7 @@
   <meta name="author" content="">
 
   <title>Data Bunga</title>
+  <link rel="icon" href="bunga.png" type="image/x-icon">
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

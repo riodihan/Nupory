@@ -16,6 +16,7 @@
   <meta name="author" content="">
 
   <title>Data User</title>
+  <link rel="icon" href="Karyawan.png" type="image/x-icon">
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
