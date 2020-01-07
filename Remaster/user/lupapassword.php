@@ -1,3 +1,76 @@
+<?php  
+session_start();
+require 'assets/config.php';
+
+
+
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
+
+
+
+if ($_POST) {
+    $email = $_POST['email'];
+
+    $selectquery = mysqli_query($koneksi, "SELECT * FROM user WHERE EMAIL = '$email'");
+    $count = mysqli_num_rows($selectquery);
+    $row = mysqli_fetch_array($selectquery);
+
+    // echo $count;
+
+    if ($count > 0) {
+        // echo $row['PASSWORD'];
+
+        $mail = new PHPMailer(true);
+
+        try {
+
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+
+            $mail->Username   = 'gumball4869@gmail.com';
+            $mail->Password   = 'dimas2019';
+
+            $mail->SMTPSecure =  'tls';
+            $mail->Port       =  587;
+
+            $mail->setFrom('gumball4869@gmail.com', 'Nursery Polije');
+            $mail->addAddress($row["EMAIL"], 'Joe User');
+
+
+
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Nursery Polije';
+            $mail->Body    = $row["PASSWORD"];
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+
+            $mail->send();
+            // echo 'Message has been sent';
+            echo "<script>alert('Password Anda telah dikirim ke Email, harap check pesan masuk di Email Anda'); window.location.href='lupapassword.php'</script>";
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +116,7 @@
 				<form class="login100-form validate-form">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email Harus Diisi">
 						<span class="label-input100">Email</span>
-						<input class="input100" type="text" name="username" placeholder="Masukan Email Akun Anda">
+						<input class="input100" type="email" id="username" name="email" placeholder="Masukan Email Akun Anda">
 						<span class="focus-input100"></span>
 					</div>
 
