@@ -123,7 +123,7 @@ require 'assets/includes/config.php';
         <div class="bawahan">
             <ul class="gambar">
 
-                <?php $ambil=$koneksi->query("SELECT * FROM bunga");?>
+                <?php $ambil=mysqli_query($koneksi, "SELECT * FROM bunga");?>
                 <?php while($perproduk=$ambil->fetch_assoc()){?>
                     <li class="gproduk">
                         <a href="semuaproduk.php?id=<?php echo $perproduk["ID_BUNGA"];?>"><img class="imgproduk" src="img/<?php echo $perproduk["FOTO_BUNGA"];?>">
