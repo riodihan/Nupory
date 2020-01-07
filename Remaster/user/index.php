@@ -257,7 +257,7 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
         <?php foreach ($bunga as $data) { ?>
             <div class="container">
                 <div class="row">
-                    <a href="">
+                    <a href="bunga.php?id=<?php echo $data["ID_BUNGA"]; ?>">
                         <div class="col-sm-6 col-md-3">
                             <div class="article-summary">
                                 <div class="article-img"><img style="width: 238px; height: 230px;" src="images/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
