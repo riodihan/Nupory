@@ -389,6 +389,7 @@
                       <th>Alamat</th>
                       <th>No. Telpon</th>
                       <th>Email</th>
+                      <th>Tindakan</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -398,6 +399,7 @@
                       <th>Alamat</th>
                       <th>No. Telpon</th>
                       <th>Email</th>
+                      <th>Tindakan</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -408,6 +410,17 @@
                       <td><?php echo $row["ALAMAT"]?></td>
                       <td><?php echo $row["NO_TELEPON"]?></td>
                       <td><?php echo $row["EMAIL"]?></td>
+                      <td>
+                        <div>
+                          <a class="btn btn-primary" href="#" role="button">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                          <a class="btn btn-danger" href="hapususer.php?id=<?= $row["NAMA_USER"]; ?>" onclick="return confirm ('Anda yakin ingin menghapus data ini ?') " role="button">
+                            <i class="fas fa-trash"></i>
+                          </a>  
+                        </div>
+                        
+                      </td>
                     </tr>
                     <?php endwhile;?>
                   </tbody>

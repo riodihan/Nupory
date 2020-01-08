@@ -392,6 +392,7 @@
                       <th>Video</th>
                       <th>Cara Perawatan</th>
                       <th>Deskripsi</th>
+                      <th>Tindakan</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -405,6 +406,7 @@
                       <th>Video</th>
                       <th>Cara Perawatan</th>
                       <th>Deskripsi</th>
+                      <th>Tindakan</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -415,10 +417,23 @@
                       <td><?php echo $row["NAMA_BUNGA"]?></td>
                       <td class="text-right"><?php echo $row["HARGA"]?></td>
                       <td class="text-center"><?php echo $row["STOK"]?></td>
-                      <td><?php echo $row["FOTO_BUNGA"]?></td>
+                      <td><img src="img/<?= $row["FOTO_BUNGA"]; ?>" width="100"></td>
                       <td><?php echo $row["VIDEO_BUNGA"]?></td>
                       <td><?php echo $row["CARA_PERAWATAN"]?></td>
                       <td><?php echo $row["DESKRIPSI"]?></td>
+                      <td>
+                        <span>
+                          <div class="button-group mt-4 mb-2">
+                          <a class="btn btn-primary" href="editbunga.php?id=<?= $row["ID_BUNGA"]; ?>" onclick="return confirm('Anda yakin ingin mengedit data ini ?')" role="button">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                          <a class="btn btn-danger" href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
+                            <i class="fas fa-trash"></i>
+                          </a> 
+                        </div>
+                        </span>
+
+                      </td>
                     </tr>
                     <?php endwhile;?>
                   </tbody>
