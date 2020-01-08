@@ -3,7 +3,7 @@
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
 
-  if(isset($_POST["tambahkan"]) ){
+  if(isset($_POST["submit"]) ){
     if (tambahbunga($_POST) > 0){
       echo "<script>
               alert('Data Berhasil Ditambahkan');
@@ -377,22 +377,23 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="idbunga">ID Bunga</label>
-                    <input type="text" name="idBunga" id="idbunga" class="form-control">
+                    <input type="text" name="idBunga" id="idbunga" class="form-control" require>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control">
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control" require>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="kategoribunga">Kategori Bunga</label>
-                <select name="kategoriBunga" id="kategoribunga" class="form-control">
-                <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
+                <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
+                  <option value="">Pilih Kategori</option>
+                  <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                   <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                <?php endwhile;?>
+                  <?php endwhile;?>
                 </select>
               </div>
               <div class="form-group">
@@ -403,13 +404,13 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="harga">Harga</label>
-                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right">
+                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" require>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="stok">Stok</label>
-                    <input type="text" name="stokBunga" id="stok" class="form-control text-right">
+                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" require>
                   </div>
                 </div>
               </div>
@@ -417,7 +418,7 @@
                 <label for="fotobunga">Foto Bunga</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga">
+                    <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" require>
                     <label class="custom-file-label" for="fotobunga">Pilih foto</label>
                   </div>
                 </div>
@@ -431,7 +432,7 @@
                 <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
               </div>
               <div class="col text-center">
-                <button type="submit" name="tambahkan" class="btn btn-primary">Tambahkan</button>
+                <button type="submit" name="submit" class="btn btn-primary">Tambahkan</button>
               </div>
             </form>
           </div>

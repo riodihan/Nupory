@@ -15,7 +15,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data Bunga</title>
+  <title>Data User</title>
+  <link rel="icon" href="Karyawan.png" type="image/x-icon">
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -366,6 +367,81 @@
         </nav>
         <!-- End of Topbar -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="editBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content col-md-12">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Bunga (Nama Bunga Berdasarkan ID)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST" class="card-body">
+                <input type="hidden" name="idBunga" id="idbunga" class="form-control">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="namabunga">Nama Bunga</label>
+                      <input type="text" name="namaBunga" id="namabunga" class="form-control" require>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="kategoribunga">Kategori Bunga</label>
+                      <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
+                        <option value="">Pilih Kategori</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsibunga">Deskripsi Bunga</label>
+                  <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="harga">Harga</label>
+                      <input type="text" name="hargaBunga" id="harga" class="form-control text-right" require>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="stok">Stok</label>
+                      <input type="text" name="stokBunga" id="stok" class="form-control text-right" require>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="fotobunga">Foto Bunga</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" require>
+                      <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="videobunga">Video</label>
+                  <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+                </div>
+                <div class="form-group">
+                  <label for="caraperawatan">Cara Perawatan</label>
+                  <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
+                </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+                <button type="button" class="btn btn-primary" name="simpanEdit">Simpan Perubahan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -374,9 +450,9 @@
           <p class="mb-4">Berikut tabel data dari user Nursery Polije.</p> -->
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-12">
+          <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data User Nursery Polije</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -388,9 +464,6 @@
                       <th>Nama Bunga</th>
                       <th>Harga</th>
                       <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
-                      <th>Cara Perawatan</th>
                       <th>Deskripsi</th>
                       <th>Tindakan</th>
                     </tr>
@@ -398,13 +471,10 @@
                   <tfoot>
                     <tr>
                       <th>Id Bunga</th>
-                      <th>Kategori</th>
+                      <th>Id Kategori</th>
                       <th>Nama Bunga</th>
                       <th>Harga</th>
                       <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
-                      <th>Cara Perawatan</th>
                       <th>Deskripsi</th>
                       <th>Tindakan</th>
                     </tr>
@@ -417,30 +487,19 @@
                       <td><?php echo $row["NAMA_BUNGA"]?></td>
                       <td class="text-right"><?php echo $row["HARGA"]?></td>
                       <td class="text-center"><?php echo $row["STOK"]?></td>
-                      <td><img src="img/<?= $row["FOTO_BUNGA"]; ?>" width="100"></td>
-                      <td><?php echo $row["VIDEO_BUNGA"]?></td>
-                      <td><?php echo $row["CARA_PERAWATAN"]?></td>
                       <td><?php echo $row["DESKRIPSI"]?></td>
                       <td>
-                        <span>
-                          <div class="button-group mt-4 mb-2">
-                          <a class="btn btn-primary" href="editbunga.php?id=<?= $row["ID_BUNGA"]; ?>" onclick="return confirm('Anda yakin ingin mengedit data ini ?')" role="button">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a class="btn btn-danger" href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
-                            <i class="fas fa-trash"></i>
-                          </a> 
-                        </div>
-                        </span>
-
+                              <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editBunga" data-whatever="@mdo">
+                                <i class="fas fa-edit"></i>
+                              </button>
+                              <a class="btn btn-danger" href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
+                                <i class="fas fa-trash"></i>
+                              </a> 
                       </td>
                     </tr>
                     <?php endwhile;?>
                   </tbody>
                 </table>
-                <div class="col text-center">
-                    <a class="btn btn-primary" href="tambahbunga.php">Tambah Bunga</a>
-                </div>
               </div>
             </div>
           </div>
