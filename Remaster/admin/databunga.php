@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data User</title>
+  <title>Data Bunga</title>
   <link rel="icon" href="Karyawan.png" type="image/x-icon">
 
   <!-- Custom fonts for this template -->
@@ -452,7 +452,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data User Nursery Polije</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
