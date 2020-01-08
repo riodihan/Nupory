@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'assets/config.php';
 session_start();
 
@@ -100,94 +100,106 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown unity-menu">
-                                        <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
-                                        <ul class="dropdown-menu dropdown-unity">
+                                    <?php if (isset($_SESSION["login"])) { ?>
+                                        <li class="dropdown unity-menu">
+                                            <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
+                                            <ul class="dropdown-menu dropdown-unity">
 
-                                            <li>
-                                                <a class="unity-link" href="keranjang.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/keranjang.png" alt="">
+                                                <li>
+                                                    <a class="unity-link" href="keranjang.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/keranjang.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Keranjang saya
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang masih dalam tahap pemesanan
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Keranjang saya
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="tagihan.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/pemesanan.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Tagihan Saya
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang masih dalam tahap pemesanan
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang masih dalam tahap pemesanan
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="dikemas.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/dikemas.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Dikemas
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang sedang dalam pengemasan
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="tagihan.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/pemesanan.png" alt="">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="dikirim.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/dikirim.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Dikirim
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang sedang dalam pengiriman
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Tagihan Saya
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="transaksisaya.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/transaksi.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Transaksi Saya
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Transaksi Yang pernah dilakukan
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang masih dalam tahap pemesanan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="dikemas.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/dikemas.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Dikemas
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang sedang dalam pengemasan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="dikirim.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/dikirim.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Dikirim
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang sedang dalam pengiriman
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="transaksisaya.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/transaksi.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Transaksi Saya
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Transaksi Yang pernah dilakukan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    <?php } ?>
                                     <li><a href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=">Hubungi Kami</a></li>
                                     <li class="support-button-holder support-dropdown">
-                                        <a class="support-button" href="#">Idris</a>
+                                        <?php if (isset($_SESSION["login"])) { ?>
+                                            <a class="support-button" href=""><?php echo $_SESSION["username"] ?></a>
+                                        <?php } ?>
+                                        <?php if (!isset($_SESSION["login"])) { ?>
+                                            <a class="support-button" href="">Login</a>
+                                        <?php } ?>
                                         <ul class="dropdown-menu">
-                                            <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login</a>
-                                            <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>
-                                            <li><a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a></li>
+                                            <?php if (!isset($_SESSION["login"])) { ?>
+                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login User</a>
+                                                <li><a href="../admin/login.php"><i class="fas fa-sign-in-alt"></i>Login Admin</a>
+                                                <?php } ?>
+                                                <?php if (isset($_SESSION["login"])) { ?>
+                                                <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>
+                                                <li><a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a></li>
+                                            <?php } ?>
                                         </ul>
                                     </li>
                                 </ul>
@@ -197,82 +209,83 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
                 </div>
             </div>
         </nav>
-        <div id="page-head" class="container-fluid inner-page">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="page-title">Perawatan Bunga</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><br><br>
-    <?php foreach ($video as $data) { ?>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-9" style="float: right;">
-                    <iframe width="560" height="315" src="<?php echo $data["VIDEO_BUNGA"];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    <?php }?>
-<br><br><br>
-    <div id="footer" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="address-holder">
-                        <div class="phone"><i class="fas fa-phone"></i>02178888</div>
-                        <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
-                        <div class="address">
-                            <i class="fas fa-map-marker"></i>
-                            <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
+        <?php foreach ($video as $data) { ?>
+            <div id="page-head" class="container-fluid inner-page">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="page-title">Perawatan Bunga <?php echo $data["NAMA_BUNGA"]; ?></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-2">
-                    <div class="footer-menu-holder">
-                        <h4>Lembaga</h4>
-                        <ul class="footer-menu">
-                            <li><a href="about.html">Tentang Kami</a></li>
-                        </ul>
+            </div>
+    </div><br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-9" style="float: right;">
+                <iframe width="560" height="315" src="<?php echo $data["VIDEO_BUNGA"]; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+<br><br><br>
+<div id="footer" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="address-holder">
+                    <div class="phone"><i class="fas fa-phone"></i>02178888</div>
+                    <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
+                    <div class="address">
+                        <i class="fas fa-map-marker"></i>
+                        <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Layanan Kami</h4>
-                        <ul class="footer-menu">
-                            <li><a href="webhosting.html">Transaksi Bunga</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+                <div class="footer-menu-holder">
+                    <h4>Lembaga</h4>
+                    <ul class="footer-menu">
+                        <li><a href="about.html">Tentang Kami</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Fasilitas</h4>
-                        <ul class="footer-menu">
-                            <li><a href="portal.html">Cara Perawatan</a></li>
-                            <li><a href="#">Peta Lokasi</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Layanan Kami</h4>
+                    <ul class="footer-menu">
+                        <li><a href="webhosting.html">Transaksi Bunga</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-12 col-sm-1 col-md-1">
-                    <div class="social-menu-holder">
-                        <ul class="social-menu">
-                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Fasilitas</h4>
+                    <ul class="footer-menu">
+                        <li><a href="portal.html">Cara Perawatan</a></li>
+                        <li><a href="#">Peta Lokasi</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-1 col-md-1">
+                <div class="social-menu-holder">
+                    <ul class="social-menu">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-slider.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/main.js"></script>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-slider.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 
 </html>
