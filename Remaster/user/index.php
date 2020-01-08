@@ -241,6 +241,52 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
             </div>
         </div>
     </div>
+
+    <div id="services" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row-title">Kategori Bunga</div>
+                    <div class="row-subtitle">Cari dengan mudah.</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="images/krisan standart.jpg" alt="">
+                    </div>
+                    <div class="service-title"><a href="#">Krisan</a></div>
+                    <div class="service-details">
+                        <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="images/anggrek taiwan.png" alt="">
+                    </div>
+                    <div class="service-title"><a href="#">Anggrek</a></div>
+                    <div class="service-details">
+                        <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-3" style="float: right;">
+        <div class="buttons-holder">
+            <a href="kategori.php" class="ybtn ybtn-accent-color">Kategori lainnya</a>
+        </div>
+    </div>
+    </div><br><br><br><br>
+
+
     <div id="services" class="container-fluid">
         <div class="container">
             <div class="row">
@@ -251,13 +297,13 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
             </div>
         </div>
     </div>
-    </div>
 
-    <div id="articles" class="container-fluid">
-        <?php foreach ($bunga as $data) { ?>
-            <div class="container">
-                <div class="row">
-                    <a href="bunga.php?id=<?php echo $data["ID_BUNGA"]; ?>">
+
+    <div id="articles" class="">
+        <div class="container">
+            <div class="row">
+                <a href="bunga.php?id=<?php echo $data["ID_BUNGA"]; ?>">
+                    <?php foreach ($bunga as $data) { ?>
                         <div class="col-sm-6 col-md-3">
                             <div class="article-summary">
                                 <div class="article-img"><img style="width: 238px; height: 230px;" src="images/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
@@ -276,49 +322,7 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
             </div>
     </div>
 
-    <div id="services" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row-title">Kategori Bunga</div>
-                    <div class="row-subtitle">Cari dengan mudah.</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <div class="service-box">
-                <div class="service-icon">
-                    <img src="images/krisan standart.jpg" alt="">
-                </div>
-                <div class="service-title"><a href="#">Krisan</a></div>
-                <div class="service-details">
-                    <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <div class="service-box">
-                <div class="service-icon">
-                    <img src="images/anggrek taiwan.png" alt="">
-                </div>
-                <div class="service-title"><a href="#">Anggrek</a></div>
-                <div class="service-details">
-                    <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-sm-12 col-md-3" style="float: right;">
-        <div class="buttons-holder">
-            <a href="kategori.php" class="ybtn ybtn-accent-color">Kategori lainnya</a>
-        </div>
-    </div>
-    </div>
 
 
     <div id="footer" class="container-fluid">
