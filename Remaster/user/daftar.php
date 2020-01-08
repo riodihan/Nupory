@@ -88,18 +88,18 @@ if (isset($_POST["daftar"])) {
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password Harus Diisi">
                         <span class="label-input100">Password</span>
-                        <input class="input100" type="password" name="password" placeholder="Masukan Password">
+                        <input class="input100" id="Password" type="password" name="password" placeholder="Masukan Password">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Konfirmasi Password Harus Diisi">
                         <span class="label-input100">Konfirmasi Password</span>
-                        <input class="input100" type="password" name="konfirmasi" placeholder="Konfirmasi Password">
+                        <input class="input100" id="Password1" type="password" name="konfirmasi" placeholder="Konfirmasi Password">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="flex-sb-m w-full p-b-30">
                         <div class="contact100-form-checkbox">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <input class="input-checkbox100" onclick="lihatpassword()" id="ckb1" type="checkbox" name="remember-me">
                             <label class="label-checkbox100" for="ckb1">
                                 Lihat Password
                             </label>
@@ -139,6 +139,24 @@ if (isset($_POST["daftar"])) {
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
+    <script>
+        function lihatpassword() {
+            var x = document.getElementById("Password");
+            var y = document.getElementById("Password1");
+
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }
+        }
+    </script>
 
 </body>
 

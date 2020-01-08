@@ -4,7 +4,7 @@ require 'assets/config.php';
 
 // jika sudah ada session akan dimasukan ke index secara otomatis
 
-if(isset($_SESSION["login"])){
+if (isset($_SESSION["login"])) {
 	header("location: index.php");
 }
 
@@ -92,12 +92,10 @@ if (isset($_POST["login"])) {
 
 					<div class="flex-sb-m w-full p-b-30">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-
-							<label class="input"> <input type="checkbox" onclick="lihatpassword()"> Lihat Password </label>
-							<!-- <label class="label-checkbox100" click="lihatpassword()"for="ckb1">
+							<input class="input-checkbox100" onclick="lihatpassword()" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
 								Lihat Password
-							</label> -->
+							</label>
 						</div>
 					</div>
 					<div class="">
@@ -105,9 +103,9 @@ if (isset($_POST["login"])) {
 							Login
 						</button>
 
-						<?php if(isset($_GET["gagal"])){?>
-						<h5 style="color: red;">Username atau password salah</h5>
-						<?php }?>
+						<?php if (isset($_GET["gagal"])) { ?>
+							<h5 style="color: red;">Username atau password salah</h5>
+						<?php } ?>
 
 					</div>
 					<div class="flex-sb-m w-full p-b-30">
@@ -142,16 +140,15 @@ if (isset($_POST["login"])) {
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
-	<script >
-		function lihatpassword(){
-				var x = document.getElementById("Password");
-				if (x.type === "password") {
-					x.type = "text";
-				} else {
-					x.type = "password";
-				}
+	<script>
+		function lihatpassword() {
+			var x = document.getElementById("Password");
+			if (x.type === "password") {
+				x.type = "text";
+			} else {
+				x.type = "password";
+			}
 		}
-
 	</script>
 
 </body>
