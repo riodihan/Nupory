@@ -387,7 +387,7 @@
                       <th>Total Akhir</th>
                     </tr>
                   </thead>
-                  <tfoot>
+                  <!-- <tfoot>
                     <tr>
                       <th>Id Transaksi</th>
                       <th>Tanggal Transaksi</th>
@@ -398,7 +398,7 @@
                       <th>Alamat Pengiriman</th>
                       <th>Total Akhir</th>
                     </tr>
-                  </tfoot>
+                  </tfoot> -->
                   <tbody>
                     <tr>
                       <td>TR0001</td>

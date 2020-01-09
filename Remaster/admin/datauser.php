@@ -392,7 +392,7 @@
                       <th>Tindakan</th>
                     </tr>
                   </thead>
-                  <tfoot>
+                  <!-- <tfoot>
                     <tr>
                       <th>Nama</th>
                       <th>Status</th>
@@ -401,7 +401,7 @@
                       <th>Email</th>
                       <th>Tindakan</th>
                     </tr>
-                  </tfoot>
+                  </tfoot> -->
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>

@@ -492,28 +492,45 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <table class="table">
-            <thead>
-                <tr>
-                    <th>Kategori</th>
-                    <th>Nama Bunga</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
-                    <th>Deskripsi</th>
-                    <th>Tindakan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $tabel = mysqli_query($koneksi, 'SELECT * FROM bunga');
-                    while($row = mysqli_fetch_array($tabel)){ ?>
-                    <tr id="<?php echo $row['ID_BUNGA'];?>">
-                        <td data-target="kategoriBunga"><?php echo $row['ID_KATEGORI'];?></td>
-                        <td data-target="namaBunga"><?php echo $row['NAMA_BUNGA'];?></td>
-                        <td data-target="hargaBunga"><?php echo $row['HARGA'];?></td>
-                        <td data-target="stokBunga"><?php echo $row['STOK'];?></td>
-                        <td data-target="deskripsiBunga"><?php echo $row['DESKRIPSI'];?></td>
-                        <td><a href="#"data-role="update" data-id="<?php echo $row['ID_BUNGA'];?>">Update</a></td>
+                  <thead>
+                    <tr>
+                      <th>Id Bunga</th>
+                      <th>Id Kategori</th>
+                      <th>Nama Bunga</th>
+                      <th>Harga</th>
+                      <th>Stok</th>
+                      <th>Deskripsi</th>
+                      <th>Tindakan</th>
+                    </tr>
+                  </thead>
+                  <!-- <tfoot>
+                    <tr>
+                      <th>Id Bunga</th>
+                      <th>Id Kategori</th>
+                      <th>Nama Bunga</th>
+                      <th>Harga</th>
+                      <th>Stok</th>
+                      <th>Deskripsi</th>
+                      <th>Tindakan</th>
+                    </tr>
+                  </tfoot> -->
+                  <tbody>
+                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
+                    <tr>
+                      <td><?php echo $row["ID_BUNGA"]?></td>
+                      <td><?php echo $row["ID_KATEGORI"]?></td>
+                      <td><?php echo $row["NAMA_BUNGA"]?></td>
+                      <td class="text-right"><?php echo $row["HARGA"]?></td>
+                      <td class="text-center"><?php echo $row["STOK"]?></td>
+                      <td><?php echo $row["DESKRIPSI"]?></td>
+                      <td>
+                              <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editBunga" data-whatever="@mdo">
+                                <i class="fas fa-edit"></i>
+                              </button>
+                              <a class="btn btn-danger" href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
+                                <i class="fas fa-trash"></i>
+                              </a> 
+                      </td>
                     </tr>
                 <?php    }
                 ?>
