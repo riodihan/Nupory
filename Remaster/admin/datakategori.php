@@ -389,14 +389,14 @@
                       <th>Foto Dekripsi</th>
                     </tr>
                   </thead>
-                  <tfoot>
+                  <!-- <tfoot>
                     <tr>
                       <th>Id Kategori</th>
                       <th>Nama Kategori</th>
                       <th>Deskripsi Kategori</th>
                       <th>Foto Dekripsi</th>
                     </tr>
-                  </tfoot>
+                  </tfoot> -->
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>

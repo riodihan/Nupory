@@ -382,13 +382,13 @@
                       <th>Isi Kritik</th>
                     </tr>
                   </thead>
-                  <tfoot>
+                  <!-- <tfoot>
                     <tr>
                       <th>Id Kritik</th>
                       <th>Nama User</th>
                       <th>Isi Kritik</th>
                     </tr>
-                  </tfoot>
+                  </tfoot> -->
                   <tbody>
                     <tr>
                       <td>KR0001</td>

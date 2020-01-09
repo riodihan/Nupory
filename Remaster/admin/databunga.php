@@ -468,7 +468,7 @@
                       <th>Tindakan</th>
                     </tr>
                   </thead>
-                  <tfoot>
+                  <!-- <tfoot>
                     <tr>
                       <th>Id Bunga</th>
                       <th>Id Kategori</th>
@@ -478,7 +478,7 @@
                       <th>Deskripsi</th>
                       <th>Tindakan</th>
                     </tr>
-                  </tfoot>
+                  </tfoot> -->
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
