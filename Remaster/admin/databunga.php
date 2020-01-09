@@ -1,7 +1,22 @@
 <?php
   require 'assets/config.php';
 
-  $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
+  $hasil = mysqli_query ($koneksi, 'SELECT * FROM bunga');
+  $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
+  $hasil2 = mysqli_query ($koneksi, "SELECT * FROM kategori");
+
+  if(isset($_POST["tambahkanBunga"]) ){
+    if (tambahbunga($_POST) > 0){
+      echo "<script>
+              alert('Data Berhasil Ditambahkan');
+              document.location.href = '';
+            </script>";
+    }
+    else {
+      echo "<script> alert('Gagal Menambahkan Data')</script>";
+      echo mysqli_error();
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +32,9 @@
 
   <title>Data Bunga</title>
   <link rel="icon" href="Karyawan.png" type="image/x-icon">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -337,14 +355,14 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin, Nama Admin</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
+                  Ubah Profil
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -355,7 +373,7 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="../user/login.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -367,50 +385,60 @@
         </nav>
         <!-- End of Topbar -->
 
+<!-- #################################################################################################################################################
+                                                                Modal Insert
+################################################################################################################################################# -->
+
         <!-- Modal -->
-        <div class="modal fade" id="editBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="tambahBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content col-md-12">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Bunga (Nama Bunga Berdasarkan ID)</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Bunga</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <form action="" method="POST" class="card-body">
-                <input type="hidden" name="idBunga" id="idbunga" class="form-control">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="namabunga">Nama Bunga</label>
-                      <input type="text" name="namaBunga" id="namabunga" class="form-control" require>
+                      <label for="idBunga">Id Bunga</label>
+                      <input type="text" name="idBunga" id="idBunga" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="kategoribunga">Kategori Bunga</label>
-                      <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
-                        <option value="">Pilih Kategori</option>
-                      </select>
+                      <label for="namabunga">Nama Bunga</label>
+                      <input type="text" name="namaBunga" id="namaBunga" class="form-control" require>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="kategoribunga">Kategori Bunga</label>
+                    <select name="kategoriBunga" id="kategoriBunga" class="form-control" require>
+                    <option value="">Pilih Kategori</option>
+                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
+                    <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                    <?php endwhile;?>
+                    </select>
+                  </div>
+                <div class="form-group">
                   <label for="deskripsibunga">Deskripsi Bunga</label>
-                  <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
+                  <input type="text" name="deskripsiBunga" id="deskripsiBunga" class="form-control">
                 </div>
                 <div class="row">
                   <div class="col">
                     <div class="form-group">
                       <label for="harga">Harga</label>
-                      <input type="text" name="hargaBunga" id="harga" class="form-control text-right" require>
+                      <input type="text" name="hargaBunga" id="hargaBunga" class="form-control text-right" require>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                       <label for="stok">Stok</label>
-                      <input type="text" name="stokBunga" id="stok" class="form-control text-right" require>
+                      <input type="text" name="stokBunga" id="stokBunga" class="form-control text-right" require>
                     </div>
                   </div>
                 </div>
@@ -418,36 +446,43 @@
                   <label for="fotobunga">Foto Bunga</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" require>
+                      <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
                       <label class="custom-file-label" for="fotobunga">Pilih foto</label>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="videobunga">Video</label>
-                  <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+                  <input type="text" name="videoBunga" id="videoBunga" class="form-control" placeholder="Copy link video disini.">
                 </div>
                 <div class="form-group">
                   <label for="caraperawatan">Cara Perawatan</label>
-                  <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
+                  <input type="text" name="caraPerawatan" id="caraPerawatan" class="form-control">
+                </div>
+                <div class="col text-center">
+                    <button type="submit" name="tambahkanBunga" class="btn btn-primary">Tambahkan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
                 </div>
                 </form>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
-                <button type="button" class="btn btn-primary" name="simpanEdit">Simpan Perubahan</button>
               </div>
             </div>
           </div>
         </div>
 
+<!-- ###########################################################################################################################
+                                                MODAL EDIT BUNGA
+########################################################################################################################### -->
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-2 text-gray-800">Data User</h1>
-          <p class="mb-4">Berikut tabel data dari user Nursery Polije.</p> -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Selamat Datang Admin, (Nama Admin)</h1>
+            <button type="button" class="btn btn-primary" name="tambahBunga" data-toggle="modal" data-target="#tambahBunga">
+              <i>Tambah Bunga</i>
+            </button>
+          </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -457,49 +492,77 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Id Bunga</th>
-                      <th>Id Kategori</th>
-                      <th>Nama Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Deskripsi</th>
-                      <th>Tindakan</th>
+                <table class="table">
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Nama Bunga</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Deskripsi</th>
+                    <th>Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $tabel = mysqli_query($koneksi, 'SELECT * FROM bunga');
+                    while($row = mysqli_fetch_array($tabel)){ ?>
+                    <tr id="<?php echo $row['ID_BUNGA'];?>">
+                        <td data-target="kategoriBunga"><?php echo $row['ID_KATEGORI'];?></td>
+                        <td data-target="namaBunga"><?php echo $row['NAMA_BUNGA'];?></td>
+                        <td data-target="hargaBunga"><?php echo $row['HARGA'];?></td>
+                        <td data-target="stokBunga"><?php echo $row['STOK'];?></td>
+                        <td data-target="deskripsiBunga"><?php echo $row['DESKRIPSI'];?></td>
+                        <td><a href="#"data-role="update" data-id="<?php echo $row['ID_BUNGA'];?>">Update</a></td>
                     </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id Bunga</th>
-                      <th>Id Kategori</th>
-                      <th>Nama Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Deskripsi</th>
-                      <th>Tindakan</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr>
-                      <td><?php echo $row["ID_BUNGA"]?></td>
-                      <td><?php echo $row["ID_KATEGORI"]?></td>
-                      <td><?php echo $row["NAMA_BUNGA"]?></td>
-                      <td class="text-right"><?php echo $row["HARGA"]?></td>
-                      <td class="text-center"><?php echo $row["STOK"]?></td>
-                      <td><?php echo $row["DESKRIPSI"]?></td>
-                      <td>
-                              <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editBunga" data-whatever="@mdo">
-                                <i class="fas fa-edit"></i>
-                              </button>
-                              <a class="btn btn-danger" href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
-                                <i class="fas fa-trash"></i>
-                              </a> 
-                      </td>
-                    </tr>
-                    <?php endwhile;?>
-                  </tbody>
+                <?php    }
+                ?>
+            </tbody>
+        
+        </table>
+
+        
                 </table>
+                <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <input type="text" id="kategoriBunga" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Bunga</label>
+                        <input type="text" id="namaBunga" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <input type="text" id="hargaBunga" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <input type="text" id="stokBunga" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <input type="text" id="deskripsiBunga" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id="simpan" class="btn btn-primary pull-left">Update</a>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editBunga1">Open Modal</button>
               </div>
             </div>
           </div>
@@ -566,6 +629,32 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-</body>
+  <!-- Script modal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+
+</body>
+  
+<script>
+    $(document).ready(function(){
+        $(document).on('click','a[data-role=update]',function(){
+        var id = $(this).data('id');
+        var kategoriBunga = $('#'+id).children('td[data-target=kategoriBunga]').text();
+        var NamaBunga = $('#'+id).children('td[data-target=namaBunga]').text();
+        var hargaBunga = $('#'+id).children('td[data-target=hargaBunga]').text();
+        var stokBunga = $('#'+id).children('td[data-target=stokBunga]').text();
+        var deskripsiBunga = $('#'+id).children('td[data-target=deskripsiBunga]').text();
+        
+        $('#kategoriBunga').val(kategoriBunga);
+        $('#namaBunga').val(NamaBunga);
+        $('#hargaBunga').val(hargaBunga);
+        $('#stokBunga').val(stokBunga);
+        $('#deskripsiBunga').val(deskripsiBunga);
+        $('#myModal').modal('toggle');
+        
+        })
+    });
+</script>
 </html>

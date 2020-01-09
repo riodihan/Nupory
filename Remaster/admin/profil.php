@@ -1,22 +1,3 @@
-<?php
-  require 'assets/config.php';
-
-  $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
-
-  if(isset($_POST["submit"]) ){
-    if (tambahbunga($_POST) > 0){
-      echo "<script>
-              alert('Data Berhasil Ditambahkan');
-              document.location.href = '';
-            </script>";
-    }
-    else {
-      echo "<script> alert('Gagal Menambahkan Data')</script>";
-      echo mysqli_error();
-    }
-  }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Selamat Datang Admin</title>
+  <title> home </title>
+  <link rel="icon" href="Karyawan.png" type="image/x-icon">
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -70,7 +51,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Database
+          Database
       </div>
 
       <!-- Data -->
@@ -93,11 +74,11 @@
               <i class="fas fa-fw fa-cube text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
-            <a class="collapse-item" href="datatransaksi.php">
+            <a class="collapse-item" href="cards.html">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
-            <a class="collapse-item" href="datakritik.php">
+            <a class="collapse-item" href="cards.html">
               <i class="fas fa-fw fa-comments text-primary"></i>
               <span class="text-primary">Kritik</span>
             </a>
@@ -122,9 +103,9 @@
         </a>
         <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="editbunga.php">
               <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
+              <span class="text-primary">Edit </span>
             </a>
             <a class="collapse-item" href="tambahbunga.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
@@ -168,7 +149,7 @@
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkaryawan.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
@@ -202,7 +183,7 @@
           </button>
 
           <!-- Topbar Search -->
-          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
@@ -211,7 +192,7 @@
                 </button>
               </div>
             </div>
-          </form> -->
+          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -246,7 +227,7 @@
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Pemberitahuan
+                  Alerts Center
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
@@ -259,7 +240,29 @@
                     <span class="font-weight-bold">A new monthly report is ready to download!</span>
                   </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Tampilakan Semua</a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
 
@@ -355,88 +358,15 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <!-- <div class="container-fluid text-center"> -->
+        <div class="container-fluid">
 
           <!-- Page Heading -->
-          <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Bunga</h1>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Selamat Datang, Admin (Nama Admin)</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
-        </div> -->
 
-        
-        <!-- Begin Page Content -->
-        <div class="container-fluid col-md-8">
-
-          <!-- Form Tambah Bunga -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary text-center">Data Bunga Baru</h6>
-            </div>
-            <form action="" method="POST" class="card-body">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="idbunga">ID Bunga</label>
-                    <input type="text" name="idBunga" id="idbunga" class="form-control" require>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control" require>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="kategoribunga">Kategori Bunga</label>
-                <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
-                  <option value="">Pilih Kategori</option>
-                  <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                  <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                  <?php endwhile;?>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="deskripsibunga">Deskripsi Bunga</label>
-                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label for="harga">Harga</label>
-                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" require>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label for="stok">Stok</label>
-                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" require>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="fotobunga">Foto Bunga</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
-                    <label class="custom-file-label" for="fotobunga">Pilih foto</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="videobunga">Video</label>
-                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
-              </div>
-              <div class="form-group">
-                <label for="caraperawatan">Cara Perawatan</label>
-                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
-              </div>
-              <div class="col text-center">
-                <button type="submit" name="submit" class="btn btn-primary">Tambahkan</button>
-              </div>
-            </form>
-          </div>
-        </div>
+          
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -453,8 +383,6 @@
 
   </div>
   <!-- End of Page Wrapper -->
-
-
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
@@ -496,14 +424,6 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
-
-  <!-- Nama File Muncul -->
-  <script type="application/javascript">
-    $('input[type="file"]').change(function(e){
-        var fileName = e.target.files[0].name;
-        $('.custom-file-label').html(fileName);
-    });
-</script>
 
 </body>
 
