@@ -332,9 +332,9 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profil.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Ubah Profil
+                  Profil
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -363,8 +363,48 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Selamat Datang, Admin (Nama Admin)</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
           </div>
+
+          <!-- Card Profil -->
+          <div class="card mb-3" style="max-width: 1080px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="https://source.unsplash.com/QAB-WJcbgJk/480x480" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Profil Admin</h5>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <th>
+                        <p>Username</p>
+                        <p>Nama</p>
+                        <p>Status</p>
+                        <p>Alamat</p>
+                        <p>No. Telpon</p>
+                        <p>Email</p>
+                      </th>
+                    </div>
+                    <div class="col-md-9">
+                      <td>
+                        <p>Indah</p>
+                        <p>Indah</p>
+                        <p>Administrator</p>
+                        <p>Jember</p>
+                        <p>081554400881</p>
+                        <p>indah@gmail.com</p>
+                      </td>
+                    </div>
+                  </div>
+                </div>
+                <a href="#">Ganti Password</a>
+                <a href="#">Edit Profil</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
 
           
 
