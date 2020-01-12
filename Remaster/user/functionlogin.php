@@ -1,14 +1,7 @@
 <?php
     session_start();
-    require '../admin/assets/config.php';
-
-
-    // jika sudah ada session akan dimasukan ke index secara otomatis
-
-    // if(isset($_SESSION["login"])){
-    //     header("location: index.php");
-    // }
-
+    require 'assets/config.php';
+    
     /*Proses Login*/
 
     if(isset($_SESSION["login"])){
@@ -18,17 +11,15 @@
     /*Proses Login*/
 
     if(isset($_POST["login"])){
-        $username = $_POST["username"];
+        $username1 = $_POST["username"];
         $password = $_POST["password"];
-        $login = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' AND password ='$password'");
-        // $row = mysqli_fetch_array($login);
+        $login = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username1' AND password ='$password'");
         $cek = mysqli_num_rows($login);
         if($cek === 1) {
             $row = mysqli_fetch_assoc($login);
-            // $user = $row ['USERNAME'];
-            // $pass = $row ['password'];
             $id_status = $row ['ID_STATUS'];
-            // $id_user = $row ['ID_USER'];
+            $username = $row['USERNAME'];
+            $_SESSION["username"]= $username;
             $_SESSION["id_status"]= $id_status;
             $_SESSION["login"]= true;
 
