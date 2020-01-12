@@ -293,7 +293,7 @@ if (isset($_POST["keranjang"])) {
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Total Harga</label>
-                                <input id="total" onkeyup="sum();" type="number" name="totalakhir" class="form-control" placeholder="" readonly>
+                                <input id="total" onkeyup="sum();" type="number" name="totalharga" class="form-control" placeholder="" readonly>
                             </div>
                             <div class="form-group">
                                 <p>Deskripsi Bunga :</p>
@@ -324,7 +324,7 @@ if (isset($_POST["keranjang"])) {
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Total Harga</label>
-                                <input id="total" onkeyup="sum();" type="number" name="totalakhir" class="form-control" placeholder="" readonly>
+                                <input id="total" onkeyup="sum();" type="number" name="totalharga" class="form-control" placeholder="" readonly>
                             </div>
                             <div class="form-group">
                                 <p>Deskripsi Bunga :</p>
