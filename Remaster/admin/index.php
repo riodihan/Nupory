@@ -1,3 +1,9 @@
+<?php   
+session_start();
+require 'assets/config.php';
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 

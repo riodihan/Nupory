@@ -3,11 +3,11 @@
     require '../config.php';
 
 
-    // jika sudah ada session akan dimasukan ke index secara otomatis
+    //jika sudah ada session akan dimasukan ke index secara otomatis
 
-    // if(isset($_SESSION["login"])){
-    //     header("location: index.php");
-    // }
+    if(isset($_SESSION["login"])){
+        header("location: index.php");
+    }
 
     /*Proses Login*/
 
@@ -22,17 +22,21 @@
             // $user = $row ['USERNAME'];
             // $pass = $row ['password'];
             $id_status = $row ['ID_STATUS'];
-            $id_user = $row ['ID_USER'];
+            // $id_user = $row ['ID_USER'];
             $_SESSION["id_status"]= $id_status;
-            $_SESSION["id_user"]= $id_user;
-            $_SESSION["USERNAME"]= $user;
             $_SESSION["login"]= true;
 
                 if($_SESSION["id_status"] === "03"){
                     header("location: index.php");
                     exit;
-                } else {
+                } else if ($_SESSION["id_status"] === "02") {
                     header("location: ../admin/index.php");
+                    exit;
+                }else if ($_SESSION["id_status"] === "01") {
+                    header("location: ../admin/index.php");
+                    exit;
+                }else{
+                    header("location: index.php");
                     exit;
                 }
         }else{

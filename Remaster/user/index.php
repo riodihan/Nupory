@@ -1,5 +1,5 @@
 <?php
-require 'assets/config.php';
+require '../admin/assets/config.php';
 session_start();
 
 //menampilkan bunga
