@@ -416,7 +416,7 @@ require 'assets/config.php';
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Kritik (Bulan Ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">12 Kritik Masuk</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><i id="counterkr"></i></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -484,7 +484,7 @@ require 'assets/config.php';
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
 
-  <!-- Counter AJAX -->
+  <!-- Counter Transaksi AJAX -->
   <script type="text/javascript" >
     function loadDoc() {
       setInterval(function(){
@@ -504,6 +504,25 @@ require 'assets/config.php';
     loadDoc();
   </script>
 
+  <!-- Counter Kritik AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterkr").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
 </body>
 
 </html>
