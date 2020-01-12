@@ -1,31 +1,31 @@
 <?php
 session_start();
-require 'assets/config.php';
+require '../admin/assets/config.php';
 
 // jika sudah ada session akan dimasukan ke index secara otomatis
 
-if (isset($_SESSION["login"])) {
-	header("location: index.php");
-}
+// if (isset($_SESSION["login"])) {
+// 	header("location: index.php");
+// }
 
 
-if (isset($_POST["login"])) {
-	$iduser = $_POST["iduser"];
-	$password = $_POST["password"];
-	$login = mysqli_query($koneksi, "SELECT * FROM user WHERE USERNAME = '$iduser' AND password ='$password'");
-	$row = mysqli_fetch_array($login);
-	$username = $row['USERNAME'];
-	$pass = $row['PASSWORD'];
-	$idstatus = $row['ID_STATUS'];
-	if (mysqli_num_rows($login) === 1) {
-		$_SESSION["idstatus"] = $idstatus;
-		$_SESSION["username"] = $username;
-		$_SESSION["login"] = true;
-		header("location: index.php");
-	} else {
-		header("location: login.php?gagal");
-	}
-}
+// if (isset($_POST["login"])) {
+// 	$iduser = $_POST["iduser"];
+// 	$password = $_POST["password"];
+// 	$login = mysqli_query($koneksi, "SELECT * FROM user WHERE USERNAME = '$iduser' AND password ='$password'");
+// 	$row = mysqli_fetch_array($login);
+// 	$username = $row['USERNAME'];
+// 	$pass = $row['PASSWORD'];
+// 	$idstatus = $row['ID_STATUS'];
+// 	if (mysqli_num_rows($login) === 1) {
+// 		$_SESSION["idstatus"] = $idstatus;
+// 		$_SESSION["username"] = $username;
+// 		$_SESSION["login"] = true;
+// 		header("location: index.php");
+// 	} else {
+// 		header("location: login.php?gagal");
+// 	}
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +77,7 @@ if (isset($_POST["login"])) {
 					</span>
 				</div>
 
-				<form method="POST" class="login100-form validate-form">
+				<form action="functionlogin.php" class="login100-form validate-form" method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username Harus Diisi">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="iduser" placeholder="Masukan username">

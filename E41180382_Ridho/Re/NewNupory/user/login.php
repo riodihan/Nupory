@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require '../config.php';
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@ require '../config.php';
 					</span>
 				</div>
 
-				<form action="funtionlogin.php" class="login100-form validate-form" method="post">
+				<form  action="funtionlogin.php" class="login100-form validate-form" method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username Harus Diisi">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Masukan username">
