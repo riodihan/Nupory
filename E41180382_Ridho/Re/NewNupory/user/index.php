@@ -2,6 +2,9 @@
   session_start();
   require '../config.php';
 
+// if ($_SESSION['id_status']=="") {
+//     header("location:index.php?pesan=gagal");
+//   }
 ?>
 <!DOCTYPE html>
 <html>

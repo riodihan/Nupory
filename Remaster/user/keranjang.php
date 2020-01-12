@@ -1,3 +1,21 @@
+<?php 
+session_start();
+require 'assets/config.php';
+
+//username
+$username = $_SESSION["username"];
+
+
+//keranjang
+$keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
+                        inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
+                        inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
+                        WHERE username = '$username' && STATUS_DETAIL_TRANSAKSI = 'keranjang'
+                            
+                            ")
+
+?>
+
 <!doctype html>
 <html>
 
@@ -215,14 +233,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $i=1?>
+                    <?php foreach($keranjang as $data){?>
+                        <form action="">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Krisan Bulan</td>
-                        <td>20</td>
-                        <td>10.000</td>
-                        <td>200.000</td>
+                        <th scope="row"><?= $i?></th>
+                        <td><?= $data["NAMA_BUNGA"]?></td>
+                        <td><?= $data["JUMLAH"]?></td>
+                        <td><?= $data["HARGA"]?></td>
+                        <td><?= $data["TOTAL_HARGA"]?></td>
                         <td><a href="#" class="badge badge-danger">Hapus</a></td>
                     </tr>
+                    </form>
+                    <?php $i++ ?>
+                    <?php }?>
                     <tr>
                         <td colspan="4">Jumlah Total</td>
                         <td>200.000</td>
@@ -325,6 +349,17 @@
     <script src="js/bootstrap-slider.min.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+    function sum() {
+        var txtFirstNumberValue = document.getElementById('harga').value;
+        var txtSecondNumberValue = document.getElementById('jumlah').value;
+        var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+        if (!isNaN(txtSecondNumberValue)) {
+            document.getElementById('total').value = result;
+        }
+
+    }
+</script>
 </body>
 
 </html>

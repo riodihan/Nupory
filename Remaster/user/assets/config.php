@@ -118,8 +118,9 @@ function detail_keranjang($detail)
     $idbunga = htmlspecialchars($detail["idbunga"]);
     $statusdetailtransaksi = htmlspecialchars($detail["statusdetailtransaksi"]);
     $jumlah = htmlspecialchars($detail["jumlah"]);
+    $totalharga = htmlspecialchars($detail["totalharga"]);
 
-    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idbunga', '$statusdetailtransaksi  ', '$jumlah')");
+    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idbunga', '$statusdetailtransaksi  ', '$jumlah', '$totalharga')");
 
     return $qu;
 }

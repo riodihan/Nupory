@@ -2,6 +2,11 @@
   session_start();
   require '../config.php';
 
+  //cek apakah yang mengakses halaman ini sudah login
+  // if ($_SESSION['id_status']=="") {
+  //   header("location:index.php?pesan=gagal");
+  // }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,9 +45,9 @@
         </div>
 
         <div class="sidebar-brand-text mx-3">
-          <?php if ($_SESSION['id_status']==01){
+          <?php if ($_SESSION['id_status']=="01"){
             echo "Admin";
-          } elseif ($_SESSION['id_status']==02) {
+          } elseif ($_SESSION['id_status']=="02") {
             echo "Karyawan";
           } ?> <br> Nursery Polije
         </div>
