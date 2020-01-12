@@ -96,5 +96,33 @@ function ubahbiodata($ubahbio)
     return $qu;
 }
 
+//keranjang
+function keranjang($keranjang)
+{
+    global $koneksi;
+    $idtransaksi = htmlspecialchars($keranjang["idtransaksi"]);
+    $idpembayaran = htmlspecialchars($keranjang["idpembayaran"]);
+    $username = htmlspecialchars($keranjang["username"]);
+    $idstatustransaksi = htmlspecialchars($keranjang["idstatustransaksi"]);
+
+    $qu = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$idtransaksi', '$idpembayaran', '$idstatustransaksi', '$username', now(), '', '')");
+
+    return $qu;
+}
+
+//detail keranjang
+function detail_keranjang($detail)
+{
+    global $koneksi;
+    $idtransaksi = htmlspecialchars($detail["idtransaksi"]);
+    $idbunga = htmlspecialchars($detail["idbunga"]);
+    $statusdetailtransaksi = htmlspecialchars($detail["statusdetailtransaksi"]);
+    $jumlah = htmlspecialchars($detail["jumlah"]);
+
+    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idbunga', '$statusdetailtransaksi  ', '$jumlah')");
+
+    return $qu;
+}
+
 
 ?>

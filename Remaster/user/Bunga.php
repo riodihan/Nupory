@@ -11,6 +11,46 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
 //username
 $username = $_SESSION["username"];
 
+$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username'");
+$cek = mysqli_fetch_array($transaksi);
+//auto increment id transaksi
+
+$carikode = mysqli_query($koneksi, "select max(ID_TRANSAKSI)from transaksi") or die(mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if ($datakode) {
+    $nilaikode = substr($datakode[0], 1);
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "T" . str_pad($kode, 3, "0", STR_PAD_LEFT);
+} else {
+    $hasilkode = "T001";
+}
+
+//keranjang
+
+if (!isset($cek["ID_TRANSAKSI"])) {
+    if (isset($_POST["keranjang"])) {
+
+        if (keranjang($_POST) == 1) {
+            echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
+        } else {
+            echo mysqli_error($koneksi);
+        }
+    }
+}
+
+//detail
+if (isset($_POST["keranjang"])) {
+
+    if (detail_keranjang($_POST) == 1) {
+        echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
+
+
+
 ?>
 <!doctype html>
 <html>
@@ -236,35 +276,65 @@ $username = $_SESSION["username"];
                     <img src="images/<?= $data["FOTO_BUNGA"] ?>" alt="" class="img-responsive">
                 </div>
 
-
-                <div class="col-md-6">
+                <?php if (isset($cek["ID_TRANSAKSI"])) { ?>
+                    <div class="col-md-6">
                     <h3>Rp.<?= $data["HARGA"] ?></h3>
-                    <p>Stok : <?= $data["STOK"] ?></p><br><br>
-                    <form>
-                    <input type="hidden" name="idtransaksi" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    <input type="hidden" name="idstatustransaksi" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    <input type="hidden" name="username" value="<?= $username?>" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    <input type="hidden" name="totalakhir" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    <input type="hidden" name="idbunga" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    <input type="hidden" name="idstatustransaksi" value="01" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Jumlah Beli</label>
-                            <input type="text" name="jumlah" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Pilih Metode Pembelian</label>
-                            <select name="idpembayaran" class="form-control" id="exampleFormControlSelect1">
-                                <option value="01">Transfer</option>
-                                <option value="02">Ambil Di Tempat</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <p>Deskripsi Bunga :</p>
-                            <p><?= $data["DESKRIPSI"] ?></p>
-                        </div>
-                        <button type="button" class="btn btn-success">Masukan keranjang</button>
-                    </form>
-                </div>
+                        <p>Stok : <?= $data["STOK"] ?></p><br>
+                        <form method="POST">
+                            <input type="hidden" name="idtransaksi" value="<?= $cek["ID_TRANSAKSI"] ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
+
+                            <input type="hidden" name="idbunga" value="<?= $data["ID_BUNGA"] ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
+
+                            <input type="hidden" name="statusdetailtransaksi" value="keranjang" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Jumlah Beli</label>
+                                <input id="jumlah" onkeyup="sum();" type="text" name="jumlah" class="form-control" placeholder="">
+                                <input id="harga" onkeyup="sum();" value="<?= $data["HARGA"] ?>" type="hidden" name="harga" class="form-control" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Total Harga</label>
+                                <input id="total" onkeyup="sum();" type="number" name="totalakhir" class="form-control" placeholder="" readonly>
+                            </div>
+                            <div class="form-group">
+                                <p>Deskripsi Bunga :</p>
+                                <p><?= $data["DESKRIPSI"] ?></p>
+                            </div>
+                            <button type="submit" name="keranjang" class="btn btn-success">Masukan keranjang</button>
+                        </form>
+                    </div>
+                <?php } ?>
+
+
+                <?php if (!isset($cek["ID_TRANSAKSI"])) { ?>
+                    <div class="col-md-6">
+                        <h3>Rp.<?= $data["HARGA"] ?></h3>
+                        <p>Stok : <?= $data["STOK"] ?></p><br>
+
+                        <form method="POST">
+                            <input type="hidden" name="idtransaksi" value="<?= $hasilkode ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <input type="hidden" name="username" value="<?= $username ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <input type="hidden" name="idbunga" value="<?= $data["ID_BUNGA"] ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <input type="hidden" name="idstatustransaksi" value="01" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <input type="hidden" name="statusdetailtransaksi" value="keranjang" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <input type="hidden" name="idpembayaran" value="03" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Jumlah Beli</label>
+                                <input id="jumlah" onkeyup="sum();" type="text" name="jumlah" class="form-control" placeholder="">
+                                <input id="harga" onkeyup="sum();" value="<?= $data["HARGA"] ?>" type="hidden" name="harga" class="form-control" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Total Harga</label>
+                                <input id="total" onkeyup="sum();" type="number" name="totalakhir" class="form-control" placeholder="" readonly>
+                            </div>
+                            <div class="form-group">
+                                <p>Deskripsi Bunga :</p>
+                                <p><?= $data["DESKRIPSI"] ?></p>
+                            </div>
+                            <button type="submit" name="keranjang" class="btn btn-success">Masukan keranjang</button>
+                        </form>
+                    </div>
+                <?php } ?>
+
             </div>
         </div>
     </div>
@@ -327,6 +397,17 @@ $username = $_SESSION["username"];
 <script src="js/bootstrap-slider.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+    function sum() {
+        var txtFirstNumberValue = document.getElementById('harga').value;
+        var txtSecondNumberValue = document.getElementById('jumlah').value;
+        var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+        if (!isNaN(txtSecondNumberValue)) {
+            document.getElementById('total').value = result;
+        }
+
+    }
+</script>
 </body>
 
 </html>
