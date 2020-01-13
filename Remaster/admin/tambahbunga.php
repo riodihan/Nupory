@@ -15,6 +15,24 @@
       echo mysqli_error();
     }
   }
+
+
+  //membuat id varchar auto increment
+  $cr_id = mysqli_query($koneksi, "SELECT max(ID_BUNGA) AS id FROM bunga");
+  $cari = mysqli_fetch_array($cr_id);
+  $kode = substr($cari['id'],2,4);
+  $id_tbh = $kode+1;
+
+
+  if ($id_tbh<10) {
+    $id="B"."00".$id_tbh;
+  }
+  elseif ($id_tbh>=10 && $id_tbh<100 ) {
+    $id="B"."0".$id_tbh;
+  }
+  else{
+    $id="B".$id_tbh;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -377,7 +395,7 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="idbunga">ID Bunga</label>
-                    <input type="text" name="idBunga" id="idbunga" class="form-control" require>
+                    <input value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" require>
                   </div>
                 </div>
                 <div class="col">
