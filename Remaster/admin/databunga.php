@@ -17,6 +17,25 @@
       echo mysqli_error();
     }
   }
+  //membuat id varchar auto increment
+  $cr_id = mysqli_query($koneksi, "SELECT max(ID_BUNGA) AS id FROM bunga");
+  $cari = mysqli_fetch_array($cr_id);
+  $kode = substr($cari['id'],2,4);
+  $id_tbh = $kode+1;
+
+
+  if ($id_tbh<10) {
+    $id="B"."00".$id_tbh;
+  }
+  elseif ($id_tbh>=10 && $id_tbh<100 ) {
+    $id="B"."0".$id_tbh;
+  }
+  else{
+    $id="B".$id_tbh;
+  }
+
+  // $idB=$_GET['id'];
+  // $sql=$koneksi->query("SELECT * FROM bunga WHERE ID_BUNGA='$idB'");
 ?>
 
 <!DOCTYPE html>
@@ -409,7 +428,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="idBunga">Id Bunga</label>
-                      <input type="text" name="idBunga" id="idBunga" class="form-control">
+                      <input value="<?=$id?>" type="text" name="idBunga" id="idBunga" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -482,14 +501,14 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content col-md-12">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Bunga</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Bunga</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <form action="" method="POST" class="card-body">
-                <input type="hidden" name="idBunga" id="idBunga" class="form-control">
+                <input  value="<?=$idB?>" type="hidden" name="idBunga" id="idBunga" class="form-control">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">

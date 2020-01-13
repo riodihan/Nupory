@@ -2,6 +2,20 @@
   require 'assets/config.php';
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
+
+  // if(isset($_POST["tambahkanKategori"]) ){
+  //   if (tambahKategori($_POST) > 0){
+  //     echo "<script>
+  //             alert('Data Berhasil Ditambahkan');
+  //             document.location.href = '';
+  //           </script>";
+  //   }
+  //   else {
+  //     echo "<script> alert('Gagal Menambahkan Data')</script>";
+  //     echo mysqli_error();
+  //   }
+  // }
+
 ?>
 
 <!DOCTYPE html>
@@ -377,7 +391,62 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
+              <!-- <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-white" data-toggle="modal" data-target="#tambahkategori">Tambah Kategori Bunga</a> -->
             </div>
+
+            <!-- #############################################################################################
+                                      Modal Import (Tambah Kategori Bunga)
+        ############################################################################################# -->
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="tambahKategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content col-md-12">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Bunga</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST" class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="idKategori">Id Kategori</label>
+                      <input value="<?=$id?>" type="text" name="idKategori" id="idKategori" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="namaKategori">Nama Kategori</label>
+                      <input type="text" name="namaKategori" id="namaKategori" class="form-control" require>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsiKategori">Deskripsi Kategori</label>
+                  <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="fotoKategori">Foto Kategori</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" name="fotoKategori" class="custom-file-input" id="fotoKategori" aria-describedby="fotoKategori" require>
+                      <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col text-center">
+                    <button type="submit" name="tambahkanBunga" class="btn btn-primary">Tambahkan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        
+
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -387,6 +456,7 @@
                       <th>Nama Kategori</th>
                       <th>Deskripsi Kategori</th>
                       <th>Foto Dekripsi</th>
+                      <th>Tindakan</th>
                     </tr>
                   </thead>
                   <!-- <tfoot>
@@ -403,7 +473,16 @@
                       <td><?php echo $row["ID_KATEGORI"]?></td>
                       <td><?php echo $row["NAMA_KATEGORI"]?></td>
                       <td><?php echo $row["DESKRIPSI"]?></td>
-                      <td><?php echo $row["FOTO_KATEGORI"]?></td>
+                      <td><?php echo $row["GAMBAR_KATEGORI"]?></td>
+                      <td>
+                        <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editKategori">
+                        <i class="fas fa-edit"></i>
+                        </button>
+                        <a class="btn btn-danger" href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
+                        <i class="fas fa-trash"></i>
+                        </a> 
+
+                      </td>
                     </tr>
                     <?php endwhile;?>
                   </tbody>
