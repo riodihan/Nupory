@@ -1,3 +1,33 @@
+<?php
+session_start();
+require 'assets/config.php';
+
+//username
+$username = $_SESSION["username"];
+
+
+//dikemas
+$tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi
+                        
+                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 03
+                            
+                            ");
+
+
+//detail dikemas
+$detail = mysqli_query($koneksi, "SELECT * FROM transaksi
+                        inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
+                        inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
+                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 03
+                            
+                            ");
+
+
+
+
+
+?>
+
 <!doctype html>
 <html>
 
@@ -209,7 +239,7 @@
                                 <div class="service-icon">
                                     <img src="images/anggrek bulan.jpg" alt="">
                                 </div>
-                                <div class="service-title"><a href="webhosting.html">Anggrek Bulan</a></div>
+                                <div class="service-title"><a href="webhosting.html">Pesanan anda</a></div>
                                 <div class="service-details">
                                     <p>Barang Sedang dikemas oleh pihak keryawan</p>
                                     <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
@@ -243,25 +273,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($detail as $data) { ?>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td><?= $data["NAMA_BUNGA"] ?></td>
+                                    <td><?= $data["JUMLAH"] ?></td>
+                                    <td>Rp. <?= $data["HARGA"] ?></td>
+                                    <td>Rp. <?= $data["TOTAL_HARGA"] ?></td>
+                                </tr>
+                            <?php } ?>
+                            <?php foreach($tagihan as $data) {?>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Anggrek Bulan</td>
-                                <td>10</td>
-                                <td>Rp. 20.000</td>
-                                <td>Rp. 200.000</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Anggrek Taiwan</td>
-                                <td>10</td>
-                                <td>Rp. 20.000</td>
-                                <td>Rp. 200.000</td>
-                            </tr>
-                            <tr>
-                                
                                 <td colspan="4">Jumlah Total</td>
-                                <td>Rp. 400.000</td>
+                                <td>Rp. <?= $data["TOTAL_AKHIR"] ?></td>
                             </tr>
+                            <?php }?>
                         </tbody>
                     </table>
                 </div>

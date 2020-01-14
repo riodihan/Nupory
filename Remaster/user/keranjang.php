@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require 'assets/config.php';
 
@@ -10,9 +10,21 @@ $username = $_SESSION["username"];
 $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
                         inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && STATUS_DETAIL_TRANSAKSI = 'keranjang'
+                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 01
                             
-                            ")
+                            ");
+
+
+//tagihan
+
+if (isset($_POST["simpan"])) {
+
+    if (tagihan($_POST) == 1) {
+        echo "<script>alert('Silahkan Bayar tagihan anda'); window.location.href='keranjang.php'</script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
 
 ?>
 
@@ -233,20 +245,20 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i=1?>
-                    <?php foreach($keranjang as $data){?>
+                    <?php $i = 1 ?>
+                    <?php foreach ($keranjang as $data) { ?>
                         <form action="">
-                    <tr>
-                        <th scope="row"><?= $i?></th>
-                        <td><?= $data["NAMA_BUNGA"]?></td>
-                        <td><?= $data["JUMLAH"]?></td>
-                        <td><?= $data["HARGA"]?></td>
-                        <td><?= $data["TOTAL_HARGA"]?></td>
-                        <td><a href="#" class="badge badge-danger">Hapus</a></td>
-                    </tr>
-                    </form>
-                    <?php $i++ ?>
-                    <?php }?>
+                            <tr>
+                                <th scope="row"><?= $i ?></th>
+                                <td><?= $data["NAMA_BUNGA"] ?></td>
+                                <td><?= $data["JUMLAH"] ?></td>
+                                <td><?= $data["HARGA"] ?></td>
+                                <td><?= $data["TOTAL_HARGA"] ?></td>
+                                <td><a href="#" class="badge badge-danger">Hapus</a></td>
+                            </tr>
+                        </form>
+                        <?php $i++ ?>
+                    <?php } ?>
                     <tr>
                         <td colspan="4">Jumlah Total</td>
                         <td>200.000</td>
@@ -262,30 +274,35 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Masukan Data Pembeli</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Masukan Alamat Pengiriman</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST">
                         <div class="form-group">
-                            <label for="formGroupExampleInput">Nama</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
+                            <label for="exampleFormControlSelect1">Pilih Metode Pembayaran</label>
+                            <select name="idpembayaran" class="form-control" id="exampleFormControlSelect1">
+                                <option value="01">Transfer</option>
+                                <option value="02">Bayar Di Tempat</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">No Handphone</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Nomor Handphone">
-                        </div>
+                        <?php foreach ($keranjang as $data) { ?>
+                            <div class="form-group">
+                                <input value="<?= $data["ID_TRANSAKSI"] ?>" name="idtransaksi" type="hidden" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
+                                <input value="02" name="idstatustransaksi" type="hidden" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
+                            </div>
+                        <?php } ?>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Alamat Pengiriman</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli/Penerima"></textarea>
+                            <textarea name="detailalamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli/Penerima"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
@@ -350,16 +367,16 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
     <script src="js/slick.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-    function sum() {
-        var txtFirstNumberValue = document.getElementById('harga').value;
-        var txtSecondNumberValue = document.getElementById('jumlah').value;
-        var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
-        if (!isNaN(txtSecondNumberValue)) {
-            document.getElementById('total').value = result;
-        }
+        function sum() {
+            var txtFirstNumberValue = document.getElementById('harga').value;
+            var txtSecondNumberValue = document.getElementById('jumlah').value;
+            var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+            if (!isNaN(txtSecondNumberValue)) {
+                document.getElementById('total').value = result;
+            }
 
-    }
-</script>
+        }
+    </script>
 </body>
 
 </html>

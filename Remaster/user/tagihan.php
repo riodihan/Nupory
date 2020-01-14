@@ -1,10 +1,46 @@
+<?php
+session_start();
+require 'assets/config.php';
+
+//username
+$username = $_SESSION["username"];
+
+//tagihan
+$tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi
+                        
+                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 02
+                            
+                            ");
+
+
+//detail tagihan
+$detail = mysqli_query($koneksi, "SELECT * FROM transaksi
+                        inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
+                        inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
+                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 02
+                            
+                            ");
+
+
+//upload
+
+if (isset($_POST["simpan"])) {
+
+    if (upload($_POST) == 1) {
+        echo "<script>alert('Bukti Pembayaran berhasil di Upload, mohon tunggu konfirmasi dari karyawan.'); window.location.href='tagihan.php'</script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
+
+?>
 <!doctype html>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>Keranjang</title>
+    <title>Tagihan</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
@@ -199,21 +235,26 @@
             </div>
         </div>
     </div>
-    <div id="page-content" class="container-fluid">
-        <div class="container">
-            <div id="services" class="container-fluid">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-9">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <img src="images/anggrek bulan.jpg" alt="">
-                                </div>
-                                <div class="service-title"><a href="webhosting.html">Anggrek Bulan</a></div>
-                                <div class="service-details">
-                                    <p>Jumlah yang harus Di bayar : Rp. 200.000</p>
-                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
-                                    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+
+    <?php foreach ($tagihan as $data) { ?>
+        <div id="page-content" class="container-fluid">
+            <div class="container">
+                <div id="services" class="container-fluid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-9">
+                                <div class="service-box">
+                                    <div class="service-icon">
+                                        <img src="images/anggrek bulan.jpg" alt="">
+                                    </div>
+                                    <div class="service-title"><a href="webhosting.html">Tagihan Anda</a></div>
+
+                                    <div class="service-details">
+                                        <p>Jumlah yang harus Di bayar : Rp. <?= $data["TOTAL_AKHIR"] ?></p>
+                                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
+                                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -221,7 +262,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    <?php } ?>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -231,22 +272,26 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <?php foreach ($tagihan as $data) { ?>
                 <div class="modal-body">
                     <div class="alert alert-success" role="alert">
-                        Silahkan Melakukan Pembayaran sebesar Rp. 400.000 ke rekening 201050851 BCA atas nama Idris.
+                        Silahkan Melakukan Pembayaran sebesar Rp. <?= $data["TOTAL_AKHIR"]?> ke rekening 201050851 BCA atas nama Idris.
                         Lalu unggah foto pembayaran anda dibawah sebagai bukti.
                     </div>
                 </div>
-                <form>
+                
+                <form method="POST">
                     <div class="form-group container">
                         <label for="exampleFormControlFile">Unggah foto pembayaran disini</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" required>
+                        <input name="idtransaksi" value="<?= $data["ID_TRANSAKSI"]?>" type="hidden" class="form-control-file" id="exampleFormControlFile1">
+                        <input name="bukti" type="file" class="form-control-file" id="exampleFormControlFile1" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
+                <?php }?>
             </div>
         </div>
     </div>
@@ -274,25 +319,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Anggrek Bulan</td>
-                                <td>10</td>
-                                <td>Rp. 20.000</td>
-                                <td>Rp. 200.000</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Anggrek Taiwan</td>
-                                <td>10</td>
-                                <td>Rp. 20.000</td>
-                                <td>Rp. 200.000</td>
-                            </tr>
-                            <tr>
-                                
-                                <td colspan="4">Jumlah Total</td>
-                                <td>Rp. 400.000</td>
-                            </tr>
+                            <?php foreach ($detail as $data) { ?>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td><?= $data["NAMA_BUNGA"]?></td>
+                                    <td><?= $data["JUMLAH"]?></td>
+                                    <td>Rp. <?= $data["HARGA"]?></td>
+                                    <td>Rp. <?= $data["TOTAL_HARGA"]?></td>
+                                </tr>
+                                <?php } ?>
+                                <tr>
+                                    <td colspan="4">Jumlah Total</td>
+                                    <td>Rp. <?= $data["TOTAL_AKHIR"]?></td>
+                                </tr>
                         </tbody>
                     </table>
                 </div>

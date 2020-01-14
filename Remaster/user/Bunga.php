@@ -11,7 +11,7 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
 //username
 $username = $_SESSION["username"];
 
-$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username'");
+$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username' && ID_STATUS_TRANSAKSI = 01");
 $cek = mysqli_fetch_array($transaksi);
 //auto increment id transaksi
 
