@@ -18,6 +18,7 @@
       echo mysqli_error();
     }
   }
+  
   //membuat id varchar auto increment
   $cr_id = mysqli_query($koneksi, "SELECT max(ID_BUNGA) AS id FROM bunga");
   $cari = mysqli_fetch_array($cr_id);
@@ -462,29 +463,26 @@
               </div>
               <div class="modal-body">
                 <form action="" method="POST" class="card-body">
+                      <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idBunga" class="form-control">
                 <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="idBunga">Id Bunga</label>
-                      <input value="<?=$id?>" type="text" name="idBunga" id="idBunga" class="form-control">
-                    </div>
-                  </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="namabunga">Nama Bunga</label>
                       <input type="text" name="namaBunga" id="namaBunga" class="form-control" require>
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="kategoribunga">Kategori Bunga</label>
-                    <select name="kategoriBunga" id="kategoriBunga" class="form-control" require>
-                    <option value="">Pilih Kategori</option>
-                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
-                    <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                    <?php endwhile;?>
-                    </select>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="kategoribunga">Kategori Bunga</label>
+                        <select name="kategoriBunga" id="kategoriBunga" class="form-control" require>
+                        <option value="">Pilih Kategori</option>
+                        <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
+                        <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                        <?php endwhile;?>
+                        </select>
+                    </div>
                   </div>
+                </div>
                 <div class="form-group">
                   <label for="deskripsibunga">Deskripsi Bunga</label>
                   <input type="text" name="deskripsiBunga" id="deskripsiBunga" class="form-control">

@@ -4,18 +4,35 @@
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
 
-  // if(isset($_POST["tambahkanKategori"]) ){
-  //   if (tambahKategori($_POST) > 0){
-  //     echo "<script>
-  //             alert('Data Berhasil Ditambahkan');
-  //             document.location.href = '';
-  //           </script>";
-  //   }
-  //   else {
-  //     echo "<script> alert('Gagal Menambahkan Data')</script>";
-  //     echo mysqli_error();
-  //   }
-  // }
+  if(isset($_POST["tambahkanKategori"]) ){
+    if (tambahKategori($_POST) > 0){
+      echo "<script>
+              alert('Data Berhasil Ditambahkan');
+              document.location.href = '';
+            </script>";
+    }
+    else {
+      echo "<script> alert('Gagal Menambahkan Data')</script>";
+      echo mysqli_error();
+    }
+  }
+
+  //membuat id varchar auto increment
+  $cr_id = mysqli_query($koneksi, "SELECT max(ID_KATEGORI) AS id FROM kategori");
+  $cari = mysqli_fetch_array($cr_id);
+  $kode = substr($cari['id'],2,4);
+  $id_tbh = $kode+1;
+
+
+  if ($id_tbh<10) {
+    $id="K"."00".$id_tbh;
+  }
+  elseif ($id_tbh>=10 && $id_tbh<100 ) {
+    $id="K"."0".$id_tbh;
+  }
+  else{
+    $id="K".$id_tbh;
+  }
 
 ?>
 
@@ -412,8 +429,21 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-2 text-gray-800">Data User</h1>
-          <p class="mb-4">Berikut tabel data dari user Nursery Polije.</p> -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">
+              Selamat Datang
+              <?php if ($_SESSION['id_status']=="01") {
+                echo "Admin";
+              }elseif ($_SESSION['id_status']=="02") {
+                echo "Karyawan";
+              }?>
+            </h1>
+            <?php if ($_SESSION['id_status']=="01") { ?>
+              <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-white" data-toggle="modal" data-target="#tambahKategori">Tambah Kategori</a>   
+          <?php  }else{ ?>
+         <?php } ?>
+            
+          </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -426,7 +456,7 @@
                                       Modal Import (Tambah Kategori Bunga)
         ############################################################################################# -->
         <!-- Modal -->
-        <!-- <div class="modal fade" id="tambahKategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="tambahKategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content col-md-12">
               <div class="modal-header">
@@ -437,19 +467,10 @@
               </div>
               <div class="modal-body">
                 <form action="" method="POST" class="card-body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="idKategori">Id Kategori</label>
-                      <input value="<?=$id?>" type="text" name="idKategori" id="idKategori" class="form-control">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="namaKategori">Nama Kategori</label>
-                      <input type="text" name="namaKategori" id="namaKategori" class="form-control" require>
-                    </div>
-                  </div>
+                <input type="hidden" value="<?=$id?>" type="text" name="idKategori" id="idKategori" class="form-control">
+                <div class="form-group">
+                    <label for="namaKategori">Nama Kategori</label>
+                    <input type="text" name="namaKategori" id="namaKategori" class="form-control" require>
                 </div>
                 <div class="form-group">
                   <label for="deskripsiKategori">Deskripsi Kategori</label>
@@ -465,14 +486,14 @@
                   </div>
                 </div>
                 <div class="col text-center">
-                    <button type="submit" name="tambahkanBunga" class="btn btn-primary">Tambahkan</button>
+                    <button type="submit" name="tambahkanKategori" class="btn btn-primary">Tambahkan</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
                 </div>
                 </form>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         
 
             <div class="card-body">

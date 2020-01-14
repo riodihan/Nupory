@@ -52,7 +52,7 @@ function tambahkaryawan($data){
     $emailKaryawan = htmlspecialchars($data["emailKaryawan"]);
     $passwordKaryawan = htmlspecialchars($data["passwordKaryawan"]);
 
-    $q_kar = mysqli_query ($koneksi, "INSERT INTO user VALUES ('$usernameKaryawan', 'SU02', '$namaKaryawan', '$alamatKaryawan', '$nomorTelponKaryawan', '$emailKaryawan', '$passwordKaryawan', '')") or die(mysqli_error($koneksi));
+    $q_kar = mysqli_query ($koneksi, "INSERT INTO user VALUES ('$usernameKaryawan', '02', '$namaKaryawan', '$alamatKaryawan', '$nomorTelponKaryawan', '$emailKaryawan', '$passwordKaryawan', '')") or die(mysqli_error($koneksi));
     return $q_kar;
 }
 ?>
