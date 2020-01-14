@@ -393,7 +393,7 @@
                       <th>Gambar</th>
                       <th>Video</th>
                       <th>Cara Perawatan</th>
-                      <th>Deskripsi</th>
+                      <!-- <th>Deskripsi</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -411,7 +411,7 @@
                       <td><?php echo $row["FOTO_BUNGA"]?></td>
                       <td><?php echo $row["VIDEO_BUNGA"]?></td>
                       <td><?php echo $row["CARA_PERAWATAN"]?></td>
-                      <td><?php echo $row["DESKRIPSI"]?></td>
+                      <!-- <td><?php echo $row["DESKRIPSI"]?></td> -->
                     </tr>
                     <?php endwhile;?>
                   </tbody>

@@ -355,8 +355,10 @@ require 'assets/config.php';
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                   <?php if ($_SESSION['id_status']=="01") {
+                    echo "Admin, ";
                     echo $_SESSION["nama_user"];
                   }elseif ($_SESSION['id_status']=="02") {
+                    echo "Karyawan, ";
                     echo $_SESSION["nama_user"];
                   }?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
@@ -393,10 +395,12 @@ require 'assets/config.php';
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Selamat Datang
+            <h1 class="h3 mb-0 text-gray-800">Selamat Datang,
               <?php if ($_SESSION['id_status']=="01") {
+                echo "Admin ";
                 echo $_SESSION['nama_user'];
               }elseif ($_SESSION['id_status']=="02") {
+                echo "Karyawan ";
                 echo $_SESSION['nama_user'];
               }?></h1>
               <?php if ($_SESSION['id_status']=="01") { ?>
