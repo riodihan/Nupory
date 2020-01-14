@@ -372,21 +372,22 @@
               <div class="col-md-4">
                 <img src="https://source.unsplash.com/QAB-WJcbgJk/480x480" class="card-img" alt="...">
               </div>
+
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Profil Admin</h5>
+                  <h5 class="card-title text-center">Profil Admin</h5>
                   <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                       <th>
-                        <p>Username</p>
-                        <p>Nama</p>
-                        <p>Status</p>
-                        <p>Alamat</p>
-                        <p>No. Telpon</p>
-                        <p>Email</p>
+                        <p class="font-weight-bold text-right">Username</p>
+                        <p class="font-weight-bold text-right">Nama</p>
+                        <p class="font-weight-bold text-right">Status</p>
+                        <p class="font-weight-bold text-right">Alamat</p>
+                        <p class="font-weight-bold text-right">No. Telpon</p>
+                        <p class="font-weight-bold text-right">Email</p>
                       </th>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                       <td>
                         <p>Indah</p>
                         <p>Indah</p>
@@ -398,13 +399,17 @@
                     </div>
                   </div>
                 </div>
-                <a href="#">Ganti Password</a>
-                <a href="#">Edit Profil</a>
+                <div class="row">
+                  <div class="col">
+                    <a href="#" class="btn btn-primary">Ganti Password</a>
+                  </div>
+                  <div class="col">
+                    <a href="#" class="btn btn-primary">Edit Profil</a></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-        </div>
 
           
 

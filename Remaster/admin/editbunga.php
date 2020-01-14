@@ -2,6 +2,8 @@
   require 'assets/config.php';
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
+  $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
+
 ?>
 
 <!DOCTYPE html>
@@ -382,6 +384,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>Tindakan</th>
                       <th>Id Bunga</th>
                       <th>Id Kategori</th>
                       <th>Nama Bunga</th>
@@ -393,22 +396,13 @@
                       <th>Deskripsi</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Id Bunga</th>
-                      <th>Kategori</th>
-                      <th>Nama Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
-                      <th>Cara Perawatan</th>
-                      <th>Deskripsi</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
+                      <td>
+                        <a href="#" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                      </td>
                       <td><?php echo $row["ID_BUNGA"]?></td>
                       <td><?php echo $row["ID_KATEGORI"]?></td>
                       <td><?php echo $row["NAMA_BUNGA"]?></td>
@@ -433,27 +427,25 @@
               <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
             </div>
             <form action="" method="POST" class="card-body">
+            <input type="text" name="idBunga" id="idbunga"">
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="idbunga">ID Bunga</label>
-                    <input type="text" name="idBunga" id="idbunga" class="form-control">
+                    <label for="namabunga">Nama Bunga</label>
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control"">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control">
+                    <label for="kategoribunga">Kategori Bunga</label>
+                    <select name="kategoriBunga" id="kategoribunga" class="form-control">
+                    <option value="">Pilih Kategori</option>
+                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
+                      <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                    <?php endwhile;?>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="kategoribunga">Kategori Bunga</label>
-                <select name="kategoriBunga" id="kategoribunga" class="form-control">
-                <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                  <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                <?php endwhile;?>
-                </select>
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>
