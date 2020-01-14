@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require 'assets/config.php';
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
@@ -56,7 +57,12 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
+        <div class="sidebar-brand-text mx-3">
+          <?php if ($_SESSION['id_status']=="01") {
+            echo "Admin";
+          }elseif ($_SESSION['id_status']=="02") {
+            echo "Karyawan";
+          }?> <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -110,15 +116,23 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <?php if ($_SESSION['id_status']=="01") { ?>
+        <hr class="sidebar-divider">
+     <?php }else{ ?>
+     <?php } ?>
+      
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Tambah / Edit
+        <?php if ($_SESSION['id_status']=="01") {
+        echo "Tambah / Edit";
+      }else{
+      } ?>
       </div>
 
       <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
+      <?php if ($_SESSION['id_status']=="01") { ?>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
           <i class="fas fa-fw fa-snowflake"></i>
           <span>Bunga
@@ -136,10 +150,13 @@
             </a>
           </div>
         </div>
+     <?php }else{ ?>
+   <?php } ?>    
       </li>
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
+      <?php if ($_SESSION['id_status']=="01") { ?>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
           <i class="fas fa-fw fa-tag"></i>
           <span>Kategori Bunga
@@ -157,11 +174,15 @@
             </a>
           </div>
         </div>
+     <?php }else{ ?>
+    <?php  } ?>
+        
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+        <?php if ($_SESSION['id_status']=="01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
           <i class="fas fa-fw fa-user"></i>
           <span>Karyawan
           </span>
@@ -178,6 +199,8 @@
             </a>
           </div>
         </div>
+        <?php }else{ ?>
+      <?php  } ?>  
       </li>
 
       <!-- Divider -->
@@ -350,7 +373,12 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  <?php if ($_SESSION['id_status']==01) {
+                    echo $_SESSION['nama_user'];
+                  }else {
+                    echo $_SESSION['nama_user'];
+                  } ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -456,7 +484,10 @@
                       <th>Nama Kategori</th>
                       <th>Deskripsi Kategori</th>
                       <th>Foto Dekripsi</th>
-                      <th>Tindakan</th>
+                      <?php if ($_SESSION['id_status']=="01") { ?>
+                         <th>Tindakan</th>
+                    <?php  }else{ ?>
+                   <?php } ?>
                     </tr>
                   </thead>
                   <!-- <tfoot>
@@ -475,13 +506,15 @@
                       <td><?php echo $row["DESKRIPSI"]?></td>
                       <td><?php echo $row["GAMBAR_KATEGORI"]?></td>
                       <td>
-                        <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editKategori">
-                        <i class="fas fa-edit"></i>
-                        </button>
-                        <a class="btn btn-danger" href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
-                        <i class="fas fa-trash"></i>
-                        </a> 
-
+                        <?php if ($_SESSION['id_status']=="01") { ?>
+                          <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal"   data-target="#editKategori">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                          <a class="btn btn-danger" href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>"on click="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
+                            <i class="fas fa-trash"></i>
+                          </a> 
+                     <?php   }else{ ?>
+                     <?php } ?>
                       </td>
                     </tr>
                     <?php endwhile;?>

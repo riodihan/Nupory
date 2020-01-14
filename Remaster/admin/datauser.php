@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require 'assets/config.php';
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM user");
@@ -43,7 +44,12 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
+        <div class="sidebar-brand-text mx-3">
+          <?php if ($_SESSION['id_status']=="01") {
+            echo "Admin";
+          }elseif ($_SESSION['id_status']=="02") {
+            echo "Karyawan";
+          }?> <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -97,16 +103,21 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <?php if ($_SESSION['id_status']=="01") { ?>
+        <hr class="sidebar-divider">
+     <?php } ?>
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Tambah / Edit
+        <?php if ($_SESSION['id_status']=="01") {
+          echo "Tambah / Edit";
+        } ?> 
       </div>
 
       <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+        <?php if ($_SESSION['id_status']=="01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
           <i class="fas fa-fw fa-snowflake"></i>
           <span>Bunga
           </span>
@@ -123,11 +134,15 @@
             </a>
           </div>
         </div>
+      <?php  }else{ ?>
+
+    <?php  } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+        <?php if ($_SESSION['id_status']=="01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
           <i class="fas fa-fw fa-tag"></i>
           <span>Kategori Bunga
           </span>
@@ -144,11 +159,16 @@
             </a>
           </div>
         </div>
+      <?php  }else { ?>
+
+     <?php } ?>
+        
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+      <?php if ($_SESSION['id_status']=="01") { ?>
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
           <i class="fas fa-fw fa-user"></i>
           <span>Karyawan
           </span>
@@ -159,12 +179,15 @@
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkaryawan.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
-          </div>
+           </div>
         </div>
+      <?php }else{ ?>
+    <?php  } ?>
+       
       </li>
 
       <!-- Divider -->
@@ -337,7 +360,12 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  <?php if ($_SESSION['id_status']=="01") {
+                    echo $_SESSION["nama_user"];
+                  }elseif ($_SESSION['id_status']=="02") {
+                    echo $_SESSION["nama_user"];
+                  }?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
