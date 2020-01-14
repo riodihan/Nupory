@@ -19,8 +19,10 @@
             $row = mysqli_fetch_assoc($login);
             $id_status = $row ['ID_STATUS'];
             $username = $row['USERNAME'];
+            $nama_user = $row['NAMA_USER'];
             $_SESSION["username"]= $username;
             $_SESSION["id_status"]= $id_status;
+            $_SESSION["nama_user"]=$nama_user;
             $_SESSION["login"]= true;
 
                 if($_SESSION["id_status"] === "03"){
