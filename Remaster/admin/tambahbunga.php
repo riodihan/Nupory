@@ -391,28 +391,25 @@
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Bunga Baru</h6>
             </div>
             <form action="" method="POST" class="card-body">
+                    <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" require>
               <div class="row">
                 <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="idbunga">ID Bunga</label>
-                    <input value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" require>
-                  </div>
-                </div>
-                <div class="col">
                   <div class="form-group">
                     <label for="namabunga">Nama Bunga</label>
                     <input type="text" name="namaBunga" id="namabunga" class="form-control" require>
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="kategoribunga">Kategori Bunga</label>
-                <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
-                  <option value="">Pilih Kategori</option>
-                  <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                  <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                  <?php endwhile;?>
-                </select>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="kategoribunga">Kategori Bunga</label>
+                    <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
+                      <option value="">Pilih Kategori</option>
+                      <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
+                      <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                      <?php endwhile;?>
+                    </select>
+                  </div>
+                </div>
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>

@@ -163,7 +163,7 @@
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkategori.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Kategori</span>
             </a>
@@ -184,7 +184,7 @@
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkaryawan.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
@@ -389,19 +389,10 @@
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Kategori Bunga Baru</h6>
             </div>
             <form action="" method="POST" class="card-body">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="idkategori">ID Kategori</label>
-                    <input value="<?=$id?>"type="text" name="idKategori" id="idkategori" class="form-control">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label for="namakategori">Nama Kategori Bunga</label>
-                    <input type="text" name="namaKategori" id="namakategori" class="form-control">
-                  </div>
-                </div>
+              <input type="hidden" value="<?=$id?>"type="text" name="idKategori" id="idkategori" class="form-control">
+              <div class="form-group">
+                <label for="namakategori">Nama Kategori Bunga</label>
+                <input type="text" name="namaKategori" id="namakategori" class="form-control">
               </div>
               <div class="form-group">
                 <label for="deskripsikategori">Deskripsi Kategori</label>
