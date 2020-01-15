@@ -7,7 +7,7 @@ $username = $_SESSION["username"];
 
 
 //dikemas
-$tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi
+$dikemas = mysqli_query($koneksi, "SELECT * FROM transaksi
                         
                         WHERE username = '$username' && ID_STATUS_TRANSAKSI = 03
                             
@@ -236,6 +236,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                     <div class="row">
                         <div class="col-sm-12 col-md-9">
                             <div class="service-box">
+                                <?php foreach($dikemas as $data) {?>
                                 <div class="service-icon">
                                     <img src="images/anggrek bulan.jpg" alt="">
                                 </div>
@@ -244,6 +245,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                     <p>Barang Sedang dikemas oleh pihak keryawan</p>
                                     <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
                                 </div>
+                                <?php }?>
                             </div>
                         </div>
                     </div>
@@ -282,7 +284,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                     <td>Rp. <?= $data["TOTAL_HARGA"] ?></td>
                                 </tr>
                             <?php } ?>
-                            <?php foreach($tagihan as $data) {?>
+                            <?php foreach($dikemas as $data) {?>
                             <tr>
                                 <td colspan="4">Jumlah Total</td>
                                 <td>Rp. <?= $data["TOTAL_AKHIR"] ?></td>

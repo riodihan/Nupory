@@ -236,14 +236,14 @@ if (isset($_POST["simpan"])) {
         </div>
     </div>
 
-    <?php foreach ($tagihan as $data) { ?>
-        <div id="page-content" class="container-fluid">
-            <div class="container">
-                <div id="services" class="container-fluid">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-9">
-                                <div class="service-box">
+    <div id="page-content" class="container-fluid">
+        <div class="container">
+            <div id="services" class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-9">
+                            <div class="service-box">
+                                <?php foreach ($tagihan as $data) { ?>
                                     <div class="service-icon">
                                         <img src="images/anggrek bulan.jpg" alt="">
                                     </div>
@@ -255,6 +255,7 @@ if (isset($_POST["simpan"])) {
                                         <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
                                     </div>
 
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +263,6 @@ if (isset($_POST["simpan"])) {
                 </div>
             </div>
         </div>
-    <?php } ?>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
