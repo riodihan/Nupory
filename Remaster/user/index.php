@@ -191,8 +191,7 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
                                         <?php } ?>
                                         <ul class="dropdown-menu">
                                             <?php if (!isset($_SESSION["login"])) { ?>
-                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login User</a>
-                                                <li><a href="../admin/login.php"><i class="fas fa-sign-in-alt"></i>Login Admin</a>
+                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login</a>
                                                 <?php } ?>
                                                 <?php if (isset($_SESSION["login"])) { ?>
                                                 <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>
