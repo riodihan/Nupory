@@ -11,7 +11,7 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
 //username
 $username = $_SESSION["username"];
 
-$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username'");
+$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username' && ID_STATUS_TRANSAKSI = 01");
 $cek = mysqli_fetch_array($transaksi);
 //auto increment id transaksi
 
@@ -239,8 +239,7 @@ if (isset($_POST["keranjang"])) {
                                         <?php } ?>
                                         <ul class="dropdown-menu">
                                             <?php if (!isset($_SESSION["login"])) { ?>
-                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login User</a>
-                                                <li><a href="../admin/login.php"><i class="fas fa-sign-in-alt"></i>Login Admin</a>
+                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login</a>
                                                 <?php } ?>
                                                 <?php if (isset($_SESSION["login"])) { ?>
                                                 <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>
@@ -276,16 +275,16 @@ if (isset($_POST["keranjang"])) {
                     <img src="images/<?= $data["FOTO_BUNGA"] ?>" alt="" class="img-responsive">
                 </div>
 
-                <?php if (isset($cek["ID_TRANSAKSI"])) { ?>
+                <?php if (isset($cek["ID_TRANSAKSI" == 01])) { ?>
                     <div class="col-md-6">
-                    <h3>Rp.<?= $data["HARGA"] ?></h3>
+                        <h3>Rp.<?= $data["HARGA"] ?></h3>
                         <p>Stok : <?= $data["STOK"] ?></p><br>
                         <form method="POST">
                             <input type="hidden" name="idtransaksi" value="<?= $cek["ID_TRANSAKSI"] ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
 
                             <input type="hidden" name="idbunga" value="<?= $data["ID_BUNGA"] ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
 
-                            <input type="hidden" name="statusdetailtransaksi" value="keranjang" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <input type="hidden" name="idstatustransaksi" value="01" class="form-control" id="exampleFormControlInput1" placeholder="">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Jumlah Beli</label>
                                 <input required id="jumlah" onkeyup="sum();" type="text" name="jumlah" class="form-control" placeholder="">

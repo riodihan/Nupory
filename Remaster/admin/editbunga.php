@@ -2,6 +2,8 @@
   require 'assets/config.php';
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
+  $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
+  $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 ?>
 
 <!DOCTYPE html>
@@ -281,53 +283,21 @@
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
+                <span class="badge badge-danger badge-counter"><i id="counterkr"></i></span>
               </a>
               <!-- Dropdown - Messages -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
-                  Message Center
+                  Kritik Baru
                 </h6>
+                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
                 <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
                   <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
+                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
+                <?php endwhile;?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
@@ -382,6 +352,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>Tindakan</th>
                       <th>Id Bunga</th>
                       <th>Id Kategori</th>
                       <th>Nama Bunga</th>
@@ -390,25 +361,16 @@
                       <th>Gambar</th>
                       <th>Video</th>
                       <th>Cara Perawatan</th>
-                      <th>Deskripsi</th>
+                      <!-- <th>Deskripsi</th> -->
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Id Bunga</th>
-                      <th>Kategori</th>
-                      <th>Nama Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
-                      <th>Cara Perawatan</th>
-                      <th>Deskripsi</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
+                      <td>
+                        <a href="#" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                      </td>
                       <td><?php echo $row["ID_BUNGA"]?></td>
                       <td><?php echo $row["ID_KATEGORI"]?></td>
                       <td><?php echo $row["NAMA_BUNGA"]?></td>
@@ -417,7 +379,7 @@
                       <td><?php echo $row["FOTO_BUNGA"]?></td>
                       <td><?php echo $row["VIDEO_BUNGA"]?></td>
                       <td><?php echo $row["CARA_PERAWATAN"]?></td>
-                      <td><?php echo $row["DESKRIPSI"]?></td>
+                      <!-- <td><?php echo $row["DESKRIPSI"]?></td> -->
                     </tr>
                     <?php endwhile;?>
                   </tbody>
@@ -433,27 +395,25 @@
               <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
             </div>
             <form action="" method="POST" class="card-body">
+            <input type="text" name="idBunga" id="idbunga"">
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="idbunga">ID Bunga</label>
-                    <input type="text" name="idBunga" id="idbunga" class="form-control">
+                    <label for="namabunga">Nama Bunga</label>
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control"">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control">
+                    <label for="kategoribunga">Kategori Bunga</label>
+                    <select name="kategoriBunga" id="kategoribunga" class="form-control">
+                    <option value="">Pilih Kategori</option>
+                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
+                      <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                    <?php endwhile;?>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="kategoribunga">Kategori Bunga</label>
-                <select name="kategoriBunga" id="kategoribunga" class="form-control">
-                <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                  <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                <?php endwhile;?>
-                </select>
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>
@@ -559,6 +519,26 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <!-- Counter Kritik AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterkr").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
 
 </body>
 

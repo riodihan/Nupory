@@ -26,7 +26,7 @@ session_start();
 
 <body>
     <div id="header-holder" class="main-header bg">
-        <nav id="nav" class="navbar navbar-default navbar-full">
+    <nav id="nav" class="navbar navbar-default navbar-full">
             <div class="container-fluid">
                 <div class="container container-nav">
                     <div class="row">
@@ -187,8 +187,7 @@ session_start();
                                         <?php } ?>
                                         <ul class="dropdown-menu">
                                             <?php if (!isset($_SESSION["login"])) { ?>
-                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login User</a>
-                                                <li><a href="../admin/login.php"><i class="fas fa-sign-in-alt"></i>Login Admin</a>
+                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login</a>
                                                 <?php } ?>
                                                 <?php if (isset($_SESSION["login"])) { ?>
                                                 <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>

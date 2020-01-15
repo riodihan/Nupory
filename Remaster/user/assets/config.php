@@ -105,7 +105,7 @@ function keranjang($keranjang)
     $username = htmlspecialchars($keranjang["username"]);
     $idstatustransaksi = htmlspecialchars($keranjang["idstatustransaksi"]);
 
-    $qu = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$idtransaksi', '$idpembayaran', '$idstatustransaksi', '$username', now(), '', '')");
+    $qu = mysqli_query($koneksi, "INSERT INTO transaksi VALUES ('$idtransaksi', '$idpembayaran', '$idstatustransaksi', '$username', now(), '', '', '')");
 
     return $qu;
 }
@@ -116,12 +116,55 @@ function detail_keranjang($detail)
     global $koneksi;
     $idtransaksi = htmlspecialchars($detail["idtransaksi"]);
     $idbunga = htmlspecialchars($detail["idbunga"]);
-    $statusdetailtransaksi = htmlspecialchars($detail["statusdetailtransaksi"]);
+    $idstatustransaksi = htmlspecialchars($detail["idstatustransaksi"]);
     $jumlah = htmlspecialchars($detail["jumlah"]);
     $totalharga = htmlspecialchars($detail["totalharga"]);
 
-    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idbunga', '$statusdetailtransaksi  ', '$jumlah', '$totalharga')");
+    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idstatustransaksi', '$idbunga', '$jumlah', '$totalharga')");
 
+    return $qu;
+}
+
+//tagihan
+function tagihan($tagihan)
+{
+    global $koneksi;
+    $idtransaksi = htmlspecialchars($tagihan["idtransaksi"]);
+    $idpembayaran = htmlspecialchars($tagihan["idpembayaran"]);
+    $idstatustransaksi = htmlspecialchars($tagihan["idstatustransaksi"]);
+    $detailalamat = htmlspecialchars($tagihan["detailalamat"]);
+
+
+    $qu = mysqli_query($koneksi, "UPDATE transaksi SET 
+                
+                ID_PEMBAYARAN = '$idpembayaran',
+                ID_STATUS_TRANSAKSI = '$idstatustransaksi',
+                TGL_TRANSAKSI = now(),
+                DETAIL_ALAMAT = '$detailalamat'
+
+                WHERE ID_TRANSAKSI = '$idtransaksi'");
+    return $qu;
+}
+
+
+//upload bukti
+function upload($upload)
+{
+    global $koneksi;
+    $idtransaksi = htmlspecialchars($upload["idtransaksi"]);
+    $bukti = htmlspecialchars($upload["bukti"]);
+
+    $qu = mysqli_query($koneksi, "UPDATE transaksi SET 
+                BUKTI_PEMBAYARAN = '$bukti'
+
+                WHERE ID_TRANSAKSI = '$idtransaksi'");
+    return $qu;
+}
+
+function hapuskeranjang($id)
+{
+    global $koneksi;
+    $qu = mysqli_query($koneksi, "DELETE FROM detail_transaksi WHERE ID_DETAIL_TRANSAKSI = '$id'");
     return $qu;
 }
 

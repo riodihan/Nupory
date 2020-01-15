@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require 'assets/config.php';
 
@@ -8,11 +8,30 @@ $username = $_SESSION["username"];
 
 //keranjang
 $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
-                        inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
-                        inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && STATUS_DETAIL_TRANSAKSI = 'keranjang'
+                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 01
                             
-                            ")
+                            ");
+
+
+//detail keranjang
+$detail = mysqli_query($koneksi, "SELECT * FROM detail_transaksi
+                        inner join transaksi on detail_transaksi.id_transaksi = transaksi.id_transaksi
+                        inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
+                        WHERE username = '$username' && detail_transaksi.ID_STATUS_TRANSAKSI = 01
+                            
+                            ");
+
+
+//tagihan
+
+if (isset($_POST["simpan"])) {
+
+    if (tagihan($_POST) == 1) {
+        echo "<script>alert('Silahkan Bayar tagihan anda'); window.location.href='tagihan.php'</script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
 
 ?>
 
@@ -110,94 +129,105 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown unity-menu">
-                                        <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
-                                        <ul class="dropdown-menu dropdown-unity">
+                                    <?php if (isset($_SESSION["login"])) { ?>
+                                        <li class="dropdown unity-menu">
+                                            <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
+                                            <ul class="dropdown-menu dropdown-unity">
 
-                                            <li>
-                                                <a class="unity-link" href="keranjang.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/keranjang.png" alt="">
+                                                <li>
+                                                    <a class="unity-link" href="keranjang.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/keranjang.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Keranjang saya
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang masih dalam tahap pemesanan
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Keranjang saya
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="tagihan.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/pemesanan.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Tagihan Saya
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang masih dalam tahap pemesanan
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang masih dalam tahap pemesanan
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="dikemas.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/dikemas.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Dikemas
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang sedang dalam pengemasan
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="tagihan.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/pemesanan.png" alt="">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="dikirim.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/dikirim.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Dikirim
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Produk Yang sedang dalam pengiriman
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Tagihan Saya
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="unity-link" href="transaksisaya.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/transaksi.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Transaksi Saya
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Transaksi Yang pernah dilakukan
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang masih dalam tahap pemesanan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="dikemas.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/dikemas.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Dikemas
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang sedang dalam pengemasan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="dikirim.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/dikirim.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Dikirim
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Produk Yang sedang dalam pengiriman
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="transaksisaya.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/transaksi.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Transaksi Saya
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Transaksi Yang pernah dilakukan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    <?php } ?>
                                     <li><a href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=">Hubungi Kami</a></li>
                                     <li class="support-button-holder support-dropdown">
-                                        <a class="support-button" href="#">Idris</a>
+                                        <?php if (isset($_SESSION["login"])) { ?>
+                                            <a class="support-button" href=""><?php echo $_SESSION["username"] ?></a>
+                                        <?php } ?>
+                                        <?php if (!isset($_SESSION["login"])) { ?>
+                                            <a class="support-button" href="">Login</a>
+                                        <?php } ?>
                                         <ul class="dropdown-menu">
-                                            <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login</a>
-                                            <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>
-                                            <li><a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a></li>
+                                            <?php if (!isset($_SESSION["login"])) { ?>
+                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login</a>
+                                                <?php } ?>
+                                                <?php if (isset($_SESSION["login"])) { ?>
+                                                <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>
+                                                <li><a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a></li>
+                                            <?php } ?>
                                         </ul>
                                     </li>
                                 </ul>
@@ -233,25 +263,27 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i=1?>
-                    <?php foreach($keranjang as $data){?>
+                    <?php $i = 1 ?>
+                    <?php foreach ($detail as $data) { ?>
                         <form action="">
-                    <tr>
-                        <th scope="row"><?= $i?></th>
-                        <td><?= $data["NAMA_BUNGA"]?></td>
-                        <td><?= $data["JUMLAH"]?></td>
-                        <td><?= $data["HARGA"]?></td>
-                        <td><?= $data["TOTAL_HARGA"]?></td>
-                        <td><a href="#" class="badge badge-danger">Hapus</a></td>
-                    </tr>
-                    </form>
-                    <?php $i++ ?>
-                    <?php }?>
-                    <tr>
-                        <td colspan="4">Jumlah Total</td>
-                        <td>200.000</td>
-                        <td></td>
-                    </tr>
+                            <tr>
+                                <th scope="row"><?= $i ?></th>
+                                <td><?= $data["NAMA_BUNGA"] ?></td>
+                                <td><?= $data["JUMLAH"] ?></td>
+                                <td><?= $data["HARGA"] ?></td>
+                                <td><?= $data["TOTAL_HARGA"] ?></td>
+                                <td><a href="hapus.php?id=<?= $data["ID_DETAIL_TRANSAKSI"]?>" class="badge badge-danger">Hapus</a></td>
+                            </tr>
+                        </form>
+                        <?php $i++ ?>
+                    <?php } ?>
+                    <?php foreach ($keranjang as $data1) { ?>
+                        <tr>
+                            <td colspan="4">Jumlah Total</td>
+                            <td><?= $data1["TOTAL_AKHIR"] ?></td>
+                            <td></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
             <a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
@@ -262,30 +294,35 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Masukan Data Pembeli</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Masukan Alamat Pengiriman</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST">
                         <div class="form-group">
-                            <label for="formGroupExampleInput">Nama</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
+                            <label for="exampleFormControlSelect1">Pilih Metode Pembayaran</label>
+                            <select name="idpembayaran" class="form-control" id="exampleFormControlSelect1">
+                                <option value="01">Transfer</option>
+                                <option value="02">Bayar Di Tempat</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">No Handphone</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Nomor Handphone">
-                        </div>
+                        <?php foreach ($keranjang as $data) { ?>
+                            <div class="form-group">
+                                <input value="<?= $data["ID_TRANSAKSI"] ?>" name="idtransaksi" type="hidden" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
+                                <input value="02" name="idstatustransaksi" type="hidden" class="form-control" id="formGroupExampleInput" placeholder="Nama Pembeli/Penerima">
+                            </div>
+                        <?php } ?>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Alamat Pengiriman</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli/Penerima"></textarea>
+                            <textarea name="detailalamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli/Penerima"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
@@ -350,16 +387,16 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
     <script src="js/slick.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-    function sum() {
-        var txtFirstNumberValue = document.getElementById('harga').value;
-        var txtSecondNumberValue = document.getElementById('jumlah').value;
-        var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
-        if (!isNaN(txtSecondNumberValue)) {
-            document.getElementById('total').value = result;
-        }
+        function sum() {
+            var txtFirstNumberValue = document.getElementById('harga').value;
+            var txtSecondNumberValue = document.getElementById('jumlah').value;
+            var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+            if (!isNaN(txtSecondNumberValue)) {
+                document.getElementById('total').value = result;
+            }
 
-    }
-</script>
+        }
+    </script>
 </body>
 
 </html>

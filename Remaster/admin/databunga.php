@@ -5,6 +5,7 @@
   $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
   $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
   $hasil2 = mysqli_query ($koneksi, "SELECT * FROM kategori");
+  $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 
   if(isset($_POST["tambahkanBunga"]) ){
     if (tambahbunga($_POST) > 0){
@@ -18,6 +19,7 @@
       echo mysqli_error();
     }
   }
+  
   //membuat id varchar auto increment
   $cr_id = mysqli_query($koneksi, "SELECT max(ID_BUNGA) AS id FROM bunga");
   $cari = mysqli_fetch_array($cr_id);
@@ -336,53 +338,21 @@
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
+                <span class="badge badge-danger badge-counter"><i id="counterkr"></i></span>
               </a>
               <!-- Dropdown - Messages -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
-                  Message Center
+                  Kritik Baru
                 </h6>
+                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
                 <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
                   <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
+                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
+                <?php endwhile;?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
@@ -394,8 +364,10 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                   <?php if ($_SESSION['id_status']=="01") {
+                    echo "Admin, ";
                     echo $_SESSION["nama_user"];
                   }else{
+                    echo "Karyawan, ";
                     echo $_SESSION["nama_user"];
                   }?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
@@ -435,9 +407,11 @@
             <h1 class="h3 mb-0 text-gray-800">
               Selamat Datang
               <?php if ($_SESSION['id_status']=="01") {
-                echo "Admin";
+                echo "Admin ";
+                echo $_SESSION["nama_user"];
               }elseif ($_SESSION['id_status']=="02") {
-                echo "Karyawan";
+                echo "Karyawan ";
+                echo $_SESSION["nama_user"];
               }?>
             </h1>
             <?php if ($_SESSION['id_status']=="01") { ?>
@@ -462,29 +436,26 @@
               </div>
               <div class="modal-body">
                 <form action="" method="POST" class="card-body">
+                      <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idBunga" class="form-control">
                 <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="idBunga">Id Bunga</label>
-                      <input value="<?=$id?>" type="text" name="idBunga" id="idBunga" class="form-control">
-                    </div>
-                  </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="namabunga">Nama Bunga</label>
                       <input type="text" name="namaBunga" id="namaBunga" class="form-control" require>
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="kategoribunga">Kategori Bunga</label>
-                    <select name="kategoriBunga" id="kategoriBunga" class="form-control" require>
-                    <option value="">Pilih Kategori</option>
-                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
-                    <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                    <?php endwhile;?>
-                    </select>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="kategoribunga">Kategori Bunga</label>
+                        <select name="kategoriBunga" id="kategoriBunga" class="form-control" require>
+                        <option value="">Pilih Kategori</option>
+                        <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
+                        <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
+                        <?php endwhile;?>
+                        </select>
+                    </div>
                   </div>
+                </div>
                 <div class="form-group">
                   <label for="deskripsibunga">Deskripsi Bunga</label>
                   <input type="text" name="deskripsiBunga" id="deskripsiBunga" class="form-control">
@@ -724,6 +695,25 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterkr").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
 
 </body>
 
