@@ -272,7 +272,7 @@ if (isset($_POST["simpan"])) {
                                 <td><?= $data["JUMLAH"] ?></td>
                                 <td><?= $data["HARGA"] ?></td>
                                 <td><?= $data["TOTAL_HARGA"] ?></td>
-                                <td><a href="#" class="badge badge-danger">Hapus</a></td>
+                                <td><a href="hapus.php?id=<?= $data["ID_DETAIL_TRANSAKSI"]?>" class="badge badge-danger">Hapus</a></td>
                             </tr>
                         </form>
                         <?php $i++ ?>

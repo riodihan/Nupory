@@ -161,5 +161,12 @@ function upload($upload)
     return $qu;
 }
 
+function hapuskeranjang($id)
+{
+    global $koneksi;
+    $qu = mysqli_query($koneksi, "DELETE FROM detail_transaksi WHERE ID_DETAIL_TRANSAKSI = '$id'");
+    return $qu;
+}
+
 
 ?>
