@@ -116,11 +116,11 @@ function detail_keranjang($detail)
     global $koneksi;
     $idtransaksi = htmlspecialchars($detail["idtransaksi"]);
     $idbunga = htmlspecialchars($detail["idbunga"]);
-    // $statusdetailtransaksi = htmlspecialchars($detail["statusdetailtransaksi"]);
+    $idstatustransaksi = htmlspecialchars($detail["idstatustransaksi"]);
     $jumlah = htmlspecialchars($detail["jumlah"]);
     $totalharga = htmlspecialchars($detail["totalharga"]);
 
-    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idbunga', '$jumlah', '$totalharga')");
+    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idstatustransaksi', '$idbunga', '$jumlah', '$totalharga')");
 
     return $qu;
 }

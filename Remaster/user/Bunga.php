@@ -275,7 +275,7 @@ if (isset($_POST["keranjang"])) {
                     <img src="images/<?= $data["FOTO_BUNGA"] ?>" alt="" class="img-responsive">
                 </div>
 
-                <?php if (isset($cek["ID_TRANSAKSI"])) { ?>
+                <?php if (isset($cek["ID_TRANSAKSI" == 01])) { ?>
                     <div class="col-md-6">
                         <h3>Rp.<?= $data["HARGA"] ?></h3>
                         <p>Stok : <?= $data["STOK"] ?></p><br>
@@ -284,7 +284,7 @@ if (isset($_POST["keranjang"])) {
 
                             <input type="hidden" name="idbunga" value="<?= $data["ID_BUNGA"] ?>" class="form-control" id="exampleFormControlInput1" placeholder="">
 
-                            <!-- <input type="hidden" name="statusdetailtransaksi" value="keranjang" class="form-control" id="exampleFormControlInput1" placeholder=""> -->
+                            <input type="hidden" name="idstatustransaksi" value="01" class="form-control" id="exampleFormControlInput1" placeholder="">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Jumlah Beli</label>
                                 <input required id="jumlah" onkeyup="sum();" type="text" name="jumlah" class="form-control" placeholder="">

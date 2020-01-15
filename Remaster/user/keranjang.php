@@ -14,10 +14,10 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
 
 
 //detail keranjang
-$detail = mysqli_query($koneksi, "SELECT * FROM transaksi
-                        inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
+$detail = mysqli_query($koneksi, "SELECT * FROM detail_transaksi
+                        inner join transaksi on detail_transaksi.id_transaksi = transaksi.id_transaksi
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 01
+                        WHERE username = '$username' && detail_transaksi.ID_STATUS_TRANSAKSI = 01
                             
                             ");
 
@@ -27,7 +27,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
 if (isset($_POST["simpan"])) {
 
     if (tagihan($_POST) == 1) {
-        echo "<script>alert('Silahkan Bayar tagihan anda'); window.location.href='keranjang.php'</script>";
+        echo "<script>alert('Silahkan Bayar tagihan anda'); window.location.href='tagihan.php'</script>";
     } else {
         echo mysqli_error($koneksi);
     }

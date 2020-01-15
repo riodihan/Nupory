@@ -17,7 +17,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi
 $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                         inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 02
+                        WHERE username = '$username' && detail_transaksi.ID_STATUS_TRANSAKSI = 02
                             
                             ");
 

@@ -18,7 +18,7 @@ $transaksisaya = mysqli_query($koneksi, "SELECT * FROM transaksi
 $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                         inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 05
+                        WHERE username = '$username' && detail_transaksi.ID_STATUS_TRANSAKSI = 05
                             
                             ");
 
@@ -294,7 +294,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                     <td>Rp. <?= $data["TOTAL_HARGA"] ?></td>
                                 </tr>
                             <?php } ?>
-                            <?php foreach ($tagihan as $data) { ?>
+                            <?php foreach ($transaksisaya as $data) { ?>
                                 <tr>
                                     <td colspan="4">Jumlah Total</td>
                                     <td>Rp. <?= $data["TOTAL_AKHIR"] ?></td>
