@@ -1,5 +1,6 @@
 <?php
 //koneksi
+session_start();
 require 'assets/config.php';
 
 
@@ -14,7 +15,6 @@ if (isset($_POST["daftar"])) {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +73,7 @@ if (isset($_POST["daftar"])) {
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="No HP Harus Diisi">
                         <span class="label-input100">No HP</span>
-                        <input class="input100" type="text" name="nohp" placeholder="Masukan Nomor HP Anda">
+                        <input class="input100" type="number" name="nohp" placeholder="Masukan Nomor HP Anda">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Email Harus Diisi">
