@@ -2,8 +2,22 @@
 session_start();
 require 'assets/config.php';
 
+$hasil = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
+FROM transaksi, user, pembayaran
+WHERE transaksi.USERNAME = user.USERNAME
+AND transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
+AND transaksi.ID_STATUS_TRANSAKSI='03'
+AND user.ID_STATUS='03'");
+
+$hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
+FROM transaksi, user, pembayaran
+WHERE transaksi.USERNAME = user.USERNAME
+AND transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
+AND transaksi.ID_STATUS_TRANSAKSI='02'
+AND user.ID_STATUS='03'");
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
 
 ?>
 
@@ -254,48 +268,29 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                 <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Tagihan Baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
+                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
+                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              <?php endwhile;?>
+                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -396,10 +391,9 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
                       <th>Tanggal Transaksi</th>
                       <th>Pembayaran</th>
                       <th>Nama Pembeli</th>
-                      <th>Bunga</th>
-                      <th>Jumlah</th>
                       <th>Alamat Pengiriman</th>
                       <th>Total Akhir</th>
+                      <th>Tindakan</th>
                     </tr>
                   </thead>
                   <!-- <tfoot>
@@ -415,56 +409,38 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
                     </tr>
                   </tfoot> -->
                   <tbody>
+                    <?php if ($_SESSION['id_status']=="01") { ?>
+                      <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <td>TR0001</td>
-                      <td>Transfer</td>
-                      <td>01/01/2020</td>
-                      <td>Ridho</td>
-                      <td>Krisan Putih</td>
-                      <td>20 Ikat</td>
-                      <td>Tuban</td>
-                      <td class="text-right">Rp. 60.000</td>
+                      <td><?php echo $row["ID_TRANSAKSI"]?></td>
+                      <td><?php echo $row["TGL_TRANSAKSI"]?></td>
+                      <td><?php echo $row["JENIS_PEMBAYARAN"]?></td>
+                      <td><?php echo $row["NAMA_USER"]?></td>
+                      <td><?php echo $row["DETAIL_ALAMAT"]?></td>
+                      <td><?php echo $row["TOTAL_AKHIR"]?></td>
+                      <td>
+                        <a href="#" ><button type="button" class="btn btn-success">Konfirmasi</button></a>
+                      </td>
                     </tr>
+                    <?php endwhile;?>
+                  <?php  }elseif ($_SESSION['id_status']=="02") { ?>
+                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
                     <tr>
-                      <td>TR0002</td>
-                      <td>01/01/2020</td>
-                      <td>Transfer</td>
-                      <td>Idris</td>
-                      <td>Krisan Standart</td>
-                      <td>30 Ikat</td>
-                      <td>Probolinggo</td>
-                      <td class="text-right">Rp. 90.000</td>
+                      <td><?php echo $row["ID_TRANSAKSI"]?></td>
+                      <td><?php echo $row["TGL_TRANSAKSI"]?></td>
+                      <td><?php echo $row["JENIS_PEMBAYARAN"]?></td>
+                      <td><?php echo $row["NAMA_USER"]?></td>
+                      <!-- <td><?php echo $row["NAMA_BUNGA"]?></td> -->
+                      <!-- <td><?php echo $row["JUMLAH"]?></td> -->
+                      <td><?php echo $row["DETAIL_ALAMAT"]?></td>
+                      <td><?php echo $row["TOTAL_AKHIR"]?></td>
+                      <td>
+                        <a href="#" ><button type="button" class="btn btn-success">Konfirmasi</button></a>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>TR0003</td>
-                      <td>02/01/2020</td>
-                      <td>Transfer</td>
-                      <td>Sayyid</td>
-                      <td>Anggrek Bulan Lokal</td>
-                      <td>1 Pot</td>
-                      <td>Probolinggo</td>
-                      <td class="text-right">Rp. 130.000</td>
-                    </tr>
-                    <tr>
-                      <td>TR0004</td>
-                      <td>03/01/2020</td>
-                      <td>Transfer</td>
-                      <td>Syifa</td>
-                      <td>Anggrek Bulan Taiwan</td>
-                      <td>1 Pot</td>
-                      <td>Madiun</td>
-                      <td class="text-right">Rp. 150.000</td>
-                    </tr>
-                    <tr>
-                      <td>TR0005</td>
-                      <td>03/01/2020</td>
-                      <td>Transfer</td>
-                      <td>Andre</td>
-                      <td>Krisan Kuning</td>
-                      <td>20 Ikat</td>
-                      <td>Sumenep</td>
-                      <td class="text-right">Rp. 60.000</td>
-                    </tr>
+                    <?php endwhile;?>.
+                 <?php } ?>
+                     
                   </tbody>
                 </table>
                 <!-- <a class="btn btn-primary" onclick="window.print();"><i class="fa fa-print"></i> Print Halaman Ini</a> -->
@@ -547,6 +523,26 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
+
+  <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterth").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
         },1000);
