@@ -18,7 +18,7 @@ $dikemas = mysqli_query($koneksi, "SELECT * FROM transaksi
 $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                         inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && detail_transaksi.ID_STATUS_TRANSAKSI = 03
+                        WHERE username = '$username' && transaksi.ID_STATUS_TRANSAKSI = 03
                             
                             ");
 
@@ -244,10 +244,10 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
         <div class="container">
             <div id="services" class="container-fluid">
                 <div class="container">
+                    <?php foreach ($dikemas as $data) { ?>
                     <div class="row">
                         <div class="col-sm-12 col-md-9">
                             <div class="service-box">
-                                <?php foreach ($dikemas as $data) { ?>
                                     <div class="service-icon">
                                         <img src="images/anggrek bulan.jpg" alt="">
                                     </div>
@@ -256,10 +256,10 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                         <p>Barang Sedang dikemas oleh pihak keryawan</p>
                                         <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
                                     </div>
-                                <?php } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <?php } ?>
                 </div>
             </div>
         </div>

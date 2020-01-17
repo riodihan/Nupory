@@ -17,7 +17,7 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
 $detail = mysqli_query($koneksi, "SELECT * FROM detail_transaksi
                         inner join transaksi on detail_transaksi.id_transaksi = transaksi.id_transaksi
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && detail_transaksi.ID_STATUS_TRANSAKSI = 01
+                        WHERE username = '$username' && transaksi.ID_STATUS_TRANSAKSI = 01
                             
                             ");
 
@@ -272,7 +272,7 @@ if (isset($_POST["simpan"])) {
                                 <td><?= $data["JUMLAH"] ?></td>
                                 <td><?= $data["HARGA"] ?></td>
                                 <td><?= $data["TOTAL_HARGA"] ?></td>
-                                <td><a href="#" class="badge badge-danger">Hapus</a></td>
+                                <td><a href="hapus.php?id=<?= $data["ID_DETAIL_TRANSAKSI"]?>" class="badge badge-danger">Hapus</a></td>
                             </tr>
                         </form>
                         <?php $i++ ?>

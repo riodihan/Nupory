@@ -275,7 +275,7 @@ if (isset($_POST["keranjang"])) {
                     <img src="images/<?= $data["FOTO_BUNGA"] ?>" alt="" class="img-responsive">
                 </div>
 
-                <?php if (isset($cek["ID_TRANSAKSI" == 01])) { ?>
+                <?php if (isset($cek)) { ?>
                     <div class="col-md-6">
                         <h3>Rp.<?= $data["HARGA"] ?></h3>
                         <p>Stok : <?= $data["STOK"] ?></p><br>
@@ -304,7 +304,7 @@ if (isset($_POST["keranjang"])) {
                 <?php } ?>
 
 
-                <?php if (!isset($cek["ID_TRANSAKSI"])) { ?>
+                <?php if (!isset($cek)) { ?>
                     <div class="col-md-6">
                         <h3>Rp.<?= $data["HARGA"] ?></h3>
                         <p>Stok : <?= $data["STOK"] ?></p><br>

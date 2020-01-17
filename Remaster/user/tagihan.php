@@ -17,7 +17,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi
 $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                         inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && detail_transaksi.ID_STATUS_TRANSAKSI = 02
+                        WHERE username = '$username' && transaksi.ID_STATUS_TRANSAKSI = 02
                             
                             ");
 
@@ -251,10 +251,10 @@ if (isset($_POST["simpan"])) {
         <div class="container">
             <div id="services" class="container-fluid">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-9">
-                            <div class="service-box">
-                                <?php foreach ($tagihan as $data) { ?>
+                    <?php foreach ($tagihan as $data) { ?>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-9">
+                                <div class="service-box">
                                     <div class="service-icon">
                                         <img src="images/anggrek bulan.jpg" alt="">
                                     </div>
@@ -266,10 +266,10 @@ if (isset($_POST["simpan"])) {
                                         <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
                                     </div>
 
-                                <?php } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

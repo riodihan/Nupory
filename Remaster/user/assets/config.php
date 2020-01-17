@@ -120,7 +120,7 @@ function detail_keranjang($detail)
     $jumlah = htmlspecialchars($detail["jumlah"]);
     $totalharga = htmlspecialchars($detail["totalharga"]);
 
-    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idstatustransaksi', '$idbunga', '$jumlah', '$totalharga')");
+    $qu = mysqli_query($koneksi, "INSERT INTO detail_transaksi VALUES ('', '$idtransaksi', '$idbunga', '$jumlah', '$totalharga')");
 
     return $qu;
 }
@@ -158,6 +158,13 @@ function upload($upload)
                 BUKTI_PEMBAYARAN = '$bukti'
 
                 WHERE ID_TRANSAKSI = '$idtransaksi'");
+    return $qu;
+}
+
+function hapuskeranjang($id)
+{
+    global $koneksi;
+    $qu = mysqli_query($koneksi, "DELETE FROM detail_transaksi WHERE ID_DETAIL_TRANSAKSI = '$id'");
     return $qu;
 }
 
