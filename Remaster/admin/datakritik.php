@@ -3,6 +3,8 @@ session_start();
 require 'assets/config.php';
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$hasil = mysqli_query ($koneksi, "SELECT  NAMA_USER, ISI_KRITIK FROM kritik, user WHERE kritik.USERNAME=user.USERNAME AND user.ID_STATUS='03' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
 
 ?>
 
@@ -256,48 +258,29 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                 <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Tagihan Baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
+                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
+                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              <?php endwhile;?>
+                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -394,44 +377,19 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Id Kritik</th>
                       <th>Nama User</th>
                       <th>Isi Kritik</th>
+                      <th>Tindakan</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Id Kritik</th>
-                      <th>Nama User</th>
-                      <th>Isi Kritik</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
+                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <td>KR0001</td>
-                      <td>Ridho</td>
-                      <td>Dengan adanya web ini, kini saya jadi mudah untuk melakukan order bunga. Terimakasih.</td>
+                      <td><?php echo $row["NAMA_USER"]?></td>
+                      <td><?php echo $row["ISI_KRITIK"]?></td>
+                      <td><a href="#" class="btn btn-success">Dibaca</a></td>
                     </tr>
-                    <tr>
-                      <td>KR0002</td>
-                      <td>Idris</td>
-                      <td>Lumayan terbantu, daripada yang biasanya keluar rumah, sekarang dirumah saja sudah bisa.</td>
-                    </tr>
-                    <tr>
-                      <td>KR0003</td>
-                      <td>Sayyid</td>
-                      <td>Masih bingung dengan cara order di website ini, tidak ada petunjuk.</td>
-                    </tr>
-                    <tr>
-                      <td>KR0004</td>
-                      <td>Syifa</td>
-                      <td>Hmm, tampilannya suka, cerah kyk muka dia.</td>
-                    </tr>
-                    <tr>
-                      <td>KR0005</td>
-                      <td>Andre</td>
-                      <td>Sayang sekali hanya menerima orderan lokal, tidak antar kota. :(</td>
-                    </tr>
+                    <?php endwhile;?>
                   </tbody>
                 </table>
               </div>
@@ -513,6 +471,26 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
+
+   <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterth").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
         },1000);

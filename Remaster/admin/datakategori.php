@@ -4,6 +4,7 @@
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+  $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
 
   if(isset($_POST["tambahkanKategori"]) ){
     if (tambahKategori($_POST) > 0){
@@ -286,49 +287,31 @@
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Tagihan Baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
+                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
+                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              <?php endwhile;?>
+                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
+
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
@@ -474,7 +457,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Id Kategori</th>
+                     <!--  <th>Id Kategori</th> -->
                       <th>Nama Kategori</th>
                       <th>Deskripsi Kategori</th>
                       <th>Foto Dekripsi</th>
@@ -495,7 +478,7 @@
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <td><?php echo $row["ID_KATEGORI"]?></td>
+                      <!-- <td><?php echo $row["ID_KATEGORI"]?></td> -->
                       <td><?php echo $row["NAMA_KATEGORI"]?></td>
                       <td><?php echo $row["DESKRIPSI"]?></td>
                       <td><?php echo $row["GAMBAR_KATEGORI"]?></td>
@@ -591,6 +574,26 @@
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
+
+  <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterth").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
         },1000);
