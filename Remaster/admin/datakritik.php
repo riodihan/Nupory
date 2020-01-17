@@ -377,36 +377,17 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <!-- <th>Id Kritik</th> -->
                       <th>Nama User</th>
                       <th>Isi Kritik</th>
+                      <th>Tindakan</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Id Kritik</th>
-                      <th>Nama User</th>
-                      <th>Isi Kritik</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
-                      <!-- <td><?php echo $row["ID_KRITIK"]?></td> -->
                       <td><?php echo $row["NAMA_USER"]?></td>
                       <td><?php echo $row["ISI_KRITIK"]?></td>
-                      <!-- <td><?php echo $row["GAMBAR_KATEGORI"]?></td> -->
-                      <!-- <td>
-                        <?php if ($_SESSION['id_status']=="01") { ?>
-                          <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal"   data-target="#editKategori">
-                            <i class="fas fa-edit"></i>
-                          </button>
-                          <a class="btn btn-danger" href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>"on click="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
-                            <i class="fas fa-trash"></i>
-                          </a> 
-                     <?php   }else{ ?>
-                     <?php } ?>
-                      </td> -->
+                      <td><a href="#" class="btn btn-success">Dibaca</a></td>
                     </tr>
                     <?php endwhile;?>
                   </tbody>

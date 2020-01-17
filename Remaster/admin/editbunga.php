@@ -4,6 +4,7 @@
   $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
   $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+
 ?>
 
 <!DOCTYPE html>
@@ -368,8 +369,8 @@
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
                       <td>
-                        <a href="#" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        <a href="index.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                        <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                       </td>
                       <td><?php echo $row["ID_BUNGA"]?></td>
                       <td><?php echo $row["ID_KATEGORI"]?></td>
@@ -395,7 +396,7 @@
               <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
             </div>
             <form action="" method="POST" class="card-body">
-            <input type="text" name="idBunga" id="idbunga"">
+            <input type="text" name="idBunga" id="idbunga" value="<?php echo $namaBunga; ?>">
               <div class="row">
                 <div class="col">
                   <div class="form-group">
