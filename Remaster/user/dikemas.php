@@ -245,67 +245,38 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
             <div id="services" class="container-fluid">
                 <div class="container">
                     <?php foreach ($dikemas as $data) { ?>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-9">
-                            <div class="service-box">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-9">
+                                <div class="service-box">
                                     <div class="service-icon">
                                         <img src="images/anggrek bulan.jpg" alt="">
                                     </div>
                                     <div class="service-title"><a href="webhosting.html">Pesanan anda</a></div>
                                     <div class="service-details">
                                         <p>Barang Sedang dikemas oleh pihak keryawan</p>
-                                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
+                                        <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=".$data['ID_TRANSAKSI'].">Detail</a></td>"; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
     <!-- modal  detail -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan Anda</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detail Barang</h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama Produk</th>
-                                <th scope="col">Jumlah Beli</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Total Harga</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($detail as $data) { ?>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><?= $data["NAMA_BUNGA"] ?></td>
-                                    <td><?= $data["JUMLAH"] ?></td>
-                                    <td>Rp. <?= $data["HARGA"] ?></td>
-                                    <td>Rp. <?= $data["TOTAL_HARGA"] ?></td>
-                                </tr>
-                            <?php } ?>
-                            <?php foreach ($dikemas as $data) { ?>
-                                <tr>
-                                    <td colspan="4">Jumlah Total</td>
-                                    <td>Rp. <?= $data["TOTAL_AKHIR"] ?></td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                    <div class="fetched-data"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
                 </div>
             </div>
         </div>
@@ -367,6 +338,24 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
     <script src="js/bootstrap-slider.min.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myModal').on('show.bs.modal', function(e) {
+                var rowid = $(e.relatedTarget).data('id');
+                //menggunakan fungsi ajax untuk pengambilan data
+                $.ajax({
+                    type: 'post',
+                    url: 'detaildikemas.php',
+                    data: 'rowid=' + rowid,
+                    success: function(data) {
+                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 
 </html>

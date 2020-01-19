@@ -262,8 +262,8 @@ if (isset($_POST["simpan"])) {
 
                                     <div class="service-details">
                                         <p>Jumlah yang harus Di bayar : Rp. <?= $data["TOTAL_AKHIR"] ?></p>
-                                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">Lihat Detail</a>
-                                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+                                        <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
+                                        <?php echo "<td><a href='#myModal1' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data['ID_TRANSAKSI'] . ">Bayar</a></td>"; ?>
                                     </div>
 
                                 </div>
@@ -274,80 +274,36 @@ if (isset($_POST["simpan"])) {
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+    <div class="modal fade" id="myModal1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tagihan Anda</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Tagihan Anda</h4>
                 </div>
-                <?php foreach ($tagihan as $data) { ?>
-                    <div class="modal-body">
-                        <div class="alert alert-success" role="alert">
-                            Silahkan Melakukan Pembayaran sebesar Rp. <?= $data["TOTAL_AKHIR"] ?> ke rekening 201050851 BCA atas nama Idris.
-                            Lalu unggah foto pembayaran anda dibawah sebagai bukti.
-                        </div>
-                    </div>
-
-                    <form method="POST">
-                        <div class="form-group container">
-                            <label for="exampleFormControlFile">Unggah foto pembayaran disini</label>
-                            <input name="idtransaksi" value="<?= $data["ID_TRANSAKSI"] ?>" type="hidden" class="form-control-file" id="exampleFormControlFile1">
-                            <input name="bukti" type="file" class="form-control-file" id="exampleFormControlFile1" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                <?php } ?>
+                <div class="modal-body">
+                    <div class="fetched-data"></div>
+                </div>
             </div>
         </div>
     </div>
 
 
     <!-- modal  detail -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan Anda</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detail Barang</h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama Produk</th>
-                                <th scope="col">Jumlah Beli</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Total Harga</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($detail as $data) { ?>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><?= $data["NAMA_BUNGA"] ?></td>
-                                    <td><?= $data["JUMLAH"] ?></td>
-                                    <td>Rp. <?= $data["HARGA"] ?></td>
-                                    <td>Rp. <?= $data["TOTAL_HARGA"] ?></td>
-                                </tr>
-                            <?php } ?>
-                            <tr>
-                                <td colspan="4">Jumlah Total</td>
-                                <td>Rp. <?= $data["TOTAL_AKHIR"] ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="fetched-data"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
                 </div>
             </div>
         </div>
@@ -409,6 +365,42 @@ if (isset($_POST["simpan"])) {
     <script src="js/bootstrap-slider.min.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myModal').on('show.bs.modal', function(e) {
+                var rowid = $(e.relatedTarget).data('id');
+                //menggunakan fungsi ajax untuk pengambilan data
+                $.ajax({
+                    type: 'post',
+                    url: 'detailtagihan.php',
+                    data: 'rowid=' + rowid,
+                    success: function(data) {
+                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myModal1').on('show.bs.modal', function(e) {
+                var rowid = $(e.relatedTarget).data('id');
+                //menggunakan fungsi ajax untuk pengambilan data
+                $.ajax({
+                    type: 'post',
+                    url: 'detailbayartagihan.php',
+                    data: 'rowid=' + rowid,
+                    success: function(data) {
+                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 
 </html>
