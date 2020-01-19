@@ -272,7 +272,7 @@ if (isset($_POST["simpan"])) {
                                 <td><?= $data["JUMLAH"] ?></td>
                                 <td><?= $data["HARGA"] ?></td>
                                 <td><?= $data["TOTAL_HARGA"] ?></td>
-                                <td><a href="hapus.php?id=<?= $data["ID_DETAIL_TRANSAKSI"]?>" class="badge badge-danger">Hapus</a></td>
+                                <td><a href="hapus.php?id=<?= $data["ID_DETAIL_TRANSAKSI"] ?>" class="badge badge-danger">Hapus</a></td>
                             </tr>
                         </form>
                         <?php $i++ ?>
@@ -294,7 +294,7 @@ if (isset($_POST["simpan"])) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Masukan Alamat Pengiriman</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Masukan Data Pembelian</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -303,7 +303,8 @@ if (isset($_POST["simpan"])) {
                     <form method="POST">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Pilih Metode Pembayaran</label>
-                            <select name="idpembayaran" class="form-control" id="exampleFormControlSelect1">
+                            <select name="idpembayaran" class="form-control" id="exampleFormControlSelect1" required>
+                                <option value="">-- Pilih Metode Pembayaran --</option>
                                 <option value="01">Transfer</option>
                                 <option value="02">Bayar Di Tempat</option>
                             </select>
@@ -315,8 +316,11 @@ if (isset($_POST["simpan"])) {
                             </div>
                         <?php } ?>
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Alamat Pengiriman</label>
-                            <textarea name="detailalamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli/Penerima"></textarea>
+                            <label for="exampleFormControlTextarea1">Alamat Pembeli</label>
+                            <textarea name="detailalamat" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Pembeli"></textarea>
+                        </div>
+                        <div class="alert alert-success" role="alert">
+                            Alamat Pembeli harus diisi dengan benar
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
