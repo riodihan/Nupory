@@ -12,6 +12,7 @@ $dikemas = mysqli_query($koneksi, "SELECT * FROM transaksi
                         WHERE username = '$username' && ID_STATUS_TRANSAKSI = 03 && ID_PEMBAYARAN = 01
                             
                             ");
+$cek = mysqli_fetch_array($dikemas);
 
 
 //detail dikemas
@@ -254,12 +255,19 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                     <div class="service-title"><a href="webhosting.html">Pesanan anda</a></div>
                                     <div class="service-details">
                                         <p>Barang Sedang dikemas oleh pihak keryawan</p>
-                                        <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=".$data['ID_TRANSAKSI'].">Detail</a></td>"; ?>
+                                        <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
+
+                    <?php if (!isset($cek)) { ?>
+                        <div class="alert alert-info" role="alert" style="text-align: center;">
+                            Tidak ada barang yang dikemas.
+                        </div>
+                    <?php } ?>
+
                 </div>
             </div>
         </div>

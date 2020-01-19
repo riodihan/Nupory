@@ -12,6 +12,7 @@ $transaksisaya = mysqli_query($koneksi, "SELECT * FROM transaksi
                         WHERE username = '$username' && ID_STATUS_TRANSAKSI = 05
                             
                             ");
+$cek = mysqli_fetch_array($transaksisaya);
 
 
 //detail dikirim
@@ -259,6 +260,13 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                             </div>
                         </div>
                     <?php } ?>
+
+                    <?php if (!isset($cek)) { ?>
+                        <div class="alert alert-info" role="alert" style="text-align: center;">
+                            Anda tidak memiliki riwayat transaksi.
+                        </div>
+                    <?php } ?>
+
                 </div>
             </div>
         </div>

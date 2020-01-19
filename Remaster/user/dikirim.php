@@ -12,6 +12,7 @@ $dikirim = mysqli_query($koneksi, "SELECT * FROM transaksi
                         WHERE username = '$username' && ID_STATUS_TRANSAKSI = 04 && ID_PEMBAYARAN = 01
                             
                             ");
+$cek = mysqli_fetch_array($dikirim);
 
 
 //detail dikirim
@@ -259,6 +260,14 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                             </div>
                         </div>
                     <?php } ?>
+
+                    <?php if (!isset($cek)) { ?>
+                        <div class="alert alert-info" role="alert" style="text-align: center;">
+                            Tidak ada barang yang sedang dikirim.
+                        </div>
+                    <?php } ?>
+
+
                 </div>
             </div>
         </div>

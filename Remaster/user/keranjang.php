@@ -11,6 +11,7 @@ $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
                         WHERE username = '$username' && ID_STATUS_TRANSAKSI = 01
                             
                             ");
+$cek = mysqli_fetch_array($keranjang);
 
 
 //detail keranjang
@@ -249,7 +250,7 @@ if (isset($_POST["simpan"])) {
     </div>
     <div id="page-content" class="container-fluid">
         <div class="container">
-
+        <?php if (isset($cek)) { ?>
             <table class="table">
                 <caption>Keranjang</caption>
                 <thead>
@@ -286,7 +287,20 @@ if (isset($_POST["simpan"])) {
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+
+            
+                <a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
+            <?php } ?>
+
+
+
+            <?php if (!isset($cek)) { ?>
+                <div class="alert alert-info" role="alert" style="text-align: center;">
+                    Tidak ada produk yang di tambahkan kedalam keranjang, silahkan pilih Produk untuk melakukan transaksi.
+                </div>
+            <?php } ?>
+
+
         </div>
     </div>
 
