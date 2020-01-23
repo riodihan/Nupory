@@ -263,7 +263,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                         </div>
                         <div class="service-title"><a href="kategoribunga.php?id=<?= $data["ID_KATEGORI"]?>"><?= $data["NAMA_KATEGORI"] ?></a></div>
                         <div class="service-details">
-                            <p><?= $data ["DESKRIPSI"]?></p>
+                            <p><?= substr($data["DESKRIPSI"], 0, 200); echo '...';?></p>
                         </div>
                     </div>
                 </div>
@@ -303,7 +303,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                                     <div class="article-title"><b><?php echo $data["NAMA_BUNGA"]; ?></b></div>
                                     <div class="article-title">Rp. <?php echo $data["HARGA"]; ?></div>
                                     <div class="article-text">
-                                        <?php echo $data["DESKRIPSI"]; ?>
+                                        <?= substr($data["DESKRIPSI"], 0, 200); echo '...';?>
                                     </div>
                                 </div>
                             </div>
