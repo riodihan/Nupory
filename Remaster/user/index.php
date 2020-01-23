@@ -5,6 +5,8 @@ session_start();
 //menampilkan bunga
 $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
 
+$kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI IN ('Krisan', 'Anggrek')")
+
 ?>
 <!doctype html>
 <html>
@@ -253,28 +255,19 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
 
 
         <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <div class="service-box">
-                    <div class="service-icon">
-                        <img src="images/krisan standart.jpg" alt="">
-                    </div>
-                    <div class="service-title"><a href="#">Krisan</a></div>
-                    <div class="service-details">
-                        <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <div class="service-box">
-                    <div class="service-icon">
-                        <img src="images/anggrek taiwan.png" alt="">
-                    </div>
-                    <div class="service-title"><a href="#">Anggrek</a></div>
-                    <div class="service-details">
-                        <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
+            <?php foreach ($kategori as $data) { ?>
+                <div class="col-sm-12 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon">
+                            <img src="images/<?= $data["GAMBAR_KATEGORI"] ?>" alt="">
+                        </div>
+                        <div class="service-title"><a href="kategoribunga.php?id=<?= $data["ID_KATEGORI"]?>"><?= $data["NAMA_KATEGORI"] ?></a></div>
+                        <div class="service-details">
+                            <p><?= $data ["DESKRIPSI"]?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 
@@ -317,8 +310,8 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
                         </div>
                     <?php } ?>
                     </a>
-                </div>
             </div>
+        </div>
     </div>
 
 

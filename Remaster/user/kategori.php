@@ -1,4 +1,9 @@
-<?php session_start();
+<?php 
+session_start();
+require '../admin/assets/config.php';
+
+
+$kategori = mysqli_query($koneksi, "SELECT * FROM kategori")
 ?>
 <!doctype html>
 <html>
@@ -218,50 +223,19 @@
             <div class="container">
 
                 <div class="row">
+                    <?php foreach($kategori as $data) {?>
                     <div class="col-sm-12 col-md-6">
                         <div class="service-box">
                             <div class="service-icon">
-                                <img src="images/krisan standart.jpg" alt="">
+                                <img src="images/<?= $data ["GAMBAR_KATEGORI"]?>" alt="">
                             </div>
-                            <div class="service-title"><a href="bunga.php">Krisan</a></div>
+                            <div class="service-title"><a href="kategoribunga.php?id=<?= $data ["ID_KATEGORI"]?>"><?= $data["NAMA_KATEGORI"]?></a></div>
                             <div class="service-details">
-                                <p>Bunga Krisan adalah sejenis tumbuhan berbunga yang sering ditanam sebagai tanaman hias pekarangan atau bunga petik. Tumbuhan berbunga ini mulai muncul pada zaman Kapur.</p>
+                                <p><?= $data["DESKRIPSI"]?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/anggrek taiwan.png" alt="">
-                            </div>
-                            <div class="service-title"><a href="bunga.php">Anggrek</a></div>
-                            <div class="service-details">
-                                <p>Anggrek merupakan tanaman berbunga cantik yang bisa menambah estetika rumah. Di antara banyaknya varietas, berikut jenis anggrek terindah dan terfavorit!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/" alt="">
-                            </div>
-                            <div class="service-title"><a href="bunga.php">Kategori 3</a></div>
-                            <div class="service-details">
-                                <p>Deskripsi kategori.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="service-box">
-                            <div class="service-icon">
-                                <img src="images/" alt="">
-                            </div>
-                            <div class="service-title"><a href="bunga.php">Kategori 4</a></div>
-                            <div class="service-details">
-                                <p>Deskripsi kategori.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php }?>
                 </div>
 
             </div>

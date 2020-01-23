@@ -1,46 +1,57 @@
 <?php
-session_start();
 require 'assets/config.php';
+session_start();
+
+//id bunga
+$idkategori = $_GET["id"];
+
+$bunga = mysqli_query($koneksi, "SELECT * FROM bunga where id_kategori = '$idkategori'");
+
+$idkategori = mysqli_query($koneksi, "SELECT * FROM kategori where id_kategori = '$idkategori'");
+
 
 //username
 $username = $_SESSION["username"];
 
-//tagihan
-$tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi
-                        
-                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 02 && ID_PEMBAYARAN = 01
-                            
-                            ");
-$cek = mysqli_fetch_array($tagihan);
+$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username' && ID_STATUS_TRANSAKSI = 01");
+$cek = mysqli_fetch_array($transaksi);
+//auto increment id transaksi
 
+$carikode = mysqli_query($koneksi, "select max(ID_TRANSAKSI)from transaksi") or die(mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if ($datakode) {
+    $nilaikode = substr($datakode[0], 1);
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "T" . str_pad($kode, 3, "0", STR_PAD_LEFT);
+} else {
+    $hasilkode = "T001";
+}
 
-$tagihan1 = mysqli_query($koneksi, "SELECT * FROM transaksi
-                        
-                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 02 && ID_PEMBAYARAN = 02
-                            
-                            ");
-$cek1 = mysqli_fetch_array($tagihan1);
+//keranjang
 
+if (!isset($cek["ID_TRANSAKSI"])) {
+    if (isset($_POST["keranjang"])) {
 
-//detail tagihan
-$detail = mysqli_query($koneksi, "SELECT * FROM transaksi
-                        inner join detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi
-                        inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
-                        WHERE username = '$username' && transaksi.ID_STATUS_TRANSAKSI = 02 && ID_PEMBAYARAN = 01
-                            
-                            ");
+        if (keranjang($_POST) == 1) {
+            echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
+        } else {
+            echo mysqli_error($koneksi);
+        }
+    }
+}
 
+//detail
+if (isset($_POST["keranjang"])) {
 
-//upload
-
-if (isset($_POST["simpan"])) {
-
-    if (upload($_POST) == 1) {
-        echo "<script>alert('Bukti Pembayaran berhasil di Upload, mohon tunggu konfirmasi dari karyawan.'); window.location.href='tagihan.php'</script>";
+    if (detail_keranjang($_POST) == 1) {
+        echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
     } else {
         echo mysqli_error($koneksi);
     }
 }
+
+
 
 ?>
 <!doctype html>
@@ -49,7 +60,7 @@ if (isset($_POST["simpan"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>Tagihan</title>
+    <title>Bunga</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
@@ -249,114 +260,43 @@ if (isset($_POST["simpan"])) {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="page-title">Tagihan</div>
+                        <?php foreach ($idkategori as $data) { ?>
+                            <div class="page-title">Kategori bunga <?= $data["NAMA_KATEGORI"]?></div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="page-content" class="container-fluid">
-        <div class="container">
-            <div id="services" class="container-fluid">
-                <div class="container">
-
-
-
-                    <?php foreach ($tagihan as $data) { ?>
-
-                        <div class="row">
-                            <div class="col-sm-12 col-md-9">
-                                <div class="service-box">
-                                    <div class="service-icon">
-                                        <img src="images/anggrek bulan.jpg" alt="">
-                                    </div>
-                                    <div class="service-title"><a href="">Tagihan Anda</a></div>
-                                    <div class="service-details">
-                                        <p>Jumlah yang harus Di bayar : Rp. <?= $data["TOTAL_AKHIR"] ?></p>
-                                        <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
-                                        <?php echo "<td><a href='#myModal1' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data['ID_TRANSAKSI'] . ">Bayar</a></td>"; ?>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-
-
-
-
-
-
-                    <?php foreach ($tagihan1 as $data1) { ?>
-
-                        <div class="row">
-                            <div class="col-sm-12 col-md-9">
-                                <div class="service-box">
-                                    <div class="service-icon">
-                                        <img src="images/anggrek bulan.jpg" alt="">
-                                    </div>
-                                    <div class="service-title"><a href="">Bukti Pemesanan Anda</a></div>
-                                    <div class="service-details">
-                                        <!-- <p>Jumlah yang harus Di bayar : Rp. <?= $data1["TOTAL_AKHIR"] ?></p> -->
-                                        <div class="alert alert-success" role="alert">
-                                            Tunjukan Bukti Pemesanan ini kepada karyawan saat transaksi di tempat.
+    <div class="container-fluid">
+        <div id="articles" class="">
+            <div class="container">
+                <div class="row">
+                    <?php foreach ($bunga as $data) { ?>
+                        <a href="bunga.php?id=<?php echo $data["ID_BUNGA"]; ?>">
+                            <div class="col-sm-6 col-md-3">
+                                <div class="article-summary">
+                                    <div class="article-img"><img style="width: 238px; height: 230px;" src="images/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
+                                    <div class="article-details">
+                                        <div class="article-title"><b><?php echo $data["NAMA_BUNGA"]; ?></b></div>
+                                        <div class="article-title">Rp. <?php echo $data["HARGA"]; ?></div>
+                                        <div class="article-text">
+                                            <?php echo $data["DESKRIPSI"]; ?>
                                         </div>
-                                        <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data1['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
-                                        
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
-
-                    <?php } ?>
-
-
-                    <?php if (!isset($cek)) { ?>
-                        <div class="alert alert-info" role="alert" style="text-align: center;">
-                            Anda tidak memiliki tagihan belanja.
-                        </div>
-                    <?php } ?>
-
+                        <?php } ?>
+                        </a>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="modal fade" id="myModal1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Tagihan Anda</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="fetched-data"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-    <!-- modal  detail -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Detail Barang</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="fetched-data"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="footer" class="container-fluid">
         <div class="container">
@@ -414,42 +354,17 @@ if (isset($_POST["simpan"])) {
     <script src="js/bootstrap-slider.min.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myModal').on('show.bs.modal', function(e) {
-                var rowid = $(e.relatedTarget).data('id');
-                //menggunakan fungsi ajax untuk pengambilan data
-                $.ajax({
-                    type: 'post',
-                    url: 'detailtagihan.php',
-                    data: 'rowid=' + rowid,
-                    success: function(data) {
-                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
-                    }
-                });
-            });
-        });
-    </script>
+    <script>
+        function sum() {
+            var txtFirstNumberValue = document.getElementById('harga').value;
+            var txtSecondNumberValue = document.getElementById('jumlah').value;
+            var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+            if (!isNaN(txtSecondNumberValue)) {
+                document.getElementById('total').value = result;
+            }
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myModal1').on('show.bs.modal', function(e) {
-                var rowid = $(e.relatedTarget).data('id');
-                //menggunakan fungsi ajax untuk pengambilan data
-                $.ajax({
-                    type: 'post',
-                    url: 'detailbayartagihan.php',
-                    data: 'rowid=' + rowid,
-                    success: function(data) {
-                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
-                    }
-                });
-            });
-        });
+        }
     </script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 
 </html>
