@@ -108,4 +108,9 @@ function editbunga1($data){
     $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
     return $q_bung;
 }
+
+function gantistatus03(){
+    global $koneksi;
+    
+}
 ?>

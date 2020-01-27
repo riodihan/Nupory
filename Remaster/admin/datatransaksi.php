@@ -2,12 +2,7 @@
 session_start();
 require 'assets/config.php';
 
-$hasil = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
-FROM transaksi, user, pembayaran
-WHERE transaksi.USERNAME = user.USERNAME
-AND transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
-AND transaksi.ID_STATUS_TRANSAKSI='03'
-AND user.ID_STATUS='03'");
+$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '03'");
 
 $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
 FROM transaksi, user, pembayaran
@@ -15,6 +10,10 @@ WHERE transaksi.USERNAME = user.USERNAME
 AND transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
 AND transaksi.ID_STATUS_TRANSAKSI='02'
 AND user.ID_STATUS='03'");
+
+$gambar = mysqli_query($koneksi, "SELECT BUKTI_PEMBAYARAN FROM transaksi WHERE ID_TRANSAKSI = ");
+
+$hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
@@ -377,6 +376,61 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             </h1>
           </div>
 
+        <!-- #############################################################################################
+				                              Modal Import (Tambah Bunga)
+        ############################################################################################# -->
+        <!-- Modal -->
+        <div class="modal fade" id="lihatTransaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content col-md-12">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Data Transaksi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST" class="card-body">
+                  <input type="hidden" name="idTransaksi" id="idTransaksi" class="form-control">
+                  <input type="hidden" name="idPembayaran" id="idPembayaran" class="form-control">
+                  <input type="hidden" name="tglTransaksi" id="tglTransaksi" class="form-control">
+                  <input type="hidden" name="username" id="username" class="form-control">
+                  <input type="hidden" name="detailAlamat" id="detailAlamat" class="form-control">
+                  <input type="hidden" name="totalAkhir" id="totalAkhir" class="form-control">
+                
+                  <div class="col">
+                    <div class="form-group text-center">
+                      <label for="buktiPembayaran">Bukti Pembayaran</label>
+                      <input type="text" name="buktiPembayaran" id="buktiPembayaran" class="form-control" placeholder="Masih Blm Upload">
+                      <?php while ($row=mysqli_fetch_assoc($gambar)): ?>
+                      <img src="img/<?php echo $row["BUKTI_PEMBAYARAN"];?>" alt="">
+                      <?php endwhile;?>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="form-group text-center">
+                      <label for="idStatusTransaksi">Ubah Status Transaksi</label>
+                        <select name="idStatusTransaksi" id="idStatusTransaksi" class="form-control" require>
+                        <?php while ($row=mysqli_fetch_assoc($hasil2)): ?>
+                        <option value="<?php echo $row["ID_STATUS_TRANSAKSI"]?>"><?php echo $row["STATUS_TRANSAKSI"]?></option>
+                        <?php endwhile;?>
+                        </select>
+                    </div>
+                  </div>
+                <div class="col text-center">
+                    <button type="submit" name="updateTransaksi" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -387,55 +441,44 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Id Transaksi</th>
                       <th>Tanggal Transaksi</th>
                       <th>Pembayaran</th>
+                      <th>Status</th>
                       <th>Nama Pembeli</th>
                       <th>Alamat Pengiriman</th>
                       <th>Total Akhir</th>
+                      <th>Bukti Pembayaran</th>
                       <th>Tindakan</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Id Transaksi</th>
-                      <th>Tanggal Transaksi</th>
-                      <th>Pembayaran</th>
-                      <th>Nama Pembeli</th>
-                      <th>Bunga</th>
-                      <th>Jumlah</th>
-                      <th>Alamat Pengiriman</th>
-                      <th>Total Akhir</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                     <?php if ($_SESSION['id_status']=="01") { ?>
                       <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr>
-                      <td><?php echo $row["ID_TRANSAKSI"]?></td>
-                      <td><?php echo $row["TGL_TRANSAKSI"]?></td>
-                      <td><?php echo $row["JENIS_PEMBAYARAN"]?></td>
-                      <td><?php echo $row["NAMA_USER"]?></td>
-                      <td><?php echo $row["DETAIL_ALAMAT"]?></td>
-                      <td><?php echo $row["TOTAL_AKHIR"]?></td>
+                    <tr id="<?php echo $row["ID_TRANSAKSI"];?>">
+                      <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"]?></td>
+                      <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"]?></td>
+                      <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"]?></td>
+                      <td data-target="username"><?php echo $row["USERNAME"]?></td>
+                      <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
+                      <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
+                      <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
                       <td>
-                        <a href="#" ><button type="button" class="btn btn-success">Konfirmasi</button></a>
+                      <a class="btn btn-success" href="#" data-role="lihat" data-id=<?php echo $row['ID_TRANSAKSI'];?>>Lihat</i></a>
                       </td>
                     </tr>
                     <?php endwhile;?>
                   <?php  }elseif ($_SESSION['id_status']=="02") { ?>
                     <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
-                    <tr>
-                      <td><?php echo $row["ID_TRANSAKSI"]?></td>
-                      <td><?php echo $row["TGL_TRANSAKSI"]?></td>
-                      <td><?php echo $row["JENIS_PEMBAYARAN"]?></td>
-                      <td><?php echo $row["NAMA_USER"]?></td>
-                      <!-- <td><?php echo $row["NAMA_BUNGA"]?></td> -->
-                      <!-- <td><?php echo $row["JUMLAH"]?></td> -->
-                      <td><?php echo $row["DETAIL_ALAMAT"]?></td>
-                      <td><?php echo $row["TOTAL_AKHIR"]?></td>
+                    <tr id="<?php echo $row["ID_TRANSAKSI"];?>">
+                      <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"]?></td>
+                      <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"]?></td>
+                      <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"]?></td>
+                      <td data-target="username"><?php echo $row["USERNAME"]?></td>
+                      <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
+                      <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
+                      <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
                       <td>
-                        <a href="#" ><button type="button" class="btn btn-success">Konfirmasi</button></a>
+                      <a class="btn btn-success" href="#" data-role="lihat" data-id=<?php echo $row['ID_TRANSAKSI'];?>>Lihat</i></a>
                       </td>
                     </tr>
                     <?php endwhile;?>.
@@ -550,6 +593,46 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
     }
     loadDoc();
   </script>
+
+<script>
+    $(document).ready(function(){
+
+      //menampilkan data pada form modal
+      $(document).on('click', 'a[data-role=lihat]', function(){
+        var id = $(this).data('id');
+        var idPembayaran = $('#' + id).children('td[data-target=idPembayaran]').text();
+        var idStatusTransaksi = $('#' + id).children('td[data-target=idStatusTransaksi]').text();
+        var username = $('#' + id).children('td[data-target=username]').text();
+        var detailAlamat = $('#' + id).children('td[data-target=detailAlamat]').text();
+        var totalAkhir = $('#' + id).children('td[data-target=totalAkhir]').text();
+        var buktiPembayaran = $('#' + id).children('td[data-target=buktiPembayaran]').text();
+
+        $('#idTransaksi').val(id);
+        $('#idPembayaran').val(idPembayaran);
+        $('#idStatusTransaksi').val(idStatusTransaksi);
+        $('#tglTransaksi').val(tglTransaksi);
+        $('#username').val(username);
+        $('#detailAlamat').val(detailAlamat);
+        $('#totalAkhir').val(totalAkhir);
+        $('#buktiPembayaran').val(buktiPembayaran);
+        $('#lihatTransaksi').modal('toggle');
+      });
+
+      //Menrubah ketika ditekan tombol ubah data
+      $('#simpan').click(function(){
+        var ID_BUNGA = $('#id1').val();
+        var ID_KATEGORI = $('#idKategori1').val();
+        var NAMA_BUNGA = $('#namaBunga1').val();
+        var HARGA = $('#hargaBunga1').val();
+        var STOK = $('#stokBunga1').val();
+        var FOTO_BUNGA = $('#fotoBunga1').val();
+        var VIDEO_BUNGA = $('#videoBunga1').val();
+        var CARA_PERAWATAN = $('#caraPerawatan1').val();
+        var DESKRIPSI = $('#deskripsiBunga1').val();
+      })
+    });
+  </script>
+
 </body>
 
 </body>

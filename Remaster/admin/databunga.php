@@ -33,7 +33,7 @@
     } else {
       echo "<script>
               alert('Data gagal diedit!');
-              document.location.href = 'editbunga.php';
+              document.location.href = 'databunga.php';
             </script>";
     }
   }
@@ -528,7 +528,6 @@
                     <div class="form-group">
                       <label for="idKategori1">Kategori Bunga</label>
                         <select name="idKategori1" id="idKategori1" class="form-control" require>
-                        <option value="">Pilih Kategori</option>
                         <?php while ($row=mysqli_fetch_assoc($hasil2)): ?>
                         <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
                         <?php endwhile;?>
