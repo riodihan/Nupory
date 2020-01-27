@@ -20,6 +20,23 @@
       echo mysqli_error();
     }
   }
+
+  //cek sudah ditekan apa blm
+  if(isset($_POST["simpanBunga"])){
+
+    //apakah data berhasil diubah
+    if(editbunga1($_POST) > 0){
+      echo "<script>
+              alert('Data berhasil diedit!');
+              document.location.href = 'databunga.php';
+            </script> ";
+    } else {
+      echo "<script>
+              alert('Data gagal diedit!');
+              document.location.href = 'editbunga.php';
+            </script>";
+    }
+  }
   
   //membuat id varchar auto increment
   $cr_id = mysqli_query($koneksi, "SELECT max(ID_BUNGA) AS id FROM bunga");
@@ -485,10 +502,10 @@
         
 
         <!-- #############################################################################################
-				                              Modal Import (Tambah Bunga)
+				                              Modal Edit (Edit Bunga)
         ############################################################################################# -->
         <!-- Modal -->
-        <div class="modal fade" id="editBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ubahBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content col-md-12">
               <div class="modal-header">
@@ -499,18 +516,18 @@
               </div>
               <div class="modal-body">
                 <form action="" method="POST" class="card-body">
-                <input  value="<?=$idB?>" type="hidden" name="idBunga" id="idBunga" class="form-control">
+                <input type="hidden" name="id1" id="id1" class="form-control">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="namaBunga">Nama Bunga</label>
-                      <input type="text" name="namaBunga" id="namaBunga" class="form-control" require>
+                      <label for="namaBunga1">Nama Bunga</label>
+                      <input type="text" name="namaBunga1" id="namaBunga1" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="kategoribunga">Kategori Bunga</label>
-                        <select name="kategoriBunga" id="kategoriBunga" class="form-control" require>
+                      <label for="idKategori1">Kategori Bunga</label>
+                        <select name="idKategori1" id="idKategori1" class="form-control" require>
                         <option value="">Pilih Kategori</option>
                         <?php while ($row=mysqli_fetch_assoc($hasil2)): ?>
                         <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
@@ -520,42 +537,42 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="deskripsibunga">Deskripsi Bunga</label>
-                  <input type="text" name="deskripsiBunga" id="deskripsiBunga" class="form-control">
+                  <label for="deskripsiBunga1">Deskripsi Bunga</label>
+                  <input type="text" name="deskripsiBunga1" id="deskripsiBunga1" class="form-control">
                 </div>
                 <div class="row">
                   <div class="col">
                     <div class="form-group">
-                      <label for="harga">Harga</label>
-                      <input type="text" name="hargaBunga" id="hargaBunga" class="form-control text-right" require>
+                      <label for="hargaBunga1">Harga</label>
+                      <input type="text" name="hargaBunga1" id="hargaBunga1" class="form-control text-right" require>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
-                      <label for="stok">Stok</label>
-                      <input type="text" name="stokBunga" id="stokBunga" class="form-control text-right" require>
+                      <label for="stokBunga1">Stok</label>
+                      <input type="text" name="stokBunga1" id="stokBunga1" class="form-control text-right" require>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="fotobunga">Foto Bunga</label>
+                  <label for="fotoBunga1">Foto Bunga</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
-                      <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                      <input type="file" name="fotoBunga1" class="custom-file-input" id="fotoBunga1" aria-describedby="fotobunga" require>
+                      <label class="custom-file-label" for="fotoBunga">Pilih foto</label>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="videobunga">Video</label>
-                  <input type="text" name="videoBunga" id="videoBunga" class="form-control" placeholder="Copy link video disini.">
+                  <label for="videoBunga1">Video</label>
+                  <input type="text" name="videoBunga1" id="videoBunga1" class="form-control" placeholder="Copy link video disini.">
                 </div>
                 <div class="form-group">
-                  <label for="caraperawatan">Cara Perawatan</label>
-                  <input type="text" name="caraPerawatan" id="caraPerawatan" class="form-control">
+                  <label for="caraPerawatan1">Cara Perawatan</label>
+                  <input type="text" name="caraPerawatan1" id="caraPerawatan1" class="form-control">
                 </div>
                 <div class="col text-center">
-                    <button type="submit" name="tambahkanBunga" class="btn btn-primary">Tambahkan</button>
+                    <button type="submit" id="simpanBunga" name="simpanBunga" class="btn btn-primary">Ubah Data</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
                 </div>
                 </form>
@@ -581,6 +598,9 @@
                       <th>Harga</th>
                       <th>Stok</th>
                       <th>Deskripsi</th>
+                      <th>Foto Bunga</th>
+                      <th>Video Bunga</th>
+                      <th>Cara Perawatan</th>
                       <?php if ($_SESSION['id_status']=="01") { ?>
                         <th>Tindakan</th>
                      <?php }else{ ?>
@@ -590,17 +610,18 @@
                   </thead>
                   <tbody>
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr>
-                      <td><?php echo $row["NAMA_BUNGA"]?></td>
-                      <td><?php echo $row["ID_KATEGORI"]?></td>
-                      <td><?php echo $row["HARGA"]?></td>
-                      <td><?php echo $row["STOK"]?></td>
-                      <td><?php echo $row["DESKRIPSI"]?></td>
+                    <tr id="<?php echo $row["ID_BUNGA"];?>" >
+                      <td data-target="nama"><?php echo $row["NAMA_BUNGA"]?></td>
+                      <td data-target="idKategori"><?php echo $row["ID_KATEGORI"]?></td>
+                      <td data-target="hargaBunga"><?php echo $row["HARGA"]?></td>
+                      <td data-target="stokBunga"><?php echo $row["STOK"]?></td>
+                      <td data-target="deskripsiBunga"><?php echo $row["DESKRIPSI"]?></td>
+                      <td data-target="fotoBunga"><?php echo $row["FOTO_BUNGA"]?></td>
+                      <td data-target="videoBunga"><?php echo $row["VIDEO_BUNGA"]?></td>
+                      <td data-target="caraPerawatan"><?php echo $row["CARA_PERAWATAN"]?></td>
                       <td>
                         <?php if ($_SESSION['id_status']=="01") { ?>
-                            <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editBunga">
-                            <i class="fas fa-edit"></i>
-                            </button>
+                            <a class="btn btn-primary" style="width:40px;" href="#" data-role="update" data-id=<?php echo $row['ID_BUNGA'];?>><i class="fas fa-edit"></i></a>
                             <a class="btn btn-danger" href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
                             <i class="fas fa-trash"></i>
                             </a>
@@ -714,6 +735,48 @@
 
     }
     loadDoc();
+  </script>
+
+  <script>
+    $(document).ready(function(){
+
+      //menampilkan data pada form modal
+      $(document).on('click', 'a[data-role=update]', function(){
+        var id = $(this).data('id');
+        var namaBunga = $('#' + id).children('td[data-target=nama]').text();
+        var idKategori = $('#' + id).children('td[data-target=idKategori]').text();
+        var hargaBunga = $('#' + id).children('td[data-target=hargaBunga]').text();
+        var stokBunga = $('#' + id).children('td[data-target=stokBunga]').text();
+        var deskripsiBunga = $('#' + id).children('td[data-target=deskripsiBunga]').text();
+        var fotoBunga = $('#' + id).children('td[data-target=fotoBunga]').text();
+        var videoBunga = $('#' + id).children('td[data-target=videoBunga]').text();
+        var caraPerawatan = $('#' + id).children('td[data-target=caraPerawatan]').text();
+
+        $('#id1').val(id);
+        $('#namaBunga1').val(namaBunga);
+        $('#idKategori1').val(idKategori);
+        $('#hargaBunga1').val(hargaBunga);
+        $('#stokBunga1').val(stokBunga);
+        $('#deskripsiBunga1').val(deskripsiBunga);
+        $('#fotoBunga1').val(fotoBunga);
+        $('#videoBunga1').val(videoBunga);
+        $('#caraPerawatan1').val(caraPerawatan);
+        $('#ubahBunga').modal('toggle');
+      });
+
+      //Menrubah ketika ditekan tombol ubah data
+      $('#simpan').click(function(){
+        var ID_BUNGA = $('#id1').val();
+        var ID_KATEGORI = $('#idKategori1').val();
+        var NAMA_BUNGA = $('#namaBunga1').val();
+        var HARGA = $('#hargaBunga1').val();
+        var STOK = $('#stokBunga1').val();
+        var FOTO_BUNGA = $('#fotoBunga1').val();
+        var VIDEO_BUNGA = $('#videoBunga1').val();
+        var CARA_PERAWATAN = $('#caraPerawatan1').val();
+        var DESKRIPSI = $('#deskripsiBunga1').val();
+      })
+    });
   </script>
 
 </body>

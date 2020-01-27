@@ -1,10 +1,30 @@
 <?php
   require 'assets/config.php';
+  $idBunga = $_GET["edit"]; 
+
+  //query data bunga berdasarkan id
+  $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
   $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 
+  //cek sudah ditekan apa blm
+  if(isset($_POST["submit"])){
+
+    //apakah data berhasil diubah
+    if(editbunga($_POST) > 0){
+      echo "<script>
+              alert('Data berhasil diedit!');
+              document.location.href = 'editbunga.php';
+            </script> ";
+    } else {
+      echo "<script>
+              alert('Data gagal diedit!');
+              document.location.href = 'editbunga.php';
+            </script>";
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -369,7 +389,7 @@
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
                       <td>
-                        <a href="index.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                        <a href="editbunga.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
                         <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                       </td>
                       <td><?php echo $row["ID_BUNGA"]?></td>
@@ -395,20 +415,21 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
             </div>
+            
             <form action="" method="POST" class="card-body">
-            <input type="text" name="idBunga" id="idbunga" value="<?php echo $namaBunga; ?>">
+            <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"];?>">
               <div class="row">
                 <div class="col">
                   <div class="form-group">
                     <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control"">
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"];?>">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="kategoribunga">Kategori Bunga</label>
-                    <select name="kategoriBunga" id="kategoribunga" class="form-control">
-                    <option value="">Pilih Kategori</option>
+                    <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
+                      <option value="null">Pilih Kategori</option>
                     <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
                       <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
                     <?php endwhile;?>
@@ -418,19 +439,19 @@
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>
-                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
+                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"];?>">
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="harga">Harga</label>
-                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right">
+                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"];?>">
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="stok">Stok</label>
-                    <input type="text" name="stokBunga" id="stok" class="form-control text-right">
+                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"];?>">
                   </div>
                 </div>
               </div>
@@ -438,21 +459,21 @@
                 <label for="fotobunga">Foto Bunga</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga">
+                    <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"];?>">
                     <label class="custom-file-label" for="fotobunga">Pilih foto</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="videobunga">Video</label>
-                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"];?>">
               </div>
               <div class="form-group">
                 <label for="caraperawatan">Cara Perawatan</label>
-                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
+                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"];?>">
               </div>
               <div class="col text-center">
-                <button type="submit" name="tambahkan" class="btn btn-primary">Tambahkan</button>
+                <button type="submit" name="submit" class="btn btn-primary">Edit Bunga</button>
               </div>
             </form>
           </div>

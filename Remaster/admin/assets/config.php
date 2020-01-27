@@ -55,4 +55,57 @@ function tambahkaryawan($data){
     $q_kar = mysqli_query ($koneksi, "INSERT INTO user VALUES ('$usernameKaryawan', '02', '$namaKaryawan', '$alamatKaryawan', '$nomorTelponKaryawan', '$emailKaryawan', '$passwordKaryawan', '')") or die(mysqli_error($koneksi));
     return $q_kar;
 }
+
+function editbunga($data){
+    global $koneksi;
+    $idBunga = $data["idBunga"];
+    $namaBunga = htmlspecialchars($data["namaBunga"]);
+    $kategoriBunga = htmlspecialchars($data["kategoriBunga"]);
+    $hargaBunga = htmlspecialchars($data["hargaBunga"]);
+    $stokBunga = htmlspecialchars($data["stokBunga"]);
+    $fotoBunga = htmlspecialchars($data["fotoBunga"]);
+    $videoBunga = htmlspecialchars($data["videoBunga"]);
+    $caraPerawatan = htmlspecialchars($data["caraPerawatan"]);
+    $deskripsiBunga = htmlspecialchars($data["deskripsiBunga"]);
+
+    $query = "UPDATE bunga SET
+                ID_KATEGORI = '$kategoriBunga',
+                NAMA_BUNGA = '$namaBunga',
+                HARGA = '$hargaBunga',
+                STOK = '$stokBunga',
+                FOTO_BUNGA = '$fotoBunga',
+                VIDEO_BUNGA = '$videoBunga',
+                CARA_PERAWATAN = '$caraPerawatan',
+                DESKRIPSI = '$deskripsiBunga'
+            WHERE ID_BUNGA = '$idBunga'
+                ";
+    $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+    return $q_bung;
+}
+
+function editbunga1($data){
+    global $koneksi;
+    $idBunga = $data["id1"];
+    $namaBunga = htmlspecialchars($data["namaBunga1"]);
+    $kategoriBunga = htmlspecialchars($data["idKategori1"]);
+    $hargaBunga = htmlspecialchars($data["hargaBunga1"]);
+    $stokBunga = htmlspecialchars($data["stokBunga1"]);
+    $fotoBunga = htmlspecialchars($data["fotoBunga1"]);
+    $videoBunga = htmlspecialchars($data["videoBunga1"]);
+    $caraPerawatan = htmlspecialchars($data["caraPerawatan1"]);
+    $deskripsiBunga = htmlspecialchars($data["deskripsiBunga1"]);
+
+    $query = "UPDATE bunga SET
+                ID_KATEGORI = '$kategoriBunga',
+                NAMA_BUNGA = '$namaBunga',
+                HARGA = '$hargaBunga',
+                STOK = '$stokBunga',
+                FOTO_BUNGA = '$fotoBunga',
+                VIDEO_BUNGA = '$videoBunga',
+                CARA_PERAWATAN = '$caraPerawatan',
+                DESKRIPSI = '$deskripsiBunga'
+            WHERE ID_BUNGA = '$idBunga' ";
+    $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+    return $q_bung;
+}
 ?>
