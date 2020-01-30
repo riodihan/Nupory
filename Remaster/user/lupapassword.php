@@ -113,7 +113,7 @@ if ($_POST) {
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
+				<form method="post" class="login100-form validate-form">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email Harus Diisi">
 						<span class="label-input100">Email</span>
 						<input class="input100" type="email" id="username" name="email" placeholder="Masukan Email Akun Anda">

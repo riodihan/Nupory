@@ -107,6 +107,21 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                                 </a>
                                             </li>
                                             <li>
+                                                <a class="unity-link" href="kritikdansaran.php">
+                                                    <div class="unity-box">
+                                                        <div class="unity-icon">
+                                                            <img src="images/kritik.png" alt="">
+                                                        </div>
+                                                        <div class="unity-title">
+                                                            Kritik dan saran
+                                                        </div>
+                                                        <div class="unity-details">
+                                                            Lokasi pada google maps
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
                                                         <div class="unity-icon">
@@ -212,17 +227,15 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                             <a class="support-button" href=""><?php echo $_SESSION["username"] ?></a>
                                         <?php } ?>
                                         <?php if (!isset($_SESSION["login"])) { ?>
-                                            <a class="support-button" href="">Login</a>
+                                            <a class="support-button" href="login.php">Login</a>
                                         <?php } ?>
-                                        <ul class="dropdown-menu">
-                                            <?php if (!isset($_SESSION["login"])) { ?>
-                                                <li><a href="login.php"><i class="fas fa-sign-in-alt"></i>Login</a>
-                                                <?php } ?>
-                                                <?php if (isset($_SESSION["login"])) { ?>
+
+                                        <?php if (isset($_SESSION["login"])) { ?>
+                                            <ul class="dropdown-menu">
                                                 <li><a href="logout.php"><i class="fas fa-power-off"></i>Logout</a></li>
                                                 <li><a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a></li>
                                             <?php } ?>
-                                        </ul>
+                                            </ul>
                                     </li>
                                 </ul>
                             </div>
