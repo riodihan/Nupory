@@ -87,7 +87,7 @@ session_start();
                                                             Kritik dan saran
                                                         </div>
                                                         <div class="unity-details">
-                                                            Lokasi pada google maps
+                                                            Berikan Kritik dan saran
                                                         </div>
                                                     </div>
                                                 </a>

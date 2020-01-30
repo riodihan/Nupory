@@ -139,7 +139,7 @@ if (isset($_POST["keranjang"])) {
                                                             Kritik dan saran
                                                         </div>
                                                         <div class="unity-details">
-                                                            Lokasi pada google maps
+                                                            Berikan Kritik dan saran
                                                         </div>
                                                     </div>
                                                 </a>

@@ -168,5 +168,20 @@ function hapuskeranjang($id)
     return $qu;
 }
 
+//detail keranjang
+function kritik($kritik)
+{
+    global $koneksi;
+    $idkritik = htmlspecialchars($kritik["idkritik"]);
+    $username = htmlspecialchars($kritik["username"]);
+    $idstatuskritik = htmlspecialchars($kritik["idstatuskritik"]);
+    $isikritik = htmlspecialchars($kritik["isikritik"]);
+
+    $qu = mysqli_query($koneksi, "INSERT INTO kritik VALUES ('$idkritik', '$username', '$idstatuskritik', '$isikritik')");
+
+    return $qu;
+}
+
+
 
 ?>

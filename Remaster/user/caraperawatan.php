@@ -95,7 +95,7 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                                                             Kritik dan saran
                                                         </div>
                                                         <div class="unity-details">
-                                                            Lokasi pada google maps
+                                                            Berikan Kritik dan saran
                                                         </div>
                                                     </div>
                                                 </a>

@@ -115,7 +115,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                                             Kritik dan saran
                                                         </div>
                                                         <div class="unity-details">
-                                                            Lokasi pada google maps
+                                                            Berikan Kritik dan saran
                                                         </div>
                                                     </div>
                                                 </a>

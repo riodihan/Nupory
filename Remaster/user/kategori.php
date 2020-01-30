@@ -92,7 +92,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori")
                                                             Kritik dan saran
                                                         </div>
                                                         <div class="unity-details">
-                                                            Lokasi pada google maps
+                                                            Berikan Kritik dan saran
                                                         </div>
                                                     </div>
                                                 </a>
