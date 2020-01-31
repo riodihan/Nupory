@@ -2,7 +2,7 @@
 session_start();
 require 'assets/config.php';
 
-$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '03'");
+$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02'");
 
 $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
 FROM transaksi, user, pembayaran
@@ -17,6 +17,7 @@ $hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+
 
 ?>
 
@@ -379,53 +380,22 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
         <!-- #############################################################################################
 				                              Modal Import (Tambah Bunga)
         ############################################################################################# -->
-        <!-- Modal -->
-        <div class="modal fade" id="lihatTransaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content col-md-12">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Data Transaksi</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="" method="POST" class="card-body">
-                  <input type="hidden" name="idTransaksi" id="idTransaksi" class="form-control">
-                  <input type="hidden" name="idPembayaran" id="idPembayaran" class="form-control">
-                  <input type="hidden" name="tglTransaksi" id="tglTransaksi" class="form-control">
-                  <input type="hidden" name="username" id="username" class="form-control">
-                  <input type="hidden" name="detailAlamat" id="detailAlamat" class="form-control">
-                  <input type="hidden" name="totalAkhir" id="totalAkhir" class="form-control">
-                
-                  <div class="col">
-                    <div class="form-group text-center">
-                      <label for="buktiPembayaran">Bukti Pembayaran</label>
-                      <input type="text" name="buktiPembayaran" id="buktiPembayaran" class="form-control" placeholder="Masih Blm Upload">
-                      <?php while ($row=mysqli_fetch_assoc($gambar)): ?>
-                      <img src="img/<?php echo $row["BUKTI_PEMBAYARAN"];?>" alt="">
-                      <?php endwhile;?>
+        <!-- modal  detail -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Detail Transaksi</h4>
                     </div>
-                  </div>
-
-                  <div class="col">
-                    <div class="form-group text-center">
-                      <label for="idStatusTransaksi">Ubah Status Transaksi</label>
-                        <select name="idStatusTransaksi" id="idStatusTransaksi" class="form-control" require>
-                        <?php while ($row=mysqli_fetch_assoc($hasil2)): ?>
-                        <option value="<?php echo $row["ID_STATUS_TRANSAKSI"]?>"><?php echo $row["STATUS_TRANSAKSI"]?></option>
-                        <?php endwhile;?>
-                        </select>
+                    <div class="modal-body">
+                        <div class="fetched-data"></div>
                     </div>
-                  </div>
-                <div class="col text-center">
-                    <button type="submit" name="updateTransaksi" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    </div>
                 </div>
-                </form>
-              </div>
             </div>
-          </div>
         </div>
 
 
@@ -462,9 +432,9 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                       <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
                       <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
                       <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
-                      <td>
-                      <a class="btn btn-success" href="#" data-role="lihat" data-id=<?php echo $row['ID_TRANSAKSI'];?>>Lihat</i></a>
-                      </td>
+                      
+                      <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
+                      
                     </tr>
                     <?php endwhile;?>
                   <?php  }elseif ($_SESSION['id_status']=="02") { ?>
@@ -594,44 +564,26 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
     loadDoc();
   </script>
 
-<script>
-    $(document).ready(function(){
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myModal').on('show.bs.modal', function(e) {
+                var rowid = $(e.relatedTarget).data('id');
+                //menggunakan fungsi ajax untuk pengambilan data
+                $.ajax({
+                    type: 'post',
+                    url: 'detaildatatransaksi.php',
+                    data: 'rowid=' + rowid,
+                    success: function(data) {
+                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                    }
+                });
+            });
+        });
+    </script>
 
-      //menampilkan data pada form modal
-      $(document).on('click', 'a[data-role=lihat]', function(){
-        var id = $(this).data('id');
-        var idPembayaran = $('#' + id).children('td[data-target=idPembayaran]').text();
-        var idStatusTransaksi = $('#' + id).children('td[data-target=idStatusTransaksi]').text();
-        var username = $('#' + id).children('td[data-target=username]').text();
-        var detailAlamat = $('#' + id).children('td[data-target=detailAlamat]').text();
-        var totalAkhir = $('#' + id).children('td[data-target=totalAkhir]').text();
-        var buktiPembayaran = $('#' + id).children('td[data-target=buktiPembayaran]').text();
-
-        $('#idTransaksi').val(id);
-        $('#idPembayaran').val(idPembayaran);
-        $('#idStatusTransaksi').val(idStatusTransaksi);
-        $('#tglTransaksi').val(tglTransaksi);
-        $('#username').val(username);
-        $('#detailAlamat').val(detailAlamat);
-        $('#totalAkhir').val(totalAkhir);
-        $('#buktiPembayaran').val(buktiPembayaran);
-        $('#lihatTransaksi').modal('toggle');
-      });
-
-      //Menrubah ketika ditekan tombol ubah data
-      $('#simpan').click(function(){
-        var ID_BUNGA = $('#id1').val();
-        var ID_KATEGORI = $('#idKategori1').val();
-        var NAMA_BUNGA = $('#namaBunga1').val();
-        var HARGA = $('#hargaBunga1').val();
-        var STOK = $('#stokBunga1').val();
-        var FOTO_BUNGA = $('#fotoBunga1').val();
-        var VIDEO_BUNGA = $('#videoBunga1').val();
-        var CARA_PERAWATAN = $('#caraPerawatan1').val();
-        var DESKRIPSI = $('#deskripsiBunga1').val();
-      })
-    });
-  </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
 
 </body>
 
