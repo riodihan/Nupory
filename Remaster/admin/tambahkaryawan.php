@@ -1,7 +1,9 @@
 <?php
+  session_start();
   require 'assets/config.php';
 
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+  $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
 
   if(isset($_POST["tambahkan"]) ){
     if (tambahkaryawan($_POST) > 0){
@@ -53,7 +55,11 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
+        <div class="sidebar-brand-text mx-3"><?php if ($_SESSION['id_status']=="01") {
+          echo "Admin";
+        }elseif ($_SESSION['id_status']=="02") {
+          echo "Karyawan";
+        }?><br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -242,25 +248,28 @@
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Pemberitahuan
+                  Tagihan Baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
+                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
+                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
                   </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Tampilakan Semua</a>
+                </a>
+              <?php endwhile;?>
+                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -293,7 +302,13 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin, Nama Admin</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php if ($_SESSION['id_status']=="01") {
+                  echo "Admin, ";
+                  echo $_SESSION['nama_user'];
+                }elseif ($_SESSION['id_status']=="02") {
+                  echo "Karyawan";
+                  echo $_SESSION["nama_user"];
+                }?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -418,10 +433,10 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="../user/login.php">Logout</a>
+          <a class="btn btn-primary" href="../user/logout.php">Logout</a>
         </div>
       </div>
     </div>
@@ -464,6 +479,26 @@
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
+
+  <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterth").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
         },1000);
