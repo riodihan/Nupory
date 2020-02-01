@@ -345,7 +345,7 @@
         <!-- <div class="container-fluid text-center"> -->
 
           <!-- Page Heading -->
-          <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <!-- <div class=" d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Tambah Bunga</h1>
           </div>
         </div> -->
@@ -359,7 +359,7 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Bunga Baru</h6>
             </div>
-            <form action="" method="POST" class="card-body">
+            <form action="" method="POST" class="card-body" enctype="multipart/form-data">
                     <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" require>
               <div class="row">
                 <div class="col-md-3">
@@ -455,7 +455,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a class="btn btn-primary" href="../user/login.php">Logout</a>

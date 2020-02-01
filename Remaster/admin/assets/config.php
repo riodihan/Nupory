@@ -21,7 +21,12 @@ function tambahbunga($data){
     $kategoriBunga = htmlspecialchars($data["kategoriBunga"]);
     $hargaBunga = htmlspecialchars($data["hargaBunga"]);
     $stokBunga = htmlspecialchars($data["stokBunga"]);
-    $fotoBunga = htmlspecialchars($data["fotoBunga"]);
+    //upload foto
+    $fotoBunga = upload();
+    if (!$fotoBunga) {
+        return false;
+    }
+    // $fotoBunga = htmlspecialchars($data["fotoBunga"]);
     $videoBunga = htmlspecialchars($data["videoBunga"]);
     $caraPerawatan = htmlspecialchars($data["caraPerawatan"]);
     $deskripsiBunga = htmlspecialchars($data["deskripsiBunga"]);
@@ -31,6 +36,56 @@ function tambahbunga($data){
     // echo "INSERT INTO bunga VALUES ('$idbunga', '$namabunga', '$harga', '$stok', 'FOTO_BUNGA', '$videobunga', '$caraperawatan', '$deskripsibunga')";
     return $q_bung;
 }
+
+function upload()  {
+    $namaFile = $_FILES['fotoBunga']['name'];
+    $ukuranFile = $_FILES['fotoBunga']['size'];
+    $error = $_FILES['fotoBunga']['error'];
+    $tmpName = $_FILES['fotoBunga']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang diupload
+
+    if ($error === 4) {
+        echo "<script>
+              alert('Pilih Gambar Terlebih Dahulu');
+              document.location.href = '';
+            </script>";
+            return false;
+    }
+
+    // cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid = ['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.',$namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>
+              alert('yang anda upload bukan gambar!');
+              document.location.href = '';
+            </script>";
+            return false; 
+    }
+
+    //cek jika ukuran gambar terlalu besar
+    if ($ukuranFile > 1500000) {
+        echo "<script>
+              alert('yang anda upload bukan gambar!');
+              document.location.href = '';
+            </script>";
+        return false; 
+    }
+    //gambar siap diupload
+    //generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+    return $namaFileBaru;
+
+
+}
+
 
 function tambahkategori($data){
     global $koneksi;
