@@ -4,14 +4,14 @@ require 'assets/config.php';
 
 $hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02'");
 
-$hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
-FROM transaksi, user, pembayaran
-WHERE transaksi.USERNAME = user.USERNAME
-AND transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
-AND transaksi.ID_STATUS_TRANSAKSI='02'
-AND user.ID_STATUS='03'");
+// $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
+// FROM transaksi, user, pembayaran
+// WHERE transaksi.USERNAME = user.USERNAME
+// AND transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
+// AND transaksi.ID_STATUS_TRANSAKSI='02'
+// AND user.ID_STATUS='03'");
 
-$gambar = mysqli_query($koneksi, "SELECT BUKTI_PEMBAYARAN FROM transaksi WHERE ID_TRANSAKSI = ");
+$gambar = mysqli_query($koneksi, "SELECT BUKTI_PEMBAYARAN FROM transaksi WHERE ID_TRANSAKSI ='*' ");
 
 $hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
 
@@ -498,10 +498,10 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="../user/logout.php">Logout</a>
         </div>
       </div>
     </div>

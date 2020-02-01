@@ -1,11 +1,31 @@
 <?php
-require '../admin/assets/config.php';
+require 'assets/config.php';
 session_start();
 
-//menampilkan bunga
-$bunga = mysqli_query($koneksi, "SELECT * FROM bunga");
+$username = $_SESSION["username"];
 
-$kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI IN ('Krisan', 'Anggrek')")
+$carikode = mysqli_query($koneksi, "select max(ID_KRITIK)from kritik") or die(mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if ($datakode) {
+    $nilaikode = substr($datakode[0], 1);
+    $kode = (int) $nilaikode;
+    $kode = $kode + 1;
+    $hasilkode = "K" . str_pad($kode, 3, "0", STR_PAD_LEFT);
+} else {
+    $hasilkode = "K001";
+}
+
+//kritik
+
+if (isset($_POST["kirim"])) {
+
+    if (kritik($_POST) == 1) {
+        echo "<script>alert('Terima kasih atas kritik dan saran anda'); window.location.href='kritikdansaran.php'</script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
+
 
 ?>
 <!doctype html>
@@ -14,7 +34,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>Nursery Polije</title>
+    <title>Kritik dan saran</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
@@ -31,8 +51,10 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
 </head>
 
 <body>
-    <div id="header-holder" class="main-header bg">
-    <nav id="nav" class="navbar navbar-default navbar-full">
+
+    <div id="header-holder" class="bg">
+        <div class=""></div>
+        <nav id="nav" class="navbar navbar-default navbar-full">
             <div class="container-fluid">
                 <div class="container container-nav">
                     <div class="row">
@@ -225,112 +247,42 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="page-title">Kebun Nursery Polije</div>
+                        <div class="page-title">Kritik dan saran</div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-    <div id="domain-quick-pricing" class="container-fluid">
+    <div id="page-content" class="container">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-md-8">
-                    <div class="domain-box d-color1">
-                        <!-- <div class="price">Nursery Polije</div> -->
-                        <div class="details">Unit Produksi Hortikultura Rembangan merupakan salah satu unit produksi
-                            yang yang dimiliki oleh Politeknik Negeri Jember, merupakan hasil kerjasama antara
-                            Politeknik Negeri Jember dengan Pemerintah Kabupaten Jember yang didirikan pada tahun 2004.
-                            Unit ini didirikan dengan tujuan untuk meningkatkan proses pembelajaran mahasiswa Politeknik
-                            Negeri Jember khususnya bidang kewirausahaan hortikultura.</div>
-                        <div class="btn-holder">
-                            <a href="tentangkami.php" class="ybtn ybtn-white ybtn-shadow">Baca Selengkapnya</a>
-                            <?php if (!isset($_SESSION["login"])) { ?>
-                                <a href="daftar.php" class="ybtn ybtn-header-color">Daftar Akun</a>
-                            <?php } ?>
-                        </div>
+                <div class="col-xs-12">
+                    <div class="content-holder">
+                        <h4>Berikan Kritik dan saran kepada kami tentang:</h4>
+                        <ul>
+                            <li>Tampilan Web yang digunakan</li>
+                            <li>Prosedur pembelian bunga pada Web ini</li>
+                            <li>Permasalahan yang terjadi pada Web ini</li>
+                            <li>Kekurangan pada Web ini yang harus diperbaiki</li>
+                            <li>Dll</li>
+                        </ul>
+
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
 
-    <div id="services" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row-title">Kategori Bunga</div>
-                    <div class="row-subtitle">Cari dengan mudah.</div>
-                </div>
+        </div>
+        <form method="POST">
+            <div class="form-group">
+                <input name="idkritik" type="hidden" value="<?= $hasilkode ?>">
+                <input name="username" type="hidden" value="<?= $username ?>">
+                <input name="idstatuskritik" value="1" type="hidden">
+                <label for="exampleFormControlTextarea1">Kritik dan saran</label>
+                <textarea name="isikritik" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan kritik dan saran"></textarea>
             </div>
-        </div>
-
-
-        <div class="row">
-            <?php foreach ($kategori as $data) { ?>
-                <div class="col-sm-12 col-md-6">
-                    <div class="service-box">
-                        <div class="service-icon">
-                            <img src="images/<?= $data["GAMBAR_KATEGORI"] ?>" alt="">
-                        </div>
-                        <div class="service-title"><a href="kategoribunga.php?id=<?= $data["ID_KATEGORI"] ?>"><?= $data["NAMA_KATEGORI"] ?></a></div>
-                        <div class="service-details">
-                            <p><?= substr($data["DESKRIPSI"], 0, 200);
-                                echo '...'; ?></p>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
+            <button type="submit" name="kirim" class="btn btn-primary">Kirim</button>
+        </form>
     </div>
-
-    <div class="col-sm-12 col-md-3" style="float: right;">
-        <div class="buttons-holder">
-            <a href="kategori.php" class="ybtn ybtn-accent-color">Kategori lainnya</a>
-        </div>
-    </div>
-    </div><br><br><br><br>
-
-
-    <div id="services" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row-title">Produk Kami</div>
-                    <div class="row-subtitle">Aneka Bunga Hias</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="articles" class="">
-        <div class="container">
-            <div class="row">
-                <?php foreach ($bunga as $data) { ?>
-                    <a href="bunga.php?id=<?php echo $data["ID_BUNGA"]; ?>">
-                        <div class="col-sm-6 col-md-3">
-                            <div class="article-summary">
-                                <div class="article-img"><img style="width: 238px; height: 230px;" src="images/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
-                                <div class="article-details">
-                                    <div class="article-title"><b><?php echo $data["NAMA_BUNGA"]; ?></b></div>
-                                    <div class="article-title">Rp. <?php echo $data["HARGA"]; ?></div>
-                                    <div class="article-text">
-                                        <?= substr($data["DESKRIPSI"], 0, 200);
-                                        echo '...'; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                    </a>
-            </div>
-        </div>
-    </div>
-
-
-
 
     <div id="footer" class="container-fluid">
         <div class="container">
