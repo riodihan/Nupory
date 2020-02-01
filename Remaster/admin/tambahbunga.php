@@ -420,7 +420,7 @@ session_start();
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
-                    <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                    <label class="custom-file-label" for="fotoBunga">Pilih foto</label>
                   </div>
                 </div>
               </div>

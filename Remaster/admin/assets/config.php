@@ -55,7 +55,7 @@ function upload()  {
 
     // cek apakah yang diupload adalah gambar
     $ekstensiGambarValid = ['jpg','jpeg','png'];
-    $ekstensiGambar = explode('.',$namaFile);
+    $ekstensiGambar = explode('.', $namaFile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
     if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
         echo "<script>
@@ -66,9 +66,9 @@ function upload()  {
     }
 
     //cek jika ukuran gambar terlalu besar
-    if ($ukuranFile > 1500000) {
+    if ($ukuranFile > 10000000) {
         echo "<script>
-              alert('yang anda upload bukan gambar!');
+              alert('ukuran gambar terlalu besar!');
               document.location.href = '';
             </script>";
         return false; 
