@@ -109,8 +109,33 @@ function editbunga1($data){
     return $q_bung;
 }
 
+function edittransaksi($data){
+    global $koneksi;
+    $idTransaksi = $data["idTransaksi"];
+    $tglTransaksi = htmlspecialchars($data["tglTransaksi"]);
+    $idPembayaran = htmlspecialchars($data["idPembayaran"]);
+    $idStatusTransaksi = htmlspecialchars($data["idStatusTransaksi"]);
+    $username = htmlspecialchars($data["username"]);
+    $detailAlamat = htmlspecialchars($data["detailAlamat"]);
+    $totalAkhir = htmlspecialchars($data["totalAkhir"]);
+    $buktiPembayaran = htmlspecialchars($data["buktiPembayaran"]);
+
+    $query = "UPDATE transaksi SET
+                ID_PEMBAYARAN = '$idPembayaran',
+                ID_STATUS_TRANSAKSI = '$idStatusTransaksi',
+                USERNAME = '$username',
+                TGL_TRANSAKSI = '$tglTransaksi',
+                DETAIL_ALAMAT = '$detailAlamat',
+                TOTAL_AKHIR = '$totalAkhir',
+                BUKTI_PEMBAYARAN = '$buktiPembayaran',
+            WHERE ID_TRANSAKSI = '$idTransaksi' ";
+    $q_tra = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+    return $q_tra;
+}
+
 function gantistatus03(){
     global $koneksi;
     
 }
+
 ?>

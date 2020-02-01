@@ -380,7 +380,11 @@
                       <th>Alamat</th>
                       <th>No. Telpon</th>
                       <th>Email</th>
-                      <th>Tindakan</th>
+                      <?php if ($_SESSION['id_status']=="01") { ?>
+                        <th>Tindakan</th>
+                     <?php }else{ ?>
+                    <?php } ?>
+                      
                     </tr>
                   </thead>
                   <!-- <tfoot>
@@ -402,7 +406,8 @@
                       <td><?php echo $row["NO_TELEPON"]?></td>
                       <td><?php echo $row["EMAIL"]?></td>
                       <td>
-                        <div>
+                        <?php if ($_SESSION['id_status']=="01") { ?>
+                          <div>
                           <a class="btn btn-primary" href="#" role="button">
                             <i class="fas fa-edit"></i>
                           </a>
@@ -410,7 +415,8 @@
                             <i class="fas fa-trash"></i>
                           </a>  
                         </div>
-                        
+                        <?php }else{ ?>
+                       <?php } ?> 
                       </td>
                     </tr>
                     <?php endwhile;?>
