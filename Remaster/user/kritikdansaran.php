@@ -4,6 +4,11 @@ session_start();
 
 $username = $_SESSION["username"];
 
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+
 $carikode = mysqli_query($koneksi, "select max(ID_KRITIK)from kritik") or die(mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
 if ($datakode) {
@@ -105,6 +110,7 @@ if (isset($_POST["kirim"])) {
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION["login"])) {?>
                                             <li>
                                                 <a class="unity-link" href="kritikdansaran.php">
                                                     <div class="unity-box">
@@ -120,6 +126,7 @@ if (isset($_POST["kirim"])) {
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php }?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">

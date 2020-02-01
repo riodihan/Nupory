@@ -77,6 +77,7 @@ session_start();
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION["login"])) {?>
                                             <li>
                                                 <a class="unity-link" href="kritikdansaran.php">
                                                     <div class="unity-box">
@@ -92,6 +93,7 @@ session_start();
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php }?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">

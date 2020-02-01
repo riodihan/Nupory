@@ -5,6 +5,11 @@ session_start();
 //id bunga
 $idbunga = $_GET["id"];
 
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+
 $bunga = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'");
 
 
@@ -25,6 +30,8 @@ if ($datakode) {
 } else {
     $hasilkode = "T001";
 }
+
+
 
 //keranjang
 
@@ -129,6 +136,7 @@ if (isset($_POST["keranjang"])) {
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION["login"])) {?>
                                             <li>
                                                 <a class="unity-link" href="kritikdansaran.php">
                                                     <div class="unity-box">
@@ -144,6 +152,7 @@ if (isset($_POST["keranjang"])) {
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php }?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">

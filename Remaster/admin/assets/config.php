@@ -164,32 +164,31 @@ function editbunga1($data){
     return $q_bung;
 }
 
-function edittransaksi($data){
+function updateTransaksi03(){
     global $koneksi;
     $idTransaksi = $data["idTransaksi"];
-    $tglTransaksi = htmlspecialchars($data["tglTransaksi"]);
     $idPembayaran = htmlspecialchars($data["idPembayaran"]);
-    $idStatusTransaksi = htmlspecialchars($data["idStatusTransaksi"]);
+    $tglTransaksi = htmlspecialchars($data["tglTransaksi"]);
     $username = htmlspecialchars($data["username"]);
     $detailAlamat = htmlspecialchars($data["detailAlamat"]);
     $totalAkhir = htmlspecialchars($data["totalAkhir"]);
     $buktiPembayaran = htmlspecialchars($data["buktiPembayaran"]);
+    $idStatusTransaksi = htmlspecialchars($data["idStatusTransaksi"]);
 
     $query = "UPDATE transaksi SET
                 ID_PEMBAYARAN = '$idPembayaran',
-                ID_STATUS_TRANSAKSI = '$idStatusTransaksi',
-                USERNAME = '$username',
                 TGL_TRANSAKSI = '$tglTransaksi',
+                USERNAME = '$username',
                 DETAIL_ALAMAT = '$detailAlamat',
                 TOTAL_AKHIR = '$totalAkhir',
                 BUKTI_PEMBAYARAN = '$buktiPembayaran',
-            WHERE ID_TRANSAKSI = '$idTransaksi' ";
-    $q_tra = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
-    return $q_tra;
-}
+                ID_STATUS_TRANSAKSI = '$idStatusTransaksi'
+              WHERE ID_TRANSAKSI = '$idTransaksi'";
 
-function gantistatus03(){
-    global $koneksi;
+    $u_tr = mysqli_query($koneksi, $query) or die (mysqli_error($koneksi));
+    return $u_tr;
+    ;
+    
     
 }
 

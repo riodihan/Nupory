@@ -85,6 +85,7 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION["login"])) {?>
                                             <li>
                                                 <a class="unity-link" href="kritikdansaran.php">
                                                     <div class="unity-box">
@@ -100,6 +101,7 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php }?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
