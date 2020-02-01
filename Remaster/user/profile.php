@@ -7,6 +7,10 @@ if(!isset($_SESSION["login"])){
 	header("location: index.php");
 }
 
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
 
 //
 $username = $_SESSION["username"];
@@ -99,7 +103,8 @@ if (isset($_POST["ubah1"])) {
 								<li><b>EMAIL : </b><?php echo $data["EMAIL"]; ?></li>
 								<li><b>Alamat : </b><?php echo $data["ALAMAT"]; ?></li>
 								<li><b>No Handphone : </b><?php echo $data["NO_TELEPON"]; ?></li>
-							</ul><br><br><br>
+							</ul>
+							<a href="index.php" class="btn btn-primary">Kembali</a>
 							<ul class="social-icons">
 								<a href="#" data-toggle="modal" data-target="#exampleModal">
 									<ion-icon name="create"></ion-icon>Edit Biodata

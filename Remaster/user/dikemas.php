@@ -5,6 +5,10 @@ require 'assets/config.php';
 //username
 $username = $_SESSION["username"];
 
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
 
 //dikemas
 $dikemas = mysqli_query($koneksi, "SELECT * FROM transaksi
@@ -106,6 +110,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION["login"])) {?>
                                             <li>
                                                 <a class="unity-link" href="kritikdansaran.php">
                                                     <div class="unity-box">
@@ -121,6 +126,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php }?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">

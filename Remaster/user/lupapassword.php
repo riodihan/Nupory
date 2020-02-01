@@ -2,6 +2,10 @@
 session_start();
 require 'assets/config.php';
 
+if(isset($_SESSION["login"])){
+	header("location: index.php");
+	exit;
+}
 
 
 
