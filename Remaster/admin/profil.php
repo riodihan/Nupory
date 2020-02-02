@@ -1,3 +1,8 @@
+<?php
+session_start();
+require 'assets/config.php';
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title> home </title>
+  <title> Profile </title>
   <link rel="icon" href="Karyawan.png" type="image/x-icon">
 
   <!-- Custom fonts for this template-->
@@ -33,7 +38,11 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
+        <div class="sidebar-brand-text mx-3"><?php if ($_SESSION['id_status']=="01") {
+          echo "Admin";
+        }elseif ($_SESSION['id_status']=="02") {
+          echo "Karyawan";
+        } ?> <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -327,7 +336,13 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin, Nama Admin</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php if ($_SESSION['id_status']=="01") {
+                  echo "Admin, ";
+                  echo $_SESSION['nama_user'];
+                }elseif ($_SESSION['id_status']=="02") {
+                  echo "Karyawan";
+                  echo $_SESSION['nama_user'];
+                } ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -362,7 +377,13 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Selamat Datang, Admin (Nama Admin)</h1>
+            <h1 class="h3 mb-0 text-gray-800">Selamat Datang, <?php if ($_SESSION['id_status']=="01") {
+              echo "Admin, ";
+              echo $_SESSION['nama_user'];
+            }elseif ($_SESSION['id_status']=="02") {
+              echo "Karyawan, ";
+              echo $_SESSION['nama_user'];
+            } ?></h1>
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
           </div>
 

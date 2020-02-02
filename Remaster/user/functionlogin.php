@@ -23,6 +23,7 @@
             $_SESSION["username"]= $username;
             $_SESSION["id_status"]= $id_status;
             $_SESSION["nama_user"]=$nama_user;
+            $_SESSION["foto_user"]=$foto_user;
             $_SESSION["login"]= true;
 
                 if($_SESSION["id_status"] === "03"){

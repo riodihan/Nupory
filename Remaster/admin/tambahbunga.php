@@ -15,7 +15,7 @@ session_start();
     }
     else {
       echo "<script> alert('Gagal Menambahkan Data')</script>";
-      echo mysqli_error();
+      // echo mysqli_error();
     }
   }
 
@@ -195,7 +195,7 @@ session_start();
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkaryawan.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
