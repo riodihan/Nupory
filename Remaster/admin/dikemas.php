@@ -2,7 +2,9 @@
 session_start();
 require 'assets/config.php';
 
-$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02'");
+
+
+$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '03'");
 
 // $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
 // FROM transaksi, user, pembayaran
@@ -17,6 +19,38 @@ $hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+
+if(isset($_POST["update"])){
+
+  //apakah data berhasil diubah
+  if(updateTransaksi03($_POST) > 0){
+    echo "<script>
+            alert('Data berhasil diedit!');
+          </script> ";
+  } else {
+    echo "<script>
+            alert('Data gagal diedit!');
+            document.location.href = 'dikemas.php';
+          </script>";
+  }
+}
+
+//cek sudah ditekan apa blm
+if(isset($_POST["simpanBunga"])){
+
+  //apakah data berhasil diubah
+  if(kirimBunga($_POST) > 0){
+    echo "<script>
+            alert('Barang Dikirim');
+            document.location.href = 'dikemas.php';
+          </script> ";
+  } else {
+    echo "<script>
+            alert('Data gagal dikirim');
+            document.location.href = 'dikemas.php';
+          </script>";
+  }
+}
 
 
 ?>
@@ -105,7 +139,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
               <i class="fas fa-fw fa-cube text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
-            <a class="collapse-item" href="datatransaksi.php">
+            <a class="collapse-item" href="#">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
@@ -277,7 +311,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                   Tagihan Baru
                 </h6>
                 <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
+                <a class="dropdown-item d-flex align-items-center" href="dikemas.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
@@ -290,7 +324,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 </a>
                 </a>
               <?php endwhile;?>
-                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
+                <a class="dropdown-item text-center small text-gray-500" href="dikemas.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -378,24 +412,34 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
           </div>
 
         <!-- #############################################################################################
-				                              Modal Import (Tambah Bunga)
+				                              Modal Edit (Edit Bunga)
         ############################################################################################# -->
-        <!-- modal  detail -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Detail Transaksi</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="fetched-data"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-                    </div>
+        <!-- Modal -->
+        <div class="modal fade" id="ubahBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content col-md-12">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pengingat!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST" class="card-body">
+                <input type="text" name="id1" id="id1" class="form-control">
+
+                <div class="col text-center">
+                  <h3>Yakin untuk mengirim bunga ?</h3><br><br>
                 </div>
+                
+                <div class="col text-center">
+                    <button type="submit" id="simpanBunga" name="simpanBunga" class="btn btn-primary">Kirim Bunga</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+                </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
 
 
@@ -432,9 +476,9 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                       <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
                       <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
                       <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
-                      
-                      <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
-                      
+                      <td>
+                        <a class="btn btn-primary" href="#" data-role="update" data-id=<?php echo $row['ID_TRANSAKSI'];?>>Kirim</a>
+                      </td>
                     </tr>
                     <?php endwhile;?>
                   <?php  }elseif ($_SESSION['id_status']=="02") { ?>
@@ -564,26 +608,23 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
     loadDoc();
   </script>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myModal').on('show.bs.modal', function(e) {
-                var rowid = $(e.relatedTarget).data('id');
-                //menggunakan fungsi ajax untuk pengambilan data
-                $.ajax({
-                    type: 'post',
-                    url: 'detaildatatransaksi.php',
-                    data: 'rowid=' + rowid,
-                    success: function(data) {
-                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
-                    }
-                });
-            });
-        });
-    </script>
+<script>
+    $(document).ready(function(){
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-    </script>
+      //menampilkan data pada form modal
+      $(document).on('click', 'a[data-role=update]', function(){
+        var id = $(this).data('id');
+
+        $('#id1').val(id);
+        $('#ubahBunga').modal('toggle');
+      });
+
+      //Menrubah ketika ditekan tombol ubah data
+      $('#simpan').click(function(){
+        var ID_TRANSAKSI = $('#id1').val();
+      })
+    });
+  </script>
 
 </body>
 

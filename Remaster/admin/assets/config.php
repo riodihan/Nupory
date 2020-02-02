@@ -138,6 +138,15 @@ function editbunga($data){
     return $q_bung;
 }
 
+function kirimBunga($data){
+    global $koneksi;
+    $idTransaksi= $data["id1"];
+
+    $query = "UPDATE transaksi SET ID_STATUS_TRANSAKSI='04' WHERE ID_TRANSAKSI='$idTransaksi'";
+    $kirim = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+    return $kirim;
+}
+
 function editbunga1($data){
     global $koneksi;
     $idBunga = $data["id1"];
@@ -164,7 +173,7 @@ function editbunga1($data){
     return $q_bung;
 }
 
-function updateTransaksi03(){
+function updateTransaksi03($data){
     global $koneksi;
     $idTransaksi = $data["idTransaksi"];
     $idPembayaran = htmlspecialchars($data["idPembayaran"]);
@@ -183,13 +192,10 @@ function updateTransaksi03(){
                 TOTAL_AKHIR = '$totalAkhir',
                 BUKTI_PEMBAYARAN = '$buktiPembayaran',
                 ID_STATUS_TRANSAKSI = '$idStatusTransaksi'
-              WHERE ID_TRANSAKSI = '$idTransaksi'";
+              WHERE ID_TRANSAKSI = '$idTransaksi' ";
 
     $u_tr = mysqli_query($koneksi, $query) or die (mysqli_error($koneksi));
     return $u_tr;
-    ;
-    
-    
 }
 
 ?>
