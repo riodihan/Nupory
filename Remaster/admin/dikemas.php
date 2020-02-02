@@ -426,7 +426,7 @@ if(isset($_POST["simpanBunga"])){
               </div>
               <div class="modal-body">
                 <form action="" method="POST" class="card-body">
-                <input type="text" name="id1" id="id1" class="form-control">
+                <input type="hidden" name="id1" id="id1" class="form-control">
 
                 <div class="col text-center">
                   <h3>Yakin untuk mengirim bunga ?</h3><br><br>
