@@ -5,6 +5,10 @@ require 'assets/config.php';
 //username
 $username = $_SESSION["username"];
 
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
 
 //keranjang
 $keranjang = mysqli_query($koneksi, "SELECT * FROM transaksi
@@ -113,6 +117,7 @@ if (isset($_POST["simpan"])) {
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION["login"])) {?>
                                             <li>
                                                 <a class="unity-link" href="kritikdansaran.php">
                                                     <div class="unity-box">
@@ -128,6 +133,7 @@ if (isset($_POST["simpan"])) {
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php }?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">

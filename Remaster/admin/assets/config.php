@@ -48,28 +48,25 @@ function upload()  {
     if ($error === 4) {
         echo "<script>
               alert('Pilih Gambar Terlebih Dahulu');
-              document.location.href = '';
             </script>";
             return false;
     }
 
     // cek apakah yang diupload adalah gambar
     $ekstensiGambarValid = ['jpg','jpeg','png'];
-    $ekstensiGambar = explode('.',$namaFile);
+    $ekstensiGambar = explode('.', $namaFile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
     if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
         echo "<script>
               alert('yang anda upload bukan gambar!');
-              document.location.href = '';
             </script>";
             return false; 
     }
 
     //cek jika ukuran gambar terlalu besar
-    if ($ukuranFile > 1500000) {
+    if ($ukuranFile > 2500000) {
         echo "<script>
-              alert('yang anda upload bukan gambar!');
-              document.location.href = '';
+              alert('ukuran gambar terlalu besar!');
             </script>";
         return false; 
     }
@@ -92,10 +89,61 @@ function tambahkategori($data){
     $idKategori = htmlspecialchars($data["idKategori"]);
     $namaKategori = htmlspecialchars($data["namaKategori"]);
     $deskripsiKategori = htmlspecialchars($data["deskripsiKategori"]);
-    $fotoKategori = htmlspecialchars($data["fotoKategori"]);
+    $fotoKategori = uploadKategori();
+    if (!$fotoKategori) {
+        return false;
+    }
+    
+    // $fotoKategori = htmlspecialchars($data["fotoKategori"]);
 
     $q_kat = mysqli_query ($koneksi, "INSERT INTO kategori VALUES ('$idKategori', '$namaKategori', '$deskripsiKategori', '$fotoKategori')") or die(mysqli_error($koneksi));
     return $q_kat;
+}
+
+function uploadKategori()  {
+    $namaFileKategori = $_FILES['fotoKategori']['name'];
+    $ukuranFileKategori = $_FILES['fotoKategori']['size'];
+    $errorKategori = $_FILES['fotoKategori']['error'];
+    $tmpNameKategori = $_FILES['fotoKategori']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang diupload
+
+    if ($errorKategori === 4) {
+        echo "<script>
+              alert('Pilih Gambar Terlebih Dahulu');
+            </script>";
+            return false;
+    }
+
+    // cek apakah yang diupload adalah gambar
+    $ekstensiGambarKategoriValid = ['jpg','jpeg','png'];
+    $ekstensiGambarKategori = explode('.', $namaFileKategori);
+    $ekstensiGambarKategori = strtolower(end($ekstensiGambarKategori));
+    if (!in_array($ekstensiGambarKategori, $ekstensiGambarKategoriValid)) {
+        echo "<script>
+              alert('yang anda upload bukan gambar!');
+            </script>";
+            return false; 
+    }
+
+    //cek jika ukuran gambar terlalu besar
+    if ($ukuranFileKategori > 10000000) {
+        echo "<script>
+              alert('ukuran gambar terlalu besar!');
+            </script>";
+        return false; 
+    }
+    //gambar siap diupload
+    //generate nama baru
+    $namaFileBaruKategori = uniqid();
+    $namaFileBaruKategori .= '.';
+    $namaFileBaruKategori .= $ekstensiGambarKategori;
+
+    move_uploaded_file($tmpNameKategori, 'img/' . $namaFileBaruKategori);
+
+    return $namaFileBaruKategori;
+
+
 }
 
 function tambahkaryawan($data){
@@ -154,6 +202,10 @@ function editbunga1($data){
     $kategoriBunga = htmlspecialchars($data["idKategori1"]);
     $hargaBunga = htmlspecialchars($data["hargaBunga1"]);
     $stokBunga = htmlspecialchars($data["stokBunga1"]);
+    // $fotoBunga = uploadBunga();
+    // if (!$fotoBunga) {
+    //     return false;
+    // }
     $fotoBunga = htmlspecialchars($data["fotoBunga1"]);
     $videoBunga = htmlspecialchars($data["videoBunga1"]);
     $caraPerawatan = htmlspecialchars($data["caraPerawatan1"]);
@@ -172,6 +224,54 @@ function editbunga1($data){
     $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
     return $q_bung;
 }
+// function uploadBunga()  {
+//     $namaFile1 = $_FILES['fotoBunga1']['name'];
+//     $ukuranFile1 = $_FILES['fotoBunga1']['size'];
+//     $error1 = $_FILES['fotoBunga1']['error'];
+//     $tmpName1 = $_FILES['fotoBunga1']['tmp_name'];
+
+//     // cek apakah tidak ada gambar yang diupload
+
+//     if ($error1 === 4) {
+//         echo "<script>
+//               alert('Pilih Gambar Terlebih Dahulu');
+//               document.location.href = '';
+//             </script>";
+//             return false;
+//     }
+
+//     // cek apakah yang diupload adalah gambar
+//     $ekstensiGambarValid1 = ['jpg','jpeg','png'];
+//     $ekstensiGambar1 = explode('.', $namaFile1);
+//     $ekstensiGambar1 = strtolower(end($ekstensiGambar1));
+//     if (!in_array($ekstensiGambar1, $ekstensiGambarValid1)) {
+//         echo "<script>
+//               alert('yang anda upload bukan gambar!');
+//               document.location.href = '';
+//             </script>";
+//             return false; 
+//     }
+
+//     //cek jika ukuran gambar terlalu besar
+//     if ($ukuranFile1 > 10000000) {
+//         echo "<script>
+//               alert('ukuran gambar terlalu besar!');
+//               document.location.href = '';
+//             </script>";
+//         return false; 
+//     }
+//     //gambar siap diupload
+//     //generate nama baru
+//     $namaFileBaru1 = uniqid();
+//     $namaFileBaru1 .= '.';
+//     $namaFileBaru1 .= $ekstensiGambar1;
+
+//     move_uploaded_file($tmpName1, 'images/' . $namaFileBaru1);
+
+//     return $namaFileBaru1;
+
+
+// }
 
 function updateTransaksi03($data){
     global $koneksi;
@@ -197,5 +297,25 @@ function updateTransaksi03($data){
     $u_tr = mysqli_query($koneksi, $query) or die (mysqli_error($koneksi));
     return $u_tr;
 }
+function ubahprofile(){
+    global $koneksi;
+    $username = htmlspecialchars($data["username"]);
+    $nama = htmlspecialchars($data["nama"]);
+    $email = htmlspecialchars($data["email"]);
+    $alamat = htmlspecialchars($ubahbio["alamat"]);
+    $nohp = htmlspecialchars($ubahbio["nohp"]);
+
+
+    $qu = mysqli_query($koneksi, "UPDATE user SET 
+                
+                NAMA_USER = '$nama',
+                EMAIL = '$email',
+                ALAMAT = '$alamat',
+                NO_TELEPON = '$nohp'
+
+                WHERE USERNAME = '$username'");
+    return $qu;
+}
+
 
 ?>

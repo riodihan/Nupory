@@ -10,7 +10,7 @@ if ($_POST['rowid']) {
                         inner join bunga on detail_transaksi.id_bunga = bunga.id_bunga
                         WHERE transaksi.ID_STATUS_TRANSAKSI = 02 && transaksi.ID_TRANSAKSI = '$id'
                             
-                            ");
+                        ");
     $total = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = 02 && transaksi.ID_TRANSAKSI = '$id'");
 
      ?>
@@ -23,7 +23,7 @@ if ($_POST['rowid']) {
                 </div>
             </div>
 
-            <form method="POST">
+            <form action='' method="POST" enctype="multipart/form-data">
                 <div class="form-group container">
                     <label for="exampleFormControlFile">Unggah foto pembayaran disini</label>
                     <input name="idtransaksi" value="<?= $data["ID_TRANSAKSI"] ?>" type="hidden" class="form-control-file" id="exampleFormControlFile1">

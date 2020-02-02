@@ -83,6 +83,7 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION["login"])) {?>
                                             <li>
                                                 <a class="unity-link" href="kritikdansaran.php">
                                                     <div class="unity-box">
@@ -98,6 +99,7 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
                                                     </div>
                                                 </a>
                                             </li>
+                                            <?php }?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">

@@ -36,8 +36,8 @@ if ($_POST['rowid']) {
                 
                   <div class="col">
                     <div class="form-group text-center">
-                      <label for="buktiPembayaran1">Bukti Pembayaran</label><br>
-                      <img src="../user/images/<?= $row["BUKTI_PEMBAYARAN"]?>" alt="Masih Blm Upload">
+                      <label for="buktiPembayaran">Bukti Pembayaran</label> <br>
+                      <img src="../user/images/<?= $row["BUKTI_PEMBAYARAN"]?>" alt="Masih Blm Upload" width="400px">
                     </div>
                   </div>
 

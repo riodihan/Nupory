@@ -15,7 +15,7 @@ session_start();
     }
     else {
       echo "<script> alert('Gagal Menambahkan Data')</script>";
-      echo mysqli_error();
+      // echo mysqli_error();
     }
   }
 
@@ -195,7 +195,7 @@ session_start();
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkaryawan.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
@@ -329,7 +329,11 @@ session_start();
                   echo "Karyawan, ";
                   echo $_SESSION['nama_user'];
                 } ?></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <?php if ($_SESSION['id_status']=="01") { ?>
+                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
+                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -420,7 +424,7 @@ session_start();
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
-                    <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                    <label class="custom-file-label" for="fotoBunga">Pilih foto</label>
                   </div>
                 </div>
               </div>

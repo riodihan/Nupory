@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require 'assets/config.php';
   $idBunga = $_GET["edit"]; 
 
@@ -8,6 +9,7 @@
   $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
   $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+  $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
 
   //cek sudah ditekan apa blm
   if(isset($_POST["submit"])){
@@ -66,7 +68,11 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br> Nursery Polije</div>
+        <div class="sidebar-brand-text mx-3"><?php if ($_SESSION['id_status']=="01") {
+          echo "Admin";
+        }elseif ($_SESSION['id_status']== "02") {
+          echo "Karyawan";
+        } ?><br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -182,7 +188,7 @@
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkaryawan.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
@@ -255,47 +261,28 @@
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Tagihan Baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
+                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
+                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              <?php endwhile;?>
+                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -328,8 +315,18 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php if ($_SESSION['id_status']=="01") {
+                  echo "Admin, ";
+                  echo $_SESSION['nama_user'];
+                }elseif ($_SESSION['id_status']=="02") {
+                  echo "Karyawan, ";
+                  echo $_SESSION['nama_user'];
+                } ?></span>
+                <?php if ($_SESSION['id_status']=="01") { ?>
+                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
+                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -554,6 +551,26 @@
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
+
+   <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterth").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
         },1000);
