@@ -121,11 +121,15 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <?php if ($_SESSION['id_status']=="01") { ?>
+        <div class="sidebar-heading">
         Tambah / Edit
       </div>
-
-      <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
+      <?php }else { ?>
+     <?php }?>
+      
+      <?php if ($_SESSION['id_status']=="01") { ?>
+         <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
           <i class="fas fa-fw fa-snowflake"></i>
@@ -190,6 +194,11 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+      
+      <?php }else { ?>
+      <?php } ?>
+     
+      
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -313,7 +322,11 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                   echo "Karyawan, ";
                   echo $_SESSION['nama_user'];
                 } ?></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <?php if ($_SESSION['id_status']=="01") { ?>
+                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
+                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -361,12 +374,21 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
           <div class="card mb-3" style="max-width: 1080px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="https://source.unsplash.com/QAB-WJcbgJk/480x480" class="card-img" alt="...">
+                <?php if ($_SESSION['id_status']=="01") { ?>
+                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
+                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php } ?>
+                <!-- <img src="https://source.unsplash.com/QAB-WJcbgJk/480x480" class="card-img" alt="..."> -->
               </div>
 
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title text-center">Profil Admin</h5>
+                  <h5 class="card-title text-center">Profil <?php if ($_SESSION['id_status']=="01") {
+                    echo "Admin";
+                  }elseif ($_SESSION['id_status']=="02") {
+                    echo "Karyawan";
+                  } ?></h5>
                   <div class="row">
                     <div class="col-md-6">
                       <th>
