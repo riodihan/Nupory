@@ -2,6 +2,28 @@
 session_start();
 require 'assets/config.php';
 
+//cek session
+if(!isset($_SESSION["login"])){
+  header("location: index.php");
+}
+
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+
+$username = $_SESSION["username"];
+
+//menampilkan data user
+// $profile = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
+$profile = mysqli_query($koneksi, "SELECT user.USERNAME, NAMA_USER, NAMA_STATUS, ALAMAT, NO_TELEPON, EMAIL 
+FROM user, status
+WHERE user.ID_STATUS = status.ID_STATUS AND username = '$username'");
+
+$kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -231,47 +253,28 @@ require 'assets/config.php';
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Tagihan Baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
+                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
+                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              <?php endwhile;?>
+                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -280,57 +283,24 @@ require 'assets/config.php';
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
+                <span class="badge badge-danger badge-counter"><i id="counterkr"></i></span>
               </a>
               <!-- Dropdown - Messages -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
-                  Message Center
+                  Kritik Baru
                 </h6>
+                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
                 <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
                   <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
+                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
+                <?php endwhile;?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
-
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
@@ -340,7 +310,7 @@ require 'assets/config.php';
                   echo "Admin, ";
                   echo $_SESSION['nama_user'];
                 }elseif ($_SESSION['id_status']=="02") {
-                  echo "Karyawan";
+                  echo "Karyawan, ";
                   echo $_SESSION['nama_user'];
                 } ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
@@ -408,16 +378,19 @@ require 'assets/config.php';
                         <p class="font-weight-bold text-right">Email</p>
                       </th>
                     </div>
-                    <div class="col-md-6">
+                    <?php foreach ($profile as $data ) { ?>
+                       <div class="col-md-6">
                       <td>
-                        <p>Indah</p>
-                        <p>Indah</p>
-                        <p>Administrator</p>
-                        <p>Jember</p>
-                        <p>081554400881</p>
-                        <p>indah@gmail.com</p>
+                        <p><?php echo $data["USERNAME"]; ?></p>
+                        <p><?php echo $data["NAMA_USER"]; ?></p>
+                        <p><?php echo $data["NAMA_STATUS"]; ?></p>
+                        <p><?php echo $data["ALAMAT"]; ?></p>
+                        <p><?php echo $data["NO_TELEPON"]; ?></p>
+                        <p><?php echo $data["EMAIL"]; ?></p>
                       </td>
                     </div>
+                    <?php } ?>
+                   
                   </div>
                 </div>
                 <div class="row">
@@ -465,10 +438,10 @@ require 'assets/config.php';
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Klik "Logout" Jika Anda Ingin Keluar Dari Halaman Ini.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="../user/login.php">Logout</a>
+          <a class="btn btn-primary" href="../user/logout.php">Logout</a>
         </div>
       </div>
     </div>
@@ -490,6 +463,49 @@ require 'assets/config.php';
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterkr").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "counterkritik.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
+
+
+  <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript" >
+    function loadDoc() {
+      setInterval(function(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("counterth").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "countertagihan.php", true);
+        xhttp.send();
+
+        },1000);
+
+    }
+    loadDoc();
+  </script>
 
 </body>
 

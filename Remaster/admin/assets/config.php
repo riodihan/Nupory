@@ -193,11 +193,11 @@ function editbunga1($data){
     $kategoriBunga = htmlspecialchars($data["idKategori1"]);
     $hargaBunga = htmlspecialchars($data["hargaBunga1"]);
     $stokBunga = htmlspecialchars($data["stokBunga1"]);
-    $fotoBunga = uploadBunga();
-    if (!$fotoBunga) {
-        return false;
-    }
-    // $fotoBunga = htmlspecialchars($data["fotoBunga1"]);
+    // $fotoBunga = uploadBunga();
+    // if (!$fotoBunga) {
+    //     return false;
+    // }
+    $fotoBunga = htmlspecialchars($data["fotoBunga1"]);
     $videoBunga = htmlspecialchars($data["videoBunga1"]);
     $caraPerawatan = htmlspecialchars($data["caraPerawatan1"]);
     $deskripsiBunga = htmlspecialchars($data["deskripsiBunga1"]);
@@ -215,54 +215,54 @@ function editbunga1($data){
     $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
     return $q_bung;
 }
-function uploadBunga()  {
-    $namaFile1 = $_FILES['fotoBunga1']['name'];
-    $ukuranFile1 = $_FILES['fotoBunga1']['size'];
-    $error1 = $_FILES['fotoBunga1']['error'];
-    $tmpName1 = $_FILES['fotoBunga1']['tmp_name'];
+// function uploadBunga()  {
+//     $namaFile1 = $_FILES['fotoBunga1']['name'];
+//     $ukuranFile1 = $_FILES['fotoBunga1']['size'];
+//     $error1 = $_FILES['fotoBunga1']['error'];
+//     $tmpName1 = $_FILES['fotoBunga1']['tmp_name'];
 
-    // cek apakah tidak ada gambar yang diupload
+//     // cek apakah tidak ada gambar yang diupload
 
-    if ($error1 === 4) {
-        echo "<script>
-              alert('Pilih Gambar Terlebih Dahulu');
-              document.location.href = '';
-            </script>";
-            return false;
-    }
+//     if ($error1 === 4) {
+//         echo "<script>
+//               alert('Pilih Gambar Terlebih Dahulu');
+//               document.location.href = '';
+//             </script>";
+//             return false;
+//     }
 
-    // cek apakah yang diupload adalah gambar
-    $ekstensiGambarValid1 = ['jpg','jpeg','png'];
-    $ekstensiGambar1 = explode('.', $namaFile1);
-    $ekstensiGambar1 = strtolower(end($ekstensiGambar1));
-    if (!in_array($ekstensiGambar1, $ekstensiGambarValid1)) {
-        echo "<script>
-              alert('yang anda upload bukan gambar!');
-              document.location.href = '';
-            </script>";
-            return false; 
-    }
+//     // cek apakah yang diupload adalah gambar
+//     $ekstensiGambarValid1 = ['jpg','jpeg','png'];
+//     $ekstensiGambar1 = explode('.', $namaFile1);
+//     $ekstensiGambar1 = strtolower(end($ekstensiGambar1));
+//     if (!in_array($ekstensiGambar1, $ekstensiGambarValid1)) {
+//         echo "<script>
+//               alert('yang anda upload bukan gambar!');
+//               document.location.href = '';
+//             </script>";
+//             return false; 
+//     }
 
-    //cek jika ukuran gambar terlalu besar
-    if ($ukuranFile1 > 10000000) {
-        echo "<script>
-              alert('ukuran gambar terlalu besar!');
-              document.location.href = '';
-            </script>";
-        return false; 
-    }
-    //gambar siap diupload
-    //generate nama baru
-    $namaFileBaru1 = uniqid();
-    $namaFileBaru1 .= '.';
-    $namaFileBaru1 .= $ekstensiGambar1;
+//     //cek jika ukuran gambar terlalu besar
+//     if ($ukuranFile1 > 10000000) {
+//         echo "<script>
+//               alert('ukuran gambar terlalu besar!');
+//               document.location.href = '';
+//             </script>";
+//         return false; 
+//     }
+//     //gambar siap diupload
+//     //generate nama baru
+//     $namaFileBaru1 = uniqid();
+//     $namaFileBaru1 .= '.';
+//     $namaFileBaru1 .= $ekstensiGambar1;
 
-    move_uploaded_file($tmpName1, 'images/' . $namaFileBaru1);
+//     move_uploaded_file($tmpName1, 'images/' . $namaFileBaru1);
 
-    return $namaFileBaru1;
+//     return $namaFileBaru1;
 
 
-}
+// }
 
 function updateTransaksi03(){
     global $koneksi;
@@ -291,5 +291,25 @@ function updateTransaksi03(){
     
     
 }
+function ubahprofile(){
+    global $koneksi;
+    $username = htmlspecialchars($data["username"]);
+    $nama = htmlspecialchars($data["nama"]);
+    $email = htmlspecialchars($data["email"]);
+    $alamat = htmlspecialchars($ubahbio["alamat"]);
+    $nohp = htmlspecialchars($ubahbio["nohp"]);
+
+
+    $qu = mysqli_query($koneksi, "UPDATE user SET 
+                
+                NAMA_USER = '$nama',
+                EMAIL = '$email',
+                ALAMAT = '$alamat',
+                NO_TELEPON = '$nohp'
+
+                WHERE USERNAME = '$username'");
+    return $qu;
+}
+
 
 ?>
