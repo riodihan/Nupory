@@ -333,12 +333,12 @@ session_start();
                             <div class="col-sm-6 col-md-3">
                                 <div class="person-box">
                                     <div class="person-icon">
-                                        <div class="person-img"><img src="images/team7.jpg" alt="" /></div>
+                                        <div class="person-img"><img src="images/sayyid.jpeg" alt="" /></div>
                                     </div>
                                     <div class="person-name">Sayyid</div>
                                     <div class="person-title">Web Developer</div>
                                     <div class="person-social">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://www.twitter.com/moh_saidul"><i class="fab fa-twitter"></i></a>
                                         <a href="https://www.instagram.com/sayyid.musthofa/"><i class="fab fa-instagram"></i></a>
                                     </div>
                                 </div>
