@@ -16,13 +16,32 @@ $username = $_SESSION["username"];
 
 //menampilkan data user
 // $profile = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
-$profile = mysqli_query($koneksi, "SELECT user.USERNAME, NAMA_USER, NAMA_STATUS, ALAMAT, NO_TELEPON, EMAIL 
+$profile = mysqli_query($koneksi, "SELECT user.USERNAME, NAMA_USER, NAMA_STATUS, ALAMAT, NO_TELEPON, EMAIL, PASSWORD 
 FROM user, status
 WHERE user.ID_STATUS = status.ID_STATUS AND username = '$username'");
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+
+//ubah biodata
+if (isset($_POST["ubah"])) {
+  if (ubahprofile($_POST) == 1) {
+    echo "<script>alert('Biodata berhasil diubah');  window.location.href='profil.php'</script>";
+  } else {
+    echo "<script>alert('Biodata Gagal diubah');</script>";
+  }
+}
+
+//ubah password
+if (isset($_POST["ubah1"])) {
+  if (ubahpassword($_POST) == 1) {
+    echo "<script>alert('password berhasil diubah');  window.location.href='profil.php'</script>";
+  } else {
+    echo "<script>alert('password Gagal diubah');</script>";
+  }
+}
+
 
   ?>
 <!DOCTYPE html>
@@ -411,23 +430,103 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                         <p><?php echo $data["EMAIL"]; ?></p>
                       </td>
                     </div>
-                    <?php } ?>
+                    
                    
                   </div>
                 </div>
                 <div class="row">
                   <div class="col">
-                    <a href="#" class="btn btn-primary">Ganti Password</a>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal1" >
+                      <button class="btn btn-primary">Ganti Password</button>
+                    </a>
                   </div>
                   <div class="col">
-                    <a href="#" class="btn btn-primary">Edit Profil</a></div>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">
+                    <button class="btn btn-primary">Edit Profil</button>
+                    <!-- <a href="#" class="btn btn-primary">Edit Profil</a> -->
+                    </a>
+                   </div> 
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          
+      <!-- Modal Edit Profil -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ubah Profil</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST">
+              <div class="form-group">
+                <label for="formGroupExampleInput2">NAMA</label>
+                <input type="text" name="nama" class="form-control" id="formGroupExampleInput2" placeholder="Nama Lengkap Anda" value="<?php echo $data["NAMA_USER"]; ?>">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Email</label>
+                <input type="hidden" name="username" class="form-control" id="formGroupExampleInput2" value="<?php echo $username ?>">
+                <input type="email" name="email" class="form-control" id="formGroupExampleInput2" placeholder="Email@email.com" value="<?php echo $data["EMAIL"]; ?>">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Alamat</label>
+                <input type="text" name="alamat" class="form-control" id="formGroupExampleInput2" placeholder="Alamat" value="<?php echo $data["ALAMAT"]; ?>">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">No Telephone</label>
+                <input type="text" name="nohp" class="form-control" id="formGroupExampleInput2" placeholder="Nomor Telephone" value="<?php echo $data["NO_TELEPON"]; ?>">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <!-- modal edit Password -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ubah Password</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="form-group">
+                <label for="formGroupExampleInput">Password Lama</label>
+                <input type="hidden" name="username" class="form-control" id="formGroupExampleInput" value="<?php echo $username ?>">
+                <input type="password" name="passwordlama" class="form-control" id="formGroupExampleInput" placeholder="Masukan Password Lama">
+                <input type="hidden" name="passwordlama1" class="form-control" id="formGroupExampleInput" value="<?php echo $data["PASSWORD"]; ?>">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Password Baru</label>
+                <input type="password" name="passwordbaru" class="form-control" id="formGroupExampleInput2" placeholder="Masukan Password Baru">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Konfirmasi Password</label>
+                <input type="password" name="passwordbaru1" class="form-control" id="formGroupExampleInput2" placeholder="Konfirmasi Password Baru">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" name="ubah1" class="btn btn-primary">Ubah</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

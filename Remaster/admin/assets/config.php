@@ -297,13 +297,14 @@ function updateTransaksi03($data){
     $u_tr = mysqli_query($koneksi, $query) or die (mysqli_error($koneksi));
     return $u_tr;
 }
-function ubahprofile(){
+//ubah profile
+function ubahprofile($data){
     global $koneksi;
     $username = htmlspecialchars($data["username"]);
     $nama = htmlspecialchars($data["nama"]);
     $email = htmlspecialchars($data["email"]);
-    $alamat = htmlspecialchars($ubahbio["alamat"]);
-    $nohp = htmlspecialchars($ubahbio["nohp"]);
+    $alamat = htmlspecialchars($data["alamat"]);
+    $nohp = htmlspecialchars($data["nohp"]);
 
 
     $qu = mysqli_query($koneksi, "UPDATE user SET 
@@ -317,5 +318,39 @@ function ubahprofile(){
     return $qu;
 }
 
+//ubah password
+function ubahpassword($data)
+{
+    global $koneksi;
+    $username = htmlspecialchars($data["username"]);
+    $passwordlama = htmlspecialchars($data["passwordlama"]);
+    $passwordlama1 = htmlspecialchars($data["passwordlama1"]);
+    $password = htmlspecialchars($data["passwordbaru"]);
+    $password1 = htmlspecialchars($data["passwordbaru1"]);
 
+    //cek password lama
+    if ($passwordlama !== $passwordlama1) {
+        echo "<script>
+                alert('password Lama salah');
+            </script>";
+
+        return false;
+    }
+
+
+    //cek konfirmasi password
+    if ($password !== $password1) {
+        echo "<script>
+                    alert('konfirmasi password salah');
+                </script>";
+
+        return false;
+    }
+
+    $qu = mysqli_query($koneksi, "UPDATE user SET 
+                
+                PASSWORD = '$password1' 
+                WHERE USERNAME = '$username'");
+    return $qu;
+}
 ?>
