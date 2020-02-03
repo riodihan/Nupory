@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require '../admin/assets/config.php';
+require 'assets/config.php';
 
 
 $kategori = mysqli_query($koneksi, "SELECT * FROM kategori")
