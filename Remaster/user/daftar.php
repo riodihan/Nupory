@@ -66,7 +66,8 @@ if (isset($_POST["daftar"])) {
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Nama Harus Diisi">
                         <span class="label-input100">Nama</span>
                         <input class="input100" type="text" name="nama" placeholder="Masukan Nama Lengkap Anda">
-                        <input class="input100" type="hidden" name="idstatus" placeholder="Masukan Nama Lengkap Anda" value="03">
+                        <input class="input100" type="hidden" name="idstatus" placeholder="" value="03" readonly>
+                        <input class="input100" type="hidden" name="fotouser" placeholder="" value="team8.JPG" readonly>
                         <span class="focus-input100"></span>
                     </div>
 

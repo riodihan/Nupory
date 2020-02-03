@@ -285,7 +285,7 @@ if (isset($_POST["kirim"])) {
                 <input name="username" type="hidden" value="<?= $username ?>">
                 <input name="idstatuskritik" value="1" type="hidden">
                 <label for="exampleFormControlTextarea1">Kritik dan saran</label>
-                <textarea name="isikritik" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan kritik dan saran"></textarea>
+                <textarea name="isikritik" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Berikan kritik dan saran" required></textarea>
             </div>
             <button type="submit" name="kirim" class="btn btn-primary">Kirim</button>
         </form>

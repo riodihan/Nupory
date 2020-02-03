@@ -15,6 +15,7 @@ function pendaftaran($data)
     $email = htmlspecialchars($data["email"]);
     $password =  htmlspecialchars(mysqli_real_escape_string($koneksi, $data["password"]));
     $konfirmasi = htmlspecialchars(mysqli_real_escape_string($koneksi, $data["konfirmasi"]));
+    $fotouser = htmlspecialchars($data["fotouser"]);
 
 
     //cek konfirmasi password
@@ -30,7 +31,7 @@ function pendaftaran($data)
     //$password = password_hash($password, PASSWORD_DEFAULT);
 
     //mendaftarkan akun ke database
-    $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$iduser', '$idstatus', '$nama', '$alamat', '$nohp', '$email', '$password', '')");
+    $qu = mysqli_query($koneksi, "INSERT INTO user VALUES ('$iduser', '$idstatus', '$nama', '$alamat', '$nohp', '$email', '$password', '$fotouser')");
 
     return $qu;
 }
