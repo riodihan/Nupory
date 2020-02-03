@@ -297,6 +297,31 @@ function updateTransaksi03($data){
     $u_tr = mysqli_query($koneksi, $query) or die (mysqli_error($koneksi));
     return $u_tr;
 }
+
+function updateTransaksi05($data){
+    global $koneksi;
+    $idTransaksi = $data["idTransaksi"];
+    $idPembayaran = htmlspecialchars($data["idPembayaran"]);
+    $tglTransaksi = htmlspecialchars($data["tglTransaksi"]);
+    $username = htmlspecialchars($data["username"]);
+    $detailAlamat = htmlspecialchars($data["detailAlamat"]);
+    $totalAkhir = htmlspecialchars($data["totalAkhir"]);
+    $buktiPembayaran = htmlspecialchars($data["buktiPembayaran"]);
+    $idStatusTransaksi = htmlspecialchars($data["idStatusTransaksi"]);
+
+    $query = "UPDATE transaksi SET
+                ID_PEMBAYARAN = '$idPembayaran',
+                TGL_TRANSAKSI = '$tglTransaksi',
+                USERNAME = '$username',
+                DETAIL_ALAMAT = '$detailAlamat',
+                TOTAL_AKHIR = '$totalAkhir',
+                BUKTI_PEMBAYARAN = '$buktiPembayaran',
+                ID_STATUS_TRANSAKSI = '$idStatusTransaksi'
+              WHERE ID_TRANSAKSI = '$idTransaksi' ";
+
+    $u_tr = mysqli_query($koneksi, $query) or die (mysqli_error($koneksi));
+    return $u_tr;
+}
 //ubah profile
 function ubahprofile($data){
     global $koneksi;

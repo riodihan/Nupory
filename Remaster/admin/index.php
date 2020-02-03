@@ -121,7 +121,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <span class="text-primary">Dikirim</span>
             </a>
             
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="transaksiselesai.php">
                 <i class="fas fa-fw fa-dollar-sign text-primary"></i>
                 <span class="text-primary">Selesai</span>
             </a>

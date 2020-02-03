@@ -4,7 +4,7 @@ require 'assets/config.php';
 
 
 
-$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '04'");
+$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '05'");
 
 // $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
 // FROM transaksi, user, pembayaran
@@ -19,21 +19,6 @@ $hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
-
-if(isset($_POST["update"])){
-
-  //apakah data berhasil diubah
-  if(updateTransaksi03($_POST) > 0){
-    echo "<script>
-            alert('Data berhasil diedit!');
-          </script> ";
-  } else {
-    echo "<script>
-            alert('Data gagal diedit!');
-            document.location.href = 'dikemas.php';
-          </script>";
-  }
-}
 
 
 ?>
@@ -122,7 +107,7 @@ if(isset($_POST["update"])){
               <i class="fas fa-fw fa-cube text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tagihan.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
@@ -211,7 +196,7 @@ if(isset($_POST["update"])){
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="tambahkaryawan.php">
+            <a class="collapse-item" href="#">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
@@ -294,7 +279,7 @@ if(isset($_POST["update"])){
                   Tagihan Baru
                 </h6>
                 <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="dikemas.php">
+                <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
@@ -307,7 +292,7 @@ if(isset($_POST["update"])){
                 </a>
                 </a>
               <?php endwhile;?>
-                <a class="dropdown-item text-center small text-gray-500" href="dikemas.php">Baca Selengkapnya</a>
+                <a class="dropdown-item text-center small text-gray-500" href="tagihan.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -348,11 +333,7 @@ if(isset($_POST["update"])){
                     echo "Karyawan, ";
                     echo $_SESSION['nama_user'];
                   }?></span>
-                <?php if ($_SESSION['id_status']=="01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -406,8 +387,8 @@ if(isset($_POST["update"])){
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Detail Transaksi</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Detail Transaksi</h4>
                     </div>
                     <div class="modal-body">
                         <div class="fetched-data"></div>
@@ -454,7 +435,7 @@ if(isset($_POST["update"])){
                       <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
                       <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
                       
-                      <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
+                      <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Lihat</a></td>"; ?>
                       
                     </tr>
                     <?php endwhile;?>
@@ -593,7 +574,7 @@ if(isset($_POST["update"])){
                 //menggunakan fungsi ajax untuk pengambilan data
                 $.ajax({
                     type: 'post',
-                    url: 'detaildikirim.php',
+                    url: 'detailtagihan.php',
                     data: 'rowid=' + rowid,
                     success: function(data) {
                         $('.fetched-data').html(data); //menampilkan data ke dalam modal
