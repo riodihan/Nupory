@@ -207,7 +207,6 @@ function uploadBukti()  {
     $namaFileBaru .= $ekstensiGambar;
 
     move_uploaded_file($tmpName, 'images/' . $namaFileBaru);
-
     return $namaFileBaru;
 
 
@@ -233,6 +232,73 @@ function kritik($kritik)
     $qu = mysqli_query($koneksi, "INSERT INTO kritik VALUES ('$idkritik', '$username', '$idstatuskritik', '$isikritik')");
 
     return $qu;
+}
+
+
+
+
+//ubah foto
+function uploadfoto($ubahfoto)
+{
+    global $koneksi;
+    $username = htmlspecialchars($ubahfoto["username"]);
+    $foto = uploadfotouser();
+    if (!$foto) {
+        return false;
+    }
+
+    // $bukti = htmlspecialchars($upload["bukti"]);
+
+    $qu = mysqli_query($koneksi, "UPDATE user SET 
+                FOTO_USER = '$foto'
+
+                WHERE USERNAME = '$username'");
+    return $qu;
+}
+
+function uploadfotouser()  {
+    $namaFile = $_FILES['foto']['name'];
+    $ukuranFile = $_FILES['foto']['size'];
+    $error = $_FILES['foto']['error'];
+    $tmpName = $_FILES['foto']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang diupload
+
+    if ($error === 4) {
+        echo "<script>
+              alert('Pilih Gambar Terlebih Dahulu');
+            </script>";
+            return false;
+    }
+
+    // cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid = ['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>
+              alert('yang anda upload bukan gambar!');
+            </script>";
+            return false; 
+    }
+
+    //cek jika ukuran gambar terlalu besar
+    if ($ukuranFile > 2500000) {
+        echo "<script>
+              alert('ukuran gambar terlalu besar!');
+            </script>";
+        return false; 
+    }
+    //gambar siap diupload
+    //generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+    move_uploaded_file($tmpName, 'images/' . $namaFileBaru);
+    return $namaFileBaru;
+
+
 }
 
 

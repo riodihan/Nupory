@@ -26,6 +26,12 @@ $tagihan1 = mysqli_query($koneksi, "SELECT * FROM transaksi
                             ");
 $cek1 = mysqli_fetch_array($tagihan1);
 
+$cek2 = mysqli_query($koneksi, "SELECT * FROM transaksi
+                        
+                        WHERE username = '$username' && ID_STATUS_TRANSAKSI = 02
+                            
+                            ");
+
 
 //detail tagihan
 $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
@@ -333,7 +339,7 @@ if (isset($_POST["simpan"])) {
                     <?php } ?>
 
 
-                    <?php if (!isset($cek)) { ?>
+                    <?php if (!isset($cek2)) { ?>
                         <div class="alert alert-info" role="alert" style="text-align: center;">
                             Anda tidak memiliki tagihan belanja.
                         </div>

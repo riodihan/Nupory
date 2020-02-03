@@ -3,13 +3,13 @@ session_start();
 require 'assets/config.php';
 
 //cek session
-if(!isset($_SESSION["login"])){
+if (!isset($_SESSION["login"])) {
 	header("location: index.php");
 }
 
-if(!isset($_SESSION["login"])){
-    header("location: login.php");
-    exit;
+if (!isset($_SESSION["login"])) {
+	header("location: login.php");
+	exit;
 }
 
 //
@@ -37,6 +37,15 @@ if (isset($_POST["ubah1"])) {
 	}
 }
 
+//ubah foto
+if (isset($_POST["ubahfoto"])) {
+	if (uploadfoto($_POST) == 1) {
+		echo "<script>alert('Foto berhasil diubah');  window.location.href='profile.php'</script>";
+	} else {
+		echo "<script>alert('Foto Gagal diubah');</script>";
+	}
+}
+
 
 ?>
 <!DOCTYPE HTML>
@@ -53,6 +62,7 @@ if (isset($_POST["ubah1"])) {
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet">
 
+
 	<!-- Stylesheets -->
 
 	<link href="common-css/bootstrap.css" rel="stylesheet">
@@ -61,9 +71,9 @@ if (isset($_POST["ubah1"])) {
 
 	<link href="common-css/fluidbox.min.css" rel="stylesheet">
 
-	<link href="01-cv-portfolio/css/styles.css" rel="stylesheet">
+	<link href="css/01-cv-portfolio/css/styles.css" rel="stylesheet">
 
-	<link href="01-cv-portfolio/css/responsive.css" rel="stylesheet">
+	<link href="css/01-cv-portfolio/css/responsive.css" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
@@ -71,12 +81,7 @@ if (isset($_POST["ubah1"])) {
 	<link rel="stylesheet" type="text/css" href="css/slick.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/custom.css">
-	<!-- <style>
-        .bg {
-            background-image: url("images/Nursery.png");
-            background-repeat: no-repeat;
-        }
-    </style> -->
+	
 </head>
 
 <body>
@@ -95,7 +100,8 @@ if (isset($_POST["ubah1"])) {
 					<div class="col-md-1 col-lg-2"></div>
 					<div class="col-md-10 col-lg-8">
 						<div class="intro">
-							<div class="profile-img"><img src="images/<?= $data["FOTO_USER"]?>" alt=""></div>
+							<div class="profile-img"><img src="images/<?= $data["FOTO_USER"] ?>" alt=""></div>
+
 							<h2><b><?php echo $data["NAMA_USER"]; ?></b></h2>
 							<!-- <h4 class="font-yellow">Key Account Manager</h4> -->
 							<ul class="information margin-tb-30">
@@ -111,6 +117,9 @@ if (isset($_POST["ubah1"])) {
 								</a>
 								<a href="#" data-toggle="modal" data-target="#exampleModal1">
 									<ion-icon name="settings"></ion-icon>Ubah Password
+								</a>
+								<a href="#" data-toggle="modal" data-target="#exampleModal2">
+									<ion-icon name="camera"></ion-icon>Ubah Foto
 								</a>
 								<!-- <li><a href="#"><i class="ion-social-linkedin"></i></a></li>
 							<li><a href="#"><i class="ion-social-instagram"></i></a></li>
@@ -204,6 +213,40 @@ if (isset($_POST["ubah1"])) {
 				</div>
 			</div>
 		</div>
+
+
+		<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ubah Foto</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="formGroupExampleInput">Pilih Foto</label>
+								<input type="file" name="foto" class="form-control" id="formGroupExampleInput">
+								<input type="hidden" name="username" class="form-control" id="formGroupExampleInput" value="<?php echo $username ?>">
+							</div>
+							<div class="alert alert-success" role="alert">
+								Upload Foto yang bertipe .JPG .JPEG .PNG
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+								<button type="submit" name="ubahfoto" class="btn btn-primary">Ubah</button>
+							</div>
+						</form>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	<?php } ?>
 
 	<div id="footer" class="container-fluid">
