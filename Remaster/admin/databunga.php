@@ -232,7 +232,7 @@
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="tambahkaryawan.php">
               <i class="fas fa-fw fa-plus text-primary"></i>
               <span class="text-primary">Tambah Karyawan</span>
             </a>
@@ -369,7 +369,11 @@
                     echo "Karyawan, ";
                     echo $_SESSION["nama_user"];
                   }?></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <?php if ($_SESSION['id_status']=="01") { ?>
+                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
+                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -515,7 +519,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="" method="POST" class="card-body">
+                <form action="" method="POST" class="card-body" enctype="multipart/form-data">
                 <input type="hidden" name="id1" id="id1" class="form-control">
                 <div class="row">
                   <div class="col-md-6">
@@ -558,7 +562,7 @@
                   <div class="input-group">
                     <div class="custom-file">
                       <input type="file" name="fotoBunga1" class="custom-file-input" id="fotoBunga1" aria-describedby="fotobunga" require>
-                      <label class="custom-file-label" for="fotoBunga">Pilih foto</label>
+                      <label class="custom-file-label" for="fotoBunga1">Pilih foto</label>
                     </div>
                   </div>
                 </div>

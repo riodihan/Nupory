@@ -87,7 +87,8 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <i class="fas fa-fw fa-cube text-primary"></i>
                 <span class="text-primary">Kategori</span>
             </a>
-            <a class="collapse-item" href="datatransaksi.php">
+            
+            <a class="collapse-item" href="tagihan.php">
                 <i class="fas fa-fw fa-dollar-sign text-primary"></i>
                 <span class="text-primary">Transaksi</span>
             </a>
@@ -95,10 +96,39 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <i class="fas fa-fw fa-comments text-primary"></i>
                 <span class="text-primary">Kritik</span>
             </a>
-            
           </div>
         </div>
       </li>
+
+      <!-- Data -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Transaksi</span>
+        </a>
+        <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="tagihan.php">
+                <i class="fas fa-fw fa-user text-primary"></i>
+                <span class="text-primary">Tagihan</span>
+              </a>
+              <a class="collapse-item" href="dikemas.php">
+                <i class="fas fa-fw fa-snowflake text-primary"></i>
+                <span class="text-primary">Dikemas</span>
+            </a>
+            <a class="collapse-item" href="dikirim.php">
+                <i class="fas fa-fw fa-cube text-primary"></i>
+                <span class="text-primary">Dikirim</span>
+            </a>
+            
+            <a class="collapse-item" href="#">
+                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+                <span class="text-primary">Selesai</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
 
       <!-- Divider -->
       <?php if ($_SESSION['id_status']=="01") { ?>
@@ -258,7 +288,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                  Tagihan Baru
                 </h6>
                 <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
+                <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
@@ -270,7 +300,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                   </div>
                 </a>
                 <?php endwhile;?>
-                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
+                <a class="dropdown-item text-center small text-gray-500" href="tagihan.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -311,7 +341,12 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                     echo "Karyawan, ";
                     echo $_SESSION["nama_user"];
                   }?></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                  <?php if ($_SESSION['id_status']=="01") { ?>
+                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
+                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php } ?>
+                
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

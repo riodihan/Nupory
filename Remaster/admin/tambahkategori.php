@@ -14,7 +14,7 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
     }
     else {
       echo "<script> alert('Gagal Menambahkan Data')</script>";
-      echo mysqli_error();
+      // echo mysqli_error();
     }
   }
 
@@ -326,7 +326,11 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
                   echo "Karyawan, ";
                   echo $_SESSION['nama_user'];
                 } ?></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <?php if ($_SESSION['id_status']=="01") { ?>
+                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
+                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -373,7 +377,7 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Kategori Bunga Baru</h6>
             </div>
-            <form action="" method="POST" class="card-body">
+            <form action="" method="POST" class="card-body" enctype="multipart/form-data">
               <input type="hidden" value="<?=$id?>"type="text" name="idKategori" id="idkategori" class="form-control">
               <div class="form-group">
                 <label for="namakategori">Nama Kategori Bunga</label>
@@ -387,8 +391,8 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
                 <label for="gambarkategori">Gambar Kategori</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="gambarkategori">
-                    <label class="custom-file-label" name="fotoKategori" for="gambarkategori">Pilih foto</label>
+                    <input type="file" class="custom-file-input" name="fotoKategori"id="fotoKategori" aria-describedby="gambarkategori">
+                    <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
                   </div>
                 </div>
               </div>

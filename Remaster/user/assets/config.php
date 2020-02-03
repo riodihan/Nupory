@@ -153,7 +153,12 @@ function upload($upload)
 {
     global $koneksi;
     $idtransaksi = htmlspecialchars($upload["idtransaksi"]);
-    $bukti = htmlspecialchars($upload["bukti"]);
+    $bukti = uploadBukti();
+    if (!$bukti) {
+        return false;
+    }
+
+    // $bukti = htmlspecialchars($upload["bukti"]);
 
     $qu = mysqli_query($koneksi, "UPDATE transaksi SET 
                 BUKTI_PEMBAYARAN = '$bukti'
@@ -161,6 +166,53 @@ function upload($upload)
                 WHERE ID_TRANSAKSI = '$idtransaksi'");
     return $qu;
 }
+
+function uploadBukti()  {
+    $namaFile = $_FILES['bukti']['name'];
+    $ukuranFile = $_FILES['bukti']['size'];
+    $error = $_FILES['bukti']['error'];
+    $tmpName = $_FILES['bukti']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang diupload
+
+    if ($error === 4) {
+        echo "<script>
+              alert('Pilih Gambar Terlebih Dahulu');
+            </script>";
+            return false;
+    }
+
+    // cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid = ['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>
+              alert('yang anda upload bukan gambar!');
+            </script>";
+            return false; 
+    }
+
+    //cek jika ukuran gambar terlalu besar
+    if ($ukuranFile > 2500000) {
+        echo "<script>
+              alert('ukuran gambar terlalu besar!');
+            </script>";
+        return false; 
+    }
+    //gambar siap diupload
+    //generate nama baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+    move_uploaded_file($tmpName, 'images/' . $namaFileBaru);
+
+    return $namaFileBaru;
+
+
+}
+
 
 function hapuskeranjang($id)
 {

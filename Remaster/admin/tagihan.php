@@ -2,6 +2,8 @@
 session_start();
 require 'assets/config.php';
 
+
+
 $hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02'");
 
 // $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
@@ -17,6 +19,22 @@ $hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
 
 $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+
+if(isset($_POST["update"])){
+
+  //apakah data berhasil diubah
+  if(updateTransaksi03($_POST) > 0){
+    echo "<script>
+            alert('Data berhasil diedit!');
+            document.location.href = 'tagihan.php';
+          </script> ";
+  } else {
+    echo "<script>
+            alert('Data gagal diedit!');
+            document.location.href = 'tagihan.php';
+          </script>";
+  }
+}
 
 
 ?>
@@ -105,7 +123,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
               <i class="fas fa-fw fa-cube text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
-            <a class="collapse-item" href="datatransaksi.php">
+            <a class="collapse-item" href="tagihan.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
@@ -277,7 +295,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                   Tagihan Baru
                 </h6>
                 <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
+                <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
@@ -290,7 +308,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 </a>
                 </a>
               <?php endwhile;?>
-                <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
+                <a class="dropdown-item text-center small text-gray-500" href="tagihan.php">Baca Selengkapnya</a>
               </div>
             </li>
 
@@ -433,7 +451,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                       <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
                       <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
                       
-                      <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
+                      <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Lihat</a></td>"; ?>
                       
                     </tr>
                     <?php endwhile;?>
@@ -572,7 +590,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 //menggunakan fungsi ajax untuk pengambilan data
                 $.ajax({
                     type: 'post',
-                    url: 'detaildatatransaksi.php',
+                    url: 'detailtagihan.php',
                     data: 'rowid=' + rowid,
                     success: function(data) {
                         $('.fetched-data').html(data); //menampilkan data ke dalam modal
