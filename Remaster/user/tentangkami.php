@@ -26,7 +26,7 @@ session_start();
 
 <body>
     <div id="header-holder" class="main-header bg">
-    <nav id="nav" class="navbar navbar-default navbar-full">
+        <nav id="nav" class="navbar navbar-default navbar-full">
             <div class="container-fluid">
                 <div class="container container-nav">
                     <div class="row">
@@ -77,23 +77,23 @@ session_start();
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -194,7 +194,7 @@ session_start();
                                             </ul>
                                         </li>
                                     <?php } ?>
-                                    <li><a href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=">Hubungi Kami</a></li>
+                                    <li><a href="https://api.whatsapp.com/send?phone=6285257461375&text=&source=&data=">Hubungi Kami</a></li>
                                     <li class="support-button-holder support-dropdown">
                                         <?php if (isset($_SESSION["login"])) { ?>
                                             <a class="support-button" href=""><?php echo $_SESSION["username"] ?></a>
@@ -217,12 +217,15 @@ session_start();
                 </div>
             </div>
         </nav>
+
+
+        
         <div id="page-head" class="container-fluid inner-page">
-            <div class="container">
-                <div id="domain-quick-pricing" class="container container-fluid">
-                    <div class="container">
+            <div class="container-fluid">
+                <div id="domain-quick-pricing" class="container-fluid">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-sm-6 col-md-11">
+                            <div class="col-sm-6 col-md-12">
                                 <div class="domain-box d-color1">
                                     <div class="price">Nursery Polije</div>
                                     <div class="details">Unit Produksi Hortikultura Rembangan merupakan salah satu unit produksi yang yang dimiliki oleh Politeknik Negeri Jember, merupakan hasil kerjasama antara Politeknik Negeri Jember dengan Pemerintah Kabupaten Jember yang didirikan pada tahun 2004. Unit ini didirikan dengan tujuan untuk meningkatkan proses pembelajaran mahasiswa Politeknik Negeri Jember khususnya bidang kewirausahaan hortikultura. Selain itu juga memiliki fungsi sebagai unit produksi yang dapat memenuhi kebutuhan masyarakat kususnya di bidang Hortikultura. Adapun lokasi Unit Produksi Agrowisata 15 Km dari pusat kota Jember pada ketinggian tempat Rembangan berada di Hortikultura Kawasan Rembangan 500 mdpl.
@@ -304,26 +307,26 @@ session_start();
                             <div class="col-sm-6 col-md-3">
                                 <div class="person-box">
                                     <div class="person-icon">
-                                        <div class="person-img"><img src="images/team5.jpg" alt="" /></div>
+                                        <div class="person-img"><img src="images/idrisss.jpg" alt="" /></div>
                                     </div>
-                                    <div class="person-name">Travis Walker</div>
-                                    <div class="person-title">CO-Founder</div>
+                                    <div class="person-name">Idris</div>
+                                    <div class="person-title">Web Developer</div>
                                     <div class="person-social">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                        <a href="https://web.facebook.com/idrismadritista"><i class="fab fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/idrisrm/"><i class="fab fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <div class="person-box">
                                     <div class="person-icon">
-                                        <div class="person-img"><img src="images/team6.jpg" alt="" /></div>
+                                        <div class="person-img"><img src="images/ridho.jpeg" alt="" /></div>
                                     </div>
-                                    <div class="person-name">Bella Vayner</div>
-                                    <div class="person-title">Client service</div>
+                                    <div class="person-name">Ridho</div>
+                                    <div class="person-title">Web Developer</div>
                                     <div class="person-social">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                        <a href="https://www.twitter.com/Riodihan_"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://www.instagram.com/riodihan_/"><i class="fab fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -332,11 +335,11 @@ session_start();
                                     <div class="person-icon">
                                         <div class="person-img"><img src="images/team7.jpg" alt="" /></div>
                                     </div>
-                                    <div class="person-name">Mary Wilson</div>
-                                    <div class="person-title">Client service</div>
+                                    <div class="person-name">Sayyid</div>
+                                    <div class="person-title">Web Developer</div>
                                     <div class="person-social">
                                         <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                        <a href="https://www.instagram.com/sayyid.musthofa/"><i class="fab fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -345,8 +348,8 @@ session_start();
                                     <div class="person-icon">
                                         <div class="person-img"><img src="images/team8.jpg" alt="" /></div>
                                     </div>
-                                    <div class="person-name">Craig Davids</div>
-                                    <div class="person-title">Web Master</div>
+                                    <div class="person-name">Syifa</div>
+                                    <div class="person-title">Web Developer</div>
                                     <div class="person-social">
                                         <a href="#"><i class="fab fa-twitter"></i></a>
                                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -358,6 +361,9 @@ session_start();
                 </div>
             </div>
         </div>
+
+
+
         <div id="footer" class="container-fluid">
             <div class="container">
                 <div class="row">

@@ -200,7 +200,7 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
                                             </ul>
                                         </li>
                                     <?php } ?>
-                                    <li><a href="https://api.whatsapp.com/send?phone=6281359652164&text=&source=&data=">Hubungi Kami</a></li>
+                                    <li><a href="https://api.whatsapp.com/send?phone=6285257461375&text=&source=&data=">Hubungi Kami</a></li>
                                     <li class="support-button-holder support-dropdown">
                                         <?php if (isset($_SESSION["login"])) { ?>
                                             <a class="support-button" href=""><?php echo $_SESSION["username"] ?></a>
