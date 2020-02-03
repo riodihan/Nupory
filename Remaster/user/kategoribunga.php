@@ -11,48 +11,6 @@ $bunga = mysqli_query($koneksi, "SELECT * FROM bunga where id_kategori = '$idkat
 $idkategori = mysqli_query($koneksi, "SELECT * FROM kategori where id_kategori = '$idkategori'");
 
 
-//username
-$username = $_SESSION["username"];
-
-$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username' && ID_STATUS_TRANSAKSI = 01");
-$cek = mysqli_fetch_array($transaksi);
-//auto increment id transaksi
-
-$carikode = mysqli_query($koneksi, "select max(ID_TRANSAKSI)from transaksi") or die(mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if ($datakode) {
-    $nilaikode = substr($datakode[0], 1);
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "T" . str_pad($kode, 3, "0", STR_PAD_LEFT);
-} else {
-    $hasilkode = "T001";
-}
-
-//keranjang
-
-if (!isset($cek["ID_TRANSAKSI"])) {
-    if (isset($_POST["keranjang"])) {
-
-        if (keranjang($_POST) == 1) {
-            echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
-        } else {
-            echo mysqli_error($koneksi);
-        }
-    }
-}
-
-//detail
-if (isset($_POST["keranjang"])) {
-
-    if (detail_keranjang($_POST) == 1) {
-        echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
-    } else {
-        echo mysqli_error($koneksi);
-    }
-}
-
-
 
 ?>
 <!doctype html>
