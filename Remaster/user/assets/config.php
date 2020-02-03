@@ -302,5 +302,21 @@ function uploadfotouser()  {
 }
 
 
+//konfirmasi barang telah diterima
+
+function terimabarang($terima)
+{
+    global $koneksi;
+    $idtransaksi = htmlspecialchars($terima["idtransaksi"]);
+    $idstatustransaksi = htmlspecialchars($terima["idstatustransaksi"]);
+
+    $qu = mysqli_query($koneksi, "UPDATE transaksi SET 
+                ID_STATUS_TRANSAKSI = '$idstatustransaksi'
+
+                WHERE ID_TRANSAKSI = '$idtransaksi'");
+    return $qu;
+}
+
+
 
 ?>

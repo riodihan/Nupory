@@ -28,6 +28,15 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                             ");
 
 
+//terima
+if (isset($_POST["terima"])) {
+
+    if (terimabarang($_POST) == 1) {
+        echo "<script>alert('Terima kasih telah berbelanja di Nursery Polije'); window.location.href='dikirim.php'</script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
 
 
 
@@ -273,7 +282,13 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                     <div class="service-title"><a href="webhosting.html">Pesanan anda</a></div>
                                     <div class="service-details">
                                         <p>Barang Sedang dikirim oleh karyawan kami</p>
-                                        <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=".$data['ID_TRANSAKSI'].">Detail</a></td>"; ?>
+                                        
+                                        <form action="" method="post">
+                                            <input type="hidden" name="idtransaksi" value="<?= $data["ID_TRANSAKSI"]?>">
+                                            <input type="hidden" name="idstatustransaksi" value="05">
+                                            <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=".$data['ID_TRANSAKSI'].">Detail</a></td>"; ?>
+                                            <button name="terima" class="btn btn-success btn-small">Barang telah diterima</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
