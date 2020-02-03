@@ -2,7 +2,6 @@
 session_start();
 require 'assets/config.php';
 
-
 $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
 
 
@@ -276,8 +275,8 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
             <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="address-holder">
-                        <div class="phone"><i class="fas fa-phone"></i>02178888</div>
-                        <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
+                        <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
+                        <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
                         <div class="address">
                             <i class="fas fa-map-marker"></i>
                             <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
@@ -288,7 +287,7 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                     <div class="footer-menu-holder">
                         <h4>Lembaga</h4>
                         <ul class="footer-menu">
-                            <li><a href="about.html">Tentang Kami</a></li>
+                            <li><a href="tentangkami.php">Tentang Kami</a></li>
                         </ul>
                     </div>
                 </div>
@@ -296,7 +295,7 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                     <div class="footer-menu-holder">
                         <h4>Layanan Kami</h4>
                         <ul class="footer-menu">
-                            <li><a href="webhosting.html">Transaksi Bunga</a></li>
+                            <li><a href="kategori.php">Transaksi Bunga</a></li>
                         </ul>
                     </div>
                 </div>
@@ -304,9 +303,9 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                     <div class="footer-menu-holder">
                         <h4>Fasilitas</h4>
                         <ul class="footer-menu">
-                            <li><a href="portal.html">Cara Perawatan</a></li>
-                            <li><a href="#">Peta Lokasi</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                            <li><a href="temukankami.php">Peta Lokasi</a></li>
+                            <li><a href="faq.php">FAQ</a></li>
                         </ul>
                     </div>
                 </div>

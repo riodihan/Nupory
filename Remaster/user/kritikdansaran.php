@@ -2,12 +2,17 @@
 require 'assets/config.php';
 session_start();
 
-$username = $_SESSION["username"];
-
 if(!isset($_SESSION["login"])){
     header("location: login.php");
     exit;
 }
+//cek session
+if($_SESSION["id_status"]!= 03){
+    header("location: ../admin/index.php");
+}
+
+$username = $_SESSION["username"];
+
 
 $carikode = mysqli_query($koneksi, "select max(ID_KRITIK)from kritik") or die(mysqli_error($koneksi));
 $datakode = mysqli_fetch_array($carikode);
@@ -296,8 +301,8 @@ if (isset($_POST["kirim"])) {
             <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="address-holder">
-                        <div class="phone"><i class="fas fa-phone"></i>02178888</div>
-                        <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
+                        <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
+                        <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
                         <div class="address">
                             <i class="fas fa-map-marker"></i>
                             <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
@@ -308,7 +313,7 @@ if (isset($_POST["kirim"])) {
                     <div class="footer-menu-holder">
                         <h4>Lembaga</h4>
                         <ul class="footer-menu">
-                            <li><a href="about.html">Tentang Kami</a></li>
+                            <li><a href="tentangkami.php">Tentang Kami</a></li>
                         </ul>
                     </div>
                 </div>
@@ -316,7 +321,7 @@ if (isset($_POST["kirim"])) {
                     <div class="footer-menu-holder">
                         <h4>Layanan Kami</h4>
                         <ul class="footer-menu">
-                            <li><a href="webhosting.html">Transaksi Bunga</a></li>
+                            <li><a href="kategori.php">Transaksi Bunga</a></li>
                         </ul>
                     </div>
                 </div>
@@ -324,9 +329,9 @@ if (isset($_POST["kirim"])) {
                     <div class="footer-menu-holder">
                         <h4>Fasilitas</h4>
                         <ul class="footer-menu">
-                            <li><a href="portal.html">Cara Perawatan</a></li>
-                            <li><a href="#">Peta Lokasi</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                            <li><a href="temukankami.php">Peta Lokasi</a></li>
+                            <li><a href="faq.php">FAQ</a></li>
                         </ul>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 ?>
 <!doctype html>
 <html>
@@ -365,56 +366,56 @@ session_start();
 
 
         <div id="footer" class="container-fluid">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-6 col-sm-4 col-md-3">
-                        <div class="address-holder">
-                            <div class="phone"><i class="fas fa-phone"></i>02178888</div>
-                            <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
-                            <div class="address">
-                                <i class="fas fa-map-marker"></i>
-                                <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
-                            </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-3">
+                    <div class="address-holder">
+                        <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
+                        <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
+                        <div class="address">
+                            <i class="fas fa-map-marker"></i>
+                            <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-sm-2 col-md-2">
-                        <div class="footer-menu-holder">
-                            <h4>Lembaga</h4>
-                            <ul class="footer-menu">
-                                <li><a href="about.html">Tentang Kami</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-2">
+                    <div class="footer-menu-holder">
+                        <h4>Lembaga</h4>
+                        <ul class="footer-menu">
+                            <li><a href="tentangkami.php">Tentang Kami</a></li>
+                        </ul>
                     </div>
-                    <div class="col-xs-6 col-sm-2 col-md-3">
-                        <div class="footer-menu-holder">
-                            <h4>Layanan Kami</h4>
-                            <ul class="footer-menu">
-                                <li><a href="webhosting.html">Transaksi Bunga</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-xs-6 col-sm-2 col-md-3">
+                    <div class="footer-menu-holder">
+                        <h4>Layanan Kami</h4>
+                        <ul class="footer-menu">
+                            <li><a href="kategori.php">Transaksi Bunga</a></li>
+                        </ul>
                     </div>
-                    <div class="col-xs-6 col-sm-3 col-md-3">
-                        <div class="footer-menu-holder">
-                            <h4>Fasilitas</h4>
-                            <ul class="footer-menu">
-                                <li><a href="portal.html">Cara Perawatan</a></li>
-                                <li><a href="#">Peta Lokasi</a></li>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <div class="footer-menu-holder">
+                        <h4>Fasilitas</h4>
+                        <ul class="footer-menu">
+                            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                            <li><a href="temukankami.php">Peta Lokasi</a></li>
+                            <li><a href="faq.php">FAQ</a></li>
+                        </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-1 col-md-1">
-                        <div class="social-menu-holder">
-                            <ul class="social-menu">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-xs-12 col-sm-1 col-md-1">
+                    <div class="social-menu-holder">
+                        <ul class="social-menu">
+                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap-slider.min.js"></script>
