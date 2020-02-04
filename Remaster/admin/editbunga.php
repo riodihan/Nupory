@@ -12,10 +12,10 @@ $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = 
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
 //cek sudah ditekan apa blm
-if (isset($_POST["submit"])) {
+if (isset($_POST["edit"])) {
 
   //apakah data berhasil diubah
-  if (editbunga($_POST) > 0) {
+  if (editbunga1($_POST) > 0) {
     echo "<script>
               alert('Data berhasil diedit!');
               document.location.href = 'editbunga.php';
@@ -455,10 +455,10 @@ if (isset($_POST["submit"])) {
               <div class="col-md-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
+                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Bunga</h6>
                   </div>
 
-                  <form action="" method="POST" class="card-body">
+                  <form action="" method="POST" class="card-body" enctype="multipart/form-data">
                     <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"]; ?>">
                     <div class="row">
                       <div class="col">
@@ -515,7 +515,7 @@ if (isset($_POST["submit"])) {
                       <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"]; ?>">
                     </div>
                     <div class="col text-center">
-                      <button type="submit" name="submit" class="btn btn-primary">Edit Bunga</button>
+                      <button type="submit" name="edit" class="btn btn-primary">Edit Bunga</button>
                     </div>
                   </form>
                 </div>
