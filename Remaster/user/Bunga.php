@@ -299,7 +299,7 @@ if (isset($_POST["keranjang"])) {
         <div class="alert alert-dark" role="alert">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="images/<?= $data["FOTO_BUNGA"] ?>" alt="" class="img-responsive">
+                    <img src="../admin/img/<?= $data["FOTO_BUNGA"] ?>" alt="" class="img-responsive">
                 </div>
 
                 <?php if (isset($cek)) { ?>
