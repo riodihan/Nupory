@@ -247,7 +247,7 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                                 <div class="pricing-content">
 
                                     <div class="pricing-icon">
-                                        <img src="images/<?php echo $data["FOTO_BUNGA"]; ?>" alt="">
+                                        <img src="../admin/img/<?php echo $data["FOTO_BUNGA"]; ?>" alt="">
                                     </div>
                                     <div class="pricing-title"><?php echo $data["NAMA_BUNGA"]; ?></div>
 

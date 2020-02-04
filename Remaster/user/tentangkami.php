@@ -256,23 +256,10 @@ session_start();
                             <div class="col-sm-6 col-md-3">
                                 <div class="person-box">
                                     <div class="person-icon">
-                                        <div class="person-img"><img src="images/team1.jpg" alt="" /></div>
-                                    </div>
-                                    <div class="person-name">Chris Walker</div>
-                                    <div class="person-title">CEO & CO-Founder</div>
-                                    <div class="person-social">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <div class="person-box">
-                                    <div class="person-icon">
                                         <div class="person-img"><img src="images/team2.jpg" alt="" /></div>
                                     </div>
-                                    <div class="person-name">Jane Donald</div>
-                                    <div class="person-title">Client service</div>
+                                    <div class="person-name">Ajung</div>
+                                    <div class="person-title">Manajemen Kebun</div>
                                     <div class="person-social">
                                         <a href="#"><i class="fab fa-twitter"></i></a>
                                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -282,10 +269,10 @@ session_start();
                             <div class="col-sm-6 col-md-3">
                                 <div class="person-box">
                                     <div class="person-icon">
-                                        <div class="person-img"><img src="images/team3.jpg" alt="" /></div>
+                                        <div class="person-img"><img src="images/team1.jpg" alt="" /></div>
                                     </div>
-                                    <div class="person-name">David Adams</div>
-                                    <div class="person-title">Server Admin</div>
+                                    <div class="person-name">Fansoni</div>
+                                    <div class="person-title">Tanaman Hias & bibit</div>
                                     <div class="person-social">
                                         <a href="#"><i class="fab fa-twitter"></i></a>
                                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -297,8 +284,21 @@ session_start();
                                     <div class="person-icon">
                                         <div class="person-img"><img src="images/team4.jpg" alt="" /></div>
                                     </div>
-                                    <div class="person-name">Rose Masso</div>
-                                    <div class="person-title">Quality Assurance</div>
+                                    <div class="person-name">Rini</div>
+                                    <div class="person-title">Administrasi</div>
+                                    <div class="person-social">
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="person-box">
+                                    <div class="person-icon">
+                                        <div class="person-img"><img src="images/team7.jpg" alt="" /></div>
+                                    </div>
+                                    <div class="person-name">Yuli</div>
+                                    <div class="person-title">Pemasaran</div>
                                     <div class="person-social">
                                         <a href="#"><i class="fab fa-twitter"></i></a>
                                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -347,12 +347,12 @@ session_start();
                             <div class="col-sm-6 col-md-3">
                                 <div class="person-box">
                                     <div class="person-icon">
-                                        <div class="person-img"><img src="images/team8.jpg" alt="" /></div>
+                                        <div class="person-img"><img src="images/syifa.jpeg" alt="" /></div>
                                     </div>
                                     <div class="person-name">Syifa</div>
                                     <div class="person-title">Web Developer</div>
                                     <div class="person-social">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://twitter.com/miko_syifa"><i class="fab fa-twitter"></i></a>
                                         <a href="#"><i class="fab fa-instagram"></i></a>
                                     </div>
                                 </div>

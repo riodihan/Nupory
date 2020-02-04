@@ -501,7 +501,7 @@ if (isset($_POST["submit"])) {
                       <label for="fotobunga">Foto Bunga</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"]; ?>">
+                          <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"]; ?>" required>
                           <label class="custom-file-label" for="fotobunga">Pilih foto</label>
                         </div>
                       </div>
