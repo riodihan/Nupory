@@ -134,6 +134,35 @@ if(isset($_POST["update"])){
         </div>
       </li>
 
+      <!-- Transaksi -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Transaksi</span>
+        </a>
+        <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="tagihan.php">
+                <i class="fas fa-fw fa-user text-primary"></i>
+                <span class="text-primary">Tagihan</span>
+              </a>
+              <a class="collapse-item" href="dikemas.php">
+                <i class="fas fa-fw fa-snowflake text-primary"></i>
+                <span class="text-primary">Dikemas</span>
+            </a>
+            <a class="collapse-item" href="dikirim.php">
+                <i class="fas fa-fw fa-cube text-primary"></i>
+                <span class="text-primary">Dikirim</span>
+            </a>
+            
+            <a class="collapse-item" href="transaksiselesai.php">
+                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+                <span class="text-primary">Selesai</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
       <!-- Divider -->
       <?php if ($_SESSION['id_status']=="01") { ?>
         <hr class="sidebar-divider">
@@ -159,7 +188,7 @@ if(isset($_POST["update"])){
         </a>
         <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="editbunga.php">
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
@@ -360,15 +389,6 @@ if(isset($_POST["update"])){
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profil
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
