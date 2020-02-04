@@ -378,4 +378,12 @@ function ubahpassword($data)
                 WHERE USERNAME = '$username'");
     return $qu;
 }
+
+
+function hapususer($id)
+{
+    global $koneksi;
+    $qu = mysqli_query($koneksi, "DELETE FROM user WHERE USERNAME = '$id'");
+    return $qu;
+}
 ?>

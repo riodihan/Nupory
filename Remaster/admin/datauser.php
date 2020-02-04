@@ -385,7 +385,7 @@
                       <th>No. Telpon</th>
                       <th>Email</th>
                       <?php if ($_SESSION['id_status']=="01") { ?>
-                        <th>Tindakan</th>
+                        <!-- <th>Tindakan</th> -->
                      <?php }else{ ?>
                     <?php } ?>
                       
@@ -409,7 +409,7 @@
                       <td><?php echo $row["ALAMAT"]?></td>
                       <td><?php echo $row["NO_TELEPON"]?></td>
                       <td><?php echo $row["EMAIL"]?></td>
-                      <td>
+                      <!-- <td>
                         <?php if ($_SESSION['id_status']=="01") { ?>
                           <div>
                           <a class="btn btn-primary" href="#" role="button">
@@ -421,7 +421,7 @@
                         </div>
                         <?php }else{ ?>
                        <?php } ?> 
-                      </td>
+                      </td> -->
                     </tr>
                     <?php endwhile;?>
                   </tbody>
