@@ -1,11 +1,32 @@
-<?php 
+<?php
 session_start();
 require 'assets/config.php';
+// $idBunga = $_GET["edit"];
 
-$kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-$hasil = mysqli_query ($koneksi, "SELECT  NAMA_USER, ISI_KRITIK FROM kritik, user WHERE kritik.USERNAME=user.USERNAME AND user.ID_STATUS='03' ");
-$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+// //query data bunga berdasarkan id
+// $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
 
+$hasil = mysqli_query($koneksi, "SELECT * FROM karyawan");
+$hasil1 = mysqli_query($koneksi, "SELECT * FROM status ");
+$kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
+
+//cek sudah ditekan apa blm
+if (isset($_POST["submit"])) {
+
+  //apakah data berhasil diubah
+  if (editbunga($_POST) > 0) {
+    echo "<script>
+              alert('Data berhasil diedit!');
+              document.location.href = 'editbunga.php';
+            </script> ";
+  } else {
+    echo "<script>
+              alert('Data gagal diedit!');
+              document.location.href = 'editbunga.php';
+            </script>";
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +40,8 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Data Kritik</title>
+  <title>Data Karyawan</title>
+  <link rel="icon" href="bunga.png" type="image/x-icon">
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,12 +68,11 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">
-        <?php if ($_SESSION['id_status']=="01") {
-          echo "Admin";
-        }elseif ($_SESSION['id_status']=="02") {
-          echo "Karyawan";
-        } ?><br> Nursery Polije</div>
+        <div class="sidebar-brand-text mx-3"><?php if ($_SESSION['id_status'] == "01") {
+                                                echo "Admin";
+                                              } elseif ($_SESSION['id_status'] == "02") {
+                                                echo "Karyawan";
+                                              } ?><br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -134,31 +155,23 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
       </li>
 
       <!-- Divider -->
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <hr class="sidebar-divider">
-    <?php  }else { ?>
-    <?php }?>
-      
+      <hr class="sidebar-divider">
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        <?php if ($_SESSION['id_status']=="01") {
-          echo "Tambah / Edit";
-        }else{
-        } ?>
+        Tambah / Edit
       </div>
 
       <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']==01) { ?>
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
           <i class="fas fa-fw fa-snowflake"></i>
           <span>Bunga
           </span>
         </a>
         <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editbunga.php">
+            <a class="collapse-item" href="#">
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
@@ -168,22 +181,18 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             </a>
           </div>
         </div>
-      <?php }else{ ?>
-      <?php } ?>
-        
       </li>
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
           <i class="fas fa-fw fa-tag"></i>
           <span>Kategori Bunga
           </span>
         </a>
         <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="editbunga.php">
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
@@ -193,15 +202,11 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             </a>
           </div>
         </div>
-      <?php  }else{ ?>
-      <?php } ?>
-        
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
           <i class="fas fa-fw fa-user"></i>
           <span>Karyawan
           </span>
@@ -218,9 +223,6 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             </a>
           </div>
         </div>
-    <?php }else{ ?>
-    <?php  } ?>
-        
       </li>
 
       <!-- Divider -->
@@ -287,7 +289,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                 <!-- Counter - Alerts -->
+                <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
@@ -295,20 +297,21 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <h6 class="dropdown-header">
                   Tagihan Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php while ($row = mysqli_fetch_assoc($tagihan)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
-                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
-                  </div>
-                </a>
-                </a>
-              <?php endwhile;?>
+                    <div>
+                      <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"] ?></div>
+                      <span class="font-weight-bold"><?php echo "tagihan ";
+                                                      echo $row["USERNAME"] ?></span>
+                    </div>
+                  </a>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
@@ -325,14 +328,14 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <h6 class="dropdown-header">
                   Kritik Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
-                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
-                  </div>
-                </a>
-                <?php endwhile;?>
+                <?php while ($row = mysqli_fetch_assoc($kritik)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="font-weight-bold">
+                      <div class="text-truncate"><?php echo $row["ISI_KRITIK"] ?></div>
+                      <div class="small text-gray-500">Dari <?php echo $row["USERNAME"] ?></div>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
@@ -342,19 +345,18 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php if ($_SESSION['id_status']=="01") {
-                    echo "Admin, ";
-                    echo $_SESSION['nama_user'];
-                  }elseif ($_SESSION['id_status']=="02") {
-                    echo "Karyawan, ";
-                    echo $_SESSION['nama_user'];
-                  } ?></span>
-                <?php if ($_SESSION['id_status']=="01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php if ($_SESSION['id_status'] == "01") {
+                                                                            echo "Admin, ";
+                                                                            echo $_SESSION['nama_user'];
+                                                                          } elseif ($_SESSION['id_status'] == "02") {
+                                                                            echo "Karyawan, ";
+                                                                            echo $_SESSION['nama_user'];
+                                                                          } ?></span>
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -377,51 +379,141 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">
-              Selamat Datang
-              <?php if ($_SESSION['id_status']=="01") {
-                echo "Admin ";
-                echo $_SESSION['nama_user'];
-              }elseif ($_SESSION['id_status']=="02") {
-                echo "Karyawan ";
-                echo $_SESSION['nama_user'];
-              }?>
-            </h1>
-          </div>
-
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Kritik User</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Nama User</th>
-                      <th>Isi Kritik</th>
-                      <th>Tindakan</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr>
-                      <td><?php echo $row["NAMA_USER"]?></td>
-                      <td><?php echo $row["ISI_KRITIK"]?></td>
-                      <td><a href="#" class="btn btn-success">Dibaca</a></td>
-                    </tr>
-                    <?php endwhile;?>
-                  </tbody>
-                </table>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Data Karyawan Nursery Polije</h6>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Tindakan</th>
+                          <th>Username</th>
+                          <th>Status</th>
+                          <th>Nama User</th>
+                          <th>Alamat</th>
+                          <th>No. Telpon</th>
+                          <th>Email</th>
+                          <th>Foto Perawatan</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
+                          <tr>
+                            <td>
+                              <a href="editkaryawan.php?edit=<?php echo $row["USERNAME"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                              <a href="hapususer.php?id=<?= $row["USERNAME"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td><?php echo $row["USERNAME"] ?></td>
+                            <td><?php echo $row["ID_STATUS"] ?></td>
+                            <td><?php echo $row["NAMA_USER"] ?></td>
+                            <td ><?php echo $row["ALAMAT"] ?></td>
+                            <td ><?php echo $row["NO_TELPON"] ?></td>
+                            <td><?php echo $row["EMAIL"] ?></td>
+                            <td><?php echo $row["FOTO_USER"] ?></td>
+                          </tr>
+                        <?php endwhile; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </div> <!-- col -->
+
+
+            <?php
+            if(isset($_GET["edit"])){
+              $idBunga = $_GET["edit"];
+              //query data bunga berdasarkan id
+              $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
+            }
+
+            if (isset($idBunga)) { ?>
+              <div class="col-md-4">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
+                  </div>
+
+                  <form action="" method="POST" class="card-body">
+                    <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"]; ?>">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="namabunga">Nama Bunga</label>
+                          <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"]; ?>">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="kategoribunga">Kategori Bunga</label>
+                          <select name="kategoriBunga" id="kategoribunga" class="form-control" required>
+                            <option value="">Pilih Kategori</option>
+                            <?php while ($row = mysqli_fetch_assoc($hasil1)) : ?>
+                              <option value="<?php echo $row["ID_KATEGORI"] ?>"><?php echo $row["NAMA_KATEGORI"] ?></option>
+                            <?php endwhile; ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="deskripsibunga">Deskripsi Bunga</label>
+                      <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"]; ?>">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="harga">Harga</label>
+                          <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"]; ?>">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="stok">Stok</label>
+                          <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"]; ?>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="fotobunga">Foto Bunga</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"]; ?>">
+                          <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="videobunga">Video</label>
+                      <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"]; ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="caraperawatan">Cara Perawatan</label>
+                      <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"]; ?>">
+                    </div>
+                    <div class="col text-center">
+                      <button type="submit" name="submit" class="btn btn-primary">Edit Bunga</button>
+                    </div>
+                  </form>
+                </div>
+              </div> <!-- col -->
+            <?php } ?>
+
+
+
+
+
+
+
+
+
+          </div> <!-- Row -->
 
         </div>
-        <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
@@ -484,40 +576,40 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
   <script src="js/demo/datatables-demo.js"></script>
 
   <!-- Counter Kritik AJAX -->
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterkr").innerHTML = this.responseText;
+            document.getElementById("counterkr").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
   </script>
 
-   <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript" >
+  <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterth").innerHTML = this.responseText;
+            document.getElementById("counterth").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
