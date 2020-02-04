@@ -125,6 +125,35 @@ if (isset($_POST["submit"])) {
         </div>
       </li>
 
+      <!-- Transaksi -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Transaksi</span>
+        </a>
+        <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="tagihan.php">
+                <i class="fas fa-fw fa-user text-primary"></i>
+                <span class="text-primary">Tagihan</span>
+              </a>
+              <a class="collapse-item" href="dikemas.php">
+                <i class="fas fa-fw fa-snowflake text-primary"></i>
+                <span class="text-primary">Dikemas</span>
+            </a>
+            <a class="collapse-item" href="dikirim.php">
+                <i class="fas fa-fw fa-cube text-primary"></i>
+                <span class="text-primary">Dikirim</span>
+            </a>
+            
+            <a class="collapse-item" href="transaksiselesai.php">
+                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+                <span class="text-primary">Selesai</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -163,7 +192,7 @@ if (isset($_POST["submit"])) {
         </a>
         <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="editbunga.php">
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>

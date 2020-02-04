@@ -155,6 +155,35 @@
         </div>
       </li>
 
+      <!-- Transaksi -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Transaksi</span>
+        </a>
+        <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="tagihan.php">
+                <i class="fas fa-fw fa-user text-primary"></i>
+                <span class="text-primary">Tagihan</span>
+              </a>
+              <a class="collapse-item" href="dikemas.php">
+                <i class="fas fa-fw fa-snowflake text-primary"></i>
+                <span class="text-primary">Dikemas</span>
+            </a>
+            <a class="collapse-item" href="dikirim.php">
+                <i class="fas fa-fw fa-cube text-primary"></i>
+                <span class="text-primary">Dikirim</span>
+            </a>
+            
+            <a class="collapse-item" href="transaksiselesai.php">
+                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+                <span class="text-primary">Selesai</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
       <!-- Divider -->
       <?php if ($_SESSION['id_status']=="01") { ?>
         <hr class="sidebar-divider">
@@ -180,7 +209,7 @@
         </a>
         <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="editbunga.php">
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
@@ -531,7 +560,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="idKategori1">Kategori Bunga</label>
-                        <select name="idKategori1" id="idKategori1" class="form-control" require>
+                        <select name="idKategori1" id="idKategori1" class="form-control" required>
                         <?php while ($row=mysqli_fetch_assoc($hasil2)): ?>
                         <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
                         <?php endwhile;?>
@@ -547,13 +576,13 @@
                   <div class="col">
                     <div class="form-group">
                       <label for="hargaBunga1">Harga</label>
-                      <input type="text" name="hargaBunga1" id="hargaBunga1" class="form-control text-right" require>
+                      <input type="text" name="hargaBunga1" id="hargaBunga1" class="form-control text-right">
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                       <label for="stokBunga1">Stok</label>
-                      <input type="text" name="stokBunga1" id="stokBunga1" class="form-control text-right" require>
+                      <input type="text" name="stokBunga1" id="stokBunga1" class="form-control text-right">
                     </div>
                   </div>
                 </div>
@@ -561,7 +590,7 @@
                   <label for="fotoBunga1">Foto Bunga</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" name="fotoBunga1" class="custom-file-input" id="fotoBunga1" aria-describedby="fotobunga" require>
+                      <input type="file" name="fotoBunga1" class="custom-file-input" id="fotoBunga1" aria-describedby="fotobunga">
                       <label class="custom-file-label" for="fotoBunga1">Pilih foto</label>
                     </div>
                   </div>
