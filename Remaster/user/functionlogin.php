@@ -20,6 +20,7 @@
             $id_status = $row ['ID_STATUS'];
             $username = $row['USERNAME'];
             $nama_user = $row['NAMA_USER'];
+            $foto_user = $row['FOTO_USER'];
             $_SESSION["username"]= $username;
             $_SESSION["id_status"]= $id_status;
             $_SESSION["nama_user"]=$nama_user;

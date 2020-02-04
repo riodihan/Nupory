@@ -12,6 +12,15 @@ if (!isset($_SESSION["login"])) {
   exit;
 }
 
+//ubah foto
+if (isset($_POST["ubahfoto"])) {
+  if (uploadfoto($_POST) == 1) {
+    echo "<script>alert('Foto berhasil diubah');  window.location.href='profil.php'</script>";
+  } else {
+    echo "<script>alert('Foto Gagal diubah');</script>";
+  }
+}
+
 $username = $_SESSION["username"];
 
 //menampilkan data user
@@ -23,6 +32,7 @@ WHERE user.ID_STATUS = status.ID_STATUS AND username = '$username'");
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
+$user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
 
 //ubah biodata
 if (isset($_POST["ubah"])) {
@@ -381,12 +391,14 @@ if (isset($_POST["ubah1"])) {
                                                                             echo $_SESSION['nama_user'];
                                                                           } ?></span>
 
-                <img class="img-profile rounded-circle" src="img/admin.png">
-                <!-- <?php if ($_SESSION['id_status'] == "01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?> -->
+                <!-- <img class="img-profile rounded-circle" src="img/admin.png"> -->
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -426,12 +438,14 @@ if (isset($_POST["ubah1"])) {
             <div class="row no-gutters">
               <div class="col-md-4">
 
-                <!-- <?php if ($_SESSION['id_status'] == "01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?> -->
-                <img src="img/admin.png" class="card-img" alt="...">
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile " src="img/<?= $data["FOTO_USER"] ?>" width="400px">
+                  <?php } ?>
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <img class="img-profile " src=" $_SESSION['foto_user']" width="400px" >
+                <?php } ?>
+                <!-- <img src="img/admin.png" class="card-img" alt="..."> -->
 
               </div>
 
@@ -474,6 +488,9 @@ if (isset($_POST["ubah1"])) {
                   <div class="col">
                   </div>
                   <div class="col">
+                    <a href="#" data-toggle="modal" data-target="#exampleModalFoto">
+                      <button class="btn btn-primary"> Edit Foto</button>
+                    </a>
                     <a href="#" data-toggle="modal" data-target="#exampleModal">
                       <button class="btn btn-primary">Edit Profil</button>
                       <!-- <a href="#" class="btn btn-primary">Edit Profil</a> -->
@@ -563,6 +580,39 @@ if (isset($_POST["ubah1"])) {
           </div>
         </div>
       <?php } ?>
+
+      <!-- modal edit foto -->
+      <div class="modal fade" id="exampleModalFoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalFoto" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalFoto">Ubah Foto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="formGroupExampleInput">Pilih Foto</label>
+                <input type="file" name="foto" class="form-control" id="formGroupExampleInput">
+                <input type="hidden" name="username" class="form-control" id="formGroupExampleInput" value="<?php echo $username ?>">
+              </div>
+              <div class="alert alert-success" role="alert">
+                Upload Foto yang bertipe .JPG .JPEG .PNG
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" name="ubahfoto" class="btn btn-primary">Ubah</button>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

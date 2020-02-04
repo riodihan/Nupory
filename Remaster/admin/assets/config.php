@@ -396,6 +396,68 @@ function editkategori($data){
     return $q_Kategori;
 }
 
+//ubah foto
+function uploadfoto($data)
+{
+    global $koneksi;
+    $username = htmlspecialchars($data["username"]);
+    $foto = uploadfotoadmin();
+    if (!$foto) {
+        return false;
+    }
+
+    // $bukti = htmlspecialchars($upload["bukti"]);
+
+    $qu = mysqli_query($koneksi, "UPDATE user SET 
+                FOTO_USER = '$foto'
+
+                WHERE USERNAME = '$username'");
+    return $qu;
+}
+function uploadfotoadmin()  {
+    $namaFile2 = $_FILES['foto']['name'];
+    $ukuranFile2 = $_FILES['foto']['size'];
+    $error2 = $_FILES['foto']['error'];
+    $tmpName2 = $_FILES['foto']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang diupload
+
+    if ($error2 === 4) {
+        echo "<script>
+              alert('Pilih Gambar Terlebih Dahulu');
+            </script>";
+            return false;
+    }
+
+    // cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid2 = ['jpg','jpeg','png'];
+    $ekstensiGambar2 = explode('.', $namaFile2);
+    $ekstensiGambar2 = strtolower(end($ekstensiGambar2));
+    if (!in_array($ekstensiGambar2, $ekstensiGambarValid2)) {
+        echo "<script>
+              alert('yang anda upload bukan gambar!');
+            </script>";
+            return false; 
+    }
+
+    //cek jika ukuran gambar terlalu besar
+    if ($ukuranFile2 > 2500000) {
+        echo "<script>
+              alert('ukuran gambar terlalu besar!');
+            </script>";
+        return false; 
+    }
+    //gambar siap diupload
+    //generate nama baru
+    $namaFileBaru2 = uniqid();
+    $namaFileBaru2 .= '.';
+    $namaFileBaru2 .= $ekstensiGambar2;
+
+    move_uploaded_file($tmpName2, 'img/' . $namaFileBaru2);
+    return $namaFileBaru2;
+
+
+}
 
 
 
