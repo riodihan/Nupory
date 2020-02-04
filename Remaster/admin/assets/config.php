@@ -378,26 +378,24 @@ function ubahpassword($data)
                 WHERE USERNAME = '$username'");
     return $qu;
 }
-<<<<<<< HEAD
 function editkategori($data){
     global $koneksi;
     $idKategori = $data["idKategori"];
     $namaKategori= htmlspecialchars($data["namaKategori"]);
-    $DeskripsiKategori = htmlspecialchars($data["DeskripsiKategori"]);
+    $deskripsiKategori = htmlspecialchars($data["deskripsiKategori"]);
     $fotoKategori = htmlspecialchars($data["fotoKategori"]);
 
     $query = "UPDATE kategori SET
                 NAMA_KATEGORI = '$namaKategori',
                 DESKRIPSI = '$deskripsiKategori',
-                GAMBAR_KATEGORI = '$fotoKategori',
+                GAMBAR_KATEGORI = '$fotoKategori'
             WHERE ID_KATEGORI = '$idKategori'
-                ";
+            ";
     $q_Kategori = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
     return $q_Kategori;
 }
 
 
-=======
 
 
 function hapususer($id)
@@ -406,5 +404,4 @@ function hapususer($id)
     $qu = mysqli_query($koneksi, "DELETE FROM user WHERE USERNAME = '$id'");
     return $qu;
 }
->>>>>>> b955aeadb708960741280b35ee9c89718cd60493
 ?>

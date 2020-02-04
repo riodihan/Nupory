@@ -415,11 +415,11 @@ if (isset($_POST["submit"])) {
                     <input type="hidden" name="idKategori" id="idKategori" value="<?php echo $dataKategori["ID_KATEGORI"]; ?>">
                       <div class="form-group">
                         <label for="namaKategori">Nama Kategori </label>
-                        <input type="text" name="namakategori" id="namaKategori" class="form-control" value="<?php echo $dataKategori["NAMA_KATEGORI"]; ?>">
+                        <input type="text" name="namaKategori" id="namaKategori" class="form-control" value="<?php echo $dataKategori["NAMA_KATEGORI"]; ?>">
                       </div>
                     <div class="form-group">
-                      <label for="deskripKategori">Deskripsi Kategori</label>
-                      <input type="text" name="deskripsiKategori" id="deskripKategori" class="form-control" value="<?php echo $dataKategori["DESKRIPSI"]; ?>">
+                      <label for="deskripsiKategori">Deskripsi Kategori</label>
+                      <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control" value="<?php echo $dataKategori["DESKRIPSI"]; ?>">
                     </div>
                     <div class="form-group">
                       <label for="fotoKategori">Foto Bunga</label>
