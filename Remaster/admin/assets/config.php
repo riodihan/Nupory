@@ -159,32 +159,32 @@ function tambahkaryawan($data){
     return $q_kar;
 }
 
-function editbunga($data){
-    global $koneksi;
-    $idBunga = $data["idBunga"];
-    $namaBunga = htmlspecialchars($data["namaBunga"]);
-    $kategoriBunga = htmlspecialchars($data["kategoriBunga"]);
-    $hargaBunga = htmlspecialchars($data["hargaBunga"]);
-    $stokBunga = htmlspecialchars($data["stokBunga"]);
-    $fotoBunga = htmlspecialchars($data["fotoBunga"]);
-    $videoBunga = htmlspecialchars($data["videoBunga"]);
-    $caraPerawatan = htmlspecialchars($data["caraPerawatan"]);
-    $deskripsiBunga = htmlspecialchars($data["deskripsiBunga"]);
+// function editbunga($data){
+//     global $koneksi;
+//     $idBunga = $data["idBunga"];
+//     $namaBunga = htmlspecialchars($data["namaBunga"]);
+//     $kategoriBunga = htmlspecialchars($data["kategoriBunga"]);
+//     $hargaBunga = htmlspecialchars($data["hargaBunga"]);
+//     $stokBunga = htmlspecialchars($data["stokBunga"]);
+//     $fotoBunga = htmlspecialchars($data["fotoBunga"]);
+//     $videoBunga = htmlspecialchars($data["videoBunga"]);
+//     $caraPerawatan = htmlspecialchars($data["caraPerawatan"]);
+//     $deskripsiBunga = htmlspecialchars($data["deskripsiBunga"]);
 
-    $query = "UPDATE bunga SET
-                ID_KATEGORI = '$kategoriBunga',
-                NAMA_BUNGA = '$namaBunga',
-                HARGA = '$hargaBunga',
-                STOK = '$stokBunga',
-                FOTO_BUNGA = '$fotoBunga',
-                VIDEO_BUNGA = '$videoBunga',
-                CARA_PERAWATAN = '$caraPerawatan',
-                DESKRIPSI = '$deskripsiBunga'
-            WHERE ID_BUNGA = '$idBunga'
-                ";
-    $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
-    return $q_bung;
-}
+//     $query = "UPDATE bunga SET
+//                 ID_KATEGORI = '$kategoriBunga',
+//                 NAMA_BUNGA = '$namaBunga',
+//                 HARGA = '$hargaBunga',
+//                 STOK = '$stokBunga',
+//                 FOTO_BUNGA = '$fotoBunga',
+//                 VIDEO_BUNGA = '$videoBunga',
+//                 CARA_PERAWATAN = '$caraPerawatan',
+//                 DESKRIPSI = '$deskripsiBunga'
+//             WHERE ID_BUNGA = '$idBunga'
+//                 ";
+//     $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+//     return $q_bung;
+// }
 
 function kirimBunga($data){
     global $koneksi;
@@ -197,19 +197,19 @@ function kirimBunga($data){
 
 function editbunga1($data){
     global $koneksi;
-    $idBunga = $data["id1"];
-    $namaBunga = htmlspecialchars($data["namaBunga1"]);
-    $kategoriBunga = htmlspecialchars($data["idKategori1"]);
-    $hargaBunga = htmlspecialchars($data["hargaBunga1"]);
-    $stokBunga = htmlspecialchars($data["stokBunga1"]);
-    // $fotoBunga = uploadBunga();
-    // if (!$fotoBunga) {
-    //     return false;
-    // }
-    $fotoBunga = htmlspecialchars($data["fotoBunga1"]);
-    $videoBunga = htmlspecialchars($data["videoBunga1"]);
-    $caraPerawatan = htmlspecialchars($data["caraPerawatan1"]);
-    $deskripsiBunga = htmlspecialchars($data["deskripsiBunga1"]);
+    $idBunga = htmlspecialchars($data["idBunga"]);
+    $namaBunga = htmlspecialchars($data["namaBunga"]);
+    $kategoriBunga = htmlspecialchars($data["kategoriBunga"]);
+    $hargaBunga = htmlspecialchars($data["hargaBunga"]);
+    $stokBunga = htmlspecialchars($data["stokBunga"]);
+    $fotoBunga = uploadBunga();
+    if (!$fotoBunga) {
+        return false;
+    }
+    // $fotoBunga = htmlspecialchars($data["fotoBunga1"]);
+    $videoBunga = htmlspecialchars($data["videoBunga"]);
+    $caraPerawatan = htmlspecialchars($data["caraPerawatan"]);
+    $deskripsiBunga = htmlspecialchars($data["deskripsiBunga"]);
 
     $query = "UPDATE bunga SET
                 ID_KATEGORI = '$kategoriBunga',
@@ -224,54 +224,54 @@ function editbunga1($data){
     $q_bung = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
     return $q_bung;
 }
-// function uploadBunga()  {
-//     $namaFile1 = $_FILES['fotoBunga1']['name'];
-//     $ukuranFile1 = $_FILES['fotoBunga1']['size'];
-//     $error1 = $_FILES['fotoBunga1']['error'];
-//     $tmpName1 = $_FILES['fotoBunga1']['tmp_name'];
+function uploadBunga()  {
+    $namaFile1 = $_FILES['fotoBunga']['name'];
+    $ukuranFile1 = $_FILES['fotoBunga']['size'];
+    $error1 = $_FILES['fotoBunga']['error'];
+    $tmpName1 = $_FILES['fotoBunga']['tmp_name'];
 
-//     // cek apakah tidak ada gambar yang diupload
+    // cek apakah tidak ada gambar yang diupload
 
-//     if ($error1 === 4) {
-//         echo "<script>
-//               alert('Pilih Gambar Terlebih Dahulu');
-//               document.location.href = '';
-//             </script>";
-//             return false;
-//     }
+    if ($error1 === 4) {
+        echo "<script>
+              alert('Pilih Gambar Terlebih Dahulu');
+              document.location.href = '';
+            </script>";
+            return false;
+    }
 
-//     // cek apakah yang diupload adalah gambar
-//     $ekstensiGambarValid1 = ['jpg','jpeg','png'];
-//     $ekstensiGambar1 = explode('.', $namaFile1);
-//     $ekstensiGambar1 = strtolower(end($ekstensiGambar1));
-//     if (!in_array($ekstensiGambar1, $ekstensiGambarValid1)) {
-//         echo "<script>
-//               alert('yang anda upload bukan gambar!');
-//               document.location.href = '';
-//             </script>";
-//             return false; 
-//     }
+    // cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid1 = ['jpg','jpeg','png'];
+    $ekstensiGambar1 = explode('.', $namaFile1);
+    $ekstensiGambar1 = strtolower(end($ekstensiGambar1));
+    if (!in_array($ekstensiGambar1, $ekstensiGambarValid1)) {
+        // echo "<script>
+        //       alert('yang anda upload bukan gambar!');
+        //       document.location.href = '';
+        //     </script>";
+            return false; 
+    }
 
-//     //cek jika ukuran gambar terlalu besar
-//     if ($ukuranFile1 > 10000000) {
-//         echo "<script>
-//               alert('ukuran gambar terlalu besar!');
-//               document.location.href = '';
-//             </script>";
-//         return false; 
-//     }
-//     //gambar siap diupload
-//     //generate nama baru
-//     $namaFileBaru1 = uniqid();
-//     $namaFileBaru1 .= '.';
-//     $namaFileBaru1 .= $ekstensiGambar1;
+    //cek jika ukuran gambar terlalu besar
+    if ($ukuranFile1 > 10000000) {
+        echo "<script>
+              alert('ukuran gambar terlalu besar!');
+              document.location.href = '';
+            </script>";
+        return false; 
+    }
+    //gambar siap diupload
+    //generate nama baru
+    $namaFileBaru1 = uniqid();
+    $namaFileBaru1 .= '.';
+    $namaFileBaru1 .= $ekstensiGambar1;
 
-//     move_uploaded_file($tmpName1, 'images/' . $namaFileBaru1);
+    move_uploaded_file($tmpName1, 'img/' . $namaFileBaru1);
 
-//     return $namaFileBaru1;
+    return $namaFileBaru1;
 
 
-// }
+}
 
 function updateTransaksi03($data){
     global $koneksi;
