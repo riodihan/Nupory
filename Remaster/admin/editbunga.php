@@ -1,32 +1,32 @@
 <?php
-  session_start();
-  require 'assets/config.php';
-  $idBunga = $_GET["edit"]; 
+session_start();
+require 'assets/config.php';
+// $idBunga = $_GET["edit"];
 
-  //query data bunga berdasarkan id
-  $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
+// //query data bunga berdasarkan id
+// $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
 
-  $hasil = mysqli_query ($koneksi, "SELECT * FROM bunga");
-  $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
-  $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-  $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+$hasil = mysqli_query($koneksi, "SELECT * FROM bunga");
+$hasil1 = mysqli_query($koneksi, "SELECT * FROM kategori");
+$kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
-  //cek sudah ditekan apa blm
-  if(isset($_POST["submit"])){
+//cek sudah ditekan apa blm
+if (isset($_POST["submit"])) {
 
-    //apakah data berhasil diubah
-    if(editbunga($_POST) > 0){
-      echo "<script>
+  //apakah data berhasil diubah
+  if (editbunga($_POST) > 0) {
+    echo "<script>
               alert('Data berhasil diedit!');
               document.location.href = 'editbunga.php';
             </script> ";
-    } else {
-      echo "<script>
+  } else {
+    echo "<script>
               alert('Data gagal diedit!');
               document.location.href = 'editbunga.php';
             </script>";
-    }
   }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,11 +68,11 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-snowflake"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"><?php if ($_SESSION['id_status']=="01") {
-          echo "Admin";
-        }elseif ($_SESSION['id_status']== "02") {
-          echo "Karyawan";
-        } ?><br> Nursery Polije</div>
+        <div class="sidebar-brand-text mx-3"><?php if ($_SESSION['id_status'] == "01") {
+                                                echo "Admin";
+                                              } elseif ($_SESSION['id_status'] == "02") {
+                                                echo "Karyawan";
+                                              } ?><br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -297,20 +297,21 @@
                 <h6 class="dropdown-header">
                   Tagihan Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php while ($row = mysqli_fetch_assoc($tagihan)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="datatransaksi.php">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
-                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
-                  </div>
-                </a>
-                </a>
-              <?php endwhile;?>
+                    <div>
+                      <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"] ?></div>
+                      <span class="font-weight-bold"><?php echo "tagihan ";
+                                                      echo $row["USERNAME"] ?></span>
+                    </div>
+                  </a>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="datatransaksi.php">Baca Selengkapnya</a>
               </div>
             </li>
@@ -327,14 +328,14 @@
                 <h6 class="dropdown-header">
                   Kritik Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
-                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
-                  </div>
-                </a>
-                <?php endwhile;?>
+                <?php while ($row = mysqli_fetch_assoc($kritik)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="font-weight-bold">
+                      <div class="text-truncate"><?php echo $row["ISI_KRITIK"] ?></div>
+                      <div class="small text-gray-500">Dari <?php echo $row["USERNAME"] ?></div>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
@@ -344,18 +345,18 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php if ($_SESSION['id_status']=="01") {
-                  echo "Admin, ";
-                  echo $_SESSION['nama_user'];
-                }elseif ($_SESSION['id_status']=="02") {
-                  echo "Karyawan, ";
-                  echo $_SESSION['nama_user'];
-                } ?></span>
-                <?php if ($_SESSION['id_status']=="01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php if ($_SESSION['id_status'] == "01") {
+                                                                            echo "Admin, ";
+                                                                            echo $_SESSION['nama_user'];
+                                                                          } elseif ($_SESSION['id_status'] == "02") {
+                                                                            echo "Karyawan, ";
+                                                                            echo $_SESSION['nama_user'];
+                                                                          } ?></span>
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -389,122 +390,141 @@
 
           <!-- DataTales Example -->
           <div class="row">
-          <div class="col-md-8">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Tindakan</th>
-                      <th>Id Bunga</th>
-                      <th>Id Kategori</th>
-                      <th>Nama Bunga</th>
-                      <th>Harga</th>
-                      <th>Stok</th>
-                      <th>Gambar</th>
-                      <th>Video</th>
-                      <th>Cara Perawatan</th>
-                      <!-- <th>Deskripsi</th> -->
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr>
-                      <td>
-                        <a href="editbunga.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
-                        <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                      </td>
-                      <td><?php echo $row["ID_BUNGA"]?></td>
-                      <td><?php echo $row["ID_KATEGORI"]?></td>
-                      <td><?php echo $row["NAMA_BUNGA"]?></td>
-                      <td class="text-right"><?php echo $row["HARGA"]?></td>
-                      <td class="text-center"><?php echo $row["STOK"]?></td>
-                      <td><?php echo $row["FOTO_BUNGA"]?></td>
-                      <td><?php echo $row["VIDEO_BUNGA"]?></td>
-                      <td><?php echo $row["CARA_PERAWATAN"]?></td>
-                      <!-- <td><?php echo $row["DESKRIPSI"]?></td> -->
-                    </tr>
-                    <?php endwhile;?>
-                  </tbody>
-                </table>
+            <div class="col-md-8">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Tindakan</th>
+                          <th>Id Bunga</th>
+                          <th>Id Kategori</th>
+                          <th>Nama Bunga</th>
+                          <th>Harga</th>
+                          <th>Stok</th>
+                          <th>Gambar</th>
+                          <th>Video</th>
+                          <th>Cara Perawatan</th>
+                          <!-- <th>Deskripsi</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
+                          <tr>
+                            <td>
+                              <a href="editbunga.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                              <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td><?php echo $row["ID_BUNGA"] ?></td>
+                            <td><?php echo $row["ID_KATEGORI"] ?></td>
+                            <td><?php echo $row["NAMA_BUNGA"] ?></td>
+                            <td class="text-right"><?php echo $row["HARGA"] ?></td>
+                            <td class="text-center"><?php echo $row["STOK"] ?></td>
+                            <td><?php echo $row["FOTO_BUNGA"] ?></td>
+                            <td><?php echo $row["VIDEO_BUNGA"] ?></td>
+                            <td><?php echo $row["CARA_PERAWATAN"] ?></td>
+                            <!-- <td><?php echo $row["DESKRIPSI"] ?></td> -->
+                          </tr>
+                        <?php endwhile; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          </div>  <!-- col -->
+            </div> <!-- col -->
 
-          <div class="col-md-4">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
-            </div>
-            
-            <form action="" method="POST" class="card-body">
-            <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"];?>">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"];?>">
+
+            <?php
+            if(isset($_GET["edit"])){
+              $idBunga = $_GET["edit"];
+              //query data bunga berdasarkan id
+              $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
+            }
+
+            if (isset($idBunga)) { ?>
+              <div class="col-md-4">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
                   </div>
+
+                  <form action="" method="POST" class="card-body">
+                    <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"]; ?>">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="namabunga">Nama Bunga</label>
+                          <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"]; ?>">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="kategoribunga">Kategori Bunga</label>
+                          <select name="kategoriBunga" id="kategoribunga" class="form-control" required>
+                            <option value="">Pilih Kategori</option>
+                            <?php while ($row = mysqli_fetch_assoc($hasil1)) : ?>
+                              <option value="<?php echo $row["ID_KATEGORI"] ?>"><?php echo $row["NAMA_KATEGORI"] ?></option>
+                            <?php endwhile; ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="deskripsibunga">Deskripsi Bunga</label>
+                      <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"]; ?>">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="harga">Harga</label>
+                          <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"]; ?>">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="stok">Stok</label>
+                          <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"]; ?>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="fotobunga">Foto Bunga</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"]; ?>">
+                          <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="videobunga">Video</label>
+                      <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"]; ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="caraperawatan">Cara Perawatan</label>
+                      <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"]; ?>">
+                    </div>
+                    <div class="col text-center">
+                      <button type="submit" name="submit" class="btn btn-primary">Edit Bunga</button>
+                    </div>
+                  </form>
                 </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label for="kategoribunga">Kategori Bunga</label>
-                    <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
-                      <option value="null">Pilih Kategori</option>
-                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
-                      <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
-                    <?php endwhile;?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="deskripsibunga">Deskripsi Bunga</label>
-                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"];?>">
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="harga">Harga</label>
-                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"];?>">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <label for="stok">Stok</label>
-                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"];?>">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="fotobunga">Foto Bunga</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"];?>">
-                    <label class="custom-file-label" for="fotobunga">Pilih foto</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="videobunga">Video</label>
-                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"];?>">
-              </div>
-              <div class="form-group">
-                <label for="caraperawatan">Cara Perawatan</label>
-                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"];?>">
-              </div>
-              <div class="col text-center">
-                <button type="submit" name="submit" class="btn btn-primary">Edit Bunga</button>
-              </div>
-            </form>
-          </div>
-          </div>  <!-- col -->
-          </div>  <!-- Row -->
+              </div> <!-- col -->
+            <?php } ?>
+
+
+
+
+
+
+
+
+
+          </div> <!-- Row -->
 
         </div>
 
@@ -569,40 +589,40 @@
   <script src="js/demo/datatables-demo.js"></script>
 
   <!-- Counter Kritik AJAX -->
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterkr").innerHTML = this.responseText;
+            document.getElementById("counterkr").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
   </script>
 
-   <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript" >
+  <!-- Counter Tagihan AJAX -->
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterth").innerHTML = this.responseText;
+            document.getElementById("counterth").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();

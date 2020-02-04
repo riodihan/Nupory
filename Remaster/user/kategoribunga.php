@@ -2,54 +2,13 @@
 require 'assets/config.php';
 session_start();
 
+
 //id bunga
 $idkategori = $_GET["id"];
 
 $bunga = mysqli_query($koneksi, "SELECT * FROM bunga where id_kategori = '$idkategori'");
 
 $idkategori = mysqli_query($koneksi, "SELECT * FROM kategori where id_kategori = '$idkategori'");
-
-
-//username
-$username = $_SESSION["username"];
-
-$transaksi = mysqli_query($koneksi, "SELECT * FROM transaksi where username = '$username' && ID_STATUS_TRANSAKSI = 01");
-$cek = mysqli_fetch_array($transaksi);
-//auto increment id transaksi
-
-$carikode = mysqli_query($koneksi, "select max(ID_TRANSAKSI)from transaksi") or die(mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if ($datakode) {
-    $nilaikode = substr($datakode[0], 1);
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "T" . str_pad($kode, 3, "0", STR_PAD_LEFT);
-} else {
-    $hasilkode = "T001";
-}
-
-//keranjang
-
-if (!isset($cek["ID_TRANSAKSI"])) {
-    if (isset($_POST["keranjang"])) {
-
-        if (keranjang($_POST) == 1) {
-            echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
-        } else {
-            echo mysqli_error($koneksi);
-        }
-    }
-}
-
-//detail
-if (isset($_POST["keranjang"])) {
-
-    if (detail_keranjang($_POST) == 1) {
-        echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
-    } else {
-        echo mysqli_error($koneksi);
-    }
-}
 
 
 
@@ -318,8 +277,8 @@ if (isset($_POST["keranjang"])) {
             <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="address-holder">
-                        <div class="phone"><i class="fas fa-phone"></i>02178888</div>
-                        <div class="email"><i class="fas fa-envelope"></i>Nurserypolije@gmail.com</div>
+                        <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
+                        <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
                         <div class="address">
                             <i class="fas fa-map-marker"></i>
                             <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
@@ -330,7 +289,7 @@ if (isset($_POST["keranjang"])) {
                     <div class="footer-menu-holder">
                         <h4>Lembaga</h4>
                         <ul class="footer-menu">
-                            <li><a href="about.html">Tentang Kami</a></li>
+                            <li><a href="tentangkami.php">Tentang Kami</a></li>
                         </ul>
                     </div>
                 </div>
@@ -338,7 +297,7 @@ if (isset($_POST["keranjang"])) {
                     <div class="footer-menu-holder">
                         <h4>Layanan Kami</h4>
                         <ul class="footer-menu">
-                            <li><a href="webhosting.html">Transaksi Bunga</a></li>
+                            <li><a href="kategori.php">Transaksi Bunga</a></li>
                         </ul>
                     </div>
                 </div>
@@ -346,9 +305,9 @@ if (isset($_POST["keranjang"])) {
                     <div class="footer-menu-holder">
                         <h4>Fasilitas</h4>
                         <ul class="footer-menu">
-                            <li><a href="portal.html">Cara Perawatan</a></li>
-                            <li><a href="#">Peta Lokasi</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                            <li><a href="temukankami.php">Peta Lokasi</a></li>
+                            <li><a href="faq.php">FAQ</a></li>
                         </ul>
                     </div>
                 </div>

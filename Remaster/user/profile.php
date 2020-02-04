@@ -2,15 +2,18 @@
 session_start();
 require 'assets/config.php';
 
-//cek session
-if (!isset($_SESSION["login"])) {
-	header("location: index.php");
-}
-
 if (!isset($_SESSION["login"])) {
 	header("location: login.php");
 	exit;
 }
+//cek session
+if($_SESSION["id_status"] != 03){
+    header("location: ../admin/index.php");
+}
+
+$cek = $_SESSION["id_status"];
+
+
 
 //
 $username = $_SESSION["username"];
@@ -176,6 +179,7 @@ if (isset($_POST["ubahfoto"])) {
 				</div>
 			</div>
 		</div>
+		<input type="text" value="<?= $cek?>">
 
 		<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">

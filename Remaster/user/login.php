@@ -2,13 +2,6 @@
 session_start();
 require 'assets/config.php';
 
-if(isset($_SESSION["login"])){
-	header("location: index.php");
-	exit;
-}
-
-
-
 // jika sudah ada session akan dimasukan ke index secara otomatis
 if (isset($_SESSION["login"])) {
 	header("location: index.php");
