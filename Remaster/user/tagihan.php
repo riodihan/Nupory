@@ -2,12 +2,12 @@
 session_start();
 require 'assets/config.php';
 
-if(!isset($_SESSION["login"])){
+if (!isset($_SESSION["login"])) {
     header("location: login.php");
     exit;
 }
 //cek session
-if($_SESSION["id_status"]!= 03){
+if ($_SESSION["id_status"] != 03) {
     header("location: ../admin/index.php");
 }
 
@@ -36,6 +36,7 @@ $cek2 = mysqli_query($koneksi, "SELECT * FROM transaksi
                         WHERE username = '$username' && ID_STATUS_TRANSAKSI = 02
                             
                             ");
+$cek3 = mysqli_fetch_array($cek2);
 
 
 //detail tagihan
@@ -52,7 +53,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
 if (isset($_POST["simpan"])) {
 
     if (upload($_POST) == 1) {
-        echo "<script>alert('Bukti Pembayaran berhasil di Upload, mohon tunggu konfirmasi dari karyawan.'); window.location.href='tagihan.php'</script>";
+        echo "<script>window.location.href='tagihan.php'</script>";
     } else {
         echo mysqli_error($koneksi);
     }
@@ -136,23 +137,23 @@ if (isset($_POST["simpan"])) {
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -334,7 +335,7 @@ if (isset($_POST["simpan"])) {
                                             Tunjukan Bukti Pemesanan ini kepada karyawan saat transaksi di tempat.
                                         </div>
                                         <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data1['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
-                                        
+
                                     </div>
 
                                 </div>
@@ -344,7 +345,7 @@ if (isset($_POST["simpan"])) {
                     <?php } ?>
 
 
-                    <?php if (!isset($cek2)) { ?>
+                    <?php if (!isset($cek3)) { ?>
                         <div class="alert alert-info" role="alert" style="text-align: center;">
                             Anda tidak memiliki tagihan belanja.
                         </div>

@@ -2,12 +2,12 @@
 session_start();
 require 'assets/config.php';
 
-if(!isset($_SESSION["login"])){
+if (!isset($_SESSION["login"])) {
     header("location: login.php");
     exit;
 }
 //cek session
-if($_SESSION["id_status"]!= 03){
+if ($_SESSION["id_status"] != 03) {
     header("location: ../admin/index.php");
 }
 
@@ -37,7 +37,7 @@ $cek = mysqli_fetch_array($detail);
 if (isset($_POST["simpan"])) {
 
     if (tagihan($_POST) == 1) {
-        echo "<script>alert('Silahkan Bayar tagihan anda'); window.location.href='tagihan.php'</script>";
+        echo "<script>window.location.href='tagihan.php'</script>";
     } else {
         echo mysqli_error($koneksi);
     }
@@ -122,23 +122,23 @@ if (isset($_POST["simpan"])) {
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -274,45 +274,67 @@ if (isset($_POST["simpan"])) {
     </div>
     <div id="page-content" class="container-fluid">
         <div class="container">
-        <?php if (isset($cek)) { ?>
-            <table class="table">
-                <caption>Keranjang</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">NO</th>
-                        <th scope="col">Nama Produk</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1 ?>
-                    <?php foreach ($detail as $data) { ?>
-                        <form action="">
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td><?= $data["NAMA_BUNGA"] ?></td>
-                                <td><?= $data["JUMLAH"] ?></td>
-                                <td><?= $data["HARGA"] ?></td>
-                                <td><?= $data["TOTAL_HARGA"] ?></td>
-                                <td><a href="hapus.php?id=<?= $data["ID_DETAIL_TRANSAKSI"] ?>" class="badge badge-danger">Hapus</a></td>
-                            </tr>
-                        </form>
-                        <?php $i++ ?>
-                    <?php } ?>
-                    <?php foreach ($keranjang as $data1) { ?>
+            <?php if (isset($cek)) { ?>
+                <table class="table">
+                    <caption>Keranjang</caption>
+                    <thead>
                         <tr>
-                            <td colspan="4">Jumlah Total</td>
-                            <td><?= $data1["TOTAL_AKHIR"] ?></td>
-                            <td></td>
+                            <th scope="col">NO</th>
+                            <th scope="col">Nama Produk</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Aksi</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1 ?>
+                        <?php foreach ($detail as $data) { ?>
+                            <form action="">
+                                <tr>
+                                    <th scope="row"><?= $i ?></th>
+                                    <td><?= $data["NAMA_BUNGA"] ?></td>
+                                    <td><?= $data["JUMLAH"] ?></td>
+                                    <td><?= $data["HARGA"] ?></td>
+                                    <td><?= $data["TOTAL_HARGA"] ?></td>
+                                    <td><a type="button" class="badge badge-danger" data-toggle="modal" data-target="#staticBackdrop">
+                                            Hapus
+                                        </a>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Peringatan</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Apakah Anda Yakin Ingin Menghapus Produk Ini ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                <a href="hapus.php?id=<?= $data["ID_DETAIL_TRANSAKSI"] ?>" class="btn btn-primary">Hapus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <?php $i++ ?>
+                        <?php } ?>
+                        <?php foreach ($keranjang as $data1) { ?>
+                            <tr>
+                                <td colspan="4">Jumlah Total</td>
+                                <td><?= $data1["TOTAL_AKHIR"] ?></td>
+                                <td></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
 
-            
+
                 <a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Bayar</a>
             <?php } ?>
 

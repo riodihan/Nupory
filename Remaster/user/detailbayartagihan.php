@@ -13,34 +13,38 @@ if ($_POST['rowid']) {
                         ");
     $total = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = 02 && transaksi.ID_TRANSAKSI = '$id'");
 
-     ?>
+?>
 
-        <?php foreach ($total as $data) { ?>
-            <div class="modal-body">
-                <div class="alert alert-success" role="alert">
-                    Silahkan Melakukan Pembayaran sebesar Rp. <?= $data["TOTAL_AKHIR"] ?> ke rekening 201050851 BCA atas nama Idris.
-                    Lalu unggah foto pembayaran anda dibawah sebagai bukti.
-                </div>
+    <?php foreach ($total as $data) { ?>
+        <div class="modal-body">
+            <div class="alert alert-success" role="alert">
+                Silahkan Melakukan Pembayaran sebesar Rp. <?= $data["TOTAL_AKHIR"] ?> ke rekening 201050851 BCA atas nama Idris.
+                Lalu unggah foto pembayaran anda dibawah sebagai bukti.
             </div>
+        </div>
+        <div class="text-center">
+            <img style="width: 450px;" src="images/<?= $data["BUKTI_PEMBAYARAN"]?>" class="rounded mx-auto d-block" alt="Anda Belum Upload Bukti Pembayaran">
+        </div>
 
-            <form action='' method="POST" enctype="multipart/form-data">
-                <div class="form-group container">
-                    <label for="exampleFormControlFile">Unggah foto pembayaran disini</label>
-                    <input name="idtransaksi" value="<?= $data["ID_TRANSAKSI"] ?>" type="hidden" class="form-control-file" id="exampleFormControlFile1">
-                    <input name="bukti" type="file" class="form-control-file" id="exampleFormControlFile1" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
+        <form action='' method="POST" enctype="multipart/form-data">
+            <div class="form-group container">
 
-        <?php } ?>
+                <label for="exampleFormControlFile">Unggah foto pembayaran disini</label>
+                <input name="idtransaksi" value="<?= $data["ID_TRANSAKSI"] ?>" type="hidden" class="form-control-file" id="exampleFormControlFile1">
+                <input name="bukti" type="file" class="form-control-file" id="exampleFormControlFile1" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
+
+    <?php } ?>
 
 
 
 <?php
 
-    }
+}
 
 ?>

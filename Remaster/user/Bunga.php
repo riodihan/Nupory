@@ -3,14 +3,14 @@ require 'assets/config.php';
 session_start();
 
 //cek session
-if($_SESSION["id_status"]!= 03){
+if ($_SESSION["id_status"] != 03) {
     header("location: ../admin/index.php");
 }
 
 //id bunga
 $idbunga = $_GET["id"];
 
-if(!isset($_SESSION["login"])){
+if (!isset($_SESSION["login"])) {
     header("location: login.php");
     exit;
 }
@@ -44,7 +44,7 @@ if (!isset($cek["ID_TRANSAKSI"])) {
     if (isset($_POST["keranjang"])) {
 
         if (keranjang($_POST) == 1) {
-            echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
+            echo "window.location.href='keranjang.php'</script>";
         } else {
             echo mysqli_error($koneksi);
         }
@@ -55,7 +55,7 @@ if (!isset($cek["ID_TRANSAKSI"])) {
 if (isset($_POST["keranjang"])) {
 
     if (detail_keranjang($_POST) == 1) {
-        echo "<script>alert('produk telah masuk kedalam keranjang'); window.location.href='keranjang.php'</script>";
+        echo "<script>window.location.href='keranjang.php'</script>";
     } else {
         echo mysqli_error($koneksi);
     }
@@ -141,23 +141,23 @@ if (isset($_POST["keranjang"])) {
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -325,10 +325,33 @@ if (isset($_POST["keranjang"])) {
                                 <p>Deskripsi Bunga :</p>
                                 <p><?= $data["DESKRIPSI"] ?></p>
                             </div>
-                            <button type="submit" name="keranjang" class="btn btn-success">Masukan keranjang</button>
+
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                                masukan Keranjang
+                            </button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakah Anda Yakin Ingin Membeli Produk Ini ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            <button type="submit" name="keranjang" class="btn btn-primary">Masukan keranjang</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 <?php } ?>
+
 
 
                 <?php if (!isset($cek)) { ?>
@@ -356,7 +379,29 @@ if (isset($_POST["keranjang"])) {
                                 <p>Deskripsi Bunga :</p>
                                 <p><?= $data["DESKRIPSI"] ?></p>
                             </div>
-                            <button type="submit" name="keranjang" class="btn btn-success">Masukan keranjang</button>
+                            <!-- <button type="submit" name="keranjang" class="btn btn-success">Masukan keranjang</button> -->
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal1">
+                                masukan Keranjang
+                            </button>
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakah Anda Yakin Ingin Membeli Produk Ini ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            <button type="submit" name="keranjang" class="btn btn-primary">Masukan keranjang</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 <?php } ?>
@@ -370,56 +415,56 @@ if (isset($_POST["keranjang"])) {
 
 
 <div id="footer" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="address-holder">
-                        <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
-                        <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
-                        <div class="address">
-                            <i class="fas fa-map-marker"></i>
-                            <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="address-holder">
+                    <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
+                    <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
+                    <div class="address">
+                        <i class="fas fa-map-marker"></i>
+                        <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-2">
-                    <div class="footer-menu-holder">
-                        <h4>Lembaga</h4>
-                        <ul class="footer-menu">
-                            <li><a href="tentangkami.php">Tentang Kami</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+                <div class="footer-menu-holder">
+                    <h4>Lembaga</h4>
+                    <ul class="footer-menu">
+                        <li><a href="tentangkami.php">Tentang Kami</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Layanan Kami</h4>
-                        <ul class="footer-menu">
-                            <li><a href="kategori.php">Transaksi Bunga</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Layanan Kami</h4>
+                    <ul class="footer-menu">
+                        <li><a href="kategori.php">Transaksi Bunga</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Fasilitas</h4>
-                        <ul class="footer-menu">
-                            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
-                            <li><a href="temukankami.php">Peta Lokasi</a></li>
-                            <li><a href="faq.php">FAQ</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Fasilitas</h4>
+                    <ul class="footer-menu">
+                        <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                        <li><a href="temukankami.php">Peta Lokasi</a></li>
+                        <li><a href="faq.php">FAQ</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-12 col-sm-1 col-md-1">
-                    <div class="social-menu-holder">
-                        <ul class="social-menu">
-                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-12 col-sm-1 col-md-1">
+                <div class="social-menu-holder">
+                    <ul class="social-menu">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-slider.min.js"></script>

@@ -2,13 +2,13 @@
 session_start();
 require 'assets/config.php';
 
-if(!isset($_SESSION["login"])){
+if (!isset($_SESSION["login"])) {
     header("location: login.php");
     exit;
 }
 
 //cek session
-if($_SESSION["id_status"]!= 03){
+if ($_SESSION["id_status"] != 03) {
     header("location: ../admin/index.php");
 }
 
@@ -124,23 +124,23 @@ if (isset($_POST["terima"])) {
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -288,11 +288,11 @@ if (isset($_POST["terima"])) {
                                     <div class="service-title"><a href="webhosting.html">Pesanan anda</a></div>
                                     <div class="service-details">
                                         <p>Barang Sedang dikirim oleh karyawan kami</p>
-                                        
+
                                         <form action="" method="post">
-                                            <input type="hidden" name="idtransaksi" value="<?= $data["ID_TRANSAKSI"]?>">
+                                            <input type="hidden" name="idtransaksi" value="<?= $data["ID_TRANSAKSI"] ?>">
                                             <input type="hidden" name="idstatustransaksi" value="05">
-                                            <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=".$data['ID_TRANSAKSI'].">Detail</a></td>"; ?>
+                                            <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $data['ID_TRANSAKSI'] . ">Detail</a></td>"; ?>
                                             <button name="terima" class="btn btn-success btn-small">Barang telah diterima</button>
                                         </form>
                                     </div>
