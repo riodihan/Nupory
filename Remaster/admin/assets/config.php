@@ -378,7 +378,7 @@ function ubahpassword($data)
                 WHERE USERNAME = '$username'");
     return $qu;
 }
-<<<<<<< HEAD
+
 function editkategori($data){
     global $koneksi;
     $idKategori = $data["idKategori"];
@@ -397,7 +397,7 @@ function editkategori($data){
 }
 
 
-=======
+
 
 
 function hapususer($id)
@@ -406,5 +406,4 @@ function hapususer($id)
     $qu = mysqli_query($koneksi, "DELETE FROM user WHERE USERNAME = '$id'");
     return $qu;
 }
->>>>>>> b955aeadb708960741280b35ee9c89718cd60493
 ?>

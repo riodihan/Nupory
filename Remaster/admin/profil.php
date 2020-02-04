@@ -370,11 +370,13 @@ if (isset($_POST["ubah1"])) {
                   echo "Karyawan, ";
                   echo $_SESSION['nama_user'];
                 } ?></span>
-                <?php if ($_SESSION['id_status']=="01") { ?>
+
+                <img class="img-profile rounded-circle" src="img/admin.png">
+                <!-- <?php if ($_SESSION['id_status']=="01") { ?>
                     <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
                  <?php }elseif ($_SESSION['id_status']=="02") { ?>
                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?>
+                 <?php } ?> -->
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
