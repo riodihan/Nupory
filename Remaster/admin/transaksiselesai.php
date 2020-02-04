@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require 'assets/config.php';
 
@@ -15,10 +15,10 @@ $hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAK
 
 $gambar = mysqli_query($koneksi, "SELECT BUKTI_PEMBAYARAN FROM transaksi WHERE ID_TRANSAKSI ='*' ");
 
-$hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
+$hasil2 = mysqli_query($koneksi, "SELECT * FROM status_transaksi");
 
-$kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+$kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
 
 ?>
@@ -62,11 +62,11 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
           <i class="fas fa-snowflake"></i>
         </div>
         <div class="sidebar-brand-text mx-3">
-        <?php if ($_SESSION['id_status']=="01") {
-          echo "Admin";
-        }elseif ($_SESSION['id_status']=="02") {
-          echo "Karyawan";
-        }?> <br> Nursery Polije</div>
+          <?php if ($_SESSION['id_status'] == "01") {
+            echo "Admin";
+          } elseif ($_SESSION['id_status'] == "02") {
+            echo "Karyawan";
+          } ?> <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -104,9 +104,10 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
               <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="datakategori.php">
-              <i class="fas fa-fw fa-cube text-primary"></i>
+              <i class="fas fa-fw fa-list text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
+
             <a class="collapse-item" href="tagihan.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
@@ -122,117 +123,115 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
       <!-- Transaksi -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Transaksi</span>
         </a>
         <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="tagihan.php">
-                <i class="fas fa-fw fa-user text-primary"></i>
-                <span class="text-primary">Tagihan</span>
-              </a>
-              <a class="collapse-item" href="dikemas.php">
-                <i class="fas fa-fw fa-snowflake text-primary"></i>
-                <span class="text-primary">Dikemas</span>
+            <a class="collapse-item" href="tagihan.php">
+              <i class="fas fa-fw fa-sticky-note text-primary"></i>
+              <span class="text-primary">Tagihan</span>
+            </a>
+            <a class="collapse-item" href="dikemas.php">
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Dikemas</span>
             </a>
             <a class="collapse-item" href="dikirim.php">
-                <i class="fas fa-fw fa-cube text-primary"></i>
-                <span class="text-primary">Dikirim</span>
+              <i class="fas fa-fw fa-truck-pickup text-primary"></i>
+              <span class="text-primary">Dikirim</span>
             </a>
-            
+
             <a class="collapse-item" href="transaksiselesai.php">
-                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
-                <span class="text-primary">Selesai</span>
+              <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+              <span class="text-primary">Selesai</span>
             </a>
           </div>
         </div>
       </li>
 
+
       <!-- Divider -->
-      <?php if ($_SESSION['id_status']=="01") { ?>
+      <?php if ($_SESSION['id_status'] == "01") { ?>
         <hr class="sidebar-divider">
-     <? }else{ ?> 
-     <?php } ?>
-      
+      <?php } ?>
+
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        <?php if ($_SESSION['id_status']=="01") {
+        <?php if ($_SESSION['id_status'] == "01") {
           echo "Tambah / Edit";
-        }else{
         } ?>
       </div>
 
       <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
-          <i class="fas fa-fw fa-snowflake"></i>
-          <span>Bunga
-          </span>
-        </a>
-        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editbunga.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahbunga.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Bunga</span>
-            </a>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Bunga
+            </span>
+          </a>
+          <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editbunga.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit </span>
+              </a>
+              <a class="collapse-item" href="tambahbunga.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Bunga</span>
+              </a>
+            </div>
           </div>
-        </div>
-      <?php  }else{ ?>
-      <?php } ?>
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
-          </div>
-        </div>
-      <?php  }else{ ?>
-      <?php } ?>
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkategori.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
+          <? } else { ?>
+          <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Karyawan
-          </span>
-        </a>
-        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Karyawan</span>
-            </a>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Karyawan
+            </span>
+          </a>
+          <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkaryawan.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkaryawan.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Karyawan</span>
+              </a>
+            </div>
           </div>
-        </div> 
-       <?php }else{ ?>
-      <?php } ?>
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Divider -->
@@ -299,7 +298,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                 <!-- Counter - Alerts -->
+                <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
@@ -307,20 +306,21 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <h6 class="dropdown-header">
                   Tagihan Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php while ($row = mysqli_fetch_assoc($tagihan)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
-                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
-                  </div>
-                </a>
-                </a>
-              <?php endwhile;?>
+                    <div>
+                      <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"] ?></div>
+                      <span class="font-weight-bold"><?php echo "tagihan ";
+                                                      echo $row["USERNAME"] ?></span>
+                    </div>
+                  </a>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="tagihan.php">Baca Selengkapnya</a>
               </div>
             </li>
@@ -337,14 +337,14 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
-                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
-                  </div>
-                </a>
-                <?php endwhile;?>
+                <?php while ($row = mysqli_fetch_assoc($kritik)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="font-weight-bold">
+                      <div class="text-truncate"><?php echo $row["ISI_KRITIK"] ?></div>
+                      <div class="small text-gray-500">Dari <?php echo $row["USERNAME"] ?></div>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
@@ -355,13 +355,13 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php if ($_SESSION['id_status']=="01") {
+                  <?php if ($_SESSION['id_status'] == "01") {
                     echo "Admin, ";
                     echo $_SESSION['nama_user'];
-                  }elseif ($_SESSION['id_status']=="02") {
+                  } elseif ($_SESSION['id_status'] == "02") {
                     echo "Karyawan, ";
                     echo $_SESSION['nama_user'];
-                  }?></span>
+                  } ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -389,36 +389,36 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
               Selamat Datang
-              <?php if ($_SESSION['id_status']=="01") {
+              <?php if ($_SESSION['id_status'] == "01") {
                 echo "Admin ";
                 echo $_SESSION["nama_user"];
-              }elseif ($_SESSION['id_status']=="02") {
+              } elseif ($_SESSION['id_status'] == "02") {
                 echo "Karyawan ";
                 echo $_SESSION["nama_user"];
-              }?>
+              } ?>
             </h1>
           </div>
 
-        <!-- #############################################################################################
+          <!-- #############################################################################################
 				                              Modal Import (Tambah Bunga)
         ############################################################################################# -->
-        <!-- modal  detail -->
-        <div class="modal fade" id="myModal" role="dialog">
+          <!-- modal  detail -->
+          <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Detail Transaksi</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="fetched-data"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-                    </div>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Detail Transaksi</h4>
                 </div>
+                <div class="modal-body">
+                  <div class="fetched-data"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
 
 
 
@@ -444,38 +444,38 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                     </tr>
                   </thead>
                   <tbody>
-                    <?php if ($_SESSION['id_status']=="01") { ?>
-                      <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr id="<?php echo $row["ID_TRANSAKSI"];?>">
-                      <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"]?></td>
-                      <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"]?></td>
-                      <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"]?></td>
-                      <td data-target="username"><?php echo $row["USERNAME"]?></td>
-                      <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
-                      <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
-                      <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
-                      
-                      <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Lihat</a></td>"; ?>
-                      
-                    </tr>
-                    <?php endwhile;?>
-                  <?php  }elseif ($_SESSION['id_status']=="02") { ?>
-                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
-                    <tr id="<?php echo $row["ID_TRANSAKSI"];?>">
-                      <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"]?></td>
-                      <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"]?></td>
-                      <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"]?></td>
-                      <td data-target="username"><?php echo $row["USERNAME"]?></td>
-                      <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
-                      <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
-                      <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
-                      <td>
-                      <a class="btn btn-success" href="#" data-role="lihat" data-id=<?php echo $row['ID_TRANSAKSI'];?>>Lihat</i></a>
-                      </td>
-                    </tr>
-                    <?php endwhile;?>.
-                 <?php } ?>
-                     
+                    <?php if ($_SESSION['id_status'] == "01") { ?>
+                      <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
+                        <tr id="<?php echo $row["ID_TRANSAKSI"]; ?>">
+                          <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"] ?></td>
+                          <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"] ?></td>
+                          <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"] ?></td>
+                          <td data-target="username"><?php echo $row["USERNAME"] ?></td>
+                          <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"] ?></td>
+                          <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"] ?></td>
+                          <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"] ?></td>
+
+                          <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Lihat</a></td>"; ?>
+
+                        </tr>
+                      <?php endwhile; ?>
+                    <?php  } elseif ($_SESSION['id_status'] == "02") { ?>
+                      <?php while ($row = mysqli_fetch_assoc($hasil1)) : ?>
+                        <tr id="<?php echo $row["ID_TRANSAKSI"]; ?>">
+                          <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"] ?></td>
+                          <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"] ?></td>
+                          <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"] ?></td>
+                          <td data-target="username"><?php echo $row["USERNAME"] ?></td>
+                          <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"] ?></td>
+                          <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"] ?></td>
+                          <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"] ?></td>
+                          <td>
+                            <a class="btn btn-success" href="#" data-role="lihat" data-id=<?php echo $row['ID_TRANSAKSI']; ?>>Lihat</i></a>
+                          </td>
+                        </tr>
+                        <?php endwhile; ?>.
+                      <?php } ?>
+
                   </tbody>
                 </table>
                 <!-- <a class="btn btn-primary" onclick="window.print();"><i class="fa fa-print"></i> Print Halaman Ini</a> -->
@@ -547,65 +547,65 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
   <script src="js/demo/datatables-demo.js"></script>
 
   <!-- Counter Kritik AJAX -->
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterkr").innerHTML = this.responseText;
+            document.getElementById("counterkr").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
   </script>
 
   <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterth").innerHTML = this.responseText;
+            document.getElementById("counterth").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
   </script>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myModal').on('show.bs.modal', function(e) {
-                var rowid = $(e.relatedTarget).data('id');
-                //menggunakan fungsi ajax untuk pengambilan data
-                $.ajax({
-                    type: 'post',
-                    url: 'detailtagihan.php',
-                    data: 'rowid=' + rowid,
-                    success: function(data) {
-                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
-                    }
-                });
-            });
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#myModal').on('show.bs.modal', function(e) {
+        var rowid = $(e.relatedTarget).data('id');
+        //menggunakan fungsi ajax untuk pengambilan data
+        $.ajax({
+          type: 'post',
+          url: 'detailtagihan.php',
+          data: 'rowid=' + rowid,
+          success: function(data) {
+            $('.fetched-data').html(data); //menampilkan data ke dalam modal
+          }
         });
-    </script>
+      });
+    });
+  </script>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-    </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+  </script>
 
 </body>
 

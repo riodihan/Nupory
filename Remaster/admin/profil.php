@@ -12,6 +12,15 @@ if (!isset($_SESSION["login"])) {
   exit;
 }
 
+//ubah foto
+if (isset($_POST["ubahfoto"])) {
+  if (uploadfoto($_POST) == 1) {
+    echo "<script>alert('Foto berhasil diubah');  window.location.href='profil.php'</script>";
+  } else {
+    echo "<script>alert('Foto Gagal diubah');</script>";
+  }
+}
+
 $username = $_SESSION["username"];
 
 //menampilkan data user
@@ -23,6 +32,7 @@ WHERE user.ID_STATUS = status.ID_STATUS AND username = '$username'");
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
+$user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
 
 //ubah biodata
 if (isset($_POST["ubah"])) {
@@ -121,14 +131,15 @@ if (isset($_POST["ubah1"])) {
               <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="datakategori.php">
-              <i class="fas fa-fw fa-cube text-primary"></i>
+              <i class="fas fa-fw fa-list text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+
+            <a class="collapse-item" href="tagihan.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+            <a class="collapse-item" href="datakritik.php">
               <i class="fas fa-fw fa-comments text-primary"></i>
               <span class="text-primary">Kritik</span>
             </a>
@@ -139,21 +150,21 @@ if (isset($_POST["ubah1"])) {
       <!-- Transaksi -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Transaksi</span>
         </a>
         <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="tagihan.php">
-              <i class="fas fa-fw fa-user text-primary"></i>
+              <i class="fas fa-fw fa-sticky-note text-primary"></i>
               <span class="text-primary">Tagihan</span>
             </a>
             <a class="collapse-item" href="dikemas.php">
-              <i class="fas fa-fw fa-snowflake text-primary"></i>
+              <i class="fas fa-fw fa-cube text-primary"></i>
               <span class="text-primary">Dikemas</span>
             </a>
             <a class="collapse-item" href="dikirim.php">
-              <i class="fas fa-fw fa-cube text-primary"></i>
+              <i class="fas fa-fw fa-truck-pickup text-primary"></i>
               <span class="text-primary">Dikirim</span>
             </a>
 
@@ -165,20 +176,23 @@ if (isset($_POST["ubah1"])) {
         </div>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
 
-      <!-- Heading -->
+      <!-- Divider -->
       <?php if ($_SESSION['id_status'] == "01") { ?>
-        <div class="sidebar-heading">
-          Tambah / Edit
-        </div>
-      <?php } else { ?>
+        <hr class="sidebar-divider">
       <?php } ?>
 
-      <?php if ($_SESSION['id_status'] == "01") { ?>
-        <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
-        <li class="nav-item">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        <?php if ($_SESSION['id_status'] == "01") {
+          echo "Tambah / Edit";
+        } ?>
+      </div>
+
+      <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
+      <li class="nav-item">
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
             <i class="fas fa-fw fa-snowflake"></i>
             <span>Bunga
@@ -196,10 +210,13 @@ if (isset($_POST["ubah1"])) {
               </a>
             </div>
           </div>
-        </li>
+        <? } else { ?>
+        <?php } ?>
+      </li>
 
-        <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
-        <li class="nav-item">
+      <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
+      <li class="nav-item">
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
             <i class="fas fa-fw fa-tag"></i>
             <span>Kategori Bunga
@@ -207,7 +224,7 @@ if (isset($_POST["ubah1"])) {
           </a>
           <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="#">
+              <a class="collapse-item" href="editkategori.php">
                 <i class="fas fa-fw fa-edit text-primary"></i>
                 <span class="text-primary">Edit</span>
               </a>
@@ -216,11 +233,13 @@ if (isset($_POST["ubah1"])) {
                 <span class="text-primary">Tambah Kategori</span>
               </a>
             </div>
-          </div>
-        </li>
+          <? } else { ?>
+          <?php } ?>
+      </li>
 
-        <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
-        <li class="nav-item">
+      <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
+      <li class="nav-item">
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
             <i class="fas fa-fw fa-user"></i>
             <span>Karyawan
@@ -228,7 +247,7 @@ if (isset($_POST["ubah1"])) {
           </a>
           <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="#">
+              <a class="collapse-item" href="editkaryawan.php">
                 <i class="fas fa-fw fa-edit text-primary"></i>
                 <span class="text-primary">Edit</span>
               </a>
@@ -238,13 +257,13 @@ if (isset($_POST["ubah1"])) {
               </a>
             </div>
           </div>
-        </li>
+        <? } else { ?>
+        <?php } ?>
+      </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-      <?php } else { ?>
-      <?php } ?>
 
 
 
@@ -371,8 +390,12 @@ if (isset($_POST["ubah1"])) {
                                                                             echo "Karyawan, ";
                                                                             echo $_SESSION['nama_user'];
                                                                           } ?></span>
+
+                <!-- <img class="img-profile rounded-circle" src="img/admin.png"> -->
                 <?php if ($_SESSION['id_status'] == "01") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
                 <?php } ?>
@@ -411,16 +434,18 @@ if (isset($_POST["ubah1"])) {
           </div>
 
           <!-- Card Profil -->
-          <div class="card mb-3" style="max-width: 1080px;">
+          <div class="card mb-5" style="max-width: 1080px;">
             <div class="row no-gutters">
               <div class="col-md-4">
 
-                <!-- <?php if ($_SESSION['id_status'] == "01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?> -->
-                <img src="img/admin.png" class="card-img" alt="...">
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile " src="img/<?= $data["FOTO_USER"] ?>" width="400px">
+                  <?php } ?>
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <img class="img-profile " src=" $_SESSION['foto_user']" width="400px" >
+                <?php } ?>
+                <!-- <img src="img/admin.png" class="card-img" alt="..."> -->
 
               </div>
 
@@ -431,53 +456,48 @@ if (isset($_POST["ubah1"])) {
                                                             } elseif ($_SESSION['id_status'] == "02") {
                                                               echo "Karyawan";
                                                             } ?></h5>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <table>
-                        <th><?php foreach ($profile as $data) { ?>
-                          <ul>
-                            <li class="font-weight-bold text-right">Username <?php echo $data["USERNAME"]; ?></li>
-                            <li class="font-weight-bold text-right">Nama</li>
-                            <li class="font-weight-bold text-right">Status</li>
-                            <li class="font-weight-bold text-right">Alamat</li>
-                            <li class="font-weight-bold text-right">No. Telepon</li>
-                            <li class="font-weight-bold text-right">Email</li>
-                          </ul>
-                        </th>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-6">
                         <th>
-                          <ul>
-                            
-                              <li>
-                                <p></p>
-                              <li>
-                                <p><?php echo $data["NAMA_USER"]; ?></p>
-                              </li>
-                              <p><?php echo $data["NAMA_STATUS"]; ?></p>
-                              <p><?php echo $data["ALAMAT"]; ?></p>
-                              <p><?php echo $data["NO_TELEPON"]; ?></p>
-                              <p><?php echo $data["EMAIL"]; ?></p>
-                              </li>
-                          </ul>
+                          <p class="font-weight-bold text-right">Username</p>
+                          <p class="font-weight-bold text-right">Nama</p>
+                          <p class="font-weight-bold text-right">Status</p>
+                          <p class="font-weight-bold text-right">Alamat</p>
+                          <p class="font-weight-bold text-right">No. Telpon</p>
+                          <p class="font-weight-bold text-right">Email</p>
                         </th>
-                      </table>
+                      </div>
+                      <?php foreach ($profile as $data) { ?>
+                        <div class="col-md-6">
+                          <td>
+                            <p><?php echo $data["USERNAME"]; ?></p>
+                            <p><?php echo $data["NAMA_USER"]; ?></p>
+                            <p><?php echo $data["NAMA_STATUS"]; ?></p>
+                            <p><?php echo $data["ALAMAT"]; ?></p>
+                            <p><?php echo $data["NO_TELEPON"]; ?></p>
+                            <p><?php echo $data["EMAIL"]; ?></p>
+                          </td>
+                        </div>
+
 
                     </div>
-
-
-
-
                   </div>
-                  <div class="row">
-                    <div class="col text-right">
-                      <a href="#" data-toggle="modal" data-target="#exampleModal">
-                        <button class="btn btn-primary">Edit Profil</button>
-                      </a>
-                    </div>
-                    <div class="col text-left">
-                      <a href="#" data-toggle="modal" data-target="#exampleModal1">
-                        <button class="btn btn-primary text-right">Ganti Password</button>
-                      </a>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                  </div>
+                  <div class="col">
+                    <a href="#" data-toggle="modal" data-target="#exampleModalFoto">
+                      <button class="btn btn-primary"> Edit Foto</button>
+                    </a>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">
+                      <button class="btn btn-primary">Edit Profil</button>
+                      <!-- <a href="#" class="btn btn-primary">Edit Profil</a> -->
+                    </a>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal1">
+                      <button class="btn btn-primary">Ganti Password</button>
+                    </a>
                   </div>
                 </div>
 
@@ -562,11 +582,44 @@ if (isset($_POST["ubah1"])) {
         </div>
       <?php } ?>
 
+      <!-- modal edit foto -->
+      <div class="modal fade" id="exampleModalFoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalFoto" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalFoto">Ubah Foto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="formGroupExampleInput">Pilih Foto</label>
+                <input type="file" name="foto" class="form-control" id="formGroupExampleInput">
+                <input type="hidden" name="username" class="form-control" id="formGroupExampleInput" value="<?php echo $username ?>">
+              </div>
+              <div class="alert alert-success" role="alert">
+                Upload Foto yang bertipe .JPG .JPEG .PNG
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" name="ubahfoto" class="btn btn-primary">Ubah</button>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Nursery polije 2020</span>
           </div>
         </div>
       </footer>
