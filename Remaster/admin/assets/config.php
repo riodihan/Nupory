@@ -379,6 +379,26 @@ function ubahpassword($data)
     return $qu;
 }
 
+function editkategori($data){
+    global $koneksi;
+    $idKategori = $data["idKategori"];
+    $namaKategori= htmlspecialchars($data["namaKategori"]);
+    $DeskripsiKategori = htmlspecialchars($data["DeskripsiKategori"]);
+    $fotoKategori = htmlspecialchars($data["fotoKategori"]);
+
+    $query = "UPDATE kategori SET
+                NAMA_KATEGORI = '$namaKategori',
+                DESKRIPSI = '$deskripsiKategori',
+                GAMBAR_KATEGORI = '$fotoKategori',
+            WHERE ID_KATEGORI = '$idKategori'
+                ";
+    $q_Kategori = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+    return $q_Kategori;
+}
+
+
+
+
 
 function hapususer($id)
 {
