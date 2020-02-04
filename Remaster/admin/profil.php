@@ -393,12 +393,14 @@ if (isset($_POST["ubah1"])) {
           <div class="card mb-3" style="max-width: 1080px;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <?php if ($_SESSION['id_status']=="01") { ?>
+
+                <!-- <?php if ($_SESSION['id_status']=="01") { ?>
                     <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
                  <?php }elseif ($_SESSION['id_status']=="02") { ?>
                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?>
-                <!-- <img src="https://source.unsplash.com/QAB-WJcbgJk/480x480" class="card-img" alt="..."> -->
+                 <?php } ?> -->
+                <img src="img/admin.png" class="card-img" alt="...">
+                
               </div>
 
               <div class="col-md-8">

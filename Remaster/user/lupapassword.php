@@ -61,7 +61,7 @@ if ($_POST) {
             $mail->isHTML(true);
 
             $mail->Subject = 'Nursery Polije';
-            $mail->Body    = $row["PASSWORD"];
+            $mail->Body    = 'Password Anda Adalah= '.$row["PASSWORD"];
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 
