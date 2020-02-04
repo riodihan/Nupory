@@ -171,25 +171,25 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editkategori.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
-          </div>
-        <? } else { ?>
-        <?php } ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkategori.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
+          <? } else { ?>
+          <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
@@ -343,9 +343,9 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
                     echo $_SESSION["nama_user"];
                   } ?></span>
                 <?php if ($_SESSION['id_status'] == "01") { ?>
-                  <?php foreach ($user as $data){?>
-                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"]?>">
-                  <?php }?>
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
                 <?php } ?>
@@ -393,21 +393,21 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
             <div class="row">
 
               <!-- Earnings (Monthly) Card Example -->
-              <!-- <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendapatan (Bulan ini)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 150.000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transaksi Selesai</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><i id="countertr"></i></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div> -->
 
               <!-- Earnings (Monthly) Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
@@ -415,8 +415,8 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pesanan masuk</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><i id="countertr"></i></div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a href="tagihan.php">Tagihan Masuk</a></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><i id="counterth"></i></div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-box fa-2x text-gray-300"></i>
