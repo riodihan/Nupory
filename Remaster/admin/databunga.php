@@ -501,7 +501,7 @@
                   <div class="input-group">
                     <div class="custom-file">
                       <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
-                      <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                      <label class="custom-file-label" for="fotobunga" ></label>
                     </div>
                   </div>
                 </div>
@@ -580,8 +580,8 @@
                   <label for="fotoBunga1">Foto Bunga</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" name="fotoBunga1" class="custom-file-input" id="fotoBunga1" aria-describedby="fotobunga">
-                      <label class="custom-file-label" for="fotoBunga1">Pilih foto</label>
+                      <input type="file" name="fotoBunga1" class="custom-file-input" id="fotoBunga1">
+                      <label class="custom-file-label" for="fotoBunga1">Pilih File</label>
                     </div>
                   </div>
                 </div>
@@ -719,6 +719,14 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <!-- Nama Muncul -->
+  <script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 
   <script type="text/javascript" >
     function loadDoc() {

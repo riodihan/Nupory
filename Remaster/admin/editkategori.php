@@ -553,6 +553,14 @@ if (isset($_POST["submit"])) {
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  
+  <!-- Nama Muncul -->
+  <script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 
   <!-- Counter Kritik AJAX -->
   <script type="text/javascript">
