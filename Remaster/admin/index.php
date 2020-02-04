@@ -1,11 +1,11 @@
-<?php   
+<?php
 session_start();
 require 'assets/config.php';
 
-$kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+$kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,11 +42,11 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
           <i class="fas fa-snowflake"></i>
         </div> -->
         <div class="sidebar-brand-text mx-3">
-          <?php if ($_SESSION['id_status']=="01") {
+          <?php if ($_SESSION['id_status'] == "01") {
             echo "Admin";
-          }elseif ($_SESSION['id_status']=="02") {
+          } elseif ($_SESSION['id_status'] == "02") {
             echo "Karyawan";
-          }?> <br> Nursery Polije</div>
+          } ?> <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -64,7 +64,7 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
 
       <!-- Heading -->
       <div class="sidebar-heading">
-          Database
+        Database
       </div>
 
       <!-- Data -->
@@ -75,26 +75,26 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="datauser.php">
-                <i class="fas fa-fw fa-user text-primary"></i>
-                <span class="text-primary">User</span>
-              </a>
-              <a class="collapse-item" href="databunga.php">
-                <i class="fas fa-fw fa-snowflake text-primary"></i>
-                <span class="text-primary">Bunga</span>
+            <a class="collapse-item" href="datauser.php">
+              <i class="fas fa-fw fa-user text-primary"></i>
+              <span class="text-primary">User</span>
+            </a>
+            <a class="collapse-item" href="databunga.php">
+              <i class="fas fa-fw fa-snowflake text-primary"></i>
+              <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="datakategori.php">
-                <i class="fas fa-fw fa-cube text-primary"></i>
-                <span class="text-primary">Kategori</span>
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Kategori</span>
             </a>
-            
+
             <a class="collapse-item" href="tagihan.php">
-                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
-                <span class="text-primary">Transaksi</span>
+              <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+              <span class="text-primary">Transaksi</span>
             </a>
             <a class="collapse-item" href="datakritik.php">
-                <i class="fas fa-fw fa-comments text-primary"></i>
-                <span class="text-primary">Kritik</span>
+              <i class="fas fa-fw fa-comments text-primary"></i>
+              <span class="text-primary">Kritik</span>
             </a>
           </div>
         </div>
@@ -108,22 +108,22 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
         </a>
         <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="tagihan.php">
-                <i class="fas fa-fw fa-user text-primary"></i>
-                <span class="text-primary">Tagihan</span>
-              </a>
-              <a class="collapse-item" href="dikemas.php">
-                <i class="fas fa-fw fa-snowflake text-primary"></i>
-                <span class="text-primary">Dikemas</span>
+            <a class="collapse-item" href="tagihan.php">
+              <i class="fas fa-fw fa-user text-primary"></i>
+              <span class="text-primary">Tagihan</span>
+            </a>
+            <a class="collapse-item" href="dikemas.php">
+              <i class="fas fa-fw fa-snowflake text-primary"></i>
+              <span class="text-primary">Dikemas</span>
             </a>
             <a class="collapse-item" href="dikirim.php">
-                <i class="fas fa-fw fa-cube text-primary"></i>
-                <span class="text-primary">Dikirim</span>
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Dikirim</span>
             </a>
-            
+
             <a class="collapse-item" href="transaksiselesai.php">
-                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
-                <span class="text-primary">Selesai</span>
+              <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+              <span class="text-primary">Selesai</span>
             </a>
           </div>
         </div>
@@ -131,88 +131,88 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
 
 
       <!-- Divider -->
-      <?php if ($_SESSION['id_status']=="01") { ?>
+      <?php if ($_SESSION['id_status'] == "01") { ?>
         <hr class="sidebar-divider">
-     <?php }?>
-      
+      <?php } ?>
+
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        <?php if ($_SESSION['id_status']=="01") { 
+        <?php if ($_SESSION['id_status'] == "01") {
           echo "Tambah / Edit";
-        }?>
+        } ?>
       </div>
 
       <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
-          <i class="fas fa-fw fa-snowflake"></i>
-          <span>Bunga
-          </span>
-        </a>
-        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editbunga.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit </span>
-            </a>
-            <a class="collapse-item" href="tambahbunga.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Bunga</span>
-            </a>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Bunga
+            </span>
+          </a>
+          <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editbunga.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit </span>
+              </a>
+              <a class="collapse-item" href="tambahbunga.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Bunga</span>
+              </a>
+            </div>
           </div>
-        </div>
-      <? } else { ?> 
-      <?php } ?>
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="#">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
           </div>
-        </div>
-      <? } else { ?> 
-      <?php } ?>
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Karyawan
-          </span>
-        </a>
-        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editkaryawan.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkaryawan.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Karyawan</span>
-            </a>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Karyawan
+            </span>
+          </a>
+          <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkaryawan.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkaryawan.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Karyawan</span>
+              </a>
+            </div>
           </div>
-      </div> 
         <? } else { ?>
-   <?php } ?>
+        <?php } ?>
       </li>
 
       <!-- Divider -->
@@ -285,21 +285,21 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                 Tagihan Baru
+                  Tagihan Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php while ($row = mysqli_fetch_assoc($tagihan)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
-                    <span  class="font-weight-bold"><?php echo $row["USERNAME"]?></span>
-                  </div>
-                </a>
-                <?php endwhile;?>
+                    <div>
+                      <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"] ?></div>
+                      <span class="font-weight-bold"><?php echo $row["USERNAME"] ?></span>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="tagihan.php">Baca Selengkapnya</a>
               </div>
             </li>
@@ -316,14 +316,14 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                 <h6 class="dropdown-header">
                   Kritik Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
-                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
-                  </div>
-                </a>
-                <?php endwhile;?>
+                <?php while ($row = mysqli_fetch_assoc($kritik)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="font-weight-bold">
+                      <div class="text-truncate"><?php echo $row["ISI_KRITIK"] ?></div>
+                      <div class="small text-gray-500">Dari <?php echo $row["USERNAME"] ?></div>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="">Baca Selengkapnya</a>
               </div>
             </li>
@@ -334,19 +334,19 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php if ($_SESSION['id_status']=="01") {
+                  <?php if ($_SESSION['id_status'] == "01") {
                     echo "Admin, ";
                     echo $_SESSION["nama_user"];
-                  }elseif ($_SESSION['id_status']=="02") {
+                  } elseif ($_SESSION['id_status'] == "02") {
                     echo "Karyawan, ";
                     echo $_SESSION["nama_user"];
-                  }?></span>
-                  <?php if ($_SESSION['id_status']=="01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?>
-                
+                  } ?></span>
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } ?>
+
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -372,25 +372,25 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Selamat Datang,
-              <?php if ($_SESSION['id_status']=="01") {
+              <?php if ($_SESSION['id_status'] == "01") {
                 echo "Admin ";
                 echo $_SESSION['nama_user'];
-              }elseif ($_SESSION['id_status']=="02") {
+              } elseif ($_SESSION['id_status'] == "02") {
                 echo "Karyawan ";
                 echo $_SESSION['nama_user'];
-              }?></h1>
-              <?php if ($_SESSION['id_status']=="01") { ?>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-             <?php }?>
-            
+              } ?></h1>
+            <?php if ($_SESSION['id_status'] == "01") { ?>
+              <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+            <?php } ?>
+
           </div>
 
           <!-- Content Row -->
           <div class="container">
-          <div class="row">
+            <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <!-- <div class="col-xl-3 col-md-6 mb-4">
+              <!-- Earnings (Monthly) Card Example -->
+              <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -406,141 +406,141 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
               </div>
             </div> -->
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pesanan masuk</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><i id="countertr"></i></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-box fa-2x text-gray-300"></i>
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pesanan masuk</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><i id="countertr"></i></div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-box fa-2x text-gray-300"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </div><br><br><br><br><br><br><br><br><br><br><br><br>
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Nursery Polije 2020</span>
+          <!-- Footer -->
+          <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Nursery Polije 2020</span>
+              </div>
+            </div>
+          </footer>
+          <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+      </div>
+      <!-- End of Page Wrapper -->
+
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+      </a>
+
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" href="../user/logout.php">Logout</a>
+            </div>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="../user/logout.php">Logout</a>
-        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Bootstrap core JavaScript-->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+      <!-- Page level plugins -->
+      <script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+      <!-- Page level custom scripts -->
+      <script src="js/demo/chart-area-demo.js"></script>
+      <script src="js/demo/chart-pie-demo.js"></script>
 
-  <!-- Counter Transaksi AJAX -->
-  <script type="text/javascript" >
-    function loadDoc() {
-      setInterval(function(){
+      <!-- Counter Transaksi AJAX -->
+      <script type="text/javascript">
+        function loadDoc() {
+          setInterval(function() {
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("countertr").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "countertransaksi.php", true);
-        xhttp.send();
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("countertr").innerHTML = this.responseText;
+              }
+            };
+            xhttp.open("GET", "countertransaksi.php", true);
+            xhttp.send();
 
-        },1000);
+          }, 1000);
 
-    }
-    loadDoc();
-  </script>
+        }
+        loadDoc();
+      </script>
 
-  <!-- Counter Kritik AJAX -->
-  <script type="text/javascript" >
-    function loadDoc() {
-      setInterval(function(){
+      <!-- Counter Kritik AJAX -->
+      <script type="text/javascript">
+        function loadDoc() {
+          setInterval(function() {
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterkr").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "counterkritik.php", true);
-        xhttp.send();
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("counterkr").innerHTML = this.responseText;
+              }
+            };
+            xhttp.open("GET", "counterkritik.php", true);
+            xhttp.send();
 
-        },1000);
+          }, 1000);
 
-    }
-    loadDoc();
-  </script>
+        }
+        loadDoc();
+      </script>
 
-  <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript" >
-    function loadDoc() {
-      setInterval(function(){
+      <!-- Counter Tagihan AJAX -->
+      <script type="text/javascript">
+        function loadDoc() {
+          setInterval(function() {
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterth").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "countertagihan.php", true);
-        xhttp.send();
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("counterth").innerHTML = this.responseText;
+              }
+            };
+            xhttp.open("GET", "countertagihan.php", true);
+            xhttp.send();
 
-        },1000);
+          }, 1000);
 
-    }
-    loadDoc();
-  </script>
+        }
+        loadDoc();
+      </script>
 </body>
 
 </html>
