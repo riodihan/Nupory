@@ -245,10 +245,10 @@ function uploadBunga()  {
     $ekstensiGambar1 = explode('.', $namaFile1);
     $ekstensiGambar1 = strtolower(end($ekstensiGambar1));
     if (!in_array($ekstensiGambar1, $ekstensiGambarValid1)) {
-        // echo "<script>
-        //       alert('yang anda upload bukan gambar!');
-        //       document.location.href = '';
-        //     </script>";
+        echo "<script>
+              alert('yang anda upload bukan gambar!');
+              document.location.href = '';
+            </script>";
             return false; 
     }
 

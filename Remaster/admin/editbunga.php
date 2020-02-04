@@ -16,15 +16,15 @@ if (isset($_POST["edit"])) {
 
   //apakah data berhasil diubah
   if (editbunga1($_POST) > 0) {
-    // echo "<script>
-    //           alert('Data berhasil diedit!');
-    //           document.location.href = 'editbunga.php';
-    //         </script> ";
+    echo "<script>
+              alert('Data berhasil diedit!');
+              document.location.href = 'editbunga.php';
+            </script> ";
   } else {
-    // echo "<script>
-    //           alert('Data gagal diedit!');
-    //           document.location.href = 'editbunga.php';
-    //         </script>";
+    echo "<script>
+              alert('Data gagal diedit!');
+              document.location.href = 'editbunga.php';
+            </script>";
   }
 }
 ?>
