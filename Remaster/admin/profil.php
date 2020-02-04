@@ -121,14 +121,15 @@ if (isset($_POST["ubah1"])) {
               <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="datakategori.php">
-              <i class="fas fa-fw fa-cube text-primary"></i>
+              <i class="fas fa-fw fa-list text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+
+            <a class="collapse-item" href="tagihan.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
             </a>
-            <a class="collapse-item" href="cards.html">
+            <a class="collapse-item" href="datakritik.php">
               <i class="fas fa-fw fa-comments text-primary"></i>
               <span class="text-primary">Kritik</span>
             </a>
@@ -139,21 +140,21 @@ if (isset($_POST["ubah1"])) {
       <!-- Transaksi -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Transaksi</span>
         </a>
         <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="tagihan.php">
-              <i class="fas fa-fw fa-user text-primary"></i>
+              <i class="fas fa-fw fa-sticky-note text-primary"></i>
               <span class="text-primary">Tagihan</span>
             </a>
             <a class="collapse-item" href="dikemas.php">
-              <i class="fas fa-fw fa-snowflake text-primary"></i>
+              <i class="fas fa-fw fa-cube text-primary"></i>
               <span class="text-primary">Dikemas</span>
             </a>
             <a class="collapse-item" href="dikirim.php">
-              <i class="fas fa-fw fa-cube text-primary"></i>
+              <i class="fas fa-fw fa-truck-pickup text-primary"></i>
               <span class="text-primary">Dikirim</span>
             </a>
 
@@ -165,20 +166,23 @@ if (isset($_POST["ubah1"])) {
         </div>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
 
-      <!-- Heading -->
+      <!-- Divider -->
       <?php if ($_SESSION['id_status'] == "01") { ?>
-        <div class="sidebar-heading">
-          Tambah / Edit
-        </div>
-      <?php } else { ?>
+        <hr class="sidebar-divider">
       <?php } ?>
 
-      <?php if ($_SESSION['id_status'] == "01") { ?>
-        <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
-        <li class="nav-item">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        <?php if ($_SESSION['id_status'] == "01") {
+          echo "Tambah / Edit";
+        } ?>
+      </div>
+
+      <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
+      <li class="nav-item">
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
             <i class="fas fa-fw fa-snowflake"></i>
             <span>Bunga
@@ -196,10 +200,13 @@ if (isset($_POST["ubah1"])) {
               </a>
             </div>
           </div>
-        </li>
+        <? } else { ?>
+        <?php } ?>
+      </li>
 
-        <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
-        <li class="nav-item">
+      <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
+      <li class="nav-item">
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
             <i class="fas fa-fw fa-tag"></i>
             <span>Kategori Bunga
@@ -207,7 +214,7 @@ if (isset($_POST["ubah1"])) {
           </a>
           <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="#">
+              <a class="collapse-item" href="editkategori.php">
                 <i class="fas fa-fw fa-edit text-primary"></i>
                 <span class="text-primary">Edit</span>
               </a>
@@ -216,11 +223,13 @@ if (isset($_POST["ubah1"])) {
                 <span class="text-primary">Tambah Kategori</span>
               </a>
             </div>
-          </div>
-        </li>
+          <? } else { ?>
+          <?php } ?>
+      </li>
 
-        <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
-        <li class="nav-item">
+      <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
+      <li class="nav-item">
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
             <i class="fas fa-fw fa-user"></i>
             <span>Karyawan
@@ -228,7 +237,7 @@ if (isset($_POST["ubah1"])) {
           </a>
           <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="#">
+              <a class="collapse-item" href="editkaryawan.php">
                 <i class="fas fa-fw fa-edit text-primary"></i>
                 <span class="text-primary">Edit</span>
               </a>
@@ -238,13 +247,13 @@ if (isset($_POST["ubah1"])) {
               </a>
             </div>
           </div>
-        </li>
+        <? } else { ?>
+        <?php } ?>
+      </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-      <?php } else { ?>
-      <?php } ?>
 
 
 

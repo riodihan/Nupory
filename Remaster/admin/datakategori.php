@@ -1,40 +1,37 @@
 <?php
-  session_start();
-  require 'assets/config.php';
+session_start();
+require 'assets/config.php';
 
-  $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
-  $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-  $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+$hasil = mysqli_query($koneksi, "SELECT * FROM kategori");
+$kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
-  if(isset($_POST["tambahkanKategori"]) ){
-    if (tambahKategori($_POST) > 0){
-      echo "<script>
+if (isset($_POST["tambahkanKategori"])) {
+  if (tambahKategori($_POST) > 0) {
+    echo "<script>
               alert('Data Berhasil Ditambahkan');
               document.location.href = '';
             </script>";
-    }
-    else {
-      echo "<script> alert('Gagal Menambahkan Data')</script>";
-      echo mysqli_error();
-    }
+  } else {
+    echo "<script> alert('Gagal Menambahkan Data')</script>";
+    echo mysqli_error($koneksi);
   }
+}
 
-  //membuat id varchar auto increment
-  $cr_id = mysqli_query($koneksi, "SELECT max(ID_KATEGORI) AS id FROM kategori");
-  $cari = mysqli_fetch_array($cr_id);
-  $kode = substr($cari['id'],2,4);
-  $id_tbh = $kode+1;
+//membuat id varchar auto increment
+$cr_id = mysqli_query($koneksi, "SELECT max(ID_KATEGORI) AS id FROM kategori");
+$cari = mysqli_fetch_array($cr_id);
+$kode = substr($cari['id'], 2, 4);
+$id_tbh = $kode + 1;
 
 
-  if ($id_tbh<10) {
-    $id="K"."00".$id_tbh;
-  }
-  elseif ($id_tbh>=10 && $id_tbh<100 ) {
-    $id="K"."0".$id_tbh;
-  }
-  else{
-    $id="K".$id_tbh;
-  }
+if ($id_tbh < 10) {
+  $id = "K" . "00" . $id_tbh;
+} elseif ($id_tbh >= 10 && $id_tbh < 100) {
+  $id = "K" . "0" . $id_tbh;
+} else {
+  $id = "K" . $id_tbh;
+}
 
 ?>
 
@@ -77,11 +74,11 @@
           <i class="fas fa-snowflake"></i>
         </div>
         <div class="sidebar-brand-text mx-3">
-          <?php if ($_SESSION['id_status']=="01") {
+          <?php if ($_SESSION['id_status'] == "01") {
             echo "Admin";
-          }elseif ($_SESSION['id_status']=="02") {
+          } elseif ($_SESSION['id_status'] == "02") {
             echo "Karyawan";
-          }?> <br> Nursery Polije</div>
+          } ?> <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -119,9 +116,10 @@
               <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="datakategori.php">
-              <i class="fas fa-fw fa-cube text-primary"></i>
+              <i class="fas fa-fw fa-list text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
+
             <a class="collapse-item" href="tagihan.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
@@ -137,118 +135,115 @@
       <!-- Transaksi -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Transaksi</span>
         </a>
         <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="tagihan.php">
-                <i class="fas fa-fw fa-user text-primary"></i>
-                <span class="text-primary">Tagihan</span>
-              </a>
-              <a class="collapse-item" href="dikemas.php">
-                <i class="fas fa-fw fa-snowflake text-primary"></i>
-                <span class="text-primary">Dikemas</span>
+            <a class="collapse-item" href="tagihan.php">
+              <i class="fas fa-fw fa-sticky-note text-primary"></i>
+              <span class="text-primary">Tagihan</span>
+            </a>
+            <a class="collapse-item" href="dikemas.php">
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Dikemas</span>
             </a>
             <a class="collapse-item" href="dikirim.php">
-                <i class="fas fa-fw fa-cube text-primary"></i>
-                <span class="text-primary">Dikirim</span>
+              <i class="fas fa-fw fa-truck-pickup text-primary"></i>
+              <span class="text-primary">Dikirim</span>
             </a>
-            
+
             <a class="collapse-item" href="transaksiselesai.php">
-                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
-                <span class="text-primary">Selesai</span>
+              <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+              <span class="text-primary">Selesai</span>
             </a>
           </div>
         </div>
       </li>
 
+
       <!-- Divider -->
-      <?php if ($_SESSION['id_status']=="01") { ?>
+      <?php if ($_SESSION['id_status'] == "01") { ?>
         <hr class="sidebar-divider">
-     <?php }else{ ?>
-     <?php } ?>
-      
+      <?php } ?>
+
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        <?php if ($_SESSION['id_status']=="01") {
-        echo "Tambah / Edit";
-      }else{
-      } ?>
+        <?php if ($_SESSION['id_status'] == "01") {
+          echo "Tambah / Edit";
+        } ?>
       </div>
 
       <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
-          <i class="fas fa-fw fa-snowflake"></i>
-          <span>Bunga
-          </span>
-        </a>
-        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editbunga.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahbunga.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Bunga</span>
-            </a>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Bunga
+            </span>
+          </a>
+          <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editbunga.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit </span>
+              </a>
+              <a class="collapse-item" href="tambahbunga.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Bunga</span>
+              </a>
+            </div>
           </div>
-        </div>
-     <?php }else{ ?>
-   <?php } ?>    
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
-          </div>
-        </div>
-     <?php }else{ ?>
-    <?php  } ?>
-        
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkategori.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
+          <? } else { ?>
+          <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Karyawan
-          </span>
-        </a>
-        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkaryawan.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Karyawan</span>
-            </a>
+            <i class="fas fa-fw fa-user"></i>
+            <span>Karyawan
+            </span>
+          </a>
+          <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkaryawan.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkaryawan.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Karyawan</span>
+              </a>
+            </div>
           </div>
-        </div>
-        <?php }else{ ?>
-      <?php  } ?>  
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Divider -->
@@ -323,20 +318,21 @@
                 <h6 class="dropdown-header">
                   Tagihan Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php while ($row = mysqli_fetch_assoc($tagihan)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
-                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
-                  </div>
-                </a>
-                </a>
-              <?php endwhile;?>
+                    <div>
+                      <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"] ?></div>
+                      <span class="font-weight-bold"><?php echo "tagihan ";
+                                                      echo $row["USERNAME"] ?></span>
+                    </div>
+                  </a>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="tagihan.php">Baca Selengkapnya</a>
               </div>
             </li>
@@ -354,14 +350,14 @@
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
-                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
-                  </div>
-                </a>
-                <?php endwhile;?>
+                <?php while ($row = mysqli_fetch_assoc($kritik)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="font-weight-bold">
+                      <div class="text-truncate"><?php echo $row["ISI_KRITIK"] ?></div>
+                      <div class="small text-gray-500">Dari <?php echo $row["USERNAME"] ?></div>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
@@ -372,18 +368,18 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php if ($_SESSION['id_status']==01) {
+                  <?php if ($_SESSION['id_status'] == 01) {
                     echo "Admin, ";
                     echo $_SESSION['nama_user'];
-                  }else {
+                  } else {
                     echo "Karyawan, ";
                     echo $_SESSION['nama_user'];
                   } ?></span>
-                <?php if ($_SESSION['id_status']=="01") { ?>
-                    <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php }elseif ($_SESSION['id_status']=="02") { ?>
-                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
-                 <?php } ?>
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -410,19 +406,19 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
               Selamat Datang
-              <?php if ($_SESSION['id_status']=="01") {
+              <?php if ($_SESSION['id_status'] == "01") {
                 echo "Admin ";
                 echo $_SESSION['nama_user'];
-              }elseif ($_SESSION['id_status']=="02") {
+              } elseif ($_SESSION['id_status'] == "02") {
                 echo "Karyawan ";
                 echo $_SESSION['nama_user'];
-              }?>
+              } ?>
             </h1>
-            <?php if ($_SESSION['id_status']=="01") { ?>
-              <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-white" data-toggle="modal" data-target="#tambahKategori">Tambah Kategori</a>   
-          <?php  }else{ ?>
-         <?php } ?>
-            
+            <?php if ($_SESSION['id_status'] == "01") { ?>
+              <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm text-white" data-toggle="modal" data-target="#tambahKategori">Tambah Kategori</a>
+            <?php  } else { ?>
+            <?php } ?>
+
           </div>
 
           <!-- DataTales Example -->
@@ -435,60 +431,58 @@
             <!-- #############################################################################################
                                       Modal Import (Tambah Kategori Bunga)
         ############################################################################################# -->
-        <!-- Modal -->
-        <div class="modal fade" id="tambahKategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content col-md-12">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Bunga</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="" method="POST" class="card-body">
-                <input type="hidden" value="<?=$id?>" type="text" name="idKategori" id="idKategori" class="form-control">
-                <div class="form-group">
-                    <label for="namaKategori">Nama Kategori</label>
-                    <input type="text" name="namaKategori" id="namaKategori" class="form-control" require>
-                </div>
-                <div class="form-group">
-                  <label for="deskripsiKategori">Deskripsi Kategori</label>
-                  <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="fotoKategori">Foto Kategori</label>
-                  <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" name="fotoKategori" class="custom-file-input" id="fotoKategori" aria-describedby="fotoKategori" require>
-                      <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="tambahKategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content col-md-12">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Bunga</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="" method="POST" class="card-body">
+                      <input type="hidden" value="<?= $id ?>" type="text" name="idKategori" id="idKategori" class="form-control">
+                      <div class="form-group">
+                        <label for="namaKategori">Nama Kategori</label>
+                        <input type="text" name="namaKategori" id="namaKategori" class="form-control" require>
+                      </div>
+                      <div class="form-group">
+                        <label for="deskripsiKategori">Deskripsi Kategori</label>
+                        <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="fotoKategori">Foto Kategori</label>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" name="fotoKategori" class="custom-file-input" id="fotoKategori" aria-describedby="fotoKategori" require>
+                            <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col text-center">
+                        <button type="submit" name="tambahkanKategori" class="btn btn-primary">Tambahkan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
-                <div class="col text-center">
-                    <button type="submit" name="tambahkanKategori" class="btn btn-primary">Tambahkan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
-                </div>
-                </form>
               </div>
             </div>
-          </div>
-        </div>
-        
+
 
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                     <!--  <th>Id Kategori</th> -->
                       <th>Nama Kategori</th>
                       <th>Deskripsi Kategori</th>
-                      <th>Foto Dekripsi</th>
-                      <?php if ($_SESSION['id_status']=="01") { ?>
-                         <th>Tindakan</th>
-                    <?php  }else{ ?>
-                   <?php } ?>
+                      <th>Foto Kategori</th>
+                      <?php if ($_SESSION['id_status'] == "01") { ?>
+                        <th>Tindakan</th>
+                      <?php  }?>
                     </tr>
                   </thead>
                   <!-- <tfoot>
@@ -500,25 +494,25 @@
                     </tr>
                   </tfoot> -->
                   <tbody>
-                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr>
-                      <!-- <td><?php echo $row["ID_KATEGORI"]?></td> -->
-                      <td><?php echo $row["NAMA_KATEGORI"]?></td>
-                      <td><?php echo $row["DESKRIPSI"]?></td>
-                      <td><?php echo $row["GAMBAR_KATEGORI"]?></td>
-                      <td>
-                        <?php if ($_SESSION['id_status']=="01") { ?>
-                          <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal"   data-target="#editKategori">
-                            <i class="fas fa-edit"></i>
-                          </button>
-                          <a class="btn btn-danger" href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>"on click="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
-                            <i class="fas fa-trash"></i>
-                          </a> 
-                     <?php   }else{ ?>
-                     <?php } ?>
-                      </td>
-                    </tr>
-                    <?php endwhile;?>
+                    <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
+                      <tr>
+                        <!-- <td><?php echo $row["ID_KATEGORI"] ?></td> -->
+                        <td><?php echo $row["NAMA_KATEGORI"] ?></td>
+                        <td><?php echo $row["DESKRIPSI"] ?></td>
+                        <td><?php echo $row["GAMBAR_KATEGORI"] ?></td>
+                        <td>
+                          <?php if ($_SESSION['id_status'] == "01") { ?>
+                            <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editKategori">
+                              <i class="fas fa-edit"></i>
+                            </button>
+                            <a class="btn btn-danger" href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>" on click="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          <?php   } else { ?>
+                          <?php } ?>
+                        </td>
+                      </tr>
+                    <?php endwhile; ?>
                   </tbody>
                 </table>
               </div>
@@ -587,40 +581,40 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterkr").innerHTML = this.responseText;
+            document.getElementById("counterkr").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
   </script>
 
   <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterth").innerHTML = this.responseText;
+            document.getElementById("counterth").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();

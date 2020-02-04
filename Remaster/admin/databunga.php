@@ -17,7 +17,7 @@
     }
     else {
       echo "<script> alert('Gagal Menambahkan Data')</script>";
-      echo mysqli_error();
+      echo mysqli_error($koneksi);
     }
   }
 
@@ -123,8 +123,8 @@
         Database
       </div>
 
-      <!-- Data -->
-      <li class="nav-item">
+     <!-- Data -->
+     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Data</span>
@@ -140,9 +140,10 @@
               <span class="text-primary">Bunga</span>
             </a>
             <a class="collapse-item" href="datakategori.php">
-              <i class="fas fa-fw fa-cube text-primary"></i>
+              <i class="fas fa-fw fa-list text-primary"></i>
               <span class="text-primary">Kategori</span>
             </a>
+
             <a class="collapse-item" href="tagihan.php">
               <i class="fas fa-fw fa-dollar-sign text-primary"></i>
               <span class="text-primary">Transaksi</span>
@@ -158,74 +159,73 @@
       <!-- Transaksi -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Transaksi</span>
         </a>
         <div id="collapseTransaksi" class="collapse" aria-labelledby="collapseTransaksi" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="tagihan.php">
-                <i class="fas fa-fw fa-user text-primary"></i>
-                <span class="text-primary">Tagihan</span>
-              </a>
-              <a class="collapse-item" href="dikemas.php">
-                <i class="fas fa-fw fa-snowflake text-primary"></i>
-                <span class="text-primary">Dikemas</span>
+            <a class="collapse-item" href="tagihan.php">
+              <i class="fas fa-fw fa-sticky-note text-primary"></i>
+              <span class="text-primary">Tagihan</span>
+            </a>
+            <a class="collapse-item" href="dikemas.php">
+              <i class="fas fa-fw fa-cube text-primary"></i>
+              <span class="text-primary">Dikemas</span>
             </a>
             <a class="collapse-item" href="dikirim.php">
-                <i class="fas fa-fw fa-cube text-primary"></i>
-                <span class="text-primary">Dikirim</span>
+              <i class="fas fa-fw fa-truck-pickup text-primary"></i>
+              <span class="text-primary">Dikirim</span>
             </a>
-            
+
             <a class="collapse-item" href="transaksiselesai.php">
-                <i class="fas fa-fw fa-dollar-sign text-primary"></i>
-                <span class="text-primary">Selesai</span>
+              <i class="fas fa-fw fa-dollar-sign text-primary"></i>
+              <span class="text-primary">Selesai</span>
             </a>
           </div>
         </div>
       </li>
 
+
       <!-- Divider -->
-      <?php if ($_SESSION['id_status']=="01") { ?>
+      <?php if ($_SESSION['id_status'] == "01") { ?>
         <hr class="sidebar-divider">
-    <?php } ?>
-      
+      <?php } ?>
+
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        <?php if ($_SESSION['id_status']=="01") {
+        <?php if ($_SESSION['id_status'] == "01") {
           echo "Tambah / Edit";
-        }else{
-
         } ?>
       </div>
 
       <!-- Nav Item - Tambah / Edit Bunga Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsebunga" aria-expanded="true" aria-controls="collapsebunga">
-          <i class="fas fa-fw fa-snowflake"></i>
-          <span>Bunga
-          </span>
-        </a>
-        <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editbunga.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahbunga.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Bunga</span>
-            </a>
+            <i class="fas fa-fw fa-snowflake"></i>
+            <span>Bunga
+            </span>
+          </a>
+          <div id="collapsebunga" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editbunga.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit </span>
+              </a>
+              <a class="collapse-item" href="tambahbunga.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Bunga</span>
+              </a>
+            </div>
           </div>
-        </div>
-       <?php }else { ?>
-      <?php }?>    
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
+      <?php if ($_SESSION['id_status']=="01") { ?>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
           <i class="fas fa-fw fa-tag"></i>
           <span>Kategori Bunga
@@ -233,7 +233,7 @@
         </a>
         <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
+            <a class="collapse-item" href="editkategori.php">
               <i class="fas fa-fw fa-edit text-primary"></i>
               <span class="text-primary">Edit</span>
             </a>
@@ -242,33 +242,32 @@
               <span class="text-primary">Tambah Kategori</span>
             </a>
           </div>
-        </div>  
-      <?php }else{ ?>
-     <?php } ?> 
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status']=="01") { ?>
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Karyawan
-          </span>
-        </a>
-        <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkaryawan.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Karyawan</span>
-            </a>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekaryawan" aria-expanded="true" aria-controls="collapsekaryawan">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Karyawan
+            </span>
+          </a>
+          <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkaryawan.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkaryawan.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Karyawan</span>
+              </a>
+            </div>
           </div>
-        </div>
-        <?php }else{ ?>
-      <?php  } ?>
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Divider -->
