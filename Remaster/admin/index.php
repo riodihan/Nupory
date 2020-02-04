@@ -1,9 +1,11 @@
 <?php
 session_start();
 require 'assets/config.php';
+$username = $_SESSION["username"];
 
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
+$user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
 
 ?>
 <!DOCTYPE html>
@@ -341,7 +343,9 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                     echo $_SESSION["nama_user"];
                   } ?></span>
                 <?php if ($_SESSION['id_status'] == "01") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data){?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"]?>">
+                  <?php }?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
                 <?php } ?>
