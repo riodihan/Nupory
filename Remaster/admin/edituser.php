@@ -1,5 +1,14 @@
 <?php
   require 'assets/config.php';
+  session_start();
+  if(!isset($_SESSION["login"])){
+    header("location: ../user/login.php");
+  }
+  
+  
+  if($_SESSION["id_status"] == 03){
+    header("location: ../user/index.php");
+  }
   $idBunga = $_GET["edit"]; 
 
   $username = $_SESSION["username"];

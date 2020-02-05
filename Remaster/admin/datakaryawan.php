@@ -2,6 +2,16 @@
 <?php
 session_start();
 require 'assets/config.php';
+
+if(!isset($_SESSION["login"])){
+  header("location: ../user/login.php");
+}
+
+
+if($_SESSION["id_status"] == 03){
+  header("location: ../user/index.php");
+}
+
 // $idBunga = $_GET["edit"];
 
 // //query data bunga berdasarkan id

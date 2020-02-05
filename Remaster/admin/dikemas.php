@@ -2,6 +2,14 @@
 session_start();
 require 'assets/config.php';
 
+if(!isset($_SESSION["login"])){
+  header("location: ../user/login.php");
+}
+
+
+if($_SESSION["id_status"] == 03){
+  header("location: ../user/index.php");
+}
 
 $username = $_SESSION["username"];
 $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");

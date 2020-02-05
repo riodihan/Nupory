@@ -3,6 +3,15 @@ session_start();
 require 'assets/config.php';
 $username = $_SESSION["username"];
 
+if(!isset($_SESSION["login"])){
+  header("location: ../user/login.php");
+}
+
+
+if($_SESSION["id_status"] == 03){
+  header("location: ../user/index.php");
+}
+
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");

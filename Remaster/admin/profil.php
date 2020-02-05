@@ -2,6 +2,15 @@
 session_start();
 require 'assets/config.php';
 
+if(!isset($_SESSION["login"])){
+  header("location: ../user/login.php");
+}
+
+
+if($_SESSION["id_status"] == 03){
+  header("location: ../user/index.php");
+}
+
 //cek session
 if (!isset($_SESSION["login"])) {
   header("location: index.php");
