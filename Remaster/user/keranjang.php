@@ -89,73 +89,7 @@ if (isset($_POST["simpan"])) {
                             <div style="height: 1px;" role="main" aria-expanded="false" class="navbar-collapse collapse" id="bs">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="index.php">Beranda</a></li>
-                                    <li class="dropdown unity-menu">
-                                        <a href="#pricing">Fasilitas <i class="fas fa-caret-down"></i></a>
-                                        <ul class="dropdown-menu dropdown-unity">
-                                            <li>
-                                                <a class="unity-link" href="caraperawatan.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/cara.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Cara Perawatan
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Perawatan Bunga berdasarkan jenis
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="unity-link" href="temukankami.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/lokasi.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            Temukan Kami
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Lokasi pada google maps
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php if (isset($_SESSION["login"])) { ?>
-                                                <li>
-                                                    <a class="unity-link" href="kritikdansaran.php">
-                                                        <div class="unity-box">
-                                                            <div class="unity-icon">
-                                                                <img src="images/kritik.png" alt="">
-                                                            </div>
-                                                            <div class="unity-title">
-                                                                Kritik dan saran
-                                                            </div>
-                                                            <div class="unity-details">
-                                                                Berikan Kritik dan saran
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            <?php } ?>
-                                            <li>
-                                                <a class="unity-link" href="faq.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/faq.png" alt="">
-                                                        </div>
-                                                        <div class="unity-title">
-                                                            FAQ
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Pertanyaan yang sering ditanyakan
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    
                                     <?php if (isset($_SESSION["login"])) { ?>
                                         <li class="dropdown unity-menu">
                                             <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
@@ -239,6 +173,17 @@ if (isset($_POST["simpan"])) {
                                             </ul>
                                         </li>
                                     <?php } ?>
+                                    <li class="dropdown">
+                                        <a href="">Fasilitas<i class="fas fa-caret-down"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="caraperawatan.php"><i class="fas fa-book"></i> Cara Perawatan</a></li>
+                                            <li><a href="temukankami.php"><i class="fas fa-map"></i> Temukan Kami</a></li>
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                            <li><a href="kritikdansaran.php"><i class="fas fa-envelope"></i> Kritik Dan Saran</a></li>
+                                            <?php }?>
+                                            <li><a href="faq.php"> <i class="fas fa-question-circle"></i> FAQ</a></li>
+                                        </ul>
+                                    </li>
                                     <li><a href="https://api.whatsapp.com/send?phone=6285257461375&text=&source=&data=">Hubungi Kami</a></li>
                                     <li class="support-button-holder support-dropdown">
                                         <?php if (isset($_SESSION["login"])) { ?>
