@@ -6,27 +6,11 @@ require 'assets/config.php';
 // //query data bunga berdasarkan id
 // $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
 
-$hasil = mysqli_query($koneksi, "SELECT * FROM karyawan");
+$hasil = mysqli_query($koneksi, "SELECT * FROM user WHERE ID_STATUS = 02");
 $hasil1 = mysqli_query($koneksi, "SELECT * FROM status ");
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
-//cek sudah ditekan apa blm
-if (isset($_POST["submit"])) {
-
-  //apakah data berhasil diubah
-  if (editbunga($_POST) > 0) {
-    echo "<script>
-              alert('Data berhasil diedit!');
-              document.location.href = 'editbunga.php';
-            </script> ";
-  } else {
-    echo "<script>
-              alert('Data gagal diedit!');
-              document.location.href = 'editbunga.php';
-            </script>";
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +80,7 @@ if (isset($_POST["submit"])) {
       <!-- Data -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-server"></i>
           <span>Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -227,8 +211,8 @@ if (isset($_POST["submit"])) {
           <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="editkaryawan.php">
-                <i class="fas fa-fw fa-edit text-primary"></i>
-                <span class="text-primary">Edit</span>
+                <i class="fas fa-fw fa-user-cog text-primary"></i>
+                <span class="text-primary">Data Karyawan</span>
               </a>
               <a class="collapse-item" href="tambahkaryawan.php">
                 <i class="fas fa-fw fa-plus text-primary"></i>
@@ -265,7 +249,7 @@ if (isset($_POST["submit"])) {
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
+          <!-- Topbar Search
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -275,7 +259,7 @@ if (isset($_POST["submit"])) {
                 </button>
               </div>
             </div>
-          </form>
+          </form> -->
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -396,7 +380,7 @@ if (isset($_POST["submit"])) {
 
           <!-- DataTales Example -->
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Data Karyawan Nursery Polije</h6>
@@ -406,30 +390,30 @@ if (isset($_POST["submit"])) {
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>Tindakan</th>
                           <th>Username</th>
                           <th>Status</th>
                           <th>Nama User</th>
                           <th>Alamat</th>
                           <th>No. Telpon</th>
                           <th>Email</th>
-                          <th>Foto Perawatan</th>
+                          <th>Foto Karyawan</th>
+                          <th>Tindakan</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
                           <tr>
-                            <td>
-                              <a href="editkaryawan.php?edit=<?php echo $row["USERNAME"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
-                              <a href="hapususer.php?id=<?= $row["USERNAME"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
                             <td><?php echo $row["USERNAME"] ?></td>
                             <td><?php echo $row["ID_STATUS"] ?></td>
                             <td><?php echo $row["NAMA_USER"] ?></td>
                             <td ><?php echo $row["ALAMAT"] ?></td>
-                            <td ><?php echo $row["NO_TELPON"] ?></td>
+                            <td ><?php echo $row["NO_TELEPON"] ?></td>
                             <td><?php echo $row["EMAIL"] ?></td>
                             <td><?php echo $row["FOTO_USER"] ?></td>
+                                          <td>
+                                            <!-- <a href="editkaryawan.php?edit=<?php echo $row["USERNAME"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a> -->
+                                            <a href="hapususer.php?id=<?= $row["USERNAME"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                          </td>
                           </tr>
                         <?php endwhile; ?>
                       </tbody>
@@ -440,18 +424,18 @@ if (isset($_POST["submit"])) {
             </div> <!-- col -->
 
 
-            <?php
+            <!-- <?php
             if(isset($_GET["edit"])){
-              $idBunga = $_GET["edit"];
+              $idstatus = $_GET["edit"];
               //query data bunga berdasarkan id
-              $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
+              $dataBunga = mysqli_query($koneksi, "SELECT * FROM user WHERE ID_STATUS = '$idstatus'");
             }
 
-            if (isset($idBunga)) { ?>
+            if (isset($idstatus)) { ?>
               <div class="col-md-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
+                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Karyawan</h6>
                   </div>
 
                   <form action="" method="POST" class="card-body">
@@ -516,7 +500,7 @@ if (isset($_POST["submit"])) {
                   </form>
                 </div>
               </div> <!-- col -->
-            <?php } ?>
+            <?php } ?> -->
 
 
 
