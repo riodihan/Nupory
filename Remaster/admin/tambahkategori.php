@@ -232,7 +232,7 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
           </a>
           <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="editkaryawan.php">
+              <a class="collapse-item" href="datakaryawan.php">
                 <i class="fas fa-fw fa-user-cog text-primary"></i>
                 <span class="text-primary">Data Karyawan</span>
               </a>
