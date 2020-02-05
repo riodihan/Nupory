@@ -17,7 +17,7 @@ $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = 
 
 $kritik1 = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = 1 ");
 // $hasil = mysqli_query ($koneksi, "SELECT  NAMA_USER, ISI_KRITIK FROM kritik, user WHERE kritik.USERNAME=user.USERNAME AND user.ID_STATUS='03' ");
-$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
 //cek sudah ditekan apa blm
 if (isset($_POST["dibaca"])) {

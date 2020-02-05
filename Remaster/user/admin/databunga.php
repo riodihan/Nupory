@@ -17,7 +17,7 @@
   $hasil1 = mysqli_query ($koneksi, "SELECT * FROM kategori");
   $hasil2 = mysqli_query ($koneksi, "SELECT * FROM kategori");
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-  $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+  $tagihan = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
   $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
 
   if(isset($_POST["tambahkanBunga"]) ){
@@ -337,20 +337,19 @@
                 <h6 class="dropdown-header">
                   Tagihan Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php while ($row = mysqli_fetch_assoc($tagihan)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="tagihan.php">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
-                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
-                  </div>
-                </a>
-                </a>
-              <?php endwhile;?>
+                    <div>
+                      <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"] ?></div>
+                      <span class="font-weight-bold"><?php echo $row["USERNAME"] ?></span>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="tagihan.php">Baca Selengkapnya</a>
               </div>
             </li>
