@@ -125,8 +125,8 @@
         Database
       </div>
 
-     <!-- Data -->
-     <li class="nav-item">
+      <!-- Data -->
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-server"></i>
           <span>Data</span>
@@ -227,25 +227,25 @@
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editkategori.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
-          </div>
-        <? } else { ?>
-        <?php } ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkategori.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
+          <? } else { ?>
+          <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
