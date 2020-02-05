@@ -242,7 +242,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori")
                     <div class="col-sm-12 col-md-6">
                         <div class="service-box">
                             <div class="service-icon">
-                                <img src="../admin/img/<?= $data ["GAMBAR_KATEGORI"]?>" alt="">
+                                <img src="admin/img/<?= $data ["GAMBAR_KATEGORI"]?>" alt="">
                             </div>
                             <div class="service-title"><a href="kategoribunga.php?id=<?= $data ["ID_KATEGORI"]?>"><?= $data["NAMA_KATEGORI"]?></a></div>
                             <div class="service-details">

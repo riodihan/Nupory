@@ -285,7 +285,7 @@ if (isset($_POST["terima"])) {
                                     <div class="service-icon">
                                         <img src="images/anggrek bulan.jpg" alt="">
                                     </div>
-                                    <div class="service-title"><a href="webhosting.html">Pesanan anda</a></div>
+                                    <div class="service-title"><a href="">Pesanan anda</a></div>
                                     <div class="service-details">
                                         <p>Barang Sedang dikirim oleh karyawan kami</p>
 

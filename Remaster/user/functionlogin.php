@@ -31,10 +31,10 @@
                     header("location: index.php");
                     exit;
                 } else if ($_SESSION["id_status"] === "02") {
-                    header("location: ../admin/index.php");
+                    header("location: admin/index.php");
                     exit;
                 }else if ($_SESSION["id_status"] === "01") {
-                    header("location: ../admin/index.php");
+                    header("location: admin/index.php");
                     exit;
                 }else{
                     header("location: index.php");

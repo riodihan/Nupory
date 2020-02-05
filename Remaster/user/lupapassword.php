@@ -138,7 +138,7 @@ if ($_POST) {
 							</label> -->
                         </div>
                         <div>
-                            <a href="Login.php" class="txt1">
+                            <a href="login.php" class="txt1">
                                 Kembali Ke Halaman Login
                             </a><br>
                         </div>
