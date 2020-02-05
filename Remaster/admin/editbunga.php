@@ -11,6 +11,10 @@ if($_SESSION["id_status"] == 03){
   header("location: ../user/index.php");
 }
 
+if($_SESSION["id_status"] == 02){
+  header("location: index.php");
+}
+
 // $idBunga = $_GET["edit"];
 
 // //query data bunga berdasarkan id

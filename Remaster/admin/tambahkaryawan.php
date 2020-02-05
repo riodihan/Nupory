@@ -11,6 +11,10 @@
     header("location: ../user/index.php");
   }
 
+  if($_SESSION["id_status"] == 02){
+    header("location: index.php");
+  }
+
   $username = $_SESSION["username"];
   $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
