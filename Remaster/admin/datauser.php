@@ -414,7 +414,7 @@
                   <thead>
                     <tr>
                       <th>Nama</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Alamat</th>
                       <th>No. Telpon</th>
                       <th>Email</th>
@@ -439,7 +439,7 @@
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr>
                       <td><?php echo $row["NAMA_USER"]?></td>
-                      <td><?php echo $row["ID_STATUS"]?></td>
+                      <!-- <td><?php echo $row["ID_STATUS"]?></td> -->
                       <td><?php echo $row["ALAMAT"]?></td>
                       <td><?php echo $row["NO_TELEPON"]?></td>
                       <td><?php echo $row["EMAIL"]?></td>

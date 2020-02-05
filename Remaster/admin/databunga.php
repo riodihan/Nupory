@@ -632,12 +632,12 @@
                   <thead>
                     <tr>
                       <th>Nama Bunga</th>
-                      <th>Nama Kategori</th>
+                      <!-- <th>Nama Kategori</th> -->
                       <th>Harga</th>
                       <th>Stok</th>
                       <th>Deskripsi</th>
-                      <th>Foto Bunga</th>
-                      <th>Video Bunga</th>
+                      <!-- <th>Foto Bunga</th> -->
+                      <!-- <th>Video Bunga</th> -->
                       <th>Cara Perawatan</th>
                       <?php if ($_SESSION['id_status']=="01") { ?>
                         <th>Tindakan</th>
@@ -650,13 +650,13 @@
                     <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                     <tr id="<?php echo $row["ID_BUNGA"];?>" >
                       <td data-target="nama"><?php echo $row["NAMA_BUNGA"]?></td>
-                      <td data-target="idKategori"><?php echo $row["ID_KATEGORI"]?></td>
+                      <!-- <td data-target="idKategori"><?php echo $row["ID_KATEGORI"]?></td> -->
                       <td data-target="hargaBunga"><?php echo $row["HARGA"]?></td>
                       <td data-target="stokBunga"><?php echo $row["STOK"]?></td>
-                      <td data-target="deskripsiBunga"><?php echo $row["DESKRIPSI"]?></td>
-                      <td data-target="fotoBunga"><?php echo $row["FOTO_BUNGA"]?></td>
-                      <td data-target="videoBunga"><?php echo $row["VIDEO_BUNGA"]?></td>
-                      <td data-target="caraPerawatan"><?php echo $row["CARA_PERAWATAN"]?></td>
+                      <td data-target="deskripsiBunga"><?php echo substr($row["DESKRIPSI"],0,50);?>....</td>
+                      <!-- <td data-target="fotoBunga"><?php echo $row["FOTO_BUNGA"]?></td>
+                      <td data-target="videoBunga"><?php echo $row["VIDEO_BUNGA"]?></td> -->
+                      <td data-target="caraPerawatan"><?php echo substr($row["CARA_PERAWATAN"],0,50)?>....</td>
                       <td>
                         <?php if ($_SESSION['id_status']=="01") { ?>
                             <!-- <a class="btn btn-primary" style="width:40px;" href="#" data-role="update" data-id=<?php echo $row['ID_BUNGA'];?>><i class="fas fa-edit"></i></a> -->

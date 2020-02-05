@@ -315,7 +315,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                     <a href="bunga.php?id=<?php echo $data["ID_BUNGA"]; ?>">
                         <div class="col-sm-6 col-md-3">
                             <div class="article-summary">
-                                <div class="article-img"><img src="../admin/img/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
+                                <div class="article-img"><img style="width: 250px; height: 200px;" class="img-fluid img-thumbnail" src="../admin/img/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
                                 <div class="article-details">
                                     <div class="article-title"><b><?php echo $data["NAMA_BUNGA"]; ?></b></div>
                                     <div class="article-title">Rp. <?php echo $data["HARGA"]; ?></div>

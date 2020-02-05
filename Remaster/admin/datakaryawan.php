@@ -409,12 +409,12 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                       <thead>
                         <tr>
                           <th>Username</th>
-                          <th>Status</th>
+                          <!-- <th>Status</th> -->
                           <th>Nama User</th>
                           <th>Alamat</th>
                           <th>No. Telpon</th>
                           <th>Email</th>
-                          <th>Foto Karyawan</th>
+                          <!-- <th>Foto Karyawan</th> -->
                           <th>Tindakan</th>
                         </tr>
                       </thead>
@@ -422,12 +422,12 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                         <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
                           <tr>
                             <td><?php echo $row["USERNAME"] ?></td>
-                            <td><?php echo $row["ID_STATUS"] ?></td>
+                            <!-- <td><?php echo $row["ID_STATUS"] ?></td> -->
                             <td><?php echo $row["NAMA_USER"] ?></td>
                             <td ><?php echo $row["ALAMAT"] ?></td>
                             <td ><?php echo $row["NO_TELEPON"] ?></td>
                             <td><?php echo $row["EMAIL"] ?></td>
-                            <td><?php echo $row["FOTO_USER"] ?></td>
+                            <!-- <td><?php echo $row["FOTO_USER"] ?></td> -->
                                           <td>
                                             <!-- <a href="editkaryawan.php?edit=<?php echo $row["USERNAME"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a> -->
                                             <a href="hapususer.php?id=<?= $row["USERNAME"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>

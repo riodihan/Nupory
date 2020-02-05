@@ -431,34 +431,35 @@ if (isset($_POST["edit"])) {
                       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                           <tr>
-                            <th>Tindakan</th>
-                            <th>Id Bunga</th>
-                            <th>Id Kategori</th>
+                            <!-- <th>Id Bunga</th>
+                            <th>Id Kategori</th> -->
                             <th>Nama Bunga</th>
                             <th>Harga</th>
                             <th>Stok</th>
-                            <th>Gambar</th>
+                            <!-- <th>Gambar</th> -->
                             <th>Video</th>
                             <th>Cara Perawatan</th>
-                            <!-- <th>Deskripsi</th> -->
+                            <th>Deskripsi</th>
+                            <th>Tindakan</th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
                             <tr>
-                              <td>
-                                <a href="editbunga.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
-                                <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                              </td>
-                              <td><?php echo $row["ID_BUNGA"] ?></td>
-                              <td><?php echo $row["ID_KATEGORI"] ?></td>
+                              <!-- <td><?php echo $row["ID_BUNGA"] ?></td>
+                              <td><?php echo $row["ID_KATEGORI"] ?></td> -->
                               <td><?php echo $row["NAMA_BUNGA"] ?></td>
                               <td class="text-right"><?php echo $row["HARGA"] ?></td>
                               <td class="text-center"><?php echo $row["STOK"] ?></td>
-                              <td><?php echo $row["FOTO_BUNGA"] ?></td>
+                              <!-- <td><?php echo $row["FOTO_BUNGA"] ?></td> -->
                               <td><?php echo $row["VIDEO_BUNGA"] ?></td>
-                              <td><?php echo $row["CARA_PERAWATAN"] ?></td>
-                              <!-- <td><?php echo $row["DESKRIPSI"] ?></td> -->
+                              <td><?php echo substr ($row["CARA_PERAWATAN"],0,30); ?></td>
+                              <td><?php echo substr ($row["DESKRIPSI"], 0, 30); ?>.....</td>
+                                                <td>
+                                                  <a href="editbunga.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                                                  <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                </td>
+                              
                             </tr>
                           <?php endwhile; ?>
                         </tbody>

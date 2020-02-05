@@ -437,23 +437,23 @@ if (isset($_POST["edit"])) {
                       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                           <tr>
-                            <th>Tindakan</th>
                             <th>Nama kategori</th>
                             <th>Deskripsi Kategori</th>
-                            <th>Foto Deskripsi</th>
+                            <!-- <th>Foto Deskripsi</th> -->
+                            <th>Tindakan</th>
                             <!-- <th>Deskripsi</th> -->
                           </tr>
                         </thead>
                         <tbody>
                           <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
                             <tr>
-                              <td>
-                                <a href="editkategori.php?edit=<?php echo $row["ID_KATEGORI"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
-                                <a href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                              </td>
                               <td><?php echo $row["NAMA_KATEGORI"] ?></td>
                               <td><?php echo $row["DESKRIPSI"] ?></td>
-                              <td><?php echo $row["GAMBAR_KATEGORI"] ?></td>
+                              <!-- <td><?php echo $row["GAMBAR_KATEGORI"] ?></td> -->
+                                    <td>
+                                      <a href="editkategori.php?edit=<?php echo $row["ID_KATEGORI"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                                      <a href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    </td>
                             </tr>
                           <?php endwhile; ?>
                         </tbody>

@@ -18,7 +18,8 @@ if ($sql2) {
 
 }else {
 	//jika gagal, jalankan
-	echo "<script>alert ('Data Gagal Dihapus'); document.location.href='databunga.php'</script>\n";
+	// echo "<script>alert ('Data Gagal Dihapus'); document.location.href='databunga.php'</script>\n";
+	echo mysqli_error($koneksi);
 }
 
  ?>

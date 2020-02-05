@@ -495,7 +495,7 @@ if ($id_tbh < 10) {
                     <tr>
                       <th>Nama Kategori</th>
                       <th>Deskripsi Kategori</th>
-                      <th>Foto Kategori</th>
+                      <!-- <th>Foto Kategori</th> -->
                       <?php if ($_SESSION['id_status'] == "01") { ?>
                         <th>Tindakan</th>
                       <?php  }?>
@@ -515,7 +515,7 @@ if ($id_tbh < 10) {
                         <!-- <td><?php echo $row["ID_KATEGORI"] ?></td> -->
                         <td><?php echo $row["NAMA_KATEGORI"] ?></td>
                         <td><?php echo $row["DESKRIPSI"] ?></td>
-                        <td><?php echo $row["GAMBAR_KATEGORI"] ?></td>
+                        <!-- <td><?php echo $row["GAMBAR_KATEGORI"] ?></td> -->
                         <td>
                           <?php if ($_SESSION['id_status'] == "01") { ?>
                             <!-- <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editKategori">
