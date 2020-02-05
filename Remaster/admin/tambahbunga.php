@@ -422,18 +422,18 @@ session_start();
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Bunga Baru</h6>
             </div>
             <form action="" method="POST" class="card-body" enctype="multipart/form-data">
-                    <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" require>
+                    <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" required>
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control" require>
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control" required>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="kategoribunga">Kategori Bunga</label>
-                    <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
+                    <select name="kategoriBunga" id="kategoribunga" class="form-control" required>
                       <option value="">Pilih Kategori</option>
                       <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                       <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
@@ -444,19 +444,19 @@ session_start();
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>
-                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
+                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" required>
               </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
                     <label for="harga">Harga</label>
-                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" require>
+                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" required>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="stok">Stok</label>
-                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" require>
+                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" required>
                   </div>
                 </div>
               </div>
@@ -464,18 +464,18 @@ session_start();
                 <label for="fotobunga">Foto Bunga</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
+                    <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" required>
                     <label class="custom-file-label" for="fotoBunga">Pilih foto</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="videobunga">Video</label>
-                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." required>
               </div>
               <div class="form-group">
                 <label for="caraperawatan">Cara Perawatan</label>
-                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
+                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" required>
               </div>
               <div class="col text-center">
                 <button type="submit" name="submit" class="btn btn-primary">Tambahkan</button>

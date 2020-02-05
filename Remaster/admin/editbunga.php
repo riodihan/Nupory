@@ -465,12 +465,12 @@ if (isset($_POST["edit"])) {
                   </div>
 
                   <form action="" method="POST" class="card-body" enctype="multipart/form-data">
-                    <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"]; ?>">
+                    <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"]; ?>" required>
                     <div class="row">
                       <div class="col">
                         <div class="form-group">
                           <label for="namabunga">Nama Bunga</label>
-                          <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"]; ?>">
+                          <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"]; ?>" required>
                         </div>
                       </div>
                       <div class="col">
@@ -487,19 +487,19 @@ if (isset($_POST["edit"])) {
                     </div>
                     <div class="form-group">
                       <label for="deskripsibunga">Deskripsi Bunga</label>
-                      <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"]; ?>">
+                      <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"]; ?>" required>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="harga">Harga</label>
-                          <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"]; ?>">
+                          <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"]; ?>" required>
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-group">
                           <label for="stok">Stok</label>
-                          <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"]; ?>">
+                          <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"]; ?>" required>
                         </div>
                       </div>
                     </div>
@@ -514,11 +514,11 @@ if (isset($_POST["edit"])) {
                     </div>
                     <div class="form-group">
                       <label for="videobunga">Video</label>
-                      <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"]; ?>">
+                      <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"]; ?>" required>
                     </div>
                     <div class="form-group">
                       <label for="caraperawatan">Cara Perawatan</label>
-                      <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"]; ?>">
+                      <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"]; ?>" required>
                     </div>
                     <div class="col text-center">
                       <button type="submit" name="edit" class="btn btn-primary">Edit Bunga</button>

@@ -400,28 +400,28 @@
           <!-- Form Tambah Karyawan -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Data Karyawan Baru</h6>
+                <h6 class="m-0 font-weight-bold text-primary text-center">Tambah Karyawan Baru</h6>
             </div>
             <form action="" method="POST" class="card-body">
                 <div class="form-group">
                     <label for="namaKaryawan">Nama Karyawan</label>
-                    <input type="text" name="namaKaryawan" id="namaKaryawan" class="form-control">
+                    <input type="text" name="namaKaryawan" id="namaKaryawan" class="form-control" required>
                 </div>  
                 <div class="form-group">
                     <label for="alamatKaryawan">Alamat</label>
-                    <input type="text" name="alamatKaryawan" id="alamatKaryawan" class="form-control">
+                    <input type="text" name="alamatKaryawan" id="alamatKaryawan" class="form-control" required>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="nomorTelponKaryawan">No. Telpon</label>
-                            <input type="text" name="nomorTelponKaryawan" id="nomorTelponKaryawan" class="form-control">
+                            <input type="number" name="nomorTelponKaryawan" id="nomorTelponKaryawan" class="form-control" required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="emailKaryawan">Email</label>
-                            <input type="text" name="emailKaryawan" id="emailKaryawan" class="form-control">
+                            <input type="text" name="emailKaryawan" id="emailKaryawan" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -429,13 +429,13 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="userameKaryawan">Username</label>
-                            <input type="text" name="usernameKaryawan" id="userameKaryawan" class="form-control">
+                            <input type="text" name="usernameKaryawan" id="userameKaryawan" class="form-control" required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="passwordKaryawan">Password</label>
-                            <input type="text" name="passwordKaryawan" id="passwordKaryawan" class="form-control">
+                            <input type="text" name="passwordKaryawan" id="passwordKaryawan" class="form-control" required>
                         </div>
                     </div>
                 </div>

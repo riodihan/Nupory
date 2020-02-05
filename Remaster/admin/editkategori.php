@@ -460,20 +460,20 @@ if (isset($_POST["submit"])) {
                   </div>
 
                   <form action="" method="POST" class="card-body">
-                    <input type="hidden" name="idKategori" id="idKategori" value="<?php echo $dataKategori["ID_KATEGORI"]; ?>">
+                    <input type="hidden" name="idKategori" id="idKategori" value="<?php echo $dataKategori["ID_KATEGORI"]; ?>" required>
                       <div class="form-group">
                         <label for="namaKategori">Nama Kategori </label>
-                        <input type="text" name="namaKategori" id="namaKategori" class="form-control" value="<?php echo $dataKategori["NAMA_KATEGORI"]; ?>">
+                        <input type="text" name="namaKategori" id="namaKategori" class="form-control" value="<?php echo $dataKategori["NAMA_KATEGORI"]; ?>" required>
                       </div>
                     <div class="form-group">
                       <label for="deskripsiKategori">Deskripsi Kategori</label>
-                      <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control" value="<?php echo $dataKategori["DESKRIPSI"]; ?>">
+                      <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control" value="<?php echo $dataKategori["DESKRIPSI"]; ?>" required>
                     </div>
                     <div class="form-group">
                       <label for="fotoKategori">Foto Bunga</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" name="fotoKategori" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotoKategori" value="<?php echo $dataKategori["GAMBAR_KATEGORI"]; ?>">
+                          <input type="file" name="fotoKategori" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotoKategori" value="<?php echo $dataKategori["GAMBAR_KATEGORI"]; ?>" required> 
                           <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
                         </div>
                       </div>

@@ -422,17 +422,17 @@ $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK =
               <input type="hidden" value="<?=$id?>"type="text" name="idKategori" id="idkategori" class="form-control">
               <div class="form-group">
                 <label for="namakategori">Nama Kategori Bunga</label>
-                <input type="text" name="namaKategori" id="namakategori" class="form-control">
+                <input type="text" name="namaKategori" id="namakategori" class="form-control" required>
               </div>
               <div class="form-group">
                 <label for="deskripsikategori">Deskripsi Kategori</label>
-                <input type="text" name="deskripsiKategori" id="deskripsikategori" class="form-control">
+                <input type="text" name="deskripsiKategori" id="deskripsikategori" class="form-control" required>
               </div>
               <div class="form-group">
                 <label for="gambarkategori">Gambar Kategori</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="fotoKategori"id="fotoKategori" aria-describedby="gambarkategori">
+                    <input type="file" class="custom-file-input" name="fotoKategori"id="fotoKategori" aria-describedby="gambarkategori" required>
                     <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
                   </div>
                 </div>
