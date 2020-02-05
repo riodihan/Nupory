@@ -2,20 +2,24 @@
 session_start();
 require 'assets/config.php';
 
-if(!isset($_SESSION["login"])){
+if (!isset($_SESSION["login"])) {
   header("location: ../user/login.php");
 }
 
 
-if($_SESSION["id_status"] == 03){
+if ($_SESSION["id_status"] == 03) {
   header("location: ../user/index.php");
 }
 
 
 $username = $_SESSION["username"];
 $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
-$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '05'");
-$hasil1 = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '05'");
+$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi 
+                                  inner join pembayaran on transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
+                                  inner join status_transaksi on transaksi.ID_STATUS_TRANSAKSI = status_transaksi.ID_STATUS_TRANSAKSI
+
+                                  WHERE transaksi.ID_STATUS_TRANSAKSI = '05'");
+$hasil1 = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = 05");
 
 // $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
 // FROM transaksi, user, pembayaran
@@ -200,25 +204,25 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editkategori.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
-          </div>
-        <? } else { ?>
-        <?php } ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkategori.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
+          <? } else { ?>
+          <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
@@ -379,8 +383,8 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <?php foreach ($user as $data) { ?>
-                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
-                <?php } ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
@@ -458,42 +462,27 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                       <th>Nama Pembeli</th>
                       <th>Alamat Pengiriman</th>
                       <th>Total Akhir</th>
-                      <th>Bukti Pembayaran</th>
-                      <th>Tindakan</th>
+                      <!-- <th>Bukti Pembayaran</th> -->
+                      <!-- <th>Tindakan</th> -->
                     </tr>
                   </thead>
                   <tbody>
-                    <?php if ($_SESSION['id_status'] == "01") { ?>
+                   
                       <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
                         <tr id="<?php echo $row["ID_TRANSAKSI"]; ?>">
                           <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"] ?></td>
-                          <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"] ?></td>
-                          <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"] ?></td>
+                          <td data-target="idPembayaran"><?php echo $row["JENIS_PEMBAYARAN"] ?></td>
+                          <td data-target="idStatusTransaksi"><?php echo $row["STATUS_TRANSAKSI"] ?></td>
                           <td data-target="username"><?php echo $row["USERNAME"] ?></td>
                           <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"] ?></td>
                           <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"] ?></td>
-                          <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"] ?></td>
+                          <!-- <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"] ?></td> -->
 
-                          <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Lihat</a></td>"; ?>
+                          <!-- <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=" . $row['ID_TRANSAKSI'] . ">Lihat</a></td>"; ?> -->
 
                         </tr>
                       <?php endwhile; ?>
-                    <?php  } elseif ($_SESSION['id_status'] == "02") { ?>
-                      <?php while ($row = mysqli_fetch_assoc($hasil1)) : ?>
-                        <tr id="<?php echo $row["ID_TRANSAKSI"]; ?>">
-                          <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"] ?></td>
-                          <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"] ?></td>
-                          <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"] ?></td>
-                          <td data-target="username"><?php echo $row["USERNAME"] ?></td>
-                          <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"] ?></td>
-                          <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"] ?></td>
-                          <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"] ?></td>
-                          <td>
-                            <a class="btn btn-success" href="#" data-role="lihat" data-id=<?php echo $row['ID_TRANSAKSI']; ?>>Lihat</i></a>
-                          </td>
-                        </tr>
-                        <?php endwhile; ?>.
-                      <?php } ?>
+                    
 
                   </tbody>
                 </table>

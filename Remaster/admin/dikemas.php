@@ -1,19 +1,23 @@
-<?php 
+<?php
 session_start();
 require 'assets/config.php';
 
-if(!isset($_SESSION["login"])){
+if (!isset($_SESSION["login"])) {
   header("location: ../user/login.php");
 }
 
 
-if($_SESSION["id_status"] == 03){
+if ($_SESSION["id_status"] == 03) {
   header("location: ../user/index.php");
 }
 
 $username = $_SESSION["username"];
 $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
-$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '03'");
+$hasil = mysqli_query($koneksi, "SELECT * FROM transaksi 
+                                  inner join pembayaran on transaksi.ID_PEMBAYARAN = pembayaran.ID_PEMBAYARAN
+                                inner join status_transaksi on transaksi.ID_STATUS_TRANSAKSI = status_transaksi.ID_STATUS_TRANSAKSI
+
+                                  WHERE transaksi.ID_STATUS_TRANSAKSI = 03");
 $hasil1 = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '03'");
 
 // $hasil1 = mysqli_query($koneksi, "SELECT transaksi.ID_TRANSAKSI, TGL_TRANSAKSI, JENIS_PEMBAYARAN, NAMA_USER, DETAIL_ALAMAT, TOTAL_AKHIR
@@ -25,15 +29,15 @@ $hasil1 = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSA
 
 $gambar = mysqli_query($koneksi, "SELECT BUKTI_PEMBAYARAN FROM transaksi WHERE ID_TRANSAKSI ='*' ");
 
-$hasil2 = mysqli_query ($koneksi, "SELECT * FROM status_transaksi");
+$hasil2 = mysqli_query($koneksi, "SELECT * FROM status_transaksi");
 
-$kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
+$kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
+$tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
-if(isset($_POST["update"])){
+if (isset($_POST["update"])) {
 
   //apakah data berhasil diubah
-  if(updateTransaksi03($_POST) > 0){
+  if (updateTransaksi03($_POST) > 0) {
     echo "<script>
             alert('Data berhasil diedit!');
           </script> ";
@@ -46,10 +50,10 @@ if(isset($_POST["update"])){
 }
 
 //cek sudah ditekan apa blm
-if(isset($_POST["simpanBunga"])){
+if (isset($_POST["simpanBunga"])) {
 
   //apakah data berhasil diubah
-  if(kirimBunga($_POST) > 0){
+  if (kirimBunga($_POST) > 0) {
     echo "<script>
             alert('Barang Dikirim');
             document.location.href = 'dikemas.php';
@@ -104,11 +108,11 @@ if(isset($_POST["simpanBunga"])){
           <i class="fas fa-snowflake"></i>
         </div>
         <div class="sidebar-brand-text mx-3">
-        <?php if ($_SESSION['id_status']=="01") {
-          echo "Admin";
-        }elseif ($_SESSION['id_status']=="02") {
-          echo "Karyawan";
-        }?> <br> Nursery Polije</div>
+          <?php if ($_SESSION['id_status'] == "01") {
+            echo "Admin";
+          } elseif ($_SESSION['id_status'] == "02") {
+            echo "Karyawan";
+          } ?> <br> Nursery Polije</div>
       </a>
 
       <!-- Divider -->
@@ -340,7 +344,7 @@ if(isset($_POST["simpanBunga"])){
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                 <!-- Counter - Alerts -->
+                <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter"><i id="counterth"></i></span>
               </a>
               <!-- Dropdown - Alerts -->
@@ -348,20 +352,21 @@ if(isset($_POST["simpanBunga"])){
                 <h6 class="dropdown-header">
                   Tagihan Baru
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($tagihan)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="dikemas.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                <?php while ($row = mysqli_fetch_assoc($tagihan)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="dikemas.php">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"]?></div>
-                    <span class="font-weight-bold"><?php echo "tagihan "; echo $row["USERNAME"] ?></span>
-                  </div>
-                </a>
-                </a>
-              <?php endwhile;?>
+                    <div>
+                      <div class="small text-gray-500"><?php echo $row["TOTAL_AKHIR"] ?></div>
+                      <span class="font-weight-bold"><?php echo "tagihan ";
+                                                      echo $row["USERNAME"] ?></span>
+                    </div>
+                  </a>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="dikemas.php">Baca Selengkapnya</a>
               </div>
             </li>
@@ -378,14 +383,14 @@ if(isset($_POST["simpanBunga"])){
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
-                <?php while ($row=mysqli_fetch_assoc($kritik)): ?>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><?php echo $row["ISI_KRITIK"]?></div>
-                    <div class="small text-gray-500">Dari <?php echo $row["USERNAME"]?></div>
-                  </div>
-                </a>
-                <?php endwhile;?>
+                <?php while ($row = mysqli_fetch_assoc($kritik)) : ?>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="font-weight-bold">
+                      <div class="text-truncate"><?php echo $row["ISI_KRITIK"] ?></div>
+                      <div class="small text-gray-500">Dari <?php echo $row["USERNAME"] ?></div>
+                    </div>
+                  </a>
+                <?php endwhile; ?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
@@ -396,21 +401,21 @@ if(isset($_POST["simpanBunga"])){
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                  <?php if ($_SESSION['id_status']=="01") {
+                  <?php if ($_SESSION['id_status'] == "01") {
                     echo "Admin, ";
                     echo $_SESSION['nama_user'];
-                  }elseif ($_SESSION['id_status']=="02") {
+                  } elseif ($_SESSION['id_status'] == "02") {
                     echo "Karyawan, ";
                     echo $_SESSION['nama_user'];
-                  }?></span>
+                  } ?></span>
                 <?php if ($_SESSION['id_status'] == "01") { ?>
                   <?php foreach ($user as $data) { ?>
                     <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <?php foreach ($user as $data) { ?>
-                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
-                <?php } ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
@@ -438,46 +443,46 @@ if(isset($_POST["simpanBunga"])){
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
               Selamat Datang
-              <?php if ($_SESSION['id_status']=="01") {
+              <?php if ($_SESSION['id_status'] == "01") {
                 echo "Admin ";
                 echo $_SESSION["nama_user"];
-              }elseif ($_SESSION['id_status']=="02") {
+              } elseif ($_SESSION['id_status'] == "02") {
                 echo "Karyawan ";
                 echo $_SESSION["nama_user"];
-              }?>
+              } ?>
             </h1>
           </div>
 
-        <!-- #############################################################################################
+          <!-- #############################################################################################
 				                              Modal Edit (Edit Bunga)
         ############################################################################################# -->
-        <!-- Modal -->
-        <div class="modal fade" id="ubahBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content col-md-12">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pengingat!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="" method="POST" class="card-body">
-                <input type="hidden" name="id1" id="id1" class="form-control">
+          <!-- Modal -->
+          <div class="modal fade" id="ubahBunga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content col-md-12">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Pengingat!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="" method="POST" class="card-body">
+                    <input type="hidden" name="id1" id="id1" class="form-control">
 
-                <div class="col text-center">
-                  <h3>Yakin untuk mengirim bunga ?</h3><br><br>
+                    <div class="col text-center">
+                      <h3>Yakin untuk mengirim bunga ?</h3><br><br>
+                    </div>
+
+                    <div class="col text-center">
+                      <button type="submit" id="simpanBunga" name="simpanBunga" class="btn btn-primary">Kirim Bunga</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+                    </div>
+                  </form>
                 </div>
-                
-                <div class="col text-center">
-                    <button type="submit" id="simpanBunga" name="simpanBunga" class="btn btn-primary">Kirim Bunga</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
-                </div>
-                </form>
               </div>
             </div>
           </div>
-        </div>
 
 
 
@@ -498,43 +503,27 @@ if(isset($_POST["simpanBunga"])){
                       <th>Nama Pembeli</th>
                       <th>Alamat Pengiriman</th>
                       <th>Total Akhir</th>
-                      <th>Bukti Pembayaran</th>
+                      <!-- <th>Bukti Pembayaran</th> -->
                       <th>Tindakan</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php if ($_SESSION['id_status']=="01") { ?>
-                      <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
-                    <tr id="<?php echo $row["ID_TRANSAKSI"];?>">
-                      <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"]?></td>
-                      <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"]?></td>
-                      <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"]?></td>
-                      <td data-target="username"><?php echo $row["USERNAME"]?></td>
-                      <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
-                      <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
-                      <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
-                      <td>
-                        <a class="btn btn-primary" href="#" data-role="update" data-id=<?php echo $row['ID_TRANSAKSI'];?>>Kirim</a>
-                      </td>
-                    </tr>
-                    <?php endwhile;?>
-                  <?php  }elseif ($_SESSION['id_status']=="02") { ?>
-                    <?php while ($row=mysqli_fetch_assoc($hasil1)): ?>
-                    <tr id="<?php echo $row["ID_TRANSAKSI"];?>">
-                      <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"]?></td>
-                      <td data-target="idPembayaran"><?php echo $row["ID_PEMBAYARAN"]?></td>
-                      <td data-target="idStatusTransaksi"><?php echo $row["ID_STATUS_TRANSAKSI"]?></td>
-                      <td data-target="username"><?php echo $row["USERNAME"]?></td>
-                      <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"]?></td>
-                      <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"]?></td>
-                      <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"]?></td>
-                      <td>
-                      <a class="btn btn-success" href="#" data-role="lihat" data-id=<?php echo $row['ID_TRANSAKSI'];?>>Lihat</i></a>
-                      </td>
-                    </tr>
-                    <?php endwhile;?>.
-                 <?php } ?>
-                     
+
+                    <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
+                      <tr id="<?php echo $row["ID_TRANSAKSI"]; ?>">
+                        <td data-target="tglTransaksi"><?php echo $row["TGL_TRANSAKSI"] ?></td>
+                        <td data-target="idPembayaran"><?php echo $row["JENIS_PEMBAYARAN"] ?></td>
+                        <td data-target="idStatusTransaksi"><?php echo $row["STATUS_TRANSAKSI"] ?></td>
+                        <td data-target="username"><?php echo $row["USERNAME"] ?></td>
+                        <td data-target="detailAlamat"><?php echo $row["DETAIL_ALAMAT"] ?></td>
+                        <td data-target="totalAkhir"><?php echo $row["TOTAL_AKHIR"] ?></td>
+                        <!-- <td data-target="buktiPembayaran"><?php echo $row["BUKTI_PEMBAYARAN"] ?></td> -->
+                        <td>
+                          <a class="btn btn-primary" href="#" data-role="update" data-id=<?php echo $row['ID_TRANSAKSI']; ?>>Kirim</a>
+                        </td>
+                      </tr>
+                    <?php endwhile; ?>
+
                   </tbody>
                 </table>
                 <!-- <a class="btn btn-primary" onclick="window.print();"><i class="fa fa-print"></i> Print Halaman Ini</a> -->
@@ -606,50 +595,50 @@ if(isset($_POST["simpanBunga"])){
   <script src="js/demo/datatables-demo.js"></script>
 
   <!-- Counter Kritik AJAX -->
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterkr").innerHTML = this.responseText;
+            document.getElementById("counterkr").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "counterkritik.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
   </script>
 
   <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript" >
+  <script type="text/javascript">
     function loadDoc() {
-      setInterval(function(){
+      setInterval(function() {
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("counterth").innerHTML = this.responseText;
+            document.getElementById("counterth").innerHTML = this.responseText;
           }
         };
         xhttp.open("GET", "countertagihan.php", true);
         xhttp.send();
 
-        },1000);
+      }, 1000);
 
     }
     loadDoc();
   </script>
 
-<script>
-    $(document).ready(function(){
+  <script>
+    $(document).ready(function() {
 
       //menampilkan data pada form modal
-      $(document).on('click', 'a[data-role=update]', function(){
+      $(document).on('click', 'a[data-role=update]', function() {
         var id = $(this).data('id');
 
         $('#id1').val(id);
@@ -657,7 +646,7 @@ if(isset($_POST["simpanBunga"])){
       });
 
       //Menrubah ketika ditekan tombol ubah data
-      $('#simpan').click(function(){
+      $('#simpan').click(function() {
         var ID_TRANSAKSI = $('#id1').val();
       })
     });
