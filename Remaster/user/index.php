@@ -122,7 +122,6 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                                         <li class="dropdown unity-menu">
                                             <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
                                             <ul class="dropdown-menu dropdown-unity">
-
                                                 <li>
                                                     <a class="unity-link" href="keranjang.php">
                                                         <div class="unity-box">
