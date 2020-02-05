@@ -247,7 +247,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                             Unit ini didirikan dengan tujuan untuk meningkatkan proses pembelajaran mahasiswa Politeknik
                             Negeri Jember khususnya bidang kewirausahaan hortikultura.</div>
                         <div class="btn-holder">
-                            <a href="tentangkami.php" class="ybtn ybtn-white ybtn-shadow">Baca Selengkapnya</a>
+                            <a href="tentangkami.php" class="ybtn ybtn-header-color">Baca Selengkapnya</a>
                             <?php if (!isset($_SESSION["login"])) { ?>
                                 <a href="daftar.php" class="ybtn ybtn-header-color">Daftar Akun</a>
                             <?php } ?>
