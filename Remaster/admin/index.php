@@ -347,7 +347,9 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
                     <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
                 <?php } ?>
 
               </a>

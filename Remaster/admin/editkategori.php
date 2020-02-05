@@ -5,7 +5,8 @@ require 'assets/config.php';
 
 // //query data bunga berdasarkan id
 // $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
-
+$username = $_SESSION["username"];
+$user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
 $hasil = mysqli_query($koneksi, "SELECT * FROM kategori");
 $hasil1 = mysqli_query($koneksi, "SELECT * FROM kategori");
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
@@ -367,9 +368,13 @@ if (isset($_POST["submit"])) {
                                                                             echo $_SESSION['nama_user'];
                                                                           } ?></span>
                 <?php if ($_SESSION['id_status'] == "01") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->

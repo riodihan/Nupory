@@ -1,6 +1,7 @@
 <?php
   session_start();
   require 'assets/config.php';
+  $username = $_SESSION["username"];
 
   $hasil = mysqli_query ($koneksi, "SELECT * FROM user WHERE user.ID_STATUS='03'");
   $kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
@@ -352,7 +353,9 @@
                     <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->

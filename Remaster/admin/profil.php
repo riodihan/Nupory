@@ -397,7 +397,9 @@ if (isset($_POST["ubah1"])) {
                     <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
@@ -440,10 +442,12 @@ if (isset($_POST["ubah1"])) {
 
                 <?php if ($_SESSION['id_status'] == "01") { ?>
                   <?php foreach ($user as $data) { ?>
-                    <img class="img-profile " src="img/<?= $data["FOTO_USER"] ?>" width="400px">
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                  <img class="img-profile " src=" $_SESSION['foto_user']" width="400px" >
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
                 <?php } ?>
                 <!-- <img src="img/admin.png" class="card-img" alt="..."> -->
 
