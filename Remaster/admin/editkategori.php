@@ -487,6 +487,7 @@ if (isset($_POST["edit"])) {
                         </div>
                         <div class="col text-center">
                           <button type="submit" name="edit" class="btn btn-primary">Edit Kategori</button>
+                          <a href="editkategori.php" class="btn btn-danger">Batal</a>
                         </div>
                       </form>
                     </div>
