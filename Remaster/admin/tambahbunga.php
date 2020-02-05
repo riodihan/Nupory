@@ -2,6 +2,18 @@
 session_start();
   require 'assets/config.php';
 
+  if(!isset($_SESSION["login"])){
+    header("location: ../user/login.php");
+  }
+  
+  
+  if($_SESSION["id_status"] == 03){
+    header("location: ../user/index.php");
+  }
+
+  if($_SESSION["id_status"] == 02){
+    header("location: index.php");
+  }
   $username = $_SESSION["username"];
   $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
   $hasil = mysqli_query ($koneksi, "SELECT * FROM kategori");
@@ -105,7 +117,7 @@ session_start();
       <!-- Data -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-server"></i>
           <span>Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -204,25 +216,25 @@ session_start();
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editkategori.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
-          </div>
-        <? } else { ?>
-        <?php } ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkategori.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
+          <? } else { ?>
+          <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
@@ -235,9 +247,9 @@ session_start();
           </a>
           <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="editkaryawan.php">
-                <i class="fas fa-fw fa-edit text-primary"></i>
-                <span class="text-primary">Edit</span>
+              <a class="collapse-item" href="datakaryawan.php">
+                <i class="fas fa-fw fa-user-cog text-primary"></i>
+                <span class="text-primary">Data Karyawan</span>
               </a>
               <a class="collapse-item" href="tambahkaryawan.php">
                 <i class="fas fa-fw fa-plus text-primary"></i>
@@ -422,18 +434,18 @@ session_start();
               <h6 class="m-0 font-weight-bold text-primary text-center">Data Bunga Baru</h6>
             </div>
             <form action="" method="POST" class="card-body" enctype="multipart/form-data">
-                    <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" require>
+                    <input type="hidden" value="<?=$id?>" type="text" name="idBunga" id="idbunga" class="form-control" required>
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="namabunga">Nama Bunga</label>
-                    <input type="text" name="namaBunga" id="namabunga" class="form-control" require>
+                    <input type="text" name="namaBunga" id="namabunga" class="form-control" required>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="kategoribunga">Kategori Bunga</label>
-                    <select name="kategoriBunga" id="kategoribunga" class="form-control" require>
+                    <select name="kategoriBunga" id="kategoribunga" class="form-control" required>
                       <option value="">Pilih Kategori</option>
                       <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
                       <option value="<?php echo $row["ID_KATEGORI"]?>"><?php echo $row["NAMA_KATEGORI"]?></option>
@@ -444,19 +456,19 @@ session_start();
               </div>
               <div class="form-group">
                 <label for="deskripsibunga">Deskripsi Bunga</label>
-                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control">
+                <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" required>
               </div>
               <div class="row">
                 <div class="col">
                   <div class="form-group">
                     <label for="harga">Harga</label>
-                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" require>
+                    <input type="text" name="hargaBunga" id="harga" class="form-control text-right" required>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label for="stok">Stok</label>
-                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" require>
+                    <input type="text" name="stokBunga" id="stok" class="form-control text-right" required>
                   </div>
                 </div>
               </div>
@@ -464,18 +476,18 @@ session_start();
                 <label for="fotobunga">Foto Bunga</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" require>
+                    <input type="file" name="fotoBunga" class="custom-file-input" id="fotoBunga" aria-describedby="fotobunga" required>
                     <label class="custom-file-label" for="fotoBunga">Pilih foto</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="videobunga">Video</label>
-                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini.">
+                <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." required>
               </div>
               <div class="form-group">
                 <label for="caraperawatan">Cara Perawatan</label>
-                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control">
+                <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" required>
               </div>
               <div class="col text-center">
                 <button type="submit" name="submit" class="btn btn-primary">Tambahkan</button>

@@ -33,7 +33,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
 
 <body>
     <div id="header-holder" class="main-header bg">
-    <nav id="nav" class="navbar navbar-default navbar-full">
+        <nav id="nav" class="navbar navbar-default navbar-full ">
             <div class="container-fluid">
                 <div class="container container-nav">
                     <div class="row">
@@ -84,23 +84,23 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -275,7 +275,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                 <div class="col-sm-12 col-md-6">
                     <div class="service-box">
                         <div class="service-icon">
-                            <img src="images/<?= $data["GAMBAR_KATEGORI"] ?>" alt="">
+                            <img src="../admin/img/<?= $data["GAMBAR_KATEGORI"] ?>" alt="">
                         </div>
                         <div class="service-title"><a href="kategoribunga.php?id=<?= $data["ID_KATEGORI"] ?>"><?= $data["NAMA_KATEGORI"] ?></a></div>
                         <div class="service-details">

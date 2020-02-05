@@ -383,17 +383,68 @@ function editkategori($data){
     $idKategori = $data["idKategori"];
     $namaKategori= htmlspecialchars($data["namaKategori"]);
     $deskripsiKategori = htmlspecialchars($data["deskripsiKategori"]);
-    $fotoKategori = htmlspecialchars($data["fotoKategori"]);
+    $fotoKategori = uploadfotokategori();
+    if (!$fotoKategori) {
+        return false;
+    }
 
-    $query = "UPDATE kategori SET
+    $query = mysqli_query($koneksi, "UPDATE kategori SET
                 NAMA_KATEGORI = '$namaKategori',
                 DESKRIPSI = '$deskripsiKategori',
                 GAMBAR_KATEGORI = '$fotoKategori'
             WHERE ID_KATEGORI = '$idKategori'
-            ";
-    $q_Kategori = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
-    return $q_Kategori;
+            ");
+            return $query;
+    
 }
+
+function uploadfotokategori()  {
+    $namaFile2 = $_FILES['foto']['name'];
+    $ukuranFile2 = $_FILES['foto']['size'];
+    $error2 = $_FILES['foto']['error'];
+    $tmpName2 = $_FILES['foto']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang diupload
+
+    if ($error2 === 4) {
+        echo "<script>
+              alert('Pilih Gambar Terlebih Dahulu');
+            </script>";
+            return false;
+    }
+
+    // cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid2 = ['jpg','jpeg','png'];
+    $ekstensiGambar2 = explode('.', $namaFile2);
+    $ekstensiGambar2 = strtolower(end($ekstensiGambar2));
+    if (!in_array($ekstensiGambar2, $ekstensiGambarValid2)) {
+        // echo "<script>
+        //       alert('yang anda upload bukan gambar!');
+        //     </script>";
+            return false; 
+    }
+
+    //cek jika ukuran gambar terlalu besar
+    if ($ukuranFile2 > 2500000) {
+        // echo "<script>
+        //       alert('ukuran gambar terlalu besar!');
+        //     </script>";
+        return false; 
+    }
+    //gambar siap diupload
+    //generate nama baru
+    $namaFileBaru2 = uniqid();
+    $namaFileBaru2 .= '.';
+    $namaFileBaru2 .= $ekstensiGambar2;
+
+    move_uploaded_file($tmpName2, 'img/' . $namaFileBaru2);
+    return $namaFileBaru2;
+
+
+}
+
+
+
 
 //ubah foto
 function uploadfoto($data)
@@ -467,4 +518,17 @@ function hapususer($id)
     $qu = mysqli_query($koneksi, "DELETE FROM user WHERE USERNAME = '$id'");
     return $qu;
 }
-?>
+
+//bacakritik
+function kritikdibaca($data)
+{
+    global $koneksi;
+    $idkritik = htmlspecialchars($data["idkritik"]);
+    $idstatuskritik = htmlspecialchars($data["idstatuskritik"]);
+
+    $qu = mysqli_query($koneksi, "UPDATE kritik SET 
+                ID_STATUS_KRITIK = '$idstatuskritik'
+
+                WHERE ID_KRITIK = '$idkritik'");
+    return $qu;
+}

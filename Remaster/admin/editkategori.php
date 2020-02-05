@@ -1,6 +1,18 @@
-<?php 
+<?php
 session_start();
 require 'assets/config.php';
+if(!isset($_SESSION["login"])){
+  header("location: ../user/login.php");
+}
+
+
+if($_SESSION["id_status"] == 03){
+  header("location: ../user/index.php");
+}
+if($_SESSION["id_status"] == 02){
+  header("location: index.php");
+}
+
 // $idBunga = $_GET["edit"];
 
 // //query data bunga berdasarkan id
@@ -13,7 +25,7 @@ $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = 
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 
 //cek sudah ditekan apa blm
-if (isset($_POST["submit"])) {
+if (isset($_POST["edit"])) {
 
   //apakah data berhasil diubah
   if (editkategori($_POST) > 0) {
@@ -22,14 +34,14 @@ if (isset($_POST["submit"])) {
               document.location.href = 'editkategori.php';
             </script> ";
   } else {
-    echo "<script>
-              alert('Data gagal diedit!');
-              document.location.href = 'editkategori.php';
-            </script>";
+    // echo "<script>
+    //           alert('Data gagal diedit!');
+    //           document.location.href = 'editkategori.php';
+    //         </script>";
   }
 }
- ?>
- <!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -96,7 +108,7 @@ if (isset($_POST["submit"])) {
       <!-- Data -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-server"></i>
           <span>Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -195,25 +207,25 @@ if (isset($_POST["submit"])) {
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-      <?php if ($_SESSION['id_status']=="01") { ?>
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-          <i class="fas fa-fw fa-tag"></i>
-          <span>Kategori Bunga
-          </span>
-        </a>
-        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="editkategori.php">
-              <i class="fas fa-fw fa-edit text-primary"></i>
-              <span class="text-primary">Edit</span>
-            </a>
-            <a class="collapse-item" href="tambahkategori.php">
-              <i class="fas fa-fw fa-plus text-primary"></i>
-              <span class="text-primary">Tambah Kategori</span>
-            </a>
-          </div>
-        <? } else { ?>
-        <?php } ?>
+        <?php if ($_SESSION['id_status'] == "01") { ?>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Kategori Bunga
+            </span>
+          </a>
+          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="editkategori.php">
+                <i class="fas fa-fw fa-edit text-primary"></i>
+                <span class="text-primary">Edit</span>
+              </a>
+              <a class="collapse-item" href="tambahkategori.php">
+                <i class="fas fa-fw fa-plus text-primary"></i>
+                <span class="text-primary">Tambah Kategori</span>
+              </a>
+            </div>
+          <? } else { ?>
+          <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
@@ -226,9 +238,9 @@ if (isset($_POST["submit"])) {
           </a>
           <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="editkaryawan.php">
-                <i class="fas fa-fw fa-edit text-primary"></i>
-                <span class="text-primary">Edit</span>
+              <a class="collapse-item" href="datakaryawan.php">
+                <i class="fas fa-fw fa-user-cog text-primary"></i>
+                <span class="text-primary">Data Karyawan</span>
               </a>
               <a class="collapse-item" href="tambahkaryawan.php">
                 <i class="fas fa-fw fa-plus text-primary"></i>
@@ -239,7 +251,6 @@ if (isset($_POST["submit"])) {
         <? } else { ?>
         <?php } ?>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -373,8 +384,8 @@ if (isset($_POST["submit"])) {
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <?php foreach ($user as $data) { ?>
-                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
-                <?php } ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
@@ -409,83 +420,91 @@ if (isset($_POST["submit"])) {
 
           <!-- DataTales Example -->
           <div class="row">
-            <div class="col-md-8">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Data Kategori Bunga Nursery Polije</h6>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>Tindakan</th>
-                          <th>Nama kategori</th>
-                          <th>Deskripsi Kategori</th>
-                          <th>Foto Deskripsi</th>
-                          <!-- <th>Deskripsi</th> -->
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
-                          <tr>
-                            <td>
-                              <a href="editkategori.php?edit=<?php echo $row["ID_KATEGORI"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
-                              <a href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
-                            <td><?php echo $row["NAMA_KATEGORI"] ?></td>
-                            <td><?php echo $row["DESKRIPSI"] ?></td>
-                            <td><?php echo $row["GAMBAR_KATEGORI"] ?></td>
-                          </tr>
-                        <?php endwhile; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- col -->
+            <?php if (isset($_GET["edit"])) { ?>
+              <div class="col-md-8">
+              <?php } ?>
+              <?php if (!isset($_GET["edit"])) { ?>
+                <div class="col-md-12">
+                <?php } ?>
 
 
-            <?php
-            if(isset($_GET["edit"])){
-              $idKategori = $_GET["edit"];
-              //query data bunga berdasarkan id
-              $dataKategori = query("SELECT * FROM kategori WHERE ID_KATEGORI='$idKategori'")[0];
-            }
-
-            if (isset($idKategori)) { ?>
-              <div class="col-md-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Kategori Bunga Nursery Polije</h6>
                   </div>
-
-                  <form action="" method="POST" class="card-body">
-                    <input type="hidden" name="idKategori" id="idKategori" value="<?php echo $dataKategori["ID_KATEGORI"]; ?>">
-                      <div class="form-group">
-                        <label for="namaKategori">Nama Kategori </label>
-                        <input type="text" name="namaKategori" id="namaKategori" class="form-control" value="<?php echo $dataKategori["NAMA_KATEGORI"]; ?>">
-                      </div>
-                    <div class="form-group">
-                      <label for="deskripsiKategori">Deskripsi Kategori</label>
-                      <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control" value="<?php echo $dataKategori["DESKRIPSI"]; ?>">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Tindakan</th>
+                            <th>Nama kategori</th>
+                            <th>Deskripsi Kategori</th>
+                            <th>Foto Deskripsi</th>
+                            <!-- <th>Deskripsi</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
+                            <tr>
+                              <td>
+                                <a href="editkategori.php?edit=<?php echo $row["ID_KATEGORI"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                                <a href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                              </td>
+                              <td><?php echo $row["NAMA_KATEGORI"] ?></td>
+                              <td><?php echo $row["DESKRIPSI"] ?></td>
+                              <td><?php echo $row["GAMBAR_KATEGORI"] ?></td>
+                            </tr>
+                          <?php endwhile; ?>
+                        </tbody>
+                      </table>
                     </div>
-                    <div class="form-group">
-                      <label for="fotoKategori">Foto Bunga</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="fotoKategori" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotoKategori" value="<?php echo $dataKategori["GAMBAR_KATEGORI"]; ?>">
-                          <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col text-center">
-                      <button type="submit" name="submit" class="btn btn-primary">Edit Kategori</button>
-                    </div>
-                  </form>
+                  </div>
                 </div>
-              </div> <!-- col -->
-            <?php } ?>
+                </div> <!-- col -->
+
+
+                <?php
+                if (isset($_GET["edit"])) {
+                  $idKategori = $_GET["edit"];
+                  //query data bunga berdasarkan id
+                  $dataKategori = query("SELECT * FROM kategori WHERE ID_KATEGORI='$idKategori'")[0];
+                }
+
+                if (isset($idKategori)) { ?>
+                  <div class="col-md-4">
+                    <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary text-center">Edit Data</h6>
+                      </div>
+
+                      <form action="" method="POST" class="card-body" enctype="multipart/form-data">
+                        <input type="hidden" name="idKategori" id="idKategori" value="<?php echo $dataKategori["ID_KATEGORI"]; ?>" required>
+                        <div class="form-group">
+                          <label for="namaKategori">Nama Kategori </label>
+                          <input type="text" name="namaKategori" id="namaKategori" class="form-control" value="<?php echo $dataKategori["NAMA_KATEGORI"]; ?>" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="deskripsiKategori">Deskripsi Kategori</label>
+                          <input type="text" name="deskripsiKategori" id="deskripsiKategori" class="form-control" value="<?php echo $dataKategori["DESKRIPSI"]; ?>" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="fotoKategori">Foto Bunga</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" name="foto" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotoKategori" value="<?php echo $dataKategori["GAMBAR_KATEGORI"]; ?>" required>
+                              <label class="custom-file-label" for="fotoKategori">Pilih foto</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col text-center">
+                          <button type="submit" name="edit" class="btn btn-primary">Edit Kategori</button>
+                          <a href="editkategori.php" class="btn btn-danger">Batal</a>
+                        </div>
+                      </form>
+                    </div>
+                  </div> <!-- col -->
+                <?php } ?>
 
 
 
@@ -495,117 +514,117 @@ if (isset($_POST["submit"])) {
 
 
 
-          </div> <!-- Row -->
+              </div> <!-- Row -->
+
+          </div>
 
         </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Your Website 2019</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
 
       </div>
-      <!-- End of Main Content -->
+      <!-- End of Content Wrapper -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="../user/logout.php">Logout</a>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="../user/logout.php">Logout</a>
-        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
-  
-  <!-- Nama Muncul -->
-  <script>
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
 
-  <!-- Counter Kritik AJAX -->
-  <script type="text/javascript">
-    function loadDoc() {
-      setInterval(function() {
+    <!-- Nama Muncul -->
+    <script>
+      $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+      });
+    </script>
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("counterkr").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "counterkritik.php", true);
-        xhttp.send();
+    <!-- Counter Kritik AJAX -->
+    <script type="text/javascript">
+      function loadDoc() {
+        setInterval(function() {
 
-      }, 1000);
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("counterkr").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", "counterkritik.php", true);
+          xhttp.send();
 
-    }
-    loadDoc();
-  </script>
+        }, 1000);
 
-  <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript">
-    function loadDoc() {
-      setInterval(function() {
+      }
+      loadDoc();
+    </script>
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("counterth").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "countertagihan.php", true);
-        xhttp.send();
+    <!-- Counter Tagihan AJAX -->
+    <script type="text/javascript">
+      function loadDoc() {
+        setInterval(function() {
 
-      }, 1000);
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("counterth").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", "countertagihan.php", true);
+          xhttp.send();
 
-    }
-    loadDoc();
-  </script>
+        }, 1000);
+
+      }
+      loadDoc();
+    </script>
 
 </body>
 

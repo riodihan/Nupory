@@ -19,10 +19,10 @@ $sql2 = mysqli_query($koneksi, $query2);
 
 
 if ($sql2) {
-	echo "<script>alert ('Data Berhasil Dihapus');
+	echo "<script>alert ('Kategori Berhasil Dihapus');
 	document.location.href='datakategori.php'</script>\n";
 }else{
-	echo "<script>alert ('Data Gagal Dihapus');
+	echo "<script>alert ('Kategori Gagal Dihapus, Karena masih ada bunga yang berkategori tersebut. Silahkan Hapus bunganya terlebih dahulu.');
 	document.location.href='datakategori.php'</script>\n";
 }
 

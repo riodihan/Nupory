@@ -3,6 +3,15 @@ session_start();
 require 'assets/config.php';
 $username = $_SESSION["username"];
 
+if(!isset($_SESSION["login"])){
+  header("location: ../user/login.php");
+}
+
+
+if($_SESSION["id_status"] == 03){
+  header("location: ../user/index.php");
+}
+
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
 $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
@@ -72,7 +81,7 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
       <!-- Data -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-server"></i>
           <span>Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -171,25 +180,25 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
 
       <!-- Nav Item - Tambah / Edit Kategori Bunga Collapse Menu -->
       <li class="nav-item">
-        <?php if ($_SESSION['id_status'] == "01") { ?>
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
-            <i class="fas fa-fw fa-tag"></i>
-            <span>Kategori Bunga
-            </span>
-          </a>
-          <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="editkategori.php">
-                <i class="fas fa-fw fa-edit text-primary"></i>
-                <span class="text-primary">Edit</span>
-              </a>
-              <a class="collapse-item" href="tambahkategori.php">
-                <i class="fas fa-fw fa-plus text-primary"></i>
-                <span class="text-primary">Tambah Kategori</span>
-              </a>
-            </div>
-          <? } else { ?>
-          <?php } ?>
+      <?php if ($_SESSION['id_status']=="01") { ?>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekategori" aria-expanded="true" aria-controls="collapsekategori">
+          <i class="fas fa-fw fa-tag"></i>
+          <span>Kategori Bunga
+          </span>
+        </a>
+        <div id="collapsekategori" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="editkategori.php">
+              <i class="fas fa-fw fa-edit text-primary"></i>
+              <span class="text-primary">Edit</span>
+            </a>
+            <a class="collapse-item" href="tambahkategori.php">
+              <i class="fas fa-fw fa-plus text-primary"></i>
+              <span class="text-primary">Tambah Kategori</span>
+            </a>
+          </div>
+        <? } else { ?>
+        <?php } ?>
       </li>
 
       <!-- Nav Item - Tambah / Edit Karyawan Collapse Menu -->
@@ -202,9 +211,9 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
           </a>
           <div id="collapsekaryawan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="editkaryawan.php">
-                <i class="fas fa-fw fa-edit text-primary"></i>
-                <span class="text-primary">Edit</span>
+              <a class="collapse-item" href="datakaryawan.php">
+                <i class="fas fa-fw fa-user-cog text-primary"></i>
+                <span class="text-primary">Data Karyawan</span>
               </a>
               <a class="collapse-item" href="tambahkaryawan.php">
                 <i class="fas fa-fw fa-plus text-primary"></i>
@@ -395,7 +404,7 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
             <div class="row">
 
               <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <!-- <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -409,7 +418,7 @@ $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' 
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Earnings (Monthly) Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
