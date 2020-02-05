@@ -238,7 +238,7 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
     </div><br><br>
 
 
-    <?php if ($data["VIDEO_BUNGA"] == '') { ?>
+    <?php if (isset($data["VIDEO_BUNGA"])) { ?>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-9" style="float: right;">
@@ -246,13 +246,19 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
                 </div>
             </div>
         </div>
-    <?php } else { ?>
+    <?php }?>
+    <?php if ($data["VIDEO_BUNGA"]=='') {?>
         <div class="container">
             <div class="alert alert-info" role="alert" style="text-align: center;">
                 Mohon Maaf Video Perawatan Belum tersedia untuk saat ini. <br> Untuk menanyakan Cara Perawatan mohon hubungi kami.
             </div>
         </div>
     <?php } ?>
+    <div class="container">
+            <div class="alert alert-info" role="alert" style="text-align: center;">
+                <?= $data["CARA_PERAWATAN"]?>
+            </div>
+        </div>
 <?php } ?>
 <br><br><br>
 <div id="footer" class="container-fluid">
