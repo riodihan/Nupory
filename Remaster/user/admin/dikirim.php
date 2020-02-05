@@ -3,12 +3,12 @@ session_start();
 require 'assets/config.php';
 
 if(!isset($_SESSION["login"])){
-  header("location: ../user/login.php");
+  header("location: ../login.php");
 }
 
 
 if($_SESSION["id_status"] == 03){
-  header("location: ../user/index.php");
+  header("location: ../index.php");
 }
 
 $username = $_SESSION["username"];

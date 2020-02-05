@@ -2,12 +2,12 @@
   require 'assets/config.php';
   session_start();
   if(!isset($_SESSION["login"])){
-    header("location: ../user/login.php");
+    header("location: ../login.php");
   }
   
   
   if($_SESSION["id_status"] == 03){
-    header("location: ../user/index.php");
+    header("location: ../index.php");
   }
 
   if($_SESSION["id_status"] == 02){

@@ -4,12 +4,12 @@ require 'assets/config.php';
 $username = $_SESSION["username"];
 
 if(!isset($_SESSION["login"])){
-  header("location: ../user/login.php");
+  header("location: ../login.php");
 }
 
 
 if($_SESSION["id_status"] == 03){
-  header("location: ../user/index.php");
+  header("location: ../index.php");
 }
 
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
