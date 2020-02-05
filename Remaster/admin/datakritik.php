@@ -13,8 +13,10 @@ if($_SESSION["id_status"] == 03){
 
 $username = $_SESSION["username"];
 $user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
-$kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
-$hasil = mysqli_query ($koneksi, "SELECT  NAMA_USER, ISI_KRITIK FROM kritik, user WHERE kritik.USERNAME=user.USERNAME AND user.ID_STATUS='03' ");
+$kritik = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = 1 ");
+
+$kritik1 = mysqli_query ($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = 1 ");
+// $hasil = mysqli_query ($koneksi, "SELECT  NAMA_USER, ISI_KRITIK FROM kritik, user WHERE kritik.USERNAME=user.USERNAME AND user.ID_STATUS='03' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' " );
 
 ?>
@@ -418,9 +420,9 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                     </tr>
                   </thead>
                   <tbody>
-                    <?php while ($row=mysqli_fetch_assoc($hasil)): ?>
+                    <?php while ($row=mysqli_fetch_assoc($kritik1)): ?>
                     <tr>
-                      <td><?php echo $row["NAMA_USER"]?></td>
+                      <td><?php echo $row["USERNAME"]?></td>
                       <td><?php echo $row["ISI_KRITIK"]?></td>
                       <td><a href="#" class="btn btn-success">Dibaca</a></td>
                     </tr>
