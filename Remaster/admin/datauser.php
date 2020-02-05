@@ -1,6 +1,7 @@
 <?php
   session_start();
   require 'assets/config.php';
+  $username = $_SESSION["username"];
 
 $username = $_SESSION["username"];
 
@@ -354,7 +355,9 @@ $username = $_SESSION["username"];
                     <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
@@ -514,6 +517,14 @@ $username = $_SESSION["username"];
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  
+  <!-- Nama Muncul -->
+  <script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 
   <!-- Counter Kritik AJAX -->
   <script type="text/javascript" >

@@ -7,6 +7,9 @@ require 'assets/config.php';
 // $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
 
 $hasil = mysqli_query($koneksi, "SELECT * FROM user WHERE ID_STATUS = 02");
+$username = $_SESSION["username"];
+$user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
+
 $hasil1 = mysqli_query($koneksi, "SELECT * FROM status ");
 $kritik = mysqli_query($koneksi, "SELECT * FROM kritik WHERE ID_STATUS_KRITIK = '01' ");
 $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANSAKSI = '02' ");
@@ -352,9 +355,13 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
                                                                             echo $_SESSION['nama_user'];
                                                                           } ?></span>
                 <?php if ($_SESSION['id_status'] == "01") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
-                  <img class="img-profile rounded-circle" src=" $_SESSION['foto_user']">
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
@@ -573,6 +580,14 @@ $tagihan = mysqli_query($koneksi, "SELECT * FROM Transaksi WHERE ID_STATUS_TRANS
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  
+  <!-- Nama Muncul -->
+  <script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 
   <!-- Counter Kritik AJAX -->
   <script type="text/javascript">

@@ -3,7 +3,8 @@ session_start();
 require 'assets/config.php';
 
 
-
+$username = $_SESSION["username"];
+$user = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username' ");
 $hasil = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02'");
 $hasil1 = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE ID_STATUS_TRANSAKSI = '02'");
 
@@ -378,7 +379,15 @@ if(isset($_POST["update"])){
                     echo "Karyawan, ";
                     echo $_SESSION['nama_user'];
                   }?></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <?php if ($_SESSION['id_status'] == "01") { ?>
+                  <?php foreach ($user as $data) { ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
+                <?php } elseif ($_SESSION['id_status'] == "02") { ?>
+                  <?php foreach ($user as $data) { ?>
+                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                <?php } ?>
+                <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
