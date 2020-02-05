@@ -44,15 +44,13 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <!-- <a class="logo-holder" href="index.html">
-                                    <div class="logo" style="width:62px;height:18px"></div>
-                                </a> -->
+                                
                             </div>
                             <div style="height: 1px;" role="main" aria-expanded="false" class="navbar-collapse collapse" id="bs">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="index.php">Beranda</a></li>
                                     <li class="dropdown unity-menu">
-                                        <a href="#pricing">Fasilitas <i class="fas fa-caret-down"></i></a>
+                                        <a href="">Fasilitas <i class="fas fa-caret-down"></i></a>
                                         <ul class="dropdown-menu dropdown-unity">
                                             <li>
                                                 <a class="unity-link" href="caraperawatan.php">
@@ -120,7 +118,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                                     </li>
                                     <?php if (isset($_SESSION["login"])) { ?>
                                         <li class="dropdown unity-menu">
-                                            <a href="#pricing">Transaksi<i class="fas fa-caret-down"></i></a>
+                                            <a href="">Transaksi<i class="fas fa-caret-down"></i></a>
                                             <ul class="dropdown-menu dropdown-unity">
 
                                                 <li>
@@ -275,7 +273,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                 <div class="col-sm-12 col-md-6">
                     <div class="service-box">
                         <div class="service-icon">
-                            <img src="../admin/img/<?= $data["GAMBAR_KATEGORI"] ?>" alt="">
+                            <img src="admin/img/<?= $data["GAMBAR_KATEGORI"] ?>" alt="">
                         </div>
                         <div class="service-title"><a href="kategoribunga.php?id=<?= $data["ID_KATEGORI"] ?>"><?= $data["NAMA_KATEGORI"] ?></a></div>
                         <div class="service-details">
@@ -315,7 +313,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori where NAMA_KATEGORI I
                     <a href="bunga.php?id=<?php echo $data["ID_BUNGA"]; ?>">
                         <div class="col-sm-6 col-md-3">
                             <div class="article-summary">
-                                <div class="article-img"><img style="width: 250px; height: 200px;" class="img-fluid img-thumbnail" src="../admin/img/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
+                                <div class="article-img"><img style="width: 250px; height: 200px;" class="img-fluid img-thumbnail" src="admin/img/<?php echo $data["FOTO_BUNGA"]; ?>" alt="" /></div>
                                 <div class="article-details">
                                     <div class="article-title"><b><?php echo $data["NAMA_BUNGA"]; ?></b></div>
                                     <div class="article-title">Rp. <?php echo $data["HARGA"]; ?></div>

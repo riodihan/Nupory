@@ -275,7 +275,7 @@ $detail = mysqli_query($koneksi, "SELECT * FROM transaksi
                                     <div class="service-icon">
                                         <img src="images/anggrek bulan.jpg" alt="">
                                     </div>
-                                    <div class="service-title"><a href="webhosting.html">Pesanan anda</a></div>
+                                    <div class="service-title"><a href="">Pesanan anda</a></div>
                                     <div class="service-details">
                                         <p>Barang telah diterima oleh yang bersangkutan</p>
                                         <?php echo "<td><a href='#myModal' class='btn btn-info btn-small' id='custId' data-toggle='modal' data-id=".$data['ID_TRANSAKSI'].">Detail</a></td>"; ?>

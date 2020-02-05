@@ -111,7 +111,7 @@ if (isset($_POST["daftar"])) {
                         </div>
 
                         <div>
-                            <a href="Login.php" class="txt1">
+                            <a href="login.php" class="txt1">
                                 Sudah Punya Akun? Login Disini
                             </a><br>
                         </div>
