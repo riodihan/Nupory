@@ -84,23 +84,23 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -225,6 +225,7 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
             </div>
         </nav>
         <?php foreach ($video as $data) { ?>
+
             <div id="page-head" class="container-fluid inner-page">
                 <div class="container">
                     <div class="row">
@@ -236,66 +237,75 @@ $video = mysqli_query($koneksi, "SELECT * FROM bunga where id_bunga = '$idbunga'
             </div>
     </div><br><br>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-9" style="float: right;">
-                <iframe width="560" height="315" src="<?php echo $data["VIDEO_BUNGA"]; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <?php if ($data["VIDEO_BUNGA"] == '') { ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-9" style="float: right;">
+                    <iframe width="560" height="315" src="<?php echo $data["VIDEO_BUNGA"]; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
-    </div>
+    <?php } else { ?>
+        <div class="container">
+            <div class="alert alert-info" role="alert" style="text-align: center;">
+                Mohon Maaf Video Perawatan Belum tersedia untuk saat ini. <br> Untuk menanyakan Cara Perawatan mohon hubungi kami.
+            </div>
+        </div>
+    <?php } ?>
 <?php } ?>
 <br><br><br>
 <div id="footer" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="address-holder">
-                        <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
-                        <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
-                        <div class="address">
-                            <i class="fas fa-map-marker"></i>
-                            <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="address-holder">
+                    <div class="phone"><i class="fas fa-phone"></i>085155173339</div>
+                    <div class="email"><i class="fas fa-envelope"></i>idristifa@gmail.com</div>
+                    <div class="address">
+                        <i class="fas fa-map-marker"></i>
+                        <div>puncak rembangan, darungan, Darungan, Kemuninglor, Arjasa, Jember Regency, Jawa Timur 68191</div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-2">
-                    <div class="footer-menu-holder">
-                        <h4>Lembaga</h4>
-                        <ul class="footer-menu">
-                            <li><a href="tentangkami.php">Tentang Kami</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+                <div class="footer-menu-holder">
+                    <h4>Lembaga</h4>
+                    <ul class="footer-menu">
+                        <li><a href="tentangkami.php">Tentang Kami</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Layanan Kami</h4>
-                        <ul class="footer-menu">
-                            <li><a href="kategori.php">Transaksi Bunga</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Layanan Kami</h4>
+                    <ul class="footer-menu">
+                        <li><a href="kategori.php">Transaksi Bunga</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-6 col-sm-3 col-md-3">
-                    <div class="footer-menu-holder">
-                        <h4>Fasilitas</h4>
-                        <ul class="footer-menu">
-                            <li><a href="caraperawatan.php">Cara Perawatan</a></li>
-                            <li><a href="temukankami.php">Peta Lokasi</a></li>
-                            <li><a href="faq.php">FAQ</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Fasilitas</h4>
+                    <ul class="footer-menu">
+                        <li><a href="caraperawatan.php">Cara Perawatan</a></li>
+                        <li><a href="temukankami.php">Peta Lokasi</a></li>
+                        <li><a href="faq.php">FAQ</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-12 col-sm-1 col-md-1">
-                    <div class="social-menu-holder">
-                        <ul class="social-menu">
-                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-xs-12 col-sm-1 col-md-1">
+                <div class="social-menu-holder">
+                    <ul class="social-menu">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-slider.min.js"></script>

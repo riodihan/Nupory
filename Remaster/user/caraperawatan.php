@@ -252,7 +252,7 @@ $perawatan = mysqli_query($koneksi, "SELECT * FROM bunga");
                                     <div class="pricing-title"><?php echo $data["NAMA_BUNGA"]; ?></div>
 
                                     <div class="pricing-details">
-                                        <p><?php echo $data["DESKRIPSI"]; ?></p>
+                                        <p><?php echo substr($data["DESKRIPSI"],0,150); ?>....</p>
                                     </div>
                                     <div class="pricing-link">
                                         <a class="ybtn" href="perawatan.php?id=<?php echo $data["ID_BUNGA"]; ?>">Lihat</a>
