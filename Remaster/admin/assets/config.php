@@ -518,3 +518,17 @@ function hapususer($id)
     $qu = mysqli_query($koneksi, "DELETE FROM user WHERE USERNAME = '$id'");
     return $qu;
 }
+
+//bacakritik
+function kritikdibaca($data)
+{
+    global $koneksi;
+    $idkritik = htmlspecialchars($data["idkritik"]);
+    $idstatuskritik = htmlspecialchars($data["idstatuskritik"]);
+
+    $qu = mysqli_query($koneksi, "UPDATE kritik SET 
+                ID_STATUS_KRITIK = '$idstatuskritik'
+
+                WHERE ID_KRITIK = '$idkritik'");
+    return $qu;
+}
