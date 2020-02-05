@@ -442,11 +442,11 @@ if (isset($_POST["ubah1"])) {
 
                 <?php if ($_SESSION['id_status'] == "01") { ?>
                   <?php foreach ($user as $data) { ?>
-                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                    <img class="img-profile " src="img/<?= $data["FOTO_USER"] ?>" width="400px">
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <?php foreach ($user as $data) { ?>
-                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <img class="img-profile " src="img/<?= $data["FOTO_USER"] ?>" width="400px">
                 <?php } ?>
                 <?php } ?>
                 <!-- <img src="img/admin.png" class="card-img" alt="..."> -->
