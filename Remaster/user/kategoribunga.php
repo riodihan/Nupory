@@ -90,23 +90,23 @@ $idkategori = mysqli_query($koneksi, "SELECT * FROM kategori where id_kategori =
                                                     </div>
                                                 </a>
                                             </li>
-                                            <?php if(isset($_SESSION["login"])) {?>
-                                            <li>
-                                                <a class="unity-link" href="kritikdansaran.php">
-                                                    <div class="unity-box">
-                                                        <div class="unity-icon">
-                                                            <img src="images/kritik.png" alt="">
+                                            <?php if (isset($_SESSION["login"])) { ?>
+                                                <li>
+                                                    <a class="unity-link" href="kritikdansaran.php">
+                                                        <div class="unity-box">
+                                                            <div class="unity-icon">
+                                                                <img src="images/kritik.png" alt="">
+                                                            </div>
+                                                            <div class="unity-title">
+                                                                Kritik dan saran
+                                                            </div>
+                                                            <div class="unity-details">
+                                                                Berikan Kritik dan saran
+                                                            </div>
                                                         </div>
-                                                        <div class="unity-title">
-                                                            Kritik dan saran
-                                                        </div>
-                                                        <div class="unity-details">
-                                                            Berikan Kritik dan saran
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <?php }?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
                                                 <a class="unity-link" href="faq.php">
                                                     <div class="unity-box">
@@ -235,10 +235,27 @@ $idkategori = mysqli_query($koneksi, "SELECT * FROM kategori where id_kategori =
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <?php foreach ($idkategori as $data) { ?>
-                            <div class="page-title">Kategori bunga <?= $data["NAMA_KATEGORI"]?></div>
+                            <div class="page-title">Kategori bunga <?= $data["NAMA_KATEGORI"] ?></div>
                         <?php } ?>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="domain-quick-pricing" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-12">
+                    <div class="domain-box d-color1">
+                        <?php foreach($idkategori as $data){?>
+                        <div class="details">
+                           <b><?= $data["DESKRIPSI"]?></b> 
+                        </div>
+                        <?php }?>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -256,7 +273,8 @@ $idkategori = mysqli_query($koneksi, "SELECT * FROM kategori where id_kategori =
                                         <div class="article-title"><b><?php echo $data["NAMA_BUNGA"]; ?></b></div>
                                         <div class="article-title">Rp. <?php echo $data["HARGA"]; ?></div>
                                         <div class="article-text">
-                                        <?= substr($data["DESKRIPSI"], 0, 100); echo '...';?>
+                                            <?= substr($data["DESKRIPSI"], 0, 100);
+                                            echo '...'; ?>
                                         </div>
                                     </div>
                                 </div>
