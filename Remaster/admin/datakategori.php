@@ -508,9 +508,9 @@ if ($id_tbh < 10) {
                         <td><?php echo $row["GAMBAR_KATEGORI"] ?></td>
                         <td>
                           <?php if ($_SESSION['id_status'] == "01") { ?>
-                            <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editKategori">
+                            <!-- <button type="button" class="btn btn-primary" style="width: 40px;" data-toggle="modal" data-target="#editKategori">
                               <i class="fas fa-edit"></i>
-                            </button>
+                            </button> -->
                             <a class="btn btn-danger" href="hapuskategori.php?id=<?= $row["ID_KATEGORI"]; ?>" on click="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
                               <i class="fas fa-trash"></i>
                             </a>

@@ -375,8 +375,8 @@ if (isset($_POST["edit"])) {
                   <?php } ?>
                 <?php } elseif ($_SESSION['id_status'] == "02") { ?>
                   <?php foreach ($user as $data) { ?>
-                  <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
-                <?php } ?>
+                    <img class="img-profile rounded-circle" src="img/<?= $data["FOTO_USER"] ?>">
+                  <?php } ?>
                 <?php } ?>
               </a>
               <!-- Dropdown - User Information -->
@@ -402,131 +402,136 @@ if (isset($_POST["edit"])) {
 
           <!-- DataTales Example -->
           <div class="row">
-            <div class="col-md-8">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>Tindakan</th>
-                          <th>Id Bunga</th>
-                          <th>Id Kategori</th>
-                          <th>Nama Bunga</th>
-                          <th>Harga</th>
-                          <th>Stok</th>
-                          <th>Gambar</th>
-                          <th>Video</th>
-                          <th>Cara Perawatan</th>
-                          <!-- <th>Deskripsi</th> -->
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
-                          <tr>
-                            <td>
-                              <a href="editbunga.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
-                              <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
-                            <td><?php echo $row["ID_BUNGA"] ?></td>
-                            <td><?php echo $row["ID_KATEGORI"] ?></td>
-                            <td><?php echo $row["NAMA_BUNGA"] ?></td>
-                            <td class="text-right"><?php echo $row["HARGA"] ?></td>
-                            <td class="text-center"><?php echo $row["STOK"] ?></td>
-                            <td><?php echo $row["FOTO_BUNGA"] ?></td>
-                            <td><?php echo $row["VIDEO_BUNGA"] ?></td>
-                            <td><?php echo $row["CARA_PERAWATAN"] ?></td>
-                            <!-- <td><?php echo $row["DESKRIPSI"] ?></td> -->
-                          </tr>
-                        <?php endwhile; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- col -->
-
-
-            <?php
-            if(isset($_GET["edit"])){
-              $idBunga = $_GET["edit"];
-              //query data bunga berdasarkan id
-              $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
-            }
-
-            if (isset($idBunga)) { ?>
-              <div class="col-md-4">
+            <?php if (isset($_GET["edit"])) { ?>
+              <div class="col-md-8">
+              <?php } ?>
+              <?php if (!isset($_GET["edit"])) { ?>
+                <div class="col-md-12">
+                <?php } ?>
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-center">Edit Bunga</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nursery Polije</h6>
                   </div>
-
-                  <form action="" method="POST" class="card-body" enctype="multipart/form-data">
-                    <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"]; ?>" required>
-                    <div class="row">
-                      <div class="col">
-                        <div class="form-group">
-                          <label for="namabunga">Nama Bunga</label>
-                          <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"]; ?>" required>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label for="kategoribunga">Kategori Bunga</label>
-                          <select name="kategoriBunga" id="kategoribunga" class="form-control" required>
-                            <option value="">Pilih Kategori</option>
-                            <?php while ($row = mysqli_fetch_assoc($hasil1)) : ?>
-                              <option value="<?php echo $row["ID_KATEGORI"] ?>"><?php echo $row["NAMA_KATEGORI"] ?></option>
-                            <?php endwhile; ?>
-                          </select>
-                        </div>
-                      </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Tindakan</th>
+                            <th>Id Bunga</th>
+                            <th>Id Kategori</th>
+                            <th>Nama Bunga</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Gambar</th>
+                            <th>Video</th>
+                            <th>Cara Perawatan</th>
+                            <!-- <th>Deskripsi</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php while ($row = mysqli_fetch_assoc($hasil)) : ?>
+                            <tr>
+                              <td>
+                                <a href="editbunga.php?edit=<?php echo $row["ID_BUNGA"]; ?>" class="btn btn-primary" style="width: 40px;"><i class="fas fa-edit"></i></a>
+                                <a href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                              </td>
+                              <td><?php echo $row["ID_BUNGA"] ?></td>
+                              <td><?php echo $row["ID_KATEGORI"] ?></td>
+                              <td><?php echo $row["NAMA_BUNGA"] ?></td>
+                              <td class="text-right"><?php echo $row["HARGA"] ?></td>
+                              <td class="text-center"><?php echo $row["STOK"] ?></td>
+                              <td><?php echo $row["FOTO_BUNGA"] ?></td>
+                              <td><?php echo $row["VIDEO_BUNGA"] ?></td>
+                              <td><?php echo $row["CARA_PERAWATAN"] ?></td>
+                              <!-- <td><?php echo $row["DESKRIPSI"] ?></td> -->
+                            </tr>
+                          <?php endwhile; ?>
+                        </tbody>
+                      </table>
                     </div>
-                    <div class="form-group">
-                      <label for="deskripsibunga">Deskripsi Bunga</label>
-                      <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"]; ?>" required>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="harga">Harga</label>
-                          <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"]; ?>" required>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-group">
-                          <label for="stok">Stok</label>
-                          <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"]; ?>" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="fotobunga">Foto Bunga</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"]; ?>" required>
-                          <label class="custom-file-label" for="fotobunga">Pilih foto</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="videobunga">Video</label>
-                      <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"]; ?>" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="caraperawatan">Cara Perawatan</label>
-                      <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"]; ?>" required>
-                    </div>
-                    <div class="col text-center">
-                      <button type="submit" name="edit" class="btn btn-primary">Edit Bunga</button>
-                    </div>
-                  </form>
+                  </div>
                 </div>
-              </div> <!-- col -->
-            <?php } ?>
+                </div> <!-- col -->
+
+
+                <?php
+                if (isset($_GET["edit"])) {
+                  $idBunga = $_GET["edit"];
+                  //query data bunga berdasarkan id
+                  $dataBunga = query("SELECT * FROM bunga WHERE ID_BUNGA='$idBunga'")[0];
+                }
+
+                if (isset($idBunga)) { ?>
+                  <div class="col-md-4">
+                    <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary text-center">Edit Bunga</h6>
+                      </div>
+
+                      <form action="" method="POST" class="card-body" enctype="multipart/form-data">
+                        <input type="hidden" name="idBunga" id="idbunga" value="<?php echo $dataBunga["ID_BUNGA"]; ?>" required>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="namabunga">Nama Bunga</label>
+                              <input type="text" name="namaBunga" id="namabunga" class="form-control" value="<?php echo $dataBunga["NAMA_BUNGA"]; ?>" required>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="kategoribunga">Kategori Bunga</label>
+                              <select name="kategoriBunga" id="kategoribunga" class="form-control" required>
+                                <option value="">Pilih Kategori</option>
+                                <?php while ($row = mysqli_fetch_assoc($hasil1)) : ?>
+                                  <option value="<?php echo $row["ID_KATEGORI"] ?>"><?php echo $row["NAMA_KATEGORI"] ?></option>
+                                <?php endwhile; ?>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="deskripsibunga">Deskripsi Bunga</label>
+                          <input type="text" name="deskripsiBunga" id="deskripsibunga" class="form-control" value="<?php echo $dataBunga["DESKRIPSI"]; ?>" required>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="harga">Harga</label>
+                              <input type="text" name="hargaBunga" id="harga" class="form-control text-right" value="<?php echo $dataBunga["HARGA"]; ?>" required>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="stok">Stok</label>
+                              <input type="text" name="stokBunga" id="stok" class="form-control text-right" value="<?php echo $dataBunga["STOK"]; ?>" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="fotobunga">Foto Bunga</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" name="fotoBunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="fotobunga" value="<?php echo $dataBunga["FOTO_BUNGA"]; ?>" required>
+                              <label class="custom-file-label" for="fotobunga">Pilih foto</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="videobunga">Video</label>
+                          <input type="text" name="videoBunga" id="videobunga" class="form-control" placeholder="Copy link video disini." value="<?php echo $dataBunga["VIDEO_BUNGA"]; ?>" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="caraperawatan">Cara Perawatan</label>
+                          <input type="text" name="caraPerawatan" id="caraperawatan" class="form-control" value="<?php echo $dataBunga["CARA_PERAWATAN"]; ?>" required>
+                        </div>
+                        <div class="col text-center">
+                          <button type="submit" name="edit" class="btn btn-primary">Edit Bunga</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div> <!-- col -->
+                <?php } ?>
 
 
 
@@ -536,117 +541,117 @@ if (isset($_POST["edit"])) {
 
 
 
-          </div> <!-- Row -->
+              </div> <!-- Row -->
+
+          </div>
 
         </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Your Website 2019</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
 
       </div>
-      <!-- End of Main Content -->
+      <!-- End of Content Wrapper -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="../user/logout.php">Logout</a>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Klik "Logout" jika anda ingin keluar dari halaman ini.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="../user/logout.php">Logout</a>
-        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
-  
-  <!-- Nama Muncul -->
-  <script>
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
 
-  <!-- Counter Kritik AJAX -->
-  <script type="text/javascript">
-    function loadDoc() {
-      setInterval(function() {
+    <!-- Nama Muncul -->
+    <script>
+      $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+      });
+    </script>
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("counterkr").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "counterkritik.php", true);
-        xhttp.send();
+    <!-- Counter Kritik AJAX -->
+    <script type="text/javascript">
+      function loadDoc() {
+        setInterval(function() {
 
-      }, 1000);
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("counterkr").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", "counterkritik.php", true);
+          xhttp.send();
 
-    }
-    loadDoc();
-  </script>
+        }, 1000);
 
-  <!-- Counter Tagihan AJAX -->
-  <script type="text/javascript">
-    function loadDoc() {
-      setInterval(function() {
+      }
+      loadDoc();
+    </script>
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("counterth").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "countertagihan.php", true);
-        xhttp.send();
+    <!-- Counter Tagihan AJAX -->
+    <script type="text/javascript">
+      function loadDoc() {
+        setInterval(function() {
 
-      }, 1000);
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("counterth").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", "countertagihan.php", true);
+          xhttp.send();
 
-    }
-    loadDoc();
-  </script>
+        }, 1000);
+
+      }
+      loadDoc();
+    </script>
 
 </body>
 

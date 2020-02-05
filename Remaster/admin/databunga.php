@@ -649,7 +649,7 @@
                       <td data-target="caraPerawatan"><?php echo $row["CARA_PERAWATAN"]?></td>
                       <td>
                         <?php if ($_SESSION['id_status']=="01") { ?>
-                            <a class="btn btn-primary" style="width:40px;" href="#" data-role="update" data-id=<?php echo $row['ID_BUNGA'];?>><i class="fas fa-edit"></i></a>
+                            <!-- <a class="btn btn-primary" style="width:40px;" href="#" data-role="update" data-id=<?php echo $row['ID_BUNGA'];?>><i class="fas fa-edit"></i></a> -->
                             <a class="btn btn-danger" href="hapusbunga.php?id=<?= $row["ID_BUNGA"]; ?>"onclick="return confirm('Anda yakin ingin menghapus data ini ?')" role="button">
                             <i class="fas fa-trash"></i>
                             </a>
